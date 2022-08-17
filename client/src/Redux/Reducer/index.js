@@ -1,12 +1,14 @@
+import { GET_ALL_PRODUCTS } from "../Action"
+
 const initialState = {
-    products: {}
+    products: []
 }
 
 export default function rootReducer(state = initialState, {type, payload}) {
     switch (type) {
-        case '...':
+        case GET_ALL_PRODUCTS:
             return {
-                ...state,
+                ...state, products: payload
             }
         default:
             return state
