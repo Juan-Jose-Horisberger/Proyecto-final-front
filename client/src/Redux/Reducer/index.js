@@ -1,5 +1,6 @@
 import {
     GET_ALL_PRODUCTS,
+    GET_PRODUCT_BY_NAME,
     GET_PRODUCT_DETAIL
 } from "../Action"
 
@@ -19,6 +20,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state, productDetail: payload
             };
+
+        case GET_PRODUCT_BY_NAME:
+            return {
+                ...state, products: payload
+            };
+
         default:
             return state
     }
