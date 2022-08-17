@@ -1,4 +1,7 @@
-import { GET_ALL_PRODUCTS } from "../Action"
+import {
+    GET_ALL_PRODUCTS,
+    GET_PRODUCT_DETAIL
+} from "../Action"
 
 const initialState = {
     products: [],

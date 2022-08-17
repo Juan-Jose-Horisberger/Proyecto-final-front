@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
+import Product from '../Product/Product.jsx';
+import { getAllProducts } from '../../Redux/Action';
 
 export default function Home() {
     const dispatch = useDispatch();
-    const allProducts = useSelector();
+    const allProducts = useSelector(state => state.products);
     const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
@@ -17,13 +20,7 @@ export default function Home() {
 
     return (
         <div className={styles.container}>
-            <h1>Hola estas en Home</h1>
-
-
-            <Link to="/ProductDetail">
-                Ir a Productdetail
-            </Link>
-
+            <h1>BERSACHE</h1>
             {
                 loaded ? (
                     <div>
