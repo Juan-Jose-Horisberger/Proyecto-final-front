@@ -1,12 +1,12 @@
 const initialState = {
-    products: {}
+    products: []
 }
 
 export default function rootReducer(state = initialState, {type, payload}) {
     switch (type) {
-        case '...':
+        case GET_ALL_PRODUCT:
             return {
-                ...state,
+                ...state, products: payload
             }
         default:
             return state
