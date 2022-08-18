@@ -5,6 +5,7 @@ export default function useForm(initialForm, validateForm) {
     const dispatch = useDispatch();
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
+    const [disable, setDisable] = useState(false)
 
     const handleOnChange = (e) => {
 
@@ -51,6 +52,8 @@ export default function useForm(initialForm, validateForm) {
         handleOnChange,
         handleSubmit,
         handleChecked,
-        handleOnBlur
+        handleOnBlur,
+        disable,
+        setDisable
     }
 }
