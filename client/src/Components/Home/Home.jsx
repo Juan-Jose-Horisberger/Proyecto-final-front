@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
-import Product from '../Product/Product.jsx';
 import { getAllProducts } from '../../Redux/Action';
 import SearchBar from '../SearchBar/SearchBar.jsx';
+import Pagination from '../Pagination/Pagination.jsx';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -72,25 +72,10 @@ export default function Home() {
                 </div>
             </div>
 
-            {
-                loaded ? (
-                    <div className={`${styles.container_Cards} col-9 d-flex flex-wrap justify-content-sm-evenly`} style={{ border: '1px solid red' }}>
-                        {allProducts.length ? allProducts.map((p, i) =>
-                            <Product
-                                key={i}
-                                id={p.id}
-                                name={p.nombre}
-                                price={p.precio}
-                                image={p.img}
-                            />
-                        )
-                            : <h1>No se encontro lo que se esta buscando</h1>
-                        }
-                    </div>
-                )
-                    : <p>Loading...</p>
-            }
-
+            <Pagination
+                allProducts={allProducts}
+                loaded={loaded}
+            />
 
         </div>
     )
