@@ -16,8 +16,29 @@ const initialForm = {
   genre: ""
 }
 
-const validateForm = () => {
+const validateForm = (form, value) => {
+  let errors = {};
+  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
 
+  if (!form.name.trim() && value === "name") {
+    errors.name = "El nombre del producto es requerido"
+  }else if (!regexName.test(form.name.trim()) && value === "name"){
+    errors.name = "El nombre del producto solo acepta letras y espacios."
+  };
+
+  if (form.brand === "" && value === "brand") {
+    errors.brand = "Debes seleccionar una marca"
+  };
+
+  if (form.category === "" && value === "category") {
+    errors.category = "El producto debe pertenecer a una categoria"
+  };
+
+  if (form.genre === "" && value === "genre") {
+    errors.genre = "El producto debe pertenet a un genero"
+  };
+
+  return errors;
 }
 
 
@@ -28,7 +49,8 @@ export default function FormProduct() {
     errors,
     handleOnChange,
     handleSubmit,
-    handleChecked
+    handleChecked,
+    handleOnBlur
   } = useForm(initialForm, validateForm)
 
 
@@ -44,12 +66,14 @@ export default function FormProduct() {
               name="name"
               id="name"
               value={form.name}
+              onBlur={handleOnBlur}
               onChange={handleOnChange} />
+              {errors.name && <p>{errors.name}</p>}
           </div>
 
           <div>
             <label htmlFor="category">Categoria</label>
-            <select name="category" onChange={handleOnChange}>
+            <select name="category" onChange={handleOnChange} onBlur={handleOnBlur}>
               <option value="" >Category</option>
               <option value="calzado" >Calzado</option>
               <option value="camiseta" >Camiseta</option>
@@ -57,16 +81,18 @@ export default function FormProduct() {
               <option value="buzo" >Buzo</option>
               <option value="campera" >Campera</option>
             </select>
+            {errors.category && <p>{errors.category}</p>}
           </div>
 
           <div>
             <label htmlFor="brand">Marca</label>
-            <select name="brand" onChange={handleOnChange}>
+            <select name="brand" onChange={handleOnChange} onBlur={handleOnBlur}>
               <option value="" >Brand</option>
               <option value="Adidas" >Adidas</option>
               <option value="Nike" >Nike</option>
               <option value="Puma" >Puma</option>
             </select>
+            {errors.brand && <p>{errors.brand}</p>}
           </div>
 
           <div>
@@ -75,6 +101,7 @@ export default function FormProduct() {
               name="price"
               id="price"
               value={form.price}
+              onBlur={handleOnBlur}
               onChange={handleOnChange} />
           </div>
 
@@ -83,7 +110,9 @@ export default function FormProduct() {
             <input type="number"
               name="stock"
               id="stock"
+              min="0"
               value={form.stock}
+              onBlur={handleOnBlur}
               onChange={handleOnChange} />
           </div>
 
@@ -93,6 +122,7 @@ export default function FormProduct() {
               name="image"
               id="image"
               value={form.image}
+              onBlur={handleOnBlur}
               onChange={handleOnChange} />
           </div>
 
@@ -101,7 +131,9 @@ export default function FormProduct() {
             <input type="number"
               name="sold"
               id="sold"
+              min="0"
               value={form.sold}
+              onBlur={handleOnBlur}
               onChange={handleOnChange} />
           </div>
 
@@ -116,6 +148,7 @@ export default function FormProduct() {
                         name={e}
                         id={e}
                         value={form.size}
+                        onBlur={handleOnBlur}
                         onChange={handleChecked} />
                       {e}
                     </div>
@@ -133,6 +166,7 @@ export default function FormProduct() {
                           name={e}
                           id={e}
                           value={form.size}
+                          onBlur={handleOnBlur}
                           onChange={handleChecked} />
                         {e}
                       </label>
@@ -147,14 +181,18 @@ export default function FormProduct() {
             <label htmlFor="score">Calificacion</label>
             <input type="number"
               name="score"
+              min="0"
+              max="5"
+              step="0.1"
               id="score"
               value={form.score}
+              onBlur={handleOnBlur}
               onChange={handleOnChange} />
           </div>
 
           <div>
             <label htmlFor="genre">Genero</label>
-            <select name="genre" onChange={handleOnChange}>
+            <select name="genre" onChange={handleOnChange} onBlur={handleOnBlur}>
               <option value="" >Genre</option>
               <option value="hombre" >Hombre</option>
               <option value="mujer" >Mujer</option>
