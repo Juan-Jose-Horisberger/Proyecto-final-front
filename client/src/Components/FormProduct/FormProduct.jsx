@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useForm from "./useForm";
+import infoJson from "../../info.json"
 
 const initialForm = {
   name: "",
@@ -23,9 +24,11 @@ const validateForm = () => {
 export default function FormProduct() {
   const {
     form,
+    setForm,
     errors,
     handleOnChange,
     handleSubmit,
+    handleChecked
   } = useForm(initialForm, validateForm)
 
 
@@ -46,24 +49,24 @@ export default function FormProduct() {
 
           <div>
             <label htmlFor="category">Categoria</label>
-              <select name="category" onChange={handleOnChange}>
-                <option value="" >Category</option>
-                <option value="calzado" >Calzado</option>
-                <option value="camiseta" >Camiseta</option>
-                <option value="pantalon" >Pantalon</option>
-                <option value="buzo" >Buzo</option>
-                <option value="campera" >Campera</option>
-              </select>
+            <select name="category" onChange={handleOnChange}>
+              <option value="" >Category</option>
+              <option value="calzado" >Calzado</option>
+              <option value="camiseta" >Camiseta</option>
+              <option value="pantalon" >Pantalon</option>
+              <option value="buzo" >Buzo</option>
+              <option value="campera" >Campera</option>
+            </select>
           </div>
 
           <div>
             <label htmlFor="brand">Marca</label>
-              <select name="brand" onChange={handleOnChange}>
-                <option value="" >Brand</option>
-                <option value="Adidas" >Adidas</option>
-                <option value="Nike" >Nike</option>
-                <option value="Puma" >Puma</option>
-              </select>
+            <select name="brand" onChange={handleOnChange}>
+              <option value="" >Brand</option>
+              <option value="Adidas" >Adidas</option>
+              <option value="Nike" >Nike</option>
+              <option value="Puma" >Puma</option>
+            </select>
           </div>
 
           <div>
@@ -104,20 +107,39 @@ export default function FormProduct() {
 
           <div>
             <label htmlFor="size">Talle/s</label>
-            {form.category === "calzado" ? 
-            <select name="size" onChange={handleOnChange}>
-              <option value="37">37</option>
-              <option value="38">38</option>
-              <option value="39">39</option>
-              <option value="40">40</option>
-            </select> 
-            :
-            <select name="size" onChange={handleOnChange}>
-              <option value="XS">XS</option>
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-            </select> 
+            {form.category === "calzado" ?
+              infoJson.hombres.calzado[0].talle.map(
+                e => {
+                  return (
+                    <div key={e}>
+                      <input type="checkbox"
+                        name={e}
+                        id={e}
+                        value={form.size}
+                        onChange={handleChecked} />
+                      {e}
+                    </div>
+
+                  )
+                }
+              )
+              :
+              infoJson.hombres.camperas[0].talle.map(
+                e => {
+                  return (
+                    <div key={e}>
+                      <label htmlFor={e} className="label-create">
+                        <input type="checkbox"
+                          name={e}
+                          id={e}
+                          value={form.size}
+                          onChange={handleChecked} />
+                        {e}
+                      </label>
+                    </div>
+                  )
+                }
+              )
             }
           </div>
 
@@ -132,11 +154,11 @@ export default function FormProduct() {
 
           <div>
             <label htmlFor="genre">Genero</label>
-              <select name="genre" onChange={handleOnChange}>
+            <select name="genre" onChange={handleOnChange}>
               <option value="" >Genre</option>
-                <option value="hombre" >Hombre</option>
-                <option value="mujer" >Mujer</option>
-              </select>
+              <option value="hombre" >Hombre</option>
+              <option value="mujer" >Mujer</option>
+            </select>
           </div>
         </form>
       </div>
