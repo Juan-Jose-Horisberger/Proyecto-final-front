@@ -47,6 +47,8 @@ export default function FormProduct() {
     form,
     setForm,
     errors,
+    disable,
+    setDisable,
     handleOnChange,
     handleSubmit,
     handleChecked,
@@ -74,7 +76,7 @@ export default function FormProduct() {
           <div>
             <label htmlFor="category">Categoria</label>
             <select name="category" onChange={handleOnChange} onBlur={handleOnBlur}>
-              <option value="" >Category</option>
+              <option style={{display:"none"}} >Category</option>
               <option value="calzado" >Calzado</option>
               <option value="camiseta" >Camiseta</option>
               <option value="pantalon" >Pantalon</option>
@@ -87,7 +89,7 @@ export default function FormProduct() {
           <div>
             <label htmlFor="brand">Marca</label>
             <select name="brand" onChange={handleOnChange} onBlur={handleOnBlur}>
-              <option value="" >Brand</option>
+              <option style={{display:"none"}} >Brand</option>
               <option value="Adidas" >Adidas</option>
               <option value="Nike" >Nike</option>
               <option value="Puma" >Puma</option>
@@ -193,7 +195,7 @@ export default function FormProduct() {
           <div>
             <label htmlFor="genre">Genero</label>
             <select name="genre" onChange={handleOnChange} onBlur={handleOnBlur}>
-              <option value="" >Genre</option>
+              <option style={{display:"none"}}>Genre</option>
               <option value="hombre" >Hombre</option>
               <option value="mujer" >Mujer</option>
             </select>
