@@ -5,13 +5,13 @@ import styles from './Product.module.css';
 export default function Product({ id, name, price, image }) {
   return (
 
-    <div className={styles.container}>
+    <div className={`${styles.container}`}>
 
       <h1>{name}</h1>
       <Link to={`/ProductDetail/${id}`}>
-        <img src={image} alt="Imagen no encontrada" width='290px' height='200px' />
+        <img src={image} alt="Imagen no encontrada" className={`img-fluid`} />
       </Link>
-      <h2>{price}</h2>
+      <h2>$ {price}</h2>
       <button>Carrito</button>
       <button>Favoritos</button>
 
