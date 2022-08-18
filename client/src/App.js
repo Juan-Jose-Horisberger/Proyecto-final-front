@@ -6,6 +6,7 @@ import FavoriteProduct from './Components/FavoriteProduct/FavoriteProduct.jsx';
 import Cart from './Components/Cart/Cart.jsx';
 import Login from './Components/Login/Login.jsx';
 import Register from './Components/Register/Register.jsx';
+import FormProduct from './Components/FormProduct/FormProduct.jsx';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/CreateProduct" element={<FormProduct />} />
       </Routes>
     </div>
   );

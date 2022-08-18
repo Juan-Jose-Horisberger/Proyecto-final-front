@@ -2,17 +2,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function useForm (initialForm, validateForm) {
-    dispatch = useDispatch();
+    const dispatch = useDispatch();
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
 
-    handleOnChange = (e) => {
+    const handleOnChange = (e) => {
         setForm({
             ...form, [e.target.name]: e.target.value
         })
     }
 
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
 
     }
 
