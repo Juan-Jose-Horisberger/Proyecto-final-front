@@ -7,6 +7,7 @@ export default function useForm(initialForm, validateForm) {
     const [errors, setErrors] = useState({});
 
     const handleOnChange = (e) => {
+
         if (e.target.name === "category") {
             if (e.target.value === "calzado") {
                 setForm({
@@ -20,8 +21,12 @@ export default function useForm(initialForm, validateForm) {
         } else {
             setForm({
                 ...form, [e.target.name]: e.target.value
-            })
+            });
         }
+    };
+    
+    const handleOnBlur = (e) => {
+        setErrors(validateForm(form, e.target.name));
     };
 
     const handleChecked = (ev) => {
@@ -45,6 +50,7 @@ export default function useForm(initialForm, validateForm) {
         errors,
         handleOnChange,
         handleSubmit,
-        handleChecked
+        handleChecked,
+        handleOnBlur
     }
 }
