@@ -2,7 +2,11 @@ import infoJson from "../../info.json"
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
-export const FILTER_BY_CATEGORY ="FILTER_BY_CATEGORY";
+export const FILTER_BY_DRESS ="FILTER_BY_DRESS";
+export const FILTER_BY_BRAND ="FILTER_BY_BRAND";
+export const FILTER_BY_FOOTWEAR = "FILTER_BY_FOOTWEAR";
+export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
+export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 
 
 export const getAllProducts = () => {
@@ -56,9 +60,34 @@ export const getProductByName = (name) => {
   }
 };
 
-export const filterByCategory= (payload)=>{
+export const filterByDress = (payload)=> {
   return{
-    type : 'FILTER_BY_CATEGORY',
+    type:'FILTER_BY_DRESS',
+    payload
+  }
+}
+export const filterByBrand = (payload)=> {
+  return{
+    type: 'FILTER_BY_BRAND',
+    payload
+  }
+}
+export const filterByFootwear  = (payload)=> {
+  return{
+    type: 'FILTER_BY_FOOTWEAR',
+    payload
+  }
+}
+export const filterByClothingSize = (payload)=> {
+  return{
+    type: 'FILTER_BY_CLOTHING_SIZE',
+    payload
+  }
+}
+
+export const filterByPrice = (payload)=> {
+  return{
+    type: 'FILTER_BY_PRICE',
     payload
   }
 }

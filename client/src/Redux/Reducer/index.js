@@ -2,7 +2,11 @@ import {
     GET_ALL_PRODUCTS,
     GET_PRODUCT_BY_NAME,
     GET_PRODUCT_DETAIL,
-    FILTER_BY_CATEGORY,
+    FILTER_BY_DRESS,
+    FILTER_BY_BRAND,
+    FILTER_BY_FOOTWEAR,
+    FILTER_BY_CLOTHING_SIZE,
+    FILTER_BY_PRICE,
 } from "../Action"
 
 const initialState = {
@@ -26,11 +30,30 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state, products: payload
             };
-        case FILTER_BY_CATEGORY:
-                
+        case FILTER_BY_DRESS:
+            return{
 
-        default:
-            return state
-    }
+            }    
+        case FILTER_BY_BRAND:
+            return{
 
+            }
+        case FILTER_BY_FOOTWEAR:
+            return{
+
+            }   
+        case FILTER_BY_CLOTHING_SIZE:
+            return{
+    
+            }
+        case FILTER_BY_PRICE:
+            return{
+
+            }
+        
+    default:
+      return state;
+  }
 }
+
+

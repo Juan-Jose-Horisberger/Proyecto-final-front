@@ -1,16 +1,27 @@
 import React from 'react';
-import { filterByCategory } from '../../Redux/Action';
+import {useDispatch}from 'react-redux';
+import { filterByBrand, filterByCategory, filterByDress, filterByFootwear } from '../../Redux/Action';
 
 export default function filterbyCategory (){
+const dispatch = useDispatch()
 
-
-/*function handleFilterCategory(e){
- e.preventDefault();
- dispatch(filterByCategory(e.target.value))
-
+/*function handleFilterByDress(e){
+    e.preventDefault();
+    dispatch(filterByDress(e.target.value))
 }*/
 
-    return (
+/*function handleFilterByBrand(e){
+    e.preventDefault();
+    dispatch (filterByBrand(e.target.value))
+}*/
+
+/*function handleFilterByFootwear(e){
+    e.preventDefault();
+    dispatch(filterByFootwear(e.target.value))
+}*/
+
+
+return (
 
         <div className={`${styles.container_Filters}`} style={{ border: '1px solid red' }}>
  <h3>Filtro</h3>
