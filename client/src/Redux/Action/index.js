@@ -2,6 +2,8 @@ import infoJson from "../../info.json"
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
+export const FILTER_BY_CATEGORY ="FILTER_BY_CATEGORY";
+
 
 export const getAllProducts = () => {
   return ({
@@ -53,3 +55,10 @@ export const getProductByName = (name) => {
     alert("No hay nombre !!!!!!!!!")
   }
 };
+
+export const filterByCategory= (payload)=>{
+  return{
+    type : 'FILTER_BY_CATEGORY',
+    payload
+  }
+}
