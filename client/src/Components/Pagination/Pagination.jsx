@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Pagination.module.css';
 import Product from '../Product/Product.jsx';
 import ReactPaginate from 'react-paginate';
+import flechaRightIcon from '../../Imagenes/flecha1.svg'
 
 export default function Pagination({ allProducts, loaded }) {
 
@@ -74,17 +75,17 @@ export default function Pagination({ allProducts, loaded }) {
             <>
                 <ReactPaginate
                     breakLabel={'...'}                  //Etiqueta que seran los ...
-                    nextLabel="next >"
+                    nextLabel="⇾"
                     onPageChange={handlePageClick}      //Cada ves que cambiemos la pag se ejecuta una funcion
                     pageRangeDisplayed={3}              //El numero de pagina que queremos que se muestre antes de los ...
                     pageCount={pageCount}               //Mostramos los numeros de pag
-                    previousLabel="< previous"          //Etiqueta previous
+                    previousLabel="⇽"          //Etiqueta previous
                     renderOnZeroPageCount={null}
                     containerClassName={`${styles.pagination}`} //Decimes que el contenedor tendra como clase pagination
-                    pageLinkClassName={`${styles.pagination.page_num}`}    //Cada elemento por pagina tendra el nombre de clase page-num
-                    previousClassName={`${styles.page_num}`}    //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
-                    nextClassName={`${styles.page_num}`}        //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
-                    activeLinkClassName="active"
+                    pageLinkClassName={`${styles.page_num}`}    //Cada elemento por pagina tendra el nombre de clase page-num
+                    previousClassName={`${styles.previous}`}       //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
+                    nextClassName={`${styles.next}`}            //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
+                    activeLinkClassName={`${styles.active}`}
                 />
             </>
         </div>
