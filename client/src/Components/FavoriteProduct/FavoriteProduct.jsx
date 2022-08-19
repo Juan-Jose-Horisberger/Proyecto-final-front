@@ -15,22 +15,22 @@ export default function FavoriteProduct() {
 
   return (
     <div className={styles.container} key="Asdasd">
-      <h1>Hola estas en FavoriteProduct</h1>
-      {productFav.length && productFav.map(e => {
+  
+      {productFav.length ? productFav.map(e => {
         return (
-          <div key={e.id}>
+          <div key={e.id} className={styles.divProduct}>
 
-            <div>
-              <button onClick={() => handleDelete(e.id)}>X</button>
+            <div className={styles.divBtn}>
+              <button onClick={() => handleDelete(e.id)} className="btn-close mx-auto p-3" aria-label="Close"></button>
             </div>
 
-            <div>
-              <img src={e.img} alt="Image not found" />
+            <div className={styles.divImage}>
+              <img src={e.img} alt="Image not found" className={styles.image}/>
             </div>
 
             <div>
               <p>{e.name}</p>
-              <p>{e.price}</p>
+              <p>{e.precio}</p>
               <p>{e.stock}</p>
             </div>
 
@@ -40,7 +40,8 @@ export default function FavoriteProduct() {
 
           </div>
         )
-      })}
+      }) :
+      <h1>No agregaste productos a tus favoritos</h1>}
     </div>
   )
 }
