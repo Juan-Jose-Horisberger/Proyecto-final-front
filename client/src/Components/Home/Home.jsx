@@ -29,7 +29,7 @@ export default function Home() {
                 <h3>Filtro</h3>
                 <div>
                     <h4>Categoria</h4>
-                    <select class="form-select" aria-label="Default select example">
+                    <select className="form-select" aria-label="Default select example">
                         <option>Indumentaria</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -65,7 +65,7 @@ export default function Home() {
                 </div>
                 <div>
                     <h4>Precio</h4>
-                    <label for="customRange1" className="form-label">Example range</label>
+                    <label className="form-label">Example range</label>
                     <input type="range" className="form-range" id="customRange1"></input>
 
                     <p>Mostramos la info del range</p>

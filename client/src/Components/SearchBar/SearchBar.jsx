@@ -41,12 +41,15 @@ export default function SearchBar() {
                                     <Link to='/CreateProduct' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none'}} >
                                         <p className={`nav-link mb-0 text-start text-sm-center`} style={{color: 'white'}} aria-current="page">Crear producto</p>
                                     </Link>
-                                    <Link to='/Contact' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none' }}>
-                                        <p className={`nav-link mb-0 text-start text-sm-center`}style={{color: 'white'}}  aria-current="page">Contacto</p>
-                                    </Link>
                                     <Link to='/Offers' className="nav-item mx-3  mx-lg-2" style={{ textDecoration: 'none' }}>
                                         <p className={`nav-link mb-0 text-start text-sm-center`} style={{color: 'white'}}>Ofertas</p>
                                     </Link>
+                                    <Link to='/Contact' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none' }}>
+                                        <p className={`nav-link mb-0 text-start text-sm-center`}style={{color: 'white'}}  aria-current="page">Quienés somos</p>
+                                    </Link>
+                                    <Link to='/Contact' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none' }}>
+                                        <p className={`nav-link mb-0 text-start text-sm-center`}style={{color: 'white'}}  aria-current="page">Contacto</p>
+                                    </Link> 
                                 </div>
 
 
