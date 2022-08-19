@@ -2,7 +2,7 @@ import React from 'react';
 import {useDispatch}from 'react-redux';
 import { filterByBrand, filterByCategory, filterByDress, filterByFootwear } from '../../Redux/Action';
 
-export default function filterbyCategory (){
+export default function Filters (){
 const dispatch = useDispatch()
 
 /*function handleFilterByDress(e){
