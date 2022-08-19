@@ -28,8 +28,8 @@ const validateForm = (form, value) => {
   } else if (!regexName.test(form.name.trim()) && value === "name") {
     errors.name = "El nombre del producto solo acepta letras y espacios."
   };
-
-  if (!form.size.length && value === "size") {
+  console.log(value)
+  if (!form.size.length && value === "M" || value === "S" || value === "XS" || value === "L" ) {
     errors.size = "Debes seleccionar minimo 1 talle"
   }
 
@@ -75,9 +75,9 @@ export default function FormProduct() {
 
   return (
     <div className={style.containerPrincipal}>
-      <Link to="/Home" className={style.link}>
+      <Link to="/" className={style.link}>
         {/* <img src={unaX} alt="" /> */}
-        <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+        <button type="button" className="btn-close btn-close-white" aria-label="Close"></button>
       </Link>
       <h2>Agrega un producto al catalogo</h2>
       <div className={style.container}>
@@ -169,19 +169,17 @@ export default function FormProduct() {
               infoJson.hombres.calzado[0].talle.map(
                 e => {
                   return (
-                    <div key={e} class="form-check-inline">
-                      <label class="form-check-label" htmlFor={e}>
-                      <input type="checkbox"
-                      class="form-check-input"
-                        name={e}
-                        id={e}
-                        value={form.size}
-                        onBlur={handleOnBlur}
-                        onChange={handleChecked} />
-                      {e}
+                    <div key={e} className="form-check-inline">
+                      <label className="form-check-label" htmlFor={e}>
+                        <input type="checkbox"
+                          className="form-check-input"
+                          name={e}
+                          id={e}
+                          value={form.size}
+                          onBlur={handleOnBlur}
+                          onChange={handleChecked} />
+                        {e}
                       </label>
-
-                      {errors.size && <p className={style.error}>{errors.size}</p>}
                     </div>
 
                   )
@@ -191,10 +189,10 @@ export default function FormProduct() {
               infoJson.hombres.camperas[0].talle.map(
                 e => {
                   return (
-                    <div key={e} class="form-check-inline">
-                      <label class="form-check-label" htmlFor={e}>
+                    <div key={e} className="form-check-inline">
+                      <label className="form-check-label" htmlFor={e}>
                         <input type="checkbox"
-                          class="form-check-input"
+                          className="form-check-input"
                           name={e}
                           id={e}
                           value={form.size}
@@ -202,13 +200,12 @@ export default function FormProduct() {
                           onChange={handleChecked} />
                         {e}
                       </label>
-
-                      {errors.size && <p className={style.error}>{errors.size}</p>}
                     </div>
                   )
                 }
               )
             }
+            {errors.size && <p className={style.error}>{errors.size}</p>}
           </div>
 
           <div className={style.calificacion}>

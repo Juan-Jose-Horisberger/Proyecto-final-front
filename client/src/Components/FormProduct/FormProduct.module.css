@@ -21,6 +21,10 @@ h2 {
     font-size: 40px;
 }
 
+.error {
+    color: rgb(195, 15, 15);
+}
+
 .container {
     margin: auto;
     padding-bottom: 40px;
