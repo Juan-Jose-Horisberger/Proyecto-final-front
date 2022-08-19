@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styles from './FavoriteProduct.module.css';
 
 export default function FavoriteProduct() {
-  productFav = useSelector(state => state.productFav)
+  const productFav = useSelector(state => state.productFav)
 
   const handleDelete = (id) => {
     productFav.filter(e => e.id === id)

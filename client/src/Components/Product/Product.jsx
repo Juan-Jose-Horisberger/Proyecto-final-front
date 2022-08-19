@@ -2,12 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import styles from './Product.module.css';
+import { getFavoriteProduct } from '../../Redux/Action';
 
 export default function Product({ id, name, price, image }) {
-  dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const handleOnFav = (e) => {
-    dispatch(getFavProduct(id))
+    dispatch(getFavoriteProduct(id))
   }
 
     return (
