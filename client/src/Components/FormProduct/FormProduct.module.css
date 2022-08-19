@@ -16,6 +16,15 @@ input {
     margin: 10px;
 }
 
+/* .inputFile {
+    border-color: red;
+} */
+
+.imagen {
+    height: 200px;
+    width: 300px;
+}
+
 h2 {
     margin-bottom: 40px;
     font-size: 40px;
