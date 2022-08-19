@@ -1,8 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import styles from './Product.module.css';
 
 export default function Product({ id, name, price, image }) {
+  dispatch = useDispatch()
+
+  const handleOnFav = (e) => {
+    dispatch(getFavProduct(id))
+  }
+
     return (
 
         <div className={`${styles.container}`}>
@@ -14,7 +21,7 @@ export default function Product({ id, name, price, image }) {
                 </div>
                 <div>  {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
                     <button>Carrito</button>
-                    <button>Favoritos</button>
+                    <button onClick={handleOnFav}>Favoritos</button>
                 </div>
             </div>
             <div>
