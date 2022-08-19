@@ -8,6 +8,7 @@ export const FILTER_BY_FOOTWEAR = "FILTER_BY_FOOTWEAR";
 export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const GET_FAVORITE_PRODUCT = "GET_FAVORITE_PRODUCT";
+export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 
 
 export const getAllProducts = () => {
@@ -71,6 +72,17 @@ export const getFavoriteProduct = (id) => {
       payload: productFav
     })
   }
+
+  return ({
+    type: GET_FAVORITE_PRODUCT
+  })
+};
+
+export const deleteFavProduct = (id) => {
+  return ({
+    type: DELETE_FAV_PRODUCT,
+    payload: id
+  })
 }
 
 export const filterByDress = (payload) => {

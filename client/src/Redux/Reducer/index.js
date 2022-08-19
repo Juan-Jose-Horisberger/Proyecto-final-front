@@ -7,13 +7,14 @@ import {
     FILTER_BY_FOOTWEAR,
     FILTER_BY_CLOTHING_SIZE,
     FILTER_BY_PRICE,
-    GET_FAVORITE_PRODUCT
+    GET_FAVORITE_PRODUCT,
+    DELETE_FAV_PRODUCT
 } from "../Action"
 
 const initialState = {
     products: [],
     productDetail: {},
-    productFav: {}
+    productFav: []
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -34,9 +35,17 @@ export default function rootReducer(state = initialState, { type, payload }) {
             };
 
         case GET_FAVORITE_PRODUCT:
-            return {
-                ...state, productFav: {...state.productFav, payload}
-            };
+            if (payload) {
+                return {
+                    ...state, productFav: [...state.productFav, payload[0]]
+                };
+            }
+            
+        case DELETE_FAV_PRODUCT:
+            const deleteFavProduct = state.productFav.filter(e => e.id !== payload)
+            return{
+                ...state, productFav: deleteFavProduct
+            }
 
         case FILTER_BY_DRESS:
             return {
