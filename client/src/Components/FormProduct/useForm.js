@@ -5,7 +5,7 @@ export default function useForm(initialForm, validateForm) {
     const dispatch = useDispatch();
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
-    const [showImage, setShowImage] = useState(false)
+    const [button, setButton] = useState("URL")
 
     const handleOnChange = (e) => {
 
@@ -44,14 +44,22 @@ export default function useForm(initialForm, validateForm) {
 
     }
 
+    const handleOnButton = (e) => {
+        if (button === "URL") {
+            setButton("IMG")
+        } else setButton("URL")
+    }
+
 
     return {
         form,
         setForm,
         errors,
+        button,
         handleOnChange,
         handleSubmit,
         handleChecked,
         handleOnBlur,
+        handleOnButton
     }
 }
