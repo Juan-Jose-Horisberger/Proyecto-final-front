@@ -1,27 +1,31 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFavoriteProduct, deleteFavProduct } from '../../Redux/Action';
 import styles from './FavoriteProduct.module.css';
 
 export default function FavoriteProduct() {
-  const productFav = useSelector(state => state.productFav)
+  const productFav = useSelector(state => state.productFav);
+  const dispatch = useDispatch();
 
   const handleDelete = (id) => {
-    productFav.filter(e => e.id === id)
+    console.log(id)
+    dispatch(deleteFavProduct(id))
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} key="Asdasd">
       <h1>Hola estas en FavoriteProduct</h1>
       {productFav.length && productFav.map(e => {
         return (
-          <div>
+          <div key={e.id}>
 
             <div>
               <button onClick={() => handleDelete(e.id)}>X</button>
             </div>
 
             <div>
-              <img src={e.image} alt="Image not found" />
+              <img src={e.img} alt="Image not found" />
             </div>
 
             <div>
