@@ -7,6 +7,7 @@ import Cart from './Components/Cart/Cart.jsx';
 import Login from './Components/Login/Login.jsx';
 import Register from './Components/Register/Register.jsx';
 import FormProduct from './Components/FormProduct/FormProduct.jsx';
+import Contact from './Components/Contact/Contact.jsx';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/CreateProduct" element={<FormProduct />} />
+        <Route path="/Contact" element={<Contact />} />
       </Routes>
     </div>
   );
