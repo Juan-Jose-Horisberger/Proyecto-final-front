@@ -32,8 +32,17 @@ a:hover{
 
 .previous{
     font-size: 30px;
+    display: none;
+}
+
+.previous.open{
+    display: block;
 }
 
 .next{
     font-size: 30px;
+}
+
+.next.close{
+    display: none;
 }
