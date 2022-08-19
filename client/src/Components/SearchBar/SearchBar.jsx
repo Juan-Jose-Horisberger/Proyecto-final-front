@@ -19,54 +19,80 @@ export default function SearchBar() {
     }
 
     return (
-        <div className={`${styles.container} container-fluid`} style={{ border: "1px solid blue" }}>
+        <div className={`${styles.container} container-fluid mb-4`}>
 
-            <nav className={`row`}>
-                <div className={`col-12 d-flex justify-content-between`}> 
-
-                    <ul className="col-3 p-0 d-flex flex-wrap" style={{border: "1px solid red"}}>
-                        <Link to='/About' className={`col-4`} style={{textDecoration: "none"}}>
-                            <li className="list-group-item">Nosotros</li>
+            <div className={`row ${styles.container_NavBar}`}>
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                    <div className="container-fluid d-flex flex-wrap">
+                        <Link to='/' className="navbar-brand d-flex col-2">
+                            <h1>GAED.JM</h1>
                         </Link>
-                        <li className="list-group-item col-4">Contacto</li>
-                        <li className="list-group-item col-4">Ofertas</li>
-                    </ul>
+                        <button className={`navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler">
+                                <img src="https://www.svgrepo.com/show/419541/menu-list-line.svg" width="40px" alt="image" />
+                            </span>
+                        </button>
 
-                    <h1>GAED.JM</h1>
+                        <div className={`col-10 collapse navbar-collapse row`} id="navbarSupportedContent">
+                            <ul className="d-flex justify-content-around flex-wrap m-0 p-0">
+                                    {/* <h1></h1> navbar-nav col-12 col-lg-8 d-flex justify-content-sm-start justify-content-around */}
 
-                    <div className={`col-3`}>
-                        <input
-                            type="text"
-                            value={productName}
-                            placeholder="Buscar..."
-                            onChange={e => setProductName(e.target.value)}
-                        />
+                                <div className={`col-6 d-flex justify-content-start align-items-center`} >
+                                    <Link to='/CreateProduct' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none'}} >
+                                        <p className={`nav-link mb-0 text-start text-sm-center`} style={{color: 'white'}} aria-current="page">Crear producto</p>
+                                    </Link>
+                                    <Link to='/Contact' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none' }}>
+                                        <p className={`nav-link mb-0 text-start text-sm-center`}style={{color: 'white'}}  aria-current="page">Contacto</p>
+                                    </Link>
+                                    <Link to='/Offers' className="nav-item mx-3  mx-lg-2" style={{ textDecoration: 'none' }}>
+                                        <p className={`nav-link mb-0 text-start text-sm-center`} style={{color: 'white'}}>Ofertas</p>
+                                    </Link>
+                                </div>
 
-                        <button onClick={handleOnClick}>Buscar</button>
+
+                                <div className={`input-group rounded d-flex align-items-center`} style={{ width: "250px" }}>
+                                    <input type="search"
+                                        className="form-control rounded"
+                                        placeholder="Search"
+                                        aria-label="Search"
+                                        aria-describedby="search-addon"
+                                        value={productName}
+                                        onChange={e => setProductName(e.target.value)}
+                                    />
+
+                                    <span className={`input-group-text border-0 ${styles.button_Search}`} id="search-addon">
+                                        <i onClick={handleOnClick}>
+                                            <img src="https://www.svgrepo.com/show/44820/magnifying-glass.svg" width="27px" alt="" />
+                                        </i>
+                                    </span>
+                                </div>
+
+                                <div className={`d-flex justify-content-center align-items-center`}>
+                                    <div>
+                                        <Link to='/Cart'>
+                                            <img src={CartIcon} alt="img-icon" style={{ width: "30px" }} />
+                                        </Link>
+                                    </div>
+
+                                    <div className={`mx-3`}>
+                                        <Link to='/FavoriteProduct'>
+                                            <img src={FavoritesIcon} alt="img-icon" style={{ width: "27px" }} />
+                                        </Link>
+                                    </div>
+                                    <div>
+                                        <Link to='/Login'>
+                                            <img src={FormIcon} alt="img-icon" />
+                                        </Link>
+                                    </div>
+                                </div>
+
+                            </ul>
+                        </div>
+
                     </div>
+                </nav>
 
-
-                    <div className={`col-3 d-flex ${styles.container_icons}`}>
-                        <div>
-                            <Link to='/Cart'>
-                                <img src={CartIcon} alt="img-icon" />
-                            </Link>
-                        </div>
-
-                        <div className={`mx-3`}>
-                            <Link to='/FavoriteProduct'>
-                                <img src={FavoritesIcon} alt="img-icon" />
-                            </Link>
-                        </div>
-                        <div>
-                            <Link to='/Login'>
-                                <img src={FormIcon} alt="img-icon" />
-                            </Link>
-                        </div>
-                    </div>
-
-                </div>
-            </nav>
+            </div>
         </div>
     )
 }

@@ -51,7 +51,7 @@ export default function Pagination({ allProducts, loaded }) {
     };
 
     return (
-        <div className={`${styles.container_Cards} col-9`} style={{ border: '1px solid red' }}>
+        <div className={`${styles.container_Cards} col-9`}>
 
             {
                 loaded ? (
@@ -79,7 +79,7 @@ export default function Pagination({ allProducts, loaded }) {
                     onPageChange={handlePageClick}      //Cada ves que cambiemos la pag se ejecuta una funcion
                     pageRangeDisplayed={3}              //El numero de pagina que queremos que se muestre antes de los ...
                     pageCount={pageCount}               //Mostramos los numeros de pag
-                    previousLabel="⇽"          //Etiqueta previous
+                    previousLabel="⇽"                   //Etiqueta previous
                     renderOnZeroPageCount={null}
                     containerClassName={`${styles.pagination}`} //Decimes que el contenedor tendra como clase pagination
                     pageLinkClassName={`${styles.page_num}`}    //Cada elemento por pagina tendra el nombre de clase page-num
