@@ -7,6 +7,7 @@ import {
     FILTER_BY_FOOTWEAR,
     FILTER_BY_CLOTHING_SIZE,
     FILTER_BY_PRICE,
+    FILTER_BY_GENRE,
 } from "../Action"
 
 const initialState = {
@@ -50,6 +51,13 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return{
 
             }
+       /* case FILTER_BY_GENRE :
+         const producstAll = state.products
+         const genreFilter= action.payload === 'All'? producstAll : producstAll.filter(el=> el.genre === action.payload)
+         return{
+            ...state, 
+            products : genreFilter
+         }   */ 
         
     default:
       return state;

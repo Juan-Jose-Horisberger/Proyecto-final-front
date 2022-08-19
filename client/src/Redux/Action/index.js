@@ -7,6 +7,7 @@ export const FILTER_BY_BRAND ="FILTER_BY_BRAND";
 export const FILTER_BY_FOOTWEAR = "FILTER_BY_FOOTWEAR";
 export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
+export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 
 
 export const getAllProducts = () => {
@@ -91,3 +92,10 @@ export const filterByPrice = (payload)=> {
     payload
   }
 }
+export function filterByGenre(payload){
+  return {
+  type: 'FILTER_BY_GENRE',
+  payload
+  }
+  }
+  

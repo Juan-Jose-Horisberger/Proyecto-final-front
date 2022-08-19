@@ -1,8 +1,9 @@
 import React from 'react';
 import {useDispatch}from 'react-redux';
-import { filterByBrand, filterByCategory, filterByDress, filterByFootwear } from '../../Redux/Action';
+import { filterByBrand, filterByCategory, filterByDress, filterByFootwear,filterByGenre } from '../../Redux/Action';
+import styles from './Filters.module.css';
 
-export default function filterbyCategory (){
+export default function FiltersbyCategory (){
 const dispatch = useDispatch()
 
 /*function handleFilterByDress(e){
@@ -20,6 +21,10 @@ const dispatch = useDispatch()
     dispatch(filterByFootwear(e.target.value))
 }*/
 
+/*function handleFilterGenre(e){
+    e.preventDefault();
+    dispatch(filterByGenre(e.target.value))
+}*/
 
 return (
 
@@ -35,6 +40,13 @@ return (
      </select>
  </div>
  <div>
+ <h4>Genero</h4>
+     <select class="form-select" aria-label="Default select example">
+         <option selected value="All">Selecciona un genero</option>
+         <option value="hombre">Hombre</option>
+         <option value="mujer">Mujer</option>
+       
+     </select>
      <h4>Marcas</h4>
      <select class="form-select" aria-label="Default select example">
          <option selected>Selecciona una marca</option>
