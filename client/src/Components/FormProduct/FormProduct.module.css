@@ -1,0 +1,103 @@
+.containerPrincipal {
+    background-color: rgba(50, 47, 47, 0.815);
+    text-align: center;
+    color: azure;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border-color: rgb(0, 0, 0);
+    border-radius: 7px;
+    background-color: rgb(46, 44, 44);
+    color: azure;
+    margin: 10px;
+}
+
+h2 {
+    margin-bottom: 40px;
+    font-size: 40px;
+}
+
+.container {
+    margin: auto;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    display: flex;
+    /* text-align: center; */
+    /* align-items: center; */
+    justify-content: center;
+    width: 800px;
+    background-color: rgb(24, 24, 24);
+    border-radius: 20px;
+}
+
+.link {
+    text-decoration: none;
+    background-color: rgb(18, 17, 17);
+    color: azure;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px 0px 0px 20px;
+    height: 50px;
+    width: 60px;
+}
+
+.divPrice input {
+    width: 120px;
+    margin: 10px;
+}
+
+.catbrand {
+    /* display: inline-flex; */
+    margin: 20px;
+}
+
+.catbrand label {
+    margin: 10px 0px 10px 20px;
+
+}
+
+.catbrand select {
+    font-size: 18px;
+    color: azure;
+    background-color: rgb(25, 23, 23);
+    border-radius: 5px;
+    height: 30px;
+    width: 150px;
+    margin: 10px 0px 10px 10px;
+}
+
+.divImage {
+    margin: 20px;
+}
+
+.stockVendido {
+    margin: 20px;
+}
+
+.stockVendido input {
+    width: 50px;
+    margin: 10px;
+}
+
+.calificacion {
+    margin: 20px;
+}
+
+.calificacion input {
+    width: 50px;
+    margin: 10px;
+}
+
+.genre select {
+    font-size: 18px;
+    color: azure;
+    background-color: rgb(25, 23, 23);
+    border-radius: 5px;
+    height: 30px;
+    width: 150px;
+    margin: 10px 0px 10px 10px;
+}
