@@ -53,7 +53,5 @@ export default function useForm(initialForm, validateForm) {
         handleSubmit,
         handleChecked,
         handleOnBlur,
-        showImage,
-        setShowImage
     }
 }

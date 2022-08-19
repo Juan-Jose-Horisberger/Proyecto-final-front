@@ -28,9 +28,15 @@ const validateForm = (form, value) => {
   } else if (!regexName.test(form.name.trim()) && value === "name") {
     errors.name = "El nombre del producto solo acepta letras y espacios."
   };
-  console.log(value)
+
   if (!form.size.length && value === "M" || value === "S" || value === "XS" || value === "L" ) {
     errors.size = "Debes seleccionar minimo 1 talle"
+  }
+
+  if (form.price > 150000) {
+    errors.price = "El precio excede el maximo permitido"
+  }else if (form.price < 0) {
+    errors.price = "El precio no puede ser menor a 0"
   }
 
   if (form.brand === "" && value === "brand") {
@@ -64,12 +70,10 @@ export default function FormProduct() {
     form,
     setForm,
     errors,
-    showImage,
-    setShowImage,
     handleOnChange,
     handleSubmit,
     handleChecked,
-    handleOnBlur
+    handleOnBlur,
   } = useForm(initialForm, validateForm)
 
 
@@ -103,7 +107,6 @@ export default function FormProduct() {
               <option value="buzo" >Buzo</option>
               <option value="campera" >Campera</option>
             </select>
-            {/* {errors.category && <p className={style.error}>{errors.category}</p>} */}
 
             <label htmlFor="brand">Marca</label>
             <select name="brand" onChange={handleOnChange} onBlur={handleOnBlur}>
@@ -119,18 +122,19 @@ export default function FormProduct() {
 
           <div className={style.divImage}>
             <label htmlFor="image">Imagen</label>
-            <input type="text"
+            <input type="file"
               name="image"
               id="image"
               value={form.image}
               onBlur={handleOnBlur}
-              onChange={handleOnChange} />
+              onChange={handleOnChange}
+              accept="image/*" />
             {errors.image && <p className={style.error}>{errors.image}</p>}
           </div>
 
           {errors.showImage &&
             <div>
-              <img src={form.image} alt="Image not found" />
+              <img src="jaj.png" alt="Image not found" className={style.imagen}/>
             </div>}
 
           <div className={style.divPrice}>
@@ -141,6 +145,8 @@ export default function FormProduct() {
               value={form.price}
               onBlur={handleOnBlur}
               onChange={handleOnChange} />
+
+            {errors.price && <p className={style.error}>{errors.price}</p>}
           </div>
 
           <div className={style.stockVendido}>
