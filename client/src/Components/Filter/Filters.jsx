@@ -1,11 +1,11 @@
-import React from 'react';
+import React ,{ useState }from 'react';
 import { useDispatch } from 'react-redux';
-import { filterByBrand, filterByCategory, filterByFootwear ,filterByGenre,filterByClothingSize} from '../../Redux/Action';
+import { filterByBrand, filterByCategory, filterByFootwear ,filterByGenre,filterByClothingSize, filterByPrice} from '../../Redux/Action';
 import styles from './Filters.module.css';
 
 export default function Filters() {
     const dispatch = useDispatch()
-
+    const [orden ,setOrden] = useState('')
    
 
     function handleFilterByBrand(e){
@@ -26,6 +26,10 @@ export default function Filters() {
         e.preventDefault();
         dispatch(filterByClothingSize(e.target.value))
     }
+    /*function handleFilterPrice(e){
+        e.preventDefault();
+        
+    }*/
 
     return (
 
@@ -85,6 +89,7 @@ export default function Filters() {
                     <option value="L">L</option>
                 </select>
             </div>
+            
             <div>
                 <h4>Precio</h4>
                 <label className="form-label">Example range</label>
