@@ -5,6 +5,7 @@ import styles from './Product.module.css';
 import addCart from "../../Imagenes/add-cart.svg";
 import deleteCart from "../../Imagenes/delete-cart.svg";
 import addFav from "../../Imagenes/add-fav.svg"
+import deleteFav from "../../Imagenes/delete-fav.svg"
 import { deleteFavProduct, getFavoriteProduct, getCartProduct, deleteCartProduct } from '../../Redux/Action';
 
 export default function Product({ id, name, price, image }) {
@@ -32,11 +33,16 @@ export default function Product({ id, name, price, image }) {
         }
     }
 
-    const validate = (id) => {
-        // const findProductFav = productCart.find(e => e.id === id);
+    const validateCart = (id) => {
         const findProductCart = productCart.find(e => e.id === id);
 
         return findProductCart;
+    }
+
+    const validateFav = (id) => {
+        const findProductFav = productFav.find(e => e.id === id);
+
+        return findProductFav;
     }
 
     return (
@@ -49,19 +55,23 @@ export default function Product({ id, name, price, image }) {
                     </Link>
                 </div>
                 <div>  {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
-                    {validate(id) ?
+                    {validateCart(id) ?
                         <button onClick={handleOnCart}>
-                            <img src={deleteCart} alt="image-not-found" />
+                            <img src={deleteCart} alt="image-not-found" width="60px" />
                         </button> :
                         <button onClick={handleOnCart}>
-                            <img src={addCart} alt="image-not-found" />
+                            <img src={addCart} alt="image-not-found" width="60px" />
                         </button>
                     }
 
 
-                    <button onClick={handleOnFav}>
-                        <img src={addFav} alt="image-not-found" />
-                    </button>
+                    {validateFav(id) ?
+                        <button onClick={handleOnFav}>
+                            <img src={deleteFav} alt="image-not-found" width="40px" />
+                        </button> :
+                        <button onClick={handleOnFav}>
+                            <img src={addFav} alt="image-not-found" width="40px" />
+                        </button>}
                 </div>
             </div>
             <div>
