@@ -2,6 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import styles from './Product.module.css';
+import addCart from "../../Imagenes/add-cart.svg";
+import deleteCart from "../../Imagenes/delete-cart.svg";
+import addFav from "../../Imagenes/add-fav.svg"
 import { deleteFavProduct, getFavoriteProduct, getCartProduct, deleteCartProduct } from '../../Redux/Action';
 
 export default function Product({ id, name, price, image }) {
@@ -29,6 +32,13 @@ export default function Product({ id, name, price, image }) {
         }
     }
 
+    const validate = (id) => {
+        // const findProductFav = productCart.find(e => e.id === id);
+        const findProductCart = productCart.find(e => e.id === id);
+
+        return findProductCart;
+    }
+
     return (
 
         <div className={`${styles.container}`}>
@@ -39,8 +49,19 @@ export default function Product({ id, name, price, image }) {
                     </Link>
                 </div>
                 <div>  {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
-                    <button onClick={handleOnCart}>Carrito</button>
-                    <button onClick={handleOnFav}>Favoritos</button>
+                    {validate(id) ?
+                        <button onClick={handleOnCart}>
+                            <img src={deleteCart} alt="image-not-found" />
+                        </button> :
+                        <button onClick={handleOnCart}>
+                            <img src={addCart} alt="image-not-found" />
+                        </button>
+                    }
+
+
+                    <button onClick={handleOnFav}>
+                        <img src={addFav} alt="image-not-found" />
+                    </button>
                 </div>
             </div>
             <div>
