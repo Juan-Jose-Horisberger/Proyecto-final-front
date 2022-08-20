@@ -1,4 +1,5 @@
 import infoJson from "../../info.json"
+import axios from "axios"
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const GET_PRODUCT_BY_NAME = "GET_PRODUCT_BY_NAME";
@@ -12,33 +13,23 @@ export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 
-
 export const getAllProducts = () => {
-  return ({
-    type: GET_ALL_PRODUCTS,
-    payload: infoJson.hombres.camperas
-  })
+  return async function (dispatch) {
+    let products = await axios.get("https://proyecto-final-01.herokuapp.com/products")
+    return dispatch({
+      type: GET_ALL_PRODUCTS,
+      payload: products.data
+    })
+  }
 };
 
 export const getProductDetail = (id) => {
-
-  if (id) {
-    const productDetail = infoJson.hombres.camperas.filter(e => e.id === parseInt(id))
-    console.log(productDetail);
-    if (productDetail.length) {
-      return ({
-        type: GET_PRODUCT_DETAIL,
-        payload: productDetail
-      })
-    }
-    else {
-      alert("No se encontro ese id")
-      return;
-    }
-
-  }
-  else {
-    alert("No hay id !!!!!!!!!")
+  return async function (dispatch) {
+    let productDetail = await axios.get(`https://proyecto-final-01.herokuapp.com/products/${id}`)
+    return dispatch({
+      type: GET_PRODUCT_DETAIL,
+      payload: productDetail.data
+    })
   }
 };
 
@@ -86,7 +77,7 @@ export const deleteFavProduct = (id) => {
     payload: id
   })
 }
-export const filterByCategory=(payload) =>{
+export const filterByCategory = (payload) => {
   return {
     type: FILTER_BY_CATEGORY,
     payload
@@ -124,10 +115,9 @@ export const filterByPrice = (payload) => {
     payload
   }
 }
-export function filterByGenre(payload){
+export function filterByGenre(payload) {
   return {
-  type:FILTER_BY_GENRE,
-  payload
+    type: FILTER_BY_GENRE,
+    payload
   }
-  }
-  
+}

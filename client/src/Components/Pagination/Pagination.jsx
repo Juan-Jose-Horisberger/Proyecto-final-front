@@ -43,8 +43,8 @@ export default function Pagination({ allProducts, loaded }) {
                                 key={i}
                                 id={p.id}
                                 name={p.name}
-                                price={p.precio}
-                                image={p.img}
+                                price={p.price}
+                                image={p.image}
                             />
                         )
                             : <h1>No se encontro lo que se esta buscando</h1>
