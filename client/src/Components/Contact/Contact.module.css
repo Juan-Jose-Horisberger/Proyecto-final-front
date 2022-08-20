@@ -4,22 +4,26 @@ input{
 }
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
 /*font-family: 'Readex Pro', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+/*font-family: 'Questrial', sans-serif;*/
+
+.container_Info{
+    margin-top: 80px;
+}
 
 .container_button {
-    width: 97%;
+    width: 100%;
     text-align: center;
     display: flex;
+    justify-content: center;
     align-items: center;
     /* border: 1px solid red; */
-    padding: 0;
-    margin-left: 14px;
 }
 
 .container_button div{
     width: 100%;
     height: 80px;
     background-color: #23232C;
-    border: 1px solid red;
     line-height: 80px;
     border-radius: 3px;
     font-size: 13px;
@@ -33,17 +37,94 @@ input{
     background-color: black;
     transition: 0.5s;
 }
-
-/* .container_infoContact {
-    margin-top: 48px;
-    font-family: 'Lexend', sans-serif;
-} */
-
 .container_infoContact h2,p{
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+    font-family: 'Questrial', sans-serif;
 }
+.container_infoContact h2{
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
 
 .container_infoContact p{
     letter-spacing: 1px;
+    line-height: 35px;
+}
+
+.container_infoContact2{
+    padding: 12px;
+}
+
+.localInfop{
+    line-height: 30px !important;
+    /* border: 1px solid red; */
+}
+
+.container_image{
+    width: 557px;
+    min-width: 508;
+    height: auto;
+}
+
+.container_image img{
+    width: 100%;
+    height: auto;
+}
+
+.container_infoAndForm{
+    /* width: 100%;
+    min-width: 600px;
+    height: auto; */
+    width: 783px;
+    height: auto;
+}
+
+.container_TextArea{
+    margin-bottom: 42px;
+}
+
+.alertMsj{
+    font-family: 'Questrial', sans-serif;
+}
+
+.container_Alert{
+    width: 45%;
+    position: fixed;
+    top: 85%;
+    left: 0;
+    transform: translateX(-101%);
+    transition: transform 0.4s, opacity 0.5s ease-out;
+    /* display: none !important; */
+}
+
+.container_Alert.open{
+    /* display: flex !important; */
+    transform: translateX(-0);
+}
+
+
+
+
+@media screen and (min-width: 200px) and (max-width: 992px) {
+    .container_image{
+        display: none;
+    }
+
+    .container_infoAndForm{
+        width: 100%;
+    }
+
+    .container_button{
+        margin-bottom: 10px;
+    }
+
+    .container_Alert{
+        width: 450px;
+    }
+}
+
+@media screen and (min-width: 1343px) {
+    .container_infoAndForm{
+        width: 100%;
+    }
 }
