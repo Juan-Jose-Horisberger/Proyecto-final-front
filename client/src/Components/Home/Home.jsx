@@ -22,7 +22,7 @@ export default function Home() {
 
     return (
         <div className={`${styles.container} container-fluid p-0 d-flex flex-wrap justify-content-evenly`}>
-            <div className={'col-12'}>
+            <div className={`col-12 ${styles.container_SearchBar}`}>
                 <SearchBar />
             </div>
 
