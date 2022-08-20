@@ -12,6 +12,7 @@ export const GET_FAVORITE_PRODUCT = "GET_FAVORITE_PRODUCT";
 export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
+export const  GENRE_WOMAN = "GENRE_WOMAN";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -121,4 +122,15 @@ export function filterByGenre(payload) {
     payload
   }
 }
+export const genreWoman = () => {
+  return async function (dispatch) {
+    let genre = await axios.get("https://proyecto-final-01.herokuapp.com/products/genres/mujer")
+    console.log(genre)
+    return dispatch({
+      type: GENRE_WOMAN,
+      payload: genre.data
+    })
+  }
+};
+
 
