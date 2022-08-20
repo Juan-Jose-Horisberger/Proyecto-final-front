@@ -1,0 +1,49 @@
+* {box-sizing: border-box;}
+input{
+    font-family: 'Readex Pro', sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
+/*font-family: 'Readex Pro', sans-serif;*/
+
+.container_button {
+    width: 97%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    padding: 0;
+    margin-left: 14px;
+}
+
+.container_button div{
+    width: 100%;
+    height: 80px;
+    background-color: #23232C;
+    border: 1px solid red;
+    line-height: 80px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: 'Readex Pro', sans-serif;
+}
+
+.container_button div:hover {
+    cursor: pointer;
+    background-color: black;
+    transition: 0.5s;
+}
+
+/* .container_infoContact {
+    margin-top: 48px;
+    font-family: 'Lexend', sans-serif;
+} */
+
+.container_infoContact h2,p{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.container_infoContact p{
+    letter-spacing: 1px;
+}
