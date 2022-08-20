@@ -1,15 +1,22 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import styles from './Product.module.css';
-import { getFavoriteProduct } from '../../Redux/Action';
+import { deleteFavProduct, getFavoriteProduct } from '../../Redux/Action';
 
 export default function Product({ id, name, price, image }) {
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const productFav = useSelector(state => state.productFav)
 
-  const handleOnFav = (e) => {
-    dispatch(getFavoriteProduct(id))
-  }
+    const handleOnFav = () => {
+        const findProduct = productFav.find(e => e.id === id)
+
+        if (findProduct) {
+            dispatch(deleteFavProduct(id))
+        } else {
+            dispatch(getFavoriteProduct(id))
+        }
+    }
 
     return (
 
