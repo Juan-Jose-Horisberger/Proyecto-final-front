@@ -1,14 +1,14 @@
-import React ,{ useState }from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { filterByBrand, filterByCategory, filterByFootwear ,filterByGenre,filterByClothingSize, filterByPrice} from '../../Redux/Action';
 import styles from './Filters.module.css';
 
 export default function Filters() {
     const dispatch = useDispatch()
-    const [orden ,setOrden] = useState('')
+    
    
 
-    function handleFilterByBrand(e){
+    /*function handleFilterByBrand(e){
         e.preventDefault();
         dispatch (filterByBrand(e.target.value))
     }
@@ -18,17 +18,14 @@ export default function Filters() {
         dispatch(filterByFootwear(e.target.value))
     }
 
-    function handleFilterByGenre(e){
-       e.preventDefault();
-       dispatch(filterByGenre(e.target.value))
-    }
+    
     function handleFilterSize(e){
         e.preventDefault();
         dispatch(filterByClothingSize(e.target.value))
     }
-    /*function handleFilterPrice(e){
+    function handleFilterCategory(e){
         e.preventDefault();
-        
+        dispatch(filterByCategory(e.preventDefault))
     }*/
 
     return (
@@ -37,7 +34,7 @@ export default function Filters() {
             <h3>Filtro</h3>
             <div>
                 <h4>Categoria</h4>
-                <select className="form-select" aria-label="Default select example">
+                <select  className="form-select" aria-label="Default select example">
                     <option value='All'>Indumentaria</option>
                     <option value="Camperas">Camperas</option>
                     <option value="Buzos">Buzos</option>
@@ -48,7 +45,7 @@ export default function Filters() {
             </div>
             <div>
                 <h4>Genero</h4>
-                <select onChange ={(e)=>handleFilterByGenre(e)} className="form-select" aria-label="Default select example">
+                <select  className="form-select" aria-label="Default select example">
                     <option value='All'>Indumentaria</option>
                     <option value="mujer">Mujer</option>
                     <option value="hombre">Hombre</option>
@@ -58,7 +55,7 @@ export default function Filters() {
             </div>
             <div>
                 <h4>Marcas</h4>
-                <select onChange ={(e)=>handleFilterByBrand(e)} className="form-select" aria-label="Default select example">
+                <select  className="form-select" aria-label="Default select example">
                     <option value='All'>Selecciona una marca</option>
                     <option value="Adidas">Adidas</option>
                     <option value="Nike">Nike</option>
@@ -67,7 +64,7 @@ export default function Filters() {
             </div>
             <div>
                 <h4>Talle Calzado</h4>
-                <select  onChange ={(e)=>handleFilterByFootwear(e)} className="form-select" aria-label="Default select example">
+                <select  className="form-select" aria-label="Default select example">
                     <option value='All'>Selecciona un talle</option>
                     <option value="37">37</option>
                     <option value="38">38</option>
@@ -81,7 +78,7 @@ export default function Filters() {
             </div>
             <div>
                 <h4>Talle Indumentaria</h4>
-                <select onChange ={(e)=>handleFilterSize(e)} className="form-select" aria-label="Default select example">
+                <select  className="form-select" aria-label="Default select example">
                     <option value="All">Selecciona un talle</option>
                     <option value="XS">XS</option>
                     <option value="S">S</option>

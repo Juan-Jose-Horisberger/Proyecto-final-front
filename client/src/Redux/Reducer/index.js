@@ -40,7 +40,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case GET_FAVORITE_PRODUCT:
             if (payload) {
                 return {
-                    ...state, productFav: [...state.productFav, payload]
+                    ...state, productFav: [...state.productFav, payload[0]]
                 };
             }
             
@@ -53,7 +53,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         //falta corregir
         case FILTER_BY_CATEGORY:
             const productsCategory = state.allProducts
-            const categoryFilter= payload === 'All' ? productsCategory : productsCategory.filter(el => el.marca ===  payload)
+            const categoryFilter= payload === 'All' ? productsCategory : productsCategory.filter(el => el.name ===  payload)
             console.log(categoryFilter)
                 return{
                ...state,
