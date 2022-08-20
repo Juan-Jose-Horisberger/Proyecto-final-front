@@ -9,6 +9,8 @@ export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const GET_FAVORITE_PRODUCT = "GET_FAVORITE_PRODUCT";
 export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
+export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
+export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
 
 
 export const getAllProducts = () => {
@@ -84,35 +86,48 @@ export const deleteFavProduct = (id) => {
     payload: id
   })
 }
+export const filterByCategory=(payload) =>{
+  return {
+    type: FILTER_BY_CATEGORY,
+    payload
+  }
+}
 
 export const filterByDress = (payload) => {
   return {
-    type: 'FILTER_BY_DRESS',
+    type: FILTER_BY_DRESS,
     payload
   }
 }
 export const filterByBrand = (payload) => {
   return {
-    type: 'FILTER_BY_BRAND',
+    type: FILTER_BY_BRAND,
     payload
   }
 }
 export const filterByFootwear = (payload) => {
   return {
-    type: 'FILTER_BY_FOOTWEAR',
+    type: FILTER_BY_FOOTWEAR,
     payload
   }
 }
 export const filterByClothingSize = (payload) => {
   return {
-    type: 'FILTER_BY_CLOTHING_SIZE',
+    type: FILTER_BY_CLOTHING_SIZE,
     payload
   }
 }
 
 export const filterByPrice = (payload) => {
   return {
-    type: 'FILTER_BY_PRICE',
+    type: FILTER_BY_PRICE,
     payload
   }
 }
+export function filterByGenre(payload){
+  return {
+  type:FILTER_BY_GENRE,
+  payload
+  }
+  }
+  
