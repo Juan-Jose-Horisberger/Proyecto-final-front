@@ -60,39 +60,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 products : categoryFilter
               }       
 
-        //funciona!!    
-        case FILTER_BY_BRAND:
-         const productsBrand = state.allProducts
-         const brandFilter= payload === 'All' ? productsBrand : productsBrand.filter(el => el.marca ===  payload)
-         console.log(brandFilter)
-            return{
-              ...state,
-                products : brandFilter
-            }
+        
             
-       /* case FILTER_BY_FOOTWEAR:
-          const productsFootwear = state.allProducts
-          const footwearFilter= payload === 'All' ? productsFootwear: productsFootwear.map(el => el.talle === payload)
-            console.log(footwearFilter)
-        return{
-            ...state,
-            products : footwearFilter
-            }*/
-         
-          case FILTER_BY_PRICE:
-              return{ 
-             } 
-
-        case  FILTER_BY_GENRE:
-        const productsAll = state.allProducts
-        const genreFilter= payload === 'All' ? productsAll : productsAll.filter(el => el.genero ===  payload)
-            console.log(genreFilter)
-        return{
-            ...state,
-            products : genreFilter
-            }
-               
-
         default:
             return state;
     }
