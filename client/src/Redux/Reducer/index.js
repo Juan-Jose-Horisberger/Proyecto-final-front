@@ -40,7 +40,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case GET_FAVORITE_PRODUCT:
             if (payload) {
                 return {
-                    ...state, productFav: [...state.productFav, payload[0]]
+                    ...state, productFav: [...state.productFav, payload]
                 };
             }
             

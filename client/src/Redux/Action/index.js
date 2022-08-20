@@ -37,7 +37,6 @@ export const getProductByName = (name) => {
 
   if (name) {
     const productDetail = infoJson.hombres.camperas.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
-    // console.log(productDetail);
     if (productDetail.length) {
       return ({
         type: GET_PRODUCT_BY_NAME,
@@ -58,12 +57,14 @@ export const getProductByName = (name) => {
 export const getFavoriteProduct = (id) => {
 
   if (id) {
-    const productFav = infoJson.hombres.camperas.filter(e => e.id === parseInt(id))
-
-    return ({
-      type: GET_FAVORITE_PRODUCT,
-      payload: productFav
-    })
+    return async function (dispatch) {
+      let favoriteProduct = await axios.get(`https://proyecto-final-01.herokuapp.com/products/${id}`)
+      console.log(favoriteProduct.data)
+      return dispatch({
+        type: GET_FAVORITE_PRODUCT,
+        payload: favoriteProduct.data
+      })
+    }
   }
 
   return ({
