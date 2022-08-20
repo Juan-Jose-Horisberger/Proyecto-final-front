@@ -78,15 +78,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             ...state,
             products : footwearFilter
             }*/
-       /* case FILTER_BY_CLOTHING_SIZE:
-            const size = state.allProducts
-            const sizeFilter= payload === 'All' ? size: size.filter(el => el.talle === payload)
-             console.log(sizeFilter)
-              return{
-                  ...state,
-                  products : sizeFilter
-                  }*/
-            
+         
           case FILTER_BY_PRICE:
               return{ 
              } 

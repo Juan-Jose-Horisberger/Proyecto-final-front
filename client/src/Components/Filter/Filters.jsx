@@ -18,11 +18,6 @@ export default function Filters() {
         dispatch(filterByFootwear(e.target.value))
     }
 
-    
-    function handleFilterSize(e){
-        e.preventDefault();
-        dispatch(filterByClothingSize(e.target.value))
-    }
     function handleFilterCategory(e){
         e.preventDefault();
         dispatch(filterByCategory(e.preventDefault))

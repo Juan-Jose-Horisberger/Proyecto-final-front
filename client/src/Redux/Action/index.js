@@ -12,7 +12,8 @@ export const GET_FAVORITE_PRODUCT = "GET_FAVORITE_PRODUCT";
 export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const FILTER_BY_CATEGORY = "FILTER_BY_CATEGORY";
-export const  GENRE_WOMAN = "GENRE_WOMAN";
+export const GENRE_WOMAN = "GENRE_WOMAN";
+export const GENRE_MEN = "GENRE_MEN";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -132,5 +133,13 @@ export const genreWoman = () => {
     })
   }
 };
-
+export const genreMen = ()=>{
+  return async function (dispatch) {
+    let genreMen= await axios.get("https://proyecto-final-01.herokuapp.com/products/genres/hombre")
+    return dispatch({
+      type: GENRE_MEN,
+      payload : genreMen.data
+    })
+  }
+}
 
