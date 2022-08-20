@@ -16,14 +16,13 @@ export default function ProductDetail() {
 
     return (
         <div className={styles.container}>
-            {console.log(productDetail)}
-            <h1>{productDetail.length && productDetail[0].name}</h1>
-            <img src={productDetail.length && productDetail[0].img} alt="imagen" />
-            <h3>$ {productDetail.length && productDetail[0].precio}</h3>
-            <h3>Calificacion: {productDetail.length && productDetail[0].calificacion}</h3>
-            <h3>Disponible: {productDetail.length && productDetail[0].stock}</h3>
-            <h3>Vendido: {productDetail.length && productDetail[0].vendido}</h3>
-            <h3>Talles disponible: {productDetail.length && productDetail[0].talle}</h3>
+            <h1>{productDetail && productDetail.name}</h1>
+            <img src={productDetail && productDetail.image} alt="imagen" />
+            <h3>$ {productDetail && productDetail.price}</h3>
+            <h3>Calificacion: {productDetail && productDetail.score}</h3>
+            <h3>Disponible: {productDetail && productDetail.stock}</h3>
+            <h3>Vendido: {productDetail && productDetail.sold}</h3>
+            <h3>Talles disponible: {productDetail && productDetail.size}</h3>
         </div>
     )
 }
