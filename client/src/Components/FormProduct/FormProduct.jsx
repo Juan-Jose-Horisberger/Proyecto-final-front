@@ -10,12 +10,12 @@ export default function FormProduct() {
     name: "",
     brand: "",
     category: "",
-    price: 0,
-    stock: 0,
+    price: "0",
+    stock: "0",
     image: "",
-    sold: 0,
+    sold: "0",
     size: [],
-    score: 0,
+    score: "0",
     genre: ""
   }
 
@@ -275,8 +275,9 @@ export default function FormProduct() {
               step="0.1"
               id="score"
               value={form.score}
-
               onChange={handleOnChange} />
+
+              {errors.score && <p className={style.error}>{errors.score}</p>}
           </div>
 
           <div className={style.genre}>

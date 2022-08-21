@@ -24,11 +24,17 @@ export const getAllProducts = () => {
 };
 
 export const getProductDetail = (id) => {
-  return async function (dispatch) {
-    let productDetail = await axios.get(`https://proyecto-final-01.herokuapp.com/products/${id}`)
-    return dispatch({
+  if (id) {
+    return async function (dispatch) {
+      let productDetail = await axios.get(`https://proyecto-final-01.herokuapp.com/products/${id}`)
+      return dispatch({
+        type: GET_PRODUCT_DETAIL,
+        payload: productDetail.data
+      })
+    }
+  }else {
+    return ({
       type: GET_PRODUCT_DETAIL,
-      payload: productDetail.data
     })
   }
 };

@@ -32,9 +32,15 @@ export default function rootReducer(state = initialState, { type, payload }) {
             };
 
         case GET_PRODUCT_DETAIL:
-            return {
-                ...state, productDetail: payload
-            };
+            if (payload) {
+                return {
+                    ...state, productDetail: payload
+                };
+            }else {
+                return {
+                    ...state, productDetail: {}
+                };
+            }
 
         case GET_PRODUCT_BY_NAME:
             return {
