@@ -1,40 +1,116 @@
-export function validate(input) {
-    let error = {}
+export function validate(input, nameInput, error, setError) {
+    // let error = {}
     let regEx_Email = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
 
-    if (!input.name) {
-        error.name = "Por favor ingrese su nombre.";
-    }
-    else if (!/(?=^.{5,100}$)/i.test(input.name)) { //Min 5 max 100
-        error.name = "El nombre debe contener como minimo 5 caracteres.";
-        if (!/^[A-Z ]+$/i.test(input.name)) { // Y validamos que de esos 5 caracteres, no sean numeros, simbolos..
-            error.name = 'No se aceptan números, símbolos o caracteres especiales.';
+    if (nameInput.includes("name")) {
+        if (!input.user_name) {
+            // error.user_name = "Por favor ingrese su nombre."
+            setError({
+                ...error,
+                user_name: "Por favor ingrese su nombre."
+            })
+            // error.user_name = "Por favor ingrese su nombre.";
+        }
+        else if (!/(?=^.{5,100}$)/i.test(input.user_name)) { //Min 5 max 100
+            // error.user_name = "El nombre debe contener como minimo 5 caracteres.";
+            setError({
+                ...error,
+                user_name: "El nombre debe contener como minimo 5 caracteres."
+            })
+            if (!/^[A-Z ]+$/i.test(input.user_name)) { // Y validamos que de esos 5 caracteres, no sean numeros, simbolos..
+                // error.user_name = 'No se aceptan números, símbolos o caracteres especiales.';
+                setError({
+                    ...error,
+                    user_name: "No se aceptan números, símbolos o caracteres especiales."
+                })
+            }
+        }
+        else if (!/^[A-Z ]+$/i.test(input.user_name)) { //No acepta Simbolos
+            // error.user_name = 'No se aceptan números, símbolos o caracteres especiales.';
+            setError({
+                ...error,
+                user_name: "No se aceptan números, símbolos o caracteres especiales."
+            })
+        }
+        else {
+            setError({
+                ...error,
+                user_name: ""
+            })
         }
     }
-    else if (!/^[A-Z ]+$/i.test(input.name)) { //No acepta Simbolos
-        error.name = 'No se aceptan números, símbolos o caracteres especiales.';
+
+
+    if (nameInput.includes("email")) {
+        if (!input.user_email) {
+            // error.user_email = "Por favor ingrese su email.";
+            setError({
+                ...error,
+                user_email: "Su asunto debe contener como minimo 5 caracteres."
+            })
+        }
+        else if (!regEx_Email.test(input.user_email)) {
+            // error.user_email = "Email ingresado, no valido.";
+            setError({
+                ...error,
+                user_email: "Email ingresado, no valido."
+            })
+        }
+        else {
+            setError({
+                ...error,
+                user_email: ""
+            })
+        }
     }
 
 
-    if (!input.email) {
-        error.email = "Por favor ingrese su email.";
-    }
-    else if (!regEx_Email.test(input.email)) {
-        error.email = "Email ingresado, no valido.";
+    if (nameInput.includes("affair")) {
+        if (!input.user_affair) {
+            // error.user_affair = "Por favor ingrese un asunto.";
+            setError({
+                ...error,
+                user_affair: "Por favor ingrese un asunto."
+            })
+
+        }
+        else if (!/(?=^.{5,100}$)/i.test(input.user_affair)) { //Min 5 max 100
+            // error.user_affair = "Su asunto debe contener como minimo 5 caracteres.";
+            setError({
+                ...error,
+                user_affair: "Su asunto debe contener como minimo 5 caracteres."
+            })
+        }
+        else {
+            setError({
+                ...error,
+                user_affair: ""
+            })
+        }
     }
 
-    if (!input.affair) {
-        error.affair = "Por favor ingrese un asunto.";
-    }
-    else if (!/(?=^.{5,100}$)/i.test(input.affair)) { //Min 5 max 100
-        error.affair = "Su asunto debe contener como minimo 5 caracteres.";
-    }
 
-    if (!input.message) {
-        error.message = "Por favor ingrese un mensaje";
-    }
-    else if (!/(?=^.{15,255}$)/i.test(input.message)) { //Min 15 max 100
-        error.message = "El mensaje es muy corto";
+    if (nameInput.includes("message")) {
+        if (!input.user_message) {
+            // error.user_message = "Por favor ingrese un mensaje";
+            setError({
+                ...error,
+                user_message: "Por favor ingrese un mensaje."
+            })
+        }
+        else if (!/(?=^.{15,255}$)/i.test(input.user_message)) { //Min 15 max 100
+            // error.user_message = "El mensaje es muy corto";
+            setError({
+                ...error,
+                user_message: "El mensaje es muy corto."
+            })
+        }
+        else {
+            setError({
+                ...error,
+                user_message: ""
+            })
+        }
     }
 
 

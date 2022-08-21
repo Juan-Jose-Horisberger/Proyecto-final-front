@@ -18,6 +18,7 @@ export default function Home() {
         // }
         dispatch(getAllProducts());
         setLoaded(true);
+        console.log(process.env);
     }, [])
 
     return (
