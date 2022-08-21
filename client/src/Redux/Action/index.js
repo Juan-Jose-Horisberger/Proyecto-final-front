@@ -132,6 +132,7 @@ export const filterByPrice = (payload) => {
   }
 };
 
+
 export function filterByGenre(payload) {
   return {
     type: FILTER_BY_GENRE,
