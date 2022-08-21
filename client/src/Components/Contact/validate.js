@@ -26,14 +26,14 @@ export function validate(input) {
     if (!input.affair) {
         error.affair = "Por favor ingrese un asunto.";
     }
-    else if (!/(?=^.{10,100}$)/i.test(input.affair)) { //Min 5 max 100
-        error.affair = "Su asunto debe contener como minimo 10 caracteres.";
+    else if (!/(?=^.{5,100}$)/i.test(input.affair)) { //Min 5 max 100
+        error.affair = "Su asunto debe contener como minimo 5 caracteres.";
     }
 
     if (!input.message) {
         error.message = "Por favor ingrese un mensaje";
     }
-    else if (!/(?=^.{15,255}$)/i.test(input.message)) { //Min 5 max 100
+    else if (!/(?=^.{15,255}$)/i.test(input.message)) { //Min 15 max 100
         error.message = "El mensaje es muy corto";
     }
 
