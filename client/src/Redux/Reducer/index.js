@@ -7,11 +7,10 @@ import {
     GET_CART_PRODUCT,
     DELETE_CART_PRODUCT,
     FILTER_BY_BRAND,
-    FILTER_BY_FOOTWEAR,
+    FILTER_CATEGORY,
     FILTER_BY_CLOTHING_SIZE,
-    FILTER_BY_PRICE,
-    FILTER_BY_GENRE,
-    FILTER_BY_CATEGORY,
+    FILTER_GENRES,
+    
 } from "../Action"
 
 const initialState = {
@@ -19,7 +18,8 @@ const initialState = {
     productDetail: {},
     productFav: [],
     productCart: [],
-    allProducts: [],
+    
+    
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -65,58 +65,25 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state, productCart: deleteCartProduct
             }
-
-        //falta corregir
-        case FILTER_BY_CATEGORY:
-            const productsCategory = state.allProducts
-            const categoryFilter = payload === 'All' ? productsCategory : productsCategory.filter(el => el.marca === payload)
-            console.log(categoryFilter)
+           
+        case FILTER_GENRES:
             return {
-                ...state,
-                products: categoryFilter
-            }
+                ...state,products: payload
+            };
 
-        //funciona!!    
         case FILTER_BY_BRAND:
-            const productsBrand = state.allProducts
-            const brandFilter = payload === 'All' ? productsBrand : productsBrand.filter(el => el.marca === payload)
-            console.log(brandFilter)
             return {
-                ...state,
-                products: brandFilter
-            }
-
-        /* case FILTER_BY_FOOTWEAR:
-           const productsFootwear = state.allProducts
-           const footwearFilter= payload === 'All' ? productsFootwear: productsFootwear.map(el => el.talle === payload)
-             console.log(footwearFilter)
-         return{
-             ...state,
-             products : footwearFilter
-             }*/
-        /* case FILTER_BY_CLOTHING_SIZE:
-             const size = state.allProducts
-             const sizeFilter= payload === 'All' ? size: size.filter(el => el.talle === payload)
-              console.log(sizeFilter)
-               return{
-                   ...state,
-                   products : sizeFilter
-                   }*/
-
-        case FILTER_BY_PRICE:
+                ...state,products: payload
+            };
+        case FILTER_CATEGORY:
             return {
-
-            }
-        case FILTER_BY_GENRE:
-            const productsAll = state.allProducts
-            const genreFilter = payload === 'All' ? productsAll : productsAll.filter(el => el.genero === payload)
-            console.log(genreFilter)
+                ...state,products: payload
+            };  
+        case FILTER_BY_CLOTHING_SIZE:
             return {
-                ...state,
-                products: genreFilter
-            }
-
-
+                ...state,products: payload
+            };       
+        
         default:
             return state;
     }
