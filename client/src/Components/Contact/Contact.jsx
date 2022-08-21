@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { Link } from "react-router-dom";
 import styles from './Contact.module.css';
 import { validate } from './validate.js';
 import SearchBar from '../SearchBar/SearchBar';
-
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
-
     const [input, setInput] = useState({
         name: "",
         email: "",
@@ -50,9 +47,6 @@ export default function Contact() {
         else if (!input.name.length || !input.email.length || !input.affair.length) {
             setErrorsExist(true);
             setNotError(false);
-            console.log("entra aca 2")
-            console.log( input.name.length, input.email.length, input.affair.length)
-            
         }
         else {
             setErrorsExist(false);
@@ -76,6 +70,31 @@ export default function Contact() {
             setNotError(true);
         }
         setErrorsExist(false);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log('entra aca??')
+        if (
+            !error.name ||
+            !error.email ||
+            !error.affair ||
+            !error.message
+        ) {
+            if (input.name && input.email && input.affair && input.message) {
+                emailjs.sendForm(process.env.YOUR_SERVICE_ID, process.env.YOUR_TEMPLATE_ID, e.target, process.env.YOUR_PUBLIC_KEY).then(res => {
+                    alert("Se ha enviado correctamente.");
+                    console.log(res);
+                    setInput({
+                        name: "",
+                        email: "",
+                        affair: "",
+                        message: ''
+                    })
+                })
+            }
+        }
+        //3:27
     }
 
     return (
@@ -105,7 +124,7 @@ export default function Contact() {
                             </div>
                         </div>
                     </div>
-                    <form className={`container-fluid d-flex justify-content-center col-12 p-0`} >
+                    <form onSubmit={(e) => handleSubmit(e)} className={`container-fluid d-flex justify-content-center col-12 p-0`} >
                         <div className={`row col-12`}>
                             <div className='mb-3'>
                                 <input
@@ -119,11 +138,11 @@ export default function Contact() {
                                     onChange={(e) => handleOnChange(e)}
                                 />
                                 {
-                                    error.name && <p className="invalid-feedback">{error.name}</p>
+                                    error.name && <p className="invalid-feedback mb-0">{error.name}</p>
                                 }
                             </div>
                             <div className='mb-3'>
-                                
+
                                 <input
                                     type="text"
                                     className={`form-control ms-0 ${enableErrors && (error.email ? 'is-invalid' : 'is-valid')}`}
@@ -134,7 +153,7 @@ export default function Contact() {
                                     onChange={(e) => handleOnChange(e)}
                                 />
                                 {
-                                    error.email && <p className="invalid-feedback">{error.email}</p>
+                                    error.email && <p className="invalid-feedback mb-0">{error.email}</p>
                                 }
                             </div>
                             <div className='mb-3'>
@@ -148,7 +167,7 @@ export default function Contact() {
                                     onChange={(e) => handleOnChange(e)}
                                 />
                                 {
-                                    error.affair && <p className="invalid-feedback">{error.affair}</p>
+                                    error.affair && <p className="invalid-feedback mb-0">{error.affair}</p>
                                 }
                             </div>
 
@@ -161,10 +180,14 @@ export default function Contact() {
                                     value={input.message}
                                     onChange={(e) => handleOnChange(e)}
                                 ></textarea>
-                                <p className="invalid-feedback">{error.message}</p>
+                                <p className="invalid-feedback mb-0">{error.message}</p>
                             </div>
                             <div className={`${styles.container_button}`}>
-                                <div onClick={(e) => (errorExist(e))}>ENVIAR MENSAJE</div>
+                                {
+                                    (errorsExist && !input.name.length || !input.email || !input.affair || !input.message)
+                                        ? (<button name="button" onClick={(e) => errorExist(e)}>ENVIAR MENSAJE</button>)
+                                        : (<button type="submit" name="button">ENVIAR MENSAJE</button>)
+                                }
                             </div>
                             {/* {console.log(notError)} {(errorsExist && notError === false) ? styles.open : styles.container_Alert}*/}
                             <div
@@ -189,8 +212,6 @@ export default function Contact() {
                                 <div className={`${styles.alertMsj}`}>Por favor complete los campos correspondientes</div>
                                 <button type="button" className="btn-close" onClick={(e) => validateErrors(e)}></button>
                             </div>
-
-
                         </div>
                     </form>
                 </div>
