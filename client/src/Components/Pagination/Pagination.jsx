@@ -9,6 +9,16 @@ export default function Pagination({ allProducts, loaded }) {
     const [pageCount, setPageCount] = useState(0); //recuento de paginas
     const [itemOffset, setItemOffset] = useState(0); //Indice del primer elemento de la pagina actual (creo que deberia ser 1)
     const itemsPerPage = 9; //Elementos por pagina
+    const allProductsSort = allProducts.sort(function (a, b) {
+        if (a.id > b.id) {
+          return 1;
+        }
+        if (a.id < b.id) {
+          return -1;
+        }
+
+        return 0;
+      });
 
     //Mostrar flecha previos y next
     const [toShowPrevious, setToShowPrevious] = useState(false);
@@ -16,14 +26,14 @@ export default function Pagination({ allProducts, loaded }) {
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage; //Indice del ultimo elemento de la pagina actual
-        setCurrentItems(allProducts.slice(itemOffset, endOffset)); //Tomamos una parte del array
-        setPageCount(Math.ceil(allProducts.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage, allProducts]);
+        setCurrentItems(allProductsSort.slice(itemOffset, endOffset)); //Tomamos una parte del array
+        setPageCount(Math.ceil(allProductsSort.length / itemsPerPage));
+    }, [itemOffset, itemsPerPage, allProductsSort]);
 
     
 
     const handlePageClick = (event) => { //Esta funcion cambiamos el indice del primer elemento en la pagina actual
-        const newOffset = (event.selected * itemsPerPage) % allProducts.length;
+        const newOffset = (event.selected * itemsPerPage) % allProductsSort.length;
         setItemOffset(newOffset);
         ((pageCount - 1) === event.selected) ? setToShowNext(false) : setToShowNext(true)
     };
@@ -31,6 +41,7 @@ export default function Pagination({ allProducts, loaded }) {
     useEffect(() => {
         itemOffset !== 0 ? setToShowPrevious(true) : setToShowPrevious(false)
     }, [itemOffset])
+
 
     return (
         <div className={`${styles.container_Cards} col-9`}>
