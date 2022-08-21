@@ -8,12 +8,14 @@ import {getProductDetail} from '../../Redux/Action/index.js'
 export default function ProductDetail() {
     const { id } = useParams();
     const dispatch = useDispatch()
-    const productDetail = useSelector(state => state.productDetail);
+    var productDetail = useSelector(state => state.productDetail);
 
     useEffect( () => {
-        dispatch(getProductDetail(id))
+        dispatch(getProductDetail(id));
+        return () => { dispatch(getProductDetail()) }
       }, [id])
 
+    
     return (
         <div className={styles.container}>
             <h1>{productDetail && productDetail.name}</h1>

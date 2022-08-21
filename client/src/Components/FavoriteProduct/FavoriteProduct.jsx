@@ -30,7 +30,7 @@ export default function FavoriteProduct() {
 
             <div>
               <p>{e.name}</p>
-              <p>{e.price}</p>
+              <p>$ {e.price}</p>
               <p>{e.stock}</p>
             </div>
 
