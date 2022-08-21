@@ -23,77 +23,75 @@ export default function FormProduct() {
     let errors = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
 
-    if (nameInput === "name") {
+    if (nameInput.includes("name")) {
       if (!form.name.trim()) {
         errors.name = "El nombre del producto es requerido"
       } else if (!regexName.test(form.name.trim()) && nameInput === "name") {
         errors.name = "El nombre del producto solo acepta letras y espacios."
       };
-    }
+    };
 
-    if (nameInput === "size") {
+    if (nameInput.includes("size")) {
       if (form.size.length === 0) {
         errors.size = "Debes seleccionar minimo 1 talle"
-      }
-    }
+      };
+    };
 
-    if (nameInput === "price") {
+    if (nameInput.includes("price")) {
       if (form.price > 150000) {
         errors.price = "El precio excede el maximo permitido"
       } else if (form.price < 0) {
         errors.price = "El precio no puede ser menor a 0"
-      }
-    }
+      };
+    };
 
-    if (nameInput === "brand") {
+    if (nameInput.includes("brand")) {
       if (form.brand === "") {
         errors.brand = "Debes seleccionar una marca"
-      }
-    }
+      };
+    };
 
-    if (nameInput === "stock") {
+    if (nameInput.includes("stock")) {
       if (form.stock < 0) {
         errors.stock = "El disponible no puede ser menor a 0"
-      }
-    }
+      };
+    };
 
-    if (nameInput === "sold") {
+    if (nameInput.includes("sold")) {
       if (form.sold < 0) {
         errors.sold = "El vendido no puede ser menor a 0"
-      }
-    }
+      };
+    };
 
-    if (nameInput === "category") {
+    if (nameInput.includes("category")) {
       if (form.category === "") {
         errors.category = "Debes seleccionar una categoria"
       };
-    }
+    };
 
-    if (nameInput === "score") {
+    if (nameInput.includes("score")) {
       if (form.score > 5) {
         errors.score = "La puntuacion excede el maximo permitido"
       };
       if (form.score < 0) {
         errors.score = "La puntuacion excede el minimo permitido"
-      }
-    }
+      };
+    };
 
-    if (nameInput === "genre") {
+    if (nameInput.includes("genre")) {
       if (form.genre === "") {
         errors.genre = "El producto debe pertener a un genero"
       };
-    }
-
-    if (nameInput === "image") {
-      if (form.image === "") {
-        errors.image = "El producto necesita una imagen";
-      }
-
-      errors.showImage = "limpio";
     };
 
-    return errors
-  }
+    if (nameInput.includes("image")) {
+      if (form.image === "") {
+        errors.image = "El producto necesita una imagen";
+      };
+    };
+
+    return errors;
+  };
 
   const {
     form,
@@ -104,7 +102,7 @@ export default function FormProduct() {
     handleChecked,
     handleOnButton,
     handleOnSubmit,
-  } = useForm(initialForm, validateForm)
+  } = useForm(initialForm, validateForm);
 
 
   return (
@@ -112,7 +110,9 @@ export default function FormProduct() {
       <Link to="/" className={style.link}>
         <button type="button" className="btn-close btn-close-white" aria-label="Close"></button>
       </Link>
+
       <h2>Agrega un producto al catalogo</h2>
+
       <div className={style.container}>
         <form onSubmit={handleSubmit}>
           <div>
@@ -121,7 +121,6 @@ export default function FormProduct() {
               name="name"
               id="name"
               value={form.name}
-
               onChange={handleOnChange} />
             {errors.name && <p className={style.error}>{errors.name}</p>}
           </div>
@@ -149,11 +148,19 @@ export default function FormProduct() {
             {errors.brand && <p className={style.error}>{errors.brand}</p>}
           </div>
 
-          <button type="button"
+          {/* <button type="button"
             className="btn btn-primary"
             onClick={handleOnButton} > {button} </button>
-          <div className={style.divImage}>
-            {button === "URL" ?
+          <div className={style.divImage}> */}
+
+          <div><label htmlFor="image">Imagen</label>
+                <input type="text"
+                  name="image"
+                  id="image"
+                  value={form.image}
+                  onChange={handleOnChange}
+                /> </div>
+            {/* {button === "URL" ?
               <div><label htmlFor="image">Imagen</label>
                 <input type="text"
                   name="image"
@@ -170,13 +177,14 @@ export default function FormProduct() {
                   className={style.inputFile}
                   name="image"
                   id="image"
+                  value={form.image}
                   onChange={handleOnChange}
                   accept="image/*"
-                /> </div>}
+                /> </div>} */}
             {errors.image && <p className={style.error}>{errors.image}</p>}
-          </div>
+          {/* </div> */}
 
-          {errors.showImage &&
+          {!errors.image &&
             <div>
               <img src={form.image} alt="Image not found" className={style.imagen} />
             </div>}
@@ -187,7 +195,6 @@ export default function FormProduct() {
               name="price"
               id="price"
               value={form.price}
-
               onChange={handleOnChange} />
 
             {errors.price && <p className={style.error}>{errors.price}</p>}
@@ -235,7 +242,9 @@ export default function FormProduct() {
                   )
                 }
               )
+
               :
+
               infoJson.hombres.camperas[0].talle.map(
                 e => {
                   return (
@@ -281,7 +290,10 @@ export default function FormProduct() {
             {errors.genre && <p className={style.error}>{errors.genre}</p>}
           </div>
 
-          <button onSubmit={handleOnSubmit} className={errors.btn ? "btn btn-success m-3" : "btn btn-danger m-3"}>Crear</button>
+          <button onSubmit={handleOnSubmit}
+            // className={errors.btn ? "btn btn-success m-3" : "btn btn-danger m-3"}
+            className= "btn btn-success m-3"
+            >Crear</button>
         </form>
       </div>
     </div>
