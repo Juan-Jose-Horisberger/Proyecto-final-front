@@ -6,11 +6,12 @@ import {
     DELETE_FAV_PRODUCT,
     GET_CART_PRODUCT,
     DELETE_CART_PRODUCT,
+    CREATE_PRODUCT,
     FILTER_BY_BRAND,
     FILTER_CATEGORY,
     FILTER_BY_CLOTHING_SIZE,
     FILTER_GENRES,
-    
+
 } from "../Action"
 
 const initialState = {
@@ -18,8 +19,8 @@ const initialState = {
     productDetail: {},
     productFav: [],
     productCart: [],
-    
-    
+
+
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -58,32 +59,37 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 return {
                     ...state, productCart: [...state.productCart, payload]
                 };
-            }
+            };
 
         case DELETE_CART_PRODUCT:
             const deleteCartProduct = state.productCart.filter(e => e.id !== payload)
             return {
                 ...state, productCart: deleteCartProduct
-            }
-           
+            };
+
+        case CREATE_PRODUCT:
+            return {
+                ...state, products: [...state.products, payload]
+            };
+
         case FILTER_GENRES:
             return {
-                ...state,products: payload
+                ...state, products: payload
             };
 
         case FILTER_BY_BRAND:
             return {
-                ...state,products: payload
+                ...state, products: payload
             };
         case FILTER_CATEGORY:
             return {
-                ...state,products: payload
-            };  
+                ...state, products: payload
+            };
         case FILTER_BY_CLOTHING_SIZE:
             return {
-                ...state,products: payload
-            };       
-        
+                ...state, products: payload
+            };
+
         default:
             return state;
     }

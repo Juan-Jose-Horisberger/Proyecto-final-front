@@ -7,6 +7,7 @@ export const GET_FAVORITE_PRODUCT = "GET_FAVORITE_PRODUCT";
 export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 export const GET_CART_PRODUCT = "GET_CART_PRODUCT";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const FILTER_BY_BRAND = "FILTER_BY_BRAND";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
@@ -33,23 +34,15 @@ export const getProductDetail = (id) => {
 };
 
 export const getProductByName = (name) => {
-
   if (name) {
-    const productDetail = infoJson.hombres.camperas.filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
-    if (productDetail.length) {
-      return ({
+    return async function (dispatch) {
+      let products = await axios.get("https://proyecto-final-01.herokuapp.com/products")
+      const productDetail = await products.data.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
+      return dispatch({
         type: GET_PRODUCT_BY_NAME,
         payload: productDetail
       })
     }
-    else {
-      alert("No se encontro una prenda con ese nombre")
-      return;
-    }
-
-  }
-  else {
-    alert("No hay nombre !!!!!!!!!")
   }
 };
 
@@ -87,39 +80,51 @@ export const deleteCartProduct = (id) => {
   })
 };
 
+export const createProduct = (data) => {
+  return async function () {
+    let newProduct = await axios.post(`"https://proyecto-final-01.herokuapp.com/products`, data)
+    return ({
+      type: CREATE_PRODUCT,
+      payload: newProduct
+    });
+  }
+}
 
 export const categoryFilter = (calzado) => {
   return async function (dispatch) {
-    let category= await axios.get("https://proyecto-final-01.herokuapp.com/products/category/"+calzado)
+    let category = await axios.get("https://proyecto-final-01.herokuapp.com/products/category/" + calzado)
     return dispatch({
       type: FILTER_CATEGORY,
       payload: category.data
     })
   }
 };
-export const genresFilter = (hombre) =>{
+
+export const genresFilter = (hombre) => {
   return async function (dispatch) {
-    const infoFilter = await axios.get("https://proyecto-final-01.herokuapp.com/products/genres/"+hombre)
+    const infoFilter = await axios.get("https://proyecto-final-01.herokuapp.com/products/genres/" + hombre)
     console.log(infoFilter)
     return dispatch({
-      type:FILTER_GENRES,
-      payload : infoFilter.data
+      type: FILTER_GENRES,
+      payload: infoFilter.data
     })
   }
-}
-export const brandFilter = (brand) =>{
+};
+
+export const brandFilter = (brand) => {
   return async function (dispatch) {
-    const infoBrand = await axios.get("https://proyecto-final-01.herokuapp.com/products/brand/"+brand)
+    const infoBrand = await axios.get("https://proyecto-final-01.herokuapp.com/products/brand/" + brand)
     console.log(infoBrand)
     return dispatch({
-      type:FILTER_BY_BRAND,
-      payload : infoBrand.data
+      type: FILTER_BY_BRAND,
+      payload: infoBrand.data
     })
   }
-}
+};
+
 export const sizeClothingFilter = (m) => {
   return async function (dispatch) {
-    let sizeClothing= await axios.get("https://proyecto-final-01.herokuapp.com/products/size/"+m)
+    let sizeClothing = await axios.get("https://proyecto-final-01.herokuapp.com/products/size/" + m)
     return dispatch({
       type: FILTER_BY_CLOTHING_SIZE,
       payload: sizeClothing.data

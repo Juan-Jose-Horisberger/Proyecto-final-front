@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { createProduct } from "../../Redux/Action";
 
 export default function useForm(initialForm, validateForm) {
     const dispatch = useDispatch();
@@ -9,7 +10,7 @@ export default function useForm(initialForm, validateForm) {
     // const [buttonCreate, setButtonCreate] = useState(false);
 
     const handleOnChange = (e) => {
-       
+
         if (e.target.name === "category") {
             if (e.target.value === "calzado") {
                 setForm({
@@ -36,7 +37,7 @@ export default function useForm(initialForm, validateForm) {
     };
 
     const handleChecked = (ev) => {
-        
+
         if (ev.target.checked) {
             setForm({
                 ...form, size: [...form.size, ev.target.value]
@@ -55,11 +56,19 @@ export default function useForm(initialForm, validateForm) {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (ev) => {
+        ev.preventDefault();
+        const errores = validateForm(form, "namebrandcategorypricestockimagesoldsizescoregenre");
+        setErrors(errores);
 
+        if(!Object.entries(errores).length) {
+            dispatch(createProduct(form))
+            alert("se creo")
+        }
     }
 
     const handleOnButton = (e) => {
+        setForm({...form, image: ""})
         if (button === "URL") {
             setButton("IMG")
         } else setButton("URL")
