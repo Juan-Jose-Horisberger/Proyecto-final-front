@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+/*font-family: 'Questrial', sans-serif;*/
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
 .container{
-    /* background-color: aqua; */
+    width: 100% !important;
+    padding: 0 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 button{
@@ -16,9 +27,18 @@ button{
     height: auto;
 }
 
-/* .container_NavBar{
-    margin-bottom: 100px;
-} */
+.container_NavBar{
+    width: 100%;
+    
+    background-color:#1F2021 !important;
+    position: fixed;
+    top: 0;
+}
+.container_NavBar h1{
+    color: white;
+    font-family: 'Questrial', sans-serif;
+    font-weight: bold;
+}
 
 .button_Search{
     width: 40px;
@@ -26,4 +46,25 @@ button{
     display: flex;
     justify-content: center;
     cursor: pointer;
+    background-color: #272A2C !important;
+    border: 1px solid #3d3e3f !important;
+}
+.container_Info_Navbar{
+    width: 70%;
+    border: none !important;
+}
+
+.container_Searchbar{
+    width: 20% !important;
+    
+}
+.container_Searchbar input{
+    background-color: #272A2C !important;
+    border: 1px solid #3d3e3f !important;
+    font-family: 'Questrial', sans-serif;
+}
+
+.container_favAndCart{
+    width: 10%;
+    padding: 0 10px;
 }

@@ -19,13 +19,13 @@ export default function SearchBar() {
     }
 
     return (
-        <div className={`${styles.container} container-fluid`}>
+        <div className={`${styles.container} container-fluid p-0 m-0`} >
 
-            <div className={`row ${styles.container_NavBar}`}>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light position-fixed">
+            <div>
+                <nav className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}>
                     <div className="container-fluid d-flex flex-wrap">
-                        <Link to='/' className="navbar-brand d-flex col-2">
-                            <h1>GAED.JM</h1>
+                        <Link to='/' className="navbar-brand d-flex col-2 me-0">
+                            <h1 className='mb-0'>GAED.JM</h1>
                         </Link>
                         <button className={`navbar-toggler`} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler">
@@ -34,10 +34,12 @@ export default function SearchBar() {
                         </button>
 
                         <div className={`col-10 collapse navbar-collapse row`} id="navbarSupportedContent">
-                            <ul className="d-flex justify-content-around flex-wrap m-0 p-0">
+                            <ul className="d-flex justify-content-around flex-wrap m-0 p-0" >
                                 {/* <h1></h1> navbar-nav col-12 col-lg-8 d-flex justify-content-sm-start justify-content-around */}
 
-                                <div className={`col-6 d-flex justify-content-start align-items-center`} >
+                                <div
+                                    className={`d-flex justify-content-around align-items-center ${styles.container_Info_Navbar}`}
+                                    style={{ border: '1px solid red' }}>
                                     <Link to='/CreateProduct' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none' }} >
                                         <p className={`nav-link mb-0 text-start text-sm-center`} style={{ color: 'white' }} aria-current="page">Crear producto</p>
                                     </Link>
@@ -53,7 +55,7 @@ export default function SearchBar() {
                                 </div>
 
 
-                                <div className={`input-group rounded d-flex align-items-center`} style={{ width: "250px" }}>
+                                <div className={`input-group rounded d-flex align-items-center ${styles.container_Searchbar}`} style={{ width: "250px" }}>
                                     <input type="search"
                                         className="form-control rounded pe-0 me-0"
                                         placeholder="Search"
@@ -70,21 +72,21 @@ export default function SearchBar() {
                                     </span>
                                 </div>
 
-                                <div className={`d-flex justify-content-center align-items-center`}>
-                                    <div>
+                                <div className={`d-flex justify-content-center align-items-center flex-nowrap ${styles.container_favAndCart}`}>
+                                    <div className='col'>
                                         <Link to='/Cart'>
                                             <img src={CartIcon} alt="img-icon" style={{ width: "30px" }} />
                                         </Link>
                                     </div>
 
-                                    <div className={`mx-3`}>
+                                    <div className={`col`}>
                                         <Link to='/FavoriteProduct'>
                                             <img src={FavoritesIcon} alt="img-icon" style={{ width: "27px" }} />
                                         </Link>
                                     </div>
-                                    <div>
+                                    <div className='col'>
                                         <Link to='/Login'>
-                                            <img src={FormIcon} alt="img-icon" />
+                                            <img src="https://www.svgrepo.com/show/421823/user-people-man.svg" alt="img-icon" />
                                         </Link>
                                     </div>
                                 </div>
