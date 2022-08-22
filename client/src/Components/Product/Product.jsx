@@ -54,22 +54,22 @@ export default function Product({ id, name, price, image }) {
                         <img src={image} alt="Imagen no encontrada" className={`img-fluid`} />
                     </Link>
                 </div>
-                <div>  {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
+                <div className={styles.divButtons}>  {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
                     {validateCart(id) ?
-                        <button onClick={handleOnCart}>
-                            <img src={deleteCart} alt="image-not-found" width="60px" />
+                        <button onClick={handleOnCart} className={styles.cart}>
+                            <img src={deleteCart} alt="image-not-found" width="55px" />
                         </button> :
-                        <button onClick={handleOnCart}>
-                            <img src={addCart} alt="image-not-found" width="60px" />
+                        <button onClick={handleOnCart} className={styles.cart}>
+                            <img src={addCart} alt="image-not-found" width="55px" />
                         </button>
                     }
 
 
                     {validateFav(id) ?
-                        <button onClick={handleOnFav}>
+                        <button onClick={handleOnFav} className={styles.fav}>
                             <img src={deleteFav} alt="image-not-found" width="40px" />
                         </button> :
-                        <button onClick={handleOnFav}>
+                        <button onClick={handleOnFav} className={styles.fav}>
                             <img src={addFav} alt="image-not-found" width="40px" />
                         </button>}
                 </div>
