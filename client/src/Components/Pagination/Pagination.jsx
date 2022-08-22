@@ -40,6 +40,7 @@ export default function Pagination({ allProducts, loaded }) {
 
     useEffect(() => {
         itemOffset !== 0 ? setToShowPrevious(true) : setToShowPrevious(false)
+        window.scrollTo({ behavior: 'smooth', top: '0px' });
     }, [itemOffset])
 
 
@@ -58,11 +59,11 @@ export default function Pagination({ allProducts, loaded }) {
                                 image={p.image}
                             />
                         )
-                            : <h1>No se encontro lo que se esta buscando</h1>
+                            : <p className={`${styles.loading}`}>Cargando...</p>
                         }
                     </div>
                 )
-                    : <p>Loading...</p>
+                    : <p className={`${styles.loading}`}>Cargando...</p>
             }
 
             <>

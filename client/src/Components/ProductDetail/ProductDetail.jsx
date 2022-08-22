@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link, useParams } from 'react-router-dom';
 import { getProductDetail } from '../../Redux/Action/index.js';
 import SearchBar from '../SearchBar/SearchBar';
+import { filterByQuery } from '../../Redux/Action/index';
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -35,31 +36,65 @@ export default function ProductDetail() {
                                 <Link to=""><span>{productDetail.categoryName}</span></Link>
                                 <span> / </span>
                                 <Link to="/"><span></span></Link>
-                                <span>{productDetail.name}</span>
+                                <span className={`${styles.span_3}`}>{productDetail.name}</span>
                             </h1>
                             <div>
                                 <img src={productDetail.image} alt="imagen" className='img-fluid' />
                             </div>
                         </div>
                         <div className={styles.container_2}>
+                            {/* <img src="" alt="" />img de marca */}
                             <h1>{productDetail.name}</h1>
                             <h2>$ {productDetail.price}</h2>
                             <p>3 Cuotas sin interés de {(productDetail.price / 3 + "").slice(0, 5)}</p>
-                            <h3>Talles disponible: {productDetail.size && productDetail.size.map(a => {
-                                return (
-                                    <p>{a}</p>
-                                )
-                            }
-                                    
-                                )}</h3>
+                            <div className={`${styles.size_Container}`}>
+                                <h3>SELECCIONE TALLE: </h3>
+                                <div>{productDetail.size && productDetail.size.map(a => {
+                                    return (
+                                        <p>{a}</p>
+                                    )
+                                }
+                                )}</div>
+                            </div>
 
-                            <h3>Calificacion: {productDetail.score}</h3>
-                            <h3>Disponible: {productDetail.stock}</h3>
-                            <h3>Vendido: {productDetail.sold}</h3>
+                            <div className={`${styles.container_button}`}>
+                                <button>AGREGAR AL CARRITO</button>
+                            </div>
+
+                            <div>
+                                <div>
+                                    <div className={`${styles.container_img1}`}>
+                                        <img src="https://www.svgrepo.com/show/20854/credit-card.svg" width="27px" alt="" />
+                                        <p>3 Cuotas sin interés <Link to="">ver más</Link></p>
+                                    </div>
+                                    <div className={`${styles.container_img1}`}>
+                                        <img src="https://www.svgrepo.com/show/9771/box.svg" width="27px" alt="" />
+                                        <p>Cambios grátis en sucursales <Link to="">ver más</Link></p>
+                                    </div>
+                                    <div className={`${styles.container_img1}`}>
+                                        <img src="https://www.svgrepo.com/show/275832/handbag.svg" width="27px"  alt="" />
+                                        <p>Retire express en tiendas <Link to="">ver más</Link></p>
+                                    </div>
+                                    <div className={`${styles.container_img1}`}>
+                                        <img src="https://www.svgrepo.com/show/6989/truck.svg" width="27px" alt="" />
+                                        <p>Envíos <Link to="">ver más</Link></p>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
                         <div className={styles.container_3}>
+                            <div>
+                                <h3>DESCRIPCIÓN</h3>
+                                <h5>{productDetail.name}</h5>
+                                <p className={`${styles.qualification}`}>Calificacion: {productDetail.score}</p>
+                                <p className={`${styles.available}`}>Disponible: {productDetail.stock}</p>
+                                <p className={`${styles.soldOut}`}>Vendido: {productDetail.sold}</p>
+                            </div>
+                        </div>
+
+                        <div className={styles.container_4}>
                             <h4>Especificaciones</h4>
                             <div>
                                 <p>Genero:</p>
@@ -80,7 +115,7 @@ export default function ProductDetail() {
                             <div></div>
                         </div>
                     </div>
-                </div>) : <p>Cargando...</p>
+                </div>) : <p className={`${styles.loading}`}>Cargando...</p>
             }
         </div>
     )
