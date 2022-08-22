@@ -19,22 +19,33 @@ export default function Cart() {
         return (
           <div key={e.id} className={styles.divProduct}>
 
-            <div className={styles.divBtn}>
-              <button onClick={() => handleDelete(e.id)} className="btn-close mx-auto p-3" aria-label="Close"></button>
+            <div className={styles.divBtnDelete}>
+              <button onClick={() => handleDelete(e.id)} className={styles.btnDelete}>
+                x
+              </button>
             </div>
 
             <div className={styles.divImage}>
               <img src={e.image} alt="Image not found" className={styles.image} />
             </div>
 
-            <div>
+            <div className={styles.divName}>
               <p>{e.name}</p>
-              <p>$ {e.price}</p>
-              <p>{e.stock}</p>
             </div>
 
-            <div>
-              <button>Comprar</button>
+            <div className={styles.divPrice}>
+              <p>$ {e.price}</p>
+            </div>
+
+            <div className={styles.divStock}>
+              {e.stock === 0 ?
+                <p className={styles.pStock}>OUT OF STOCK</p>
+                :
+                <p className={styles.pStock}>IN STOCK</p>}
+            </div>
+
+            <div className={styles.divBtnbuy}>
+              <button className={styles.btnBuy}>Comprar</button>
             </div>
 
           </div>
