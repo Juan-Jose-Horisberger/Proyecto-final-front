@@ -32,6 +32,7 @@ button{
     
     background-color:#1F2021 !important;
     position: fixed;
+    z-index: 5;
     top: 0;
 }
 .container_NavBar h1{
