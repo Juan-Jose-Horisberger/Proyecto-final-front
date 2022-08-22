@@ -1,3 +1,37 @@
 .container{
     background-color: red;
 }
+
+.overallContainer{
+    width: 100%;
+    border: 1px solid black;
+    display: flex;
+    margin-top: 85px;
+    flex-wrap: wrap;
+}
+
+.container_1{
+    width: 50%;
+}
+
+.container_2{
+    width: 50%;
+    border: 1px solid black;
+}
+
+.container_3{
+    width: 100%;
+    margin-top: 50px;
+    border: 1px solid black;
+}
+
+.container_3 div{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+}
+
+.container_3 div p{
+    width: 50%;
+}
