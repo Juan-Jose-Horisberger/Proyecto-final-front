@@ -46,3 +46,13 @@ a:hover{
 .next.close{
     display: none;
 }
+
+.loading{
+    width: 100%;
+    font-size: 90px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    margin-top: 110px;
+    color: white;
+}
