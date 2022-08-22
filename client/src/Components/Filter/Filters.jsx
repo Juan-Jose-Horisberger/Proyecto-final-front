@@ -1,29 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {genresFilter,brandFilter,categoryFilter,sizeClothingFilter} from '../../Redux/Action'
+import {genresFilter,brandFilter,categoryFilter,sizeClothingFilter, filterByQuery} from '../../Redux/Action'
 import styles from './Filters.module.css';
 
 export default function Filters() {
     const dispatch = useDispatch()
+    const [params, setParams] = useState("")
     
-  function handleFilterByBrand(e){
-        e.preventDefault();
-        dispatch (brandFilter(e.target.value))
-    }
+//   function handleFilterByBrand(e){
+//         e.preventDefault();
+//         dispatch (brandFilter(e.target.value))
+//         console.log(params)
+//     }
 
-  function handleFilterCategory(e){
-        e.preventDefault();
-        dispatch(categoryFilter(e.target.value))
-    }
+//   function handleFilterCategory(e){
+//         e.preventDefault();
+//         // params.set("category", "calzado")
+//         let params2 = serializeFormQuery(e.target);
+//         setParams(params2)
+//         dispatch(filterByQuery(params2))
+//     }
 
-    function handleFilterByGenre(e){
-       e.preventDefault();
-       dispatch(genresFilter(e.target.value))
-    }
-    function handleSizeChothing(e){
-        e.preventDefault();
-        dispatch(sizeClothingFilter(e.target.value))
-    }
+//     function handleFilterByGenre(e){
+//        e.preventDefault();
+//        dispatch(genresFilter(e.target.value))
+//     }
+//     function handleSizeChothing(e){
+//         e.preventDefault();
+//         dispatch(sizeClothingFilter(e.target.value))
+//     }
+
+    const validate = (e) => {
+        if (params.includes(e.target.name)){
+
+            if(e.target.name === "category") {
+                const regex = /calzado|campera|camiseta|pantalon|buzo/i;
+                const result = params.replace(regex, e.target.value);
+                dispatch(filterByQuery(result));
+                setParams(result);
+            };
+
+            if(e.target.name === "brand"){
+                const regex = /Nike|Puma|Adidas/i;
+                const result = params.replace(regex, e.target.value);
+                dispatch(filterByQuery(result));
+                setParams(result);
+            };
+
+            if(e.target.name === "genre") {
+                const regex = /mujer|hombre/i;
+                const result = params.replace(regex, e.target.value);
+                dispatch(filterByQuery(result));
+                setParams(result);
+            };
+
+            if(e.target.name === "size") {
+                const regex = /XS|S|L|M|37|38|39|40|41|42|43/i;
+                const result = params.replace(regex, e.target.value);
+                dispatch(filterByQuery(result));
+                setParams(result);
+            };
+
+        }else {
+            const act = params.concat(e.target.name + "=" + e.target.value + "&");
+            dispatch(filterByQuery(act));
+            setParams(act);
+            console.log(act);
+        };
+    };
     
    
     return (
@@ -32,8 +76,9 @@ export default function Filters() {
             <h3>Filtro</h3>
             <div>
                 <h4>Categoria</h4>
-                <select onChange ={(e)=>handleFilterCategory(e)} className="form-select" aria-label="Default select example">
+                <select onChange ={validate} name="category" className="form-select" aria-label="Default select example">
                     <option >Indumentaria</option>
+                    <option value="camiseta">Remeras</option>
                     <option value="campera">Camperas</option>
                     <option value="buzo">Buzos</option>
                     <option value="pantalon">Pantalones</option>
@@ -43,7 +88,7 @@ export default function Filters() {
             </div>
             <div>
                 <h4>Genero</h4>
-                <select onChange ={(e)=>handleFilterByGenre(e)} className="form-select" aria-label="Default select example">
+                <select onChange={validate} name='genre' className="form-select" aria-label="Default select example">
                     <option >Indumentaria </option>
                     <option value="hombre">Hombre</option>
                     <option value="mujer">Mujer</option>
@@ -52,7 +97,7 @@ export default function Filters() {
             </div>
             <div>
                 <h4>Marcas</h4>
-                <select onChange ={(e)=>handleFilterByBrand(e)} className="form-select" aria-label="Default select example">
+                <select onChange={validate} name="brand" className="form-select" aria-label="Default select example">
                     <option >Selecciona una marca</option>
                     <option value="Adidas">Adidas</option>
                     <option value="Nike">Nike</option>
@@ -61,7 +106,7 @@ export default function Filters() {
             </div>
             <div>
                 <h4>Talle Calzado</h4>
-                <select onChange ={(e)=>handleSizeChothing(e)} className="form-select" aria-label="Default select example">
+                <select onChange={validate} name="size" className="form-select" aria-label="Default select example">
                     <option >Selecciona un talle</option>
                     <option value="37">37</option>
                     <option value="38">38</option>
@@ -74,7 +119,7 @@ export default function Filters() {
             </div>
             <div>
                 <h4>Talle Indumentaria</h4>
-                <select onChange ={(e)=>handleSizeChothing(e)} className="form-select" aria-label="Default select example">
+                <select onChange={validate} name="size" className="form-select" aria-label="Default select example">
                     <option >Selecciona un talle</option>
                     <option value="xs">XS</option>
                     <option value="s">S</option>
