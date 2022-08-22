@@ -82,14 +82,6 @@ export default function Contact() {
 
     function errorExist(e) {
         e.preventDefault();
-        // console.log( error.user_name, error.user_email)
-        console.log(
-            error.user_name,
-            error.user_email,
-            error.user_affair,
-
-        )
-
         if (
             error.user_name ||
             error.user_email ||
@@ -106,10 +98,20 @@ export default function Contact() {
             console.log('entro al else if')
         }
         else {
-            setErrorsExist(false);
-            setNotError(true);
-            console.log('entro al else')
+            if (error.user_name ||
+                error.user_email ||
+                error.user_affair ||
+                error.user_message) {
+                setErrorsExist(true);
+                setNotError(false);
+            }
+            else {
+                setErrorsExist(false);
+                setNotError(true);
+                console.log('entro al else')
+            }
         }
+
     }
 
     function validateErrors(e) {
@@ -122,10 +124,12 @@ export default function Contact() {
         ) {
             setErrorsExist(true);
             setNotError(true);
+            return;
         }
         else if (!input.user_name.length || !input.user_email.length || input.user_affair.length || input.user_message.length) {
             setErrorsExist(true);
             setNotError(true);
+            return;
         }
         setErrorsExist(false);
     }
@@ -134,9 +138,9 @@ export default function Contact() {
     function handleSubmit(e) {
         e.preventDefault();
         if (
-            !error.user_name.length ||
-            !error.user_email.length ||
-            !error.user_affair.length ||
+            !error.user_name.length &&
+            !error.user_email.length &&
+            !error.user_affair.length &&
             !error.user_message.length
         ) {
             if (input.user_name && input.user_email && input.user_affair && input.user_message) {
@@ -162,6 +166,14 @@ export default function Contact() {
                         message: false,
                     }))
             }
+            else {
+                setErrorsExist(true);
+                setNotError(true);
+            }
+        }
+        else {
+            setErrorsExist(true);
+            setNotError(true);
         }
         //3:27
     }
@@ -197,7 +209,7 @@ export default function Contact() {
                             <h2>Contactate</h2>
                             <p>¿Tenes alguna consulta, queres dejar tus productos en consignación o realizar un encargo? Contactate con nosotros.</p>
                             <div className={`d-flex mb-3`}>
-                                <img src="https://www.svgrepo.com/show/423301/location.svg" width="23px" alt=""/>
+                                <img src="https://www.svgrepo.com/show/423301/location.svg" width="23px" alt="" />
                                 <p className={`m-0 ${styles.localInfop}`}>Olazabal 1515 Oficina 201 Cuerpo A, Belgrano,Cp 1428</p>
                             </div>
                             <div className={`d-flex`}>
@@ -268,7 +280,7 @@ export default function Contact() {
 
                             <div className={`${styles.container_TextArea}`} style={{ marginTop: "10px" }}>
                                 <textarea
-                                    name="user_message"
+                                    name='user_message'
                                     className={`
                                     form-control 
                                     ${styles.inputs}
@@ -277,13 +289,17 @@ export default function Contact() {
                                     placeholder='Mensaje *'
                                     value={input.user_message}
                                     onChange={(e) => handleOnChange(e)}
-                                    style={{resize: "none"}}
+                                    style={{ resize: "none" }}
                                 ></textarea>
                                 <p className="invalid-feedback mb-0">{error.user_message}</p>
                             </div>
                             <div className={`${styles.container_button}`}>
+                                {console.log(errorsExist)}
+                                {console.log(input.user_name, input.user_email, input.user_affair, input.user_message)}
                                 {
-                                    (errorsExist && !input.user_name.length || !input.user_email || !input.user_affair || !input.user_message)
+                                    (errorsExist && 
+                                        (error.user_name || error.user_email || error.user_affair || error.user_message) ) || 
+                                        (!input.user_name.length || !input.user_email.length || !input.user_affair.length || !input.user_message.length) 
                                         ? (<button name="button" onClick={(e) => errorExist(e)} className={`${styles.button_send}`}>ENVIAR MENSAJE</button>)
                                         : (<button type="submit" name="button" className={`${styles.button_send}`}>ENVIAR MENSAJE</button>)
                                 }
