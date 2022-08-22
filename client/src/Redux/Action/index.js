@@ -12,6 +12,7 @@ export const FILTER_BY_BRAND = "FILTER_BY_BRAND";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
 export const FILTER_GENRES = "FILTER_GENRES";
+export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -93,6 +94,17 @@ export const createProduct = (data) => {
       type: CREATE_PRODUCT,
       payload: newProduct
     });
+  }
+};
+
+export const filterByQuery = (params) => {
+  console.log(params)
+  return async function (dispatch) {
+    let filterProducts = await axios.get(`https://proyecto-final-01.herokuapp.com/products?${params}`)
+    return dispatch({
+      type: FILTER_BY_QUERY,
+      payload: filterProducts.data
+    })
   }
 }
 

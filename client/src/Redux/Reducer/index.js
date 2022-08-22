@@ -11,6 +11,7 @@ import {
     FILTER_CATEGORY,
     FILTER_BY_CLOTHING_SIZE,
     FILTER_GENRES,
+    FILTER_BY_QUERY
 
 } from "../Action"
 
@@ -36,7 +37,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 return {
                     ...state, productDetail: payload
                 };
-            }else {
+            } else {
                 return {
                     ...state, productDetail: {}
                 };
@@ -76,6 +77,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case CREATE_PRODUCT:
             return {
                 ...state, products: [...state.products, payload]
+            };
+
+        case FILTER_BY_QUERY:
+            return {
+                ...state, products: payload
             };
 
         case FILTER_GENRES:
