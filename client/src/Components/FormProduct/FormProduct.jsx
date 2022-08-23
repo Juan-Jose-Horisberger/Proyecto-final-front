@@ -102,6 +102,8 @@ export default function FormProduct() {
     handleChecked,
     handleOnButton,
     handleOnSubmit,
+    uploadImage,
+    image
   } = useForm(initialForm, validateForm);
 
 
@@ -153,14 +155,15 @@ export default function FormProduct() {
             onClick={handleOnButton} > {button} </button>
           <div className={style.divImage}> */}
 
-          <div><label htmlFor="image">Imagen</label>
-                <input type="text"
-                  name="image"
-                  id="image"
-                  value={form.image}
-                  onChange={handleOnChange}
-                /> </div>
-            {/* {button === "URL" ?
+          <div class="input-group mb-3">
+            <input type="file" 
+            className="form-control" 
+            id="inputGroupFile02"
+            onChange={uploadImage}
+            placeholder="asdasd">
+            </input>
+          </div>
+          {/* {button === "URL" ?
               <div><label htmlFor="image">Imagen</label>
                 <input type="text"
                   name="image"
@@ -181,12 +184,12 @@ export default function FormProduct() {
                   onChange={handleOnChange}
                   accept="image/*"
                 /> </div>} */}
-            {errors.image && <p className={style.error}>{errors.image}</p>}
+          {errors.image && <p className={style.error}>{errors.image}</p>}
           {/* </div> */}
 
           {!errors.image &&
             <div>
-              <img src={form.image} alt="Image not found" className={style.imagen} />
+              <img src={image} alt="Image not found" className={style.imagen} />
             </div>}
 
           <div className={style.divPrice}>
@@ -277,7 +280,7 @@ export default function FormProduct() {
               value={form.score}
               onChange={handleOnChange} />
 
-              {errors.score && <p className={style.error}>{errors.score}</p>}
+            {errors.score && <p className={style.error}>{errors.score}</p>}
           </div>
 
           <div className={style.genre}>
@@ -293,8 +296,8 @@ export default function FormProduct() {
 
           <button onSubmit={handleOnSubmit}
             // className={errors.btn ? "btn btn-success m-3" : "btn btn-danger m-3"}
-            className= "btn btn-success m-3"
-            >Crear</button>
+            className="btn btn-success m-3"
+          >Crear</button>
         </form>
       </div>
     </div>
