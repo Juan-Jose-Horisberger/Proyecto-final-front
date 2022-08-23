@@ -3,25 +3,40 @@ import styles from './ProductDetail.module.css';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { Link, useParams } from 'react-router-dom';
-import { getProductDetail } from '../../Redux/Action/index.js';
+import { getProductDetail, filterByQuery } from '../../Redux/Action/index.js';
 import SearchBar from '../SearchBar/SearchBar';
-import { filterByQuery } from '../../Redux/Action/index';
 
 export default function ProductDetail() {
     const { id } = useParams();
     const dispatch = useDispatch()
     const productDetail = useSelector(state => state.productDetail);
+    const products = useSelector(state => state.products);
+    const productsFiltered = products.filter((p, i) => i < 4);
     const [detail, setDetail] = useState(0)
     const [loaded, setLoaded] = useState(false);
+    // const [elements, setElements] = useState([])
 
     useEffect(() => {
         if (productDetail.length > 0) {
             setLoaded(true);
             return
         }
+
         dispatch(getProductDetail(id))
             .then(res => res && setLoaded(true))
+        
+        // 
     }, [])
+
+
+    useEffect(() => {
+        if(products.length){
+            return;
+        }
+        dispatch(filterByQuery(`category=${productDetail.categoryName}&genre=${productDetail.genre}`));
+    }, [productDetail])
+
+
 
     return (
         <div className={styles.container}>
@@ -29,6 +44,8 @@ export default function ProductDetail() {
             {
                 loaded ? (<div>
                     <div className={styles.overallContainer}>
+                        {console.log(products)}
+                        {console.log(productsFiltered)}
                         <div className={styles.container_1}>
                             <h1>
                                 <Link to="/"><span>Inicio</span></Link>
@@ -49,9 +66,9 @@ export default function ProductDetail() {
                             <p>3 Cuotas sin interés de {(productDetail.price / 3 + "").slice(0, 5)}</p>
                             <div className={`${styles.size_Container}`}>
                                 <h3>SELECCIONE TALLE: </h3>
-                                <div>{productDetail.size && productDetail.size.map(a => {
+                                <div>{productDetail.size && productDetail.size.map((a, i) => {
                                     return (
-                                        <p>{a}</p>
+                                        <p key={i}>{a}</p>
                                     )
                                 }
                                 )}</div>
@@ -72,7 +89,7 @@ export default function ProductDetail() {
                                         <p>Cambios grátis en sucursales <Link to="">ver más</Link></p>
                                     </div>
                                     <div className={`${styles.container_img1}`}>
-                                        <img src="https://www.svgrepo.com/show/275832/handbag.svg" width="27px"  alt="" />
+                                        <img src="https://www.svgrepo.com/show/275832/handbag.svg" width="27px" alt="" />
                                         <p>Retire express en tiendas <Link to="">ver más</Link></p>
                                     </div>
                                     <div className={`${styles.container_img1}`}>
@@ -110,9 +127,16 @@ export default function ProductDetail() {
 
                         <div>
                             <h4>Aca mostramos 3 prendas relacionadas</h4>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            {
+
+                                productsFiltered.length && productsFiltered.map((p, i) => {
+                                    return (
+                                        <div key={i}>
+                                            <img src={p.image} alt="img" width="300px" />
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </div>) : <p className={`${styles.loading}`}>Cargando...</p>
