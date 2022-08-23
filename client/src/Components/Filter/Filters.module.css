@@ -9,4 +9,17 @@
 
 .container_Filters{
     width: 20%;
+    /* border: 1px solid red; */
+}
+
+.containerBtn {
+    /* border: 1px solid red; */
+    display: flex;
+}
+
+.btn {
+    background-color: rgb(0, 0, 0);
+    margin-left: 70px;
+    border-radius: 60px;
+    width: 43px;
 }
