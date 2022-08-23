@@ -16,7 +16,7 @@ export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
-    let products = await axios.get("https://proyecto-final-01.herokuapp.com/products")
+    let products = await axios.get("/products")
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: products.data
@@ -27,7 +27,7 @@ export const getAllProducts = () => {
 export const getProductDetail = (id) => {
   if (id) {
     return async function (dispatch) {
-      let productDetail = await axios.get(`https://proyecto-final-01.herokuapp.com/products/${id}`)
+      let productDetail = await axios.get(`/products/${id}`)
       return dispatch({
         type: GET_PRODUCT_DETAIL,
         payload: productDetail.data
@@ -43,7 +43,7 @@ export const getProductDetail = (id) => {
 export const getProductByName = (name) => {
   if (name) {
     return async function (dispatch) {
-      let products = await axios.get("https://proyecto-final-01.herokuapp.com/products")
+      let products = await axios.get("/products")
       const productDetail = await products.data.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
       return dispatch({
         type: GET_PRODUCT_BY_NAME,
@@ -55,7 +55,7 @@ export const getProductByName = (name) => {
 
 export const getFavoriteProduct = (id) => {
   return async function (dispatch) {
-    let favoriteProduct = await axios.get(`https://proyecto-final-01.herokuapp.com/products/${id}`)
+    let favoriteProduct = await axios.get(`/products/${id}`)
     return dispatch({
       type: GET_FAVORITE_PRODUCT,
       payload: favoriteProduct.data
@@ -72,7 +72,7 @@ export const deleteFavProduct = (id) => {
 
 export const getCartProduct = (id) => {
   return async function (dispatch) {
-    let cartProduct = await axios.get(`https://proyecto-final-01.herokuapp.com/products/${id}`)
+    let cartProduct = await axios.get(`/products/${id}`)
     return dispatch({
       type: GET_CART_PRODUCT,
       payload: cartProduct.data
@@ -100,7 +100,7 @@ export const createProduct = (data) => {
 export const filterByQuery = (params) => {
   console.log(params)
   return async function (dispatch) {
-    let filterProducts = await axios.get(`https://proyecto-final-01.herokuapp.com/products?${params}`)
+    let filterProducts = await axios.get(`/products?${params}`)
     return dispatch({
       type: FILTER_BY_QUERY,
       payload: filterProducts.data
@@ -110,7 +110,7 @@ export const filterByQuery = (params) => {
 
 export const categoryFilter = (calzado) => {
   return async function (dispatch) {
-    let category = await axios.get("https://proyecto-final-01.herokuapp.com/products/category/" + calzado)
+    let category = await axios.get("/products/category/" + calzado)
     return dispatch({
       type: FILTER_CATEGORY,
       payload: category.data
@@ -120,7 +120,7 @@ export const categoryFilter = (calzado) => {
 
 export const genresFilter = (hombre) => {
   return async function (dispatch) {
-    const infoFilter = await axios.get("https://proyecto-final-01.herokuapp.com/products/genres/" + hombre)
+    const infoFilter = await axios.get("/products/genres/" + hombre)
     console.log(infoFilter)
     return dispatch({
       type: FILTER_GENRES,
@@ -131,7 +131,7 @@ export const genresFilter = (hombre) => {
 
 export const brandFilter = (brand) => {
   return async function (dispatch) {
-    const infoBrand = await axios.get("https://proyecto-final-01.herokuapp.com/products/brand/" + brand)
+    const infoBrand = await axios.get("/products/brand/" + brand)
     console.log(infoBrand)
     return dispatch({
       type: FILTER_BY_BRAND,
@@ -142,7 +142,7 @@ export const brandFilter = (brand) => {
 
 export const sizeClothingFilter = (m) => {
   return async function (dispatch) {
-    let sizeClothing = await axios.get("https://proyecto-final-01.herokuapp.com/products/size/" + m)
+    let sizeClothing = await axios.get("/products/size/" + m)
     return dispatch({
       type: FILTER_BY_CLOTHING_SIZE,
       payload: sizeClothing.data

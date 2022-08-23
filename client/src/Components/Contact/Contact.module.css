@@ -1,16 +1,21 @@
-* {box-sizing: border-box;}
+* {
+    box-sizing: border-box;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
 /*font-family: 'Readex Pro', sans-serif;*/
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
 /*font-family: 'Questrial', sans-serif;*/
-html{
+html {
     background-color: black;
 }
 
-.container_Info{
+.container_Info {
     margin-top: 74px;
 }
-.container{
+
+.container {
     background-color: black;
 }
 
@@ -23,7 +28,7 @@ html{
     margin-bottom: 10px;
 }
 
-.container_button button{
+.container_button button {
     width: 100%;
     height: 80px;
     background-color: #23232C;
@@ -40,42 +45,45 @@ html{
     background-color: black;
     transition: 0.5s;
 }
-.container_infoContact h2,p{
+
+.container_infoContact h2,
+p {
     font-family: 'Questrial', sans-serif;
     color: white;
 }
-.container_infoContact h2{
+
+.container_infoContact h2 {
     font-weight: bold;
     margin-bottom: 15px;
 }
 
 
-.container_infoContact p{
+.container_infoContact p {
     letter-spacing: 1px;
     line-height: 35px;
 }
 
-.container_infoContact2{
+.container_infoContact2 {
     padding: 12px;
 }
 
-.localInfop{
+.localInfop {
     line-height: 30px !important;
     /* border: 1px solid red; */
 }
 
-.container_image{
+.container_image {
     width: 557px;
     min-width: 508;
     height: auto;
 }
 
-.container_image img{
+.container_image img {
     width: 100%;
     height: auto;
 }
 
-.container_infoAndForm{
+.container_infoAndForm {
     /* width: 100%;
     min-width: 600px;
     height: auto; */
@@ -83,44 +91,42 @@ html{
     height: auto;
 }
 
-.container_TextArea{
+.container_TextArea {
     margin-bottom: 42px;
 }
 
-.alertMsj{
+.alertMsj {
     font-family: 'Questrial', sans-serif;
 }
 
-.container_Alert{
+.container_Alert {
     width: 45%;
     position: fixed;
     top: 85%;
     left: 0;
-    transform: translateX(-101%);
+    transform: translateX(-200%);
     transition: transform 0.4s, opacity 0.5s ease-out;
-    /* display: none !important; */
 }
 
-.container_Alert.open{
-    /* display: flex !important; */
+.container_Alert.open {
     transform: translateX(-0);
 }
 
-.container_AlertSuccess{
+.container_AlertSuccess {
     width: 45%;
     position: fixed;
     top: 85%;
     left: 0;
-    transform: translateX(-101%);
+    transform: translateX(-200%);
     transition: transform 0.4s, opacity 0.5s ease-out;
     /* display: none !important; */
 }
 
-.container_AlertSuccess.open{
+.container_AlertSuccess.open {
     transform: translateX(-0);
 }
 
-.container_Inicio{
+.container_Inicio {
     width: 100%;
     height: 50px;
     font-size: 20px;
@@ -133,69 +139,76 @@ html{
     font-family: 'Questrial', sans-serif;
 }
 
-.container_Inicio span:nth-child(3){
+.container_Inicio span:nth-child(3) {
     color: white;
     font-weight: 600;
 }
 
-.container_Inicio span:nth-child(2){
+.container_Inicio span:nth-child(2) {
     color: white;
     font-weight: 600;
 }
 
-.container_Inicio span:nth-child(1){
+.container_Inicio span:nth-child(1) {
     color: rgb(128, 128, 128);
 }
-.container_Inicio span:nth-child(1):hover{
+
+.container_Inicio span:nth-child(1):hover {
     color: white;
 }
 
-.inputs{
+.inputs {
     background-color: #121212 !important;
     border: 1px solid #686868 !important;
     font-family: 'Questrial', sans-serif !important;
 }
 
-.button_send{
+.button_send {
     background-color: #23232C;
     color: white;
 }
 
-.button_send:hover{
+.button_send:hover {
     border: 1px solid #686868 !important;
     box-sizing: border-box;
 }
 
 
 
-@media screen and (min-width: 200px) and (max-width: 992px) {
-    .container_image{
+@media screen and (min-width: 100px) and (max-width: 992px) {
+    .container_image {
         display: none;
     }
 
-    .container_Info{
+    .container_Info {
         margin-top: 0px;
     }
 
-    .container_infoAndForm{
+    .container_infoAndForm {
         width: 100%;
     }
 
-    .container_button{
+    .container_button {
         margin-bottom: 10px;
     }
 
-    .container_Alert{
+    .container_Alert {
+        width: 450px;
+        top: 80%;
+    }
+
+    .container_AlertSuccess {
         width: 450px;
     }
-    .container_Inicio{
+
+    .container_Inicio {
         margin-top: 74px;
         position: relative;
     }
 }
 
 @media screen and (min-width: 1343px) {
-    .container_infoAndForm{
+    .container_infoAndForm {
         width: 100%;
     }
 }
