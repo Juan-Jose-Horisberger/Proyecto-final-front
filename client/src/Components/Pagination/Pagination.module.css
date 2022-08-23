@@ -1,0 +1,58 @@
+a{
+    text-decoration: none !important;
+    color: gray;
+    user-select: none;
+}
+
+a:hover{
+    color: white;
+    transition: 0.5s ease-out;
+}
+
+
+.pagination{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 18px;
+    /* border: 1px solid red; */
+}
+
+.page_num{
+    padding: 3px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 400;
+}
+.active{
+    color: white;
+}
+
+.previous{
+    font-size: 30px;
+    display: none;
+}
+
+.previous.open{
+    display: block;
+}
+
+.next{
+    font-size: 30px;
+}
+
+.next.close{
+    display: none;
+}
+
+.loading{
+    width: 100%;
+    font-size: 90px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    margin-top: 110px;
+    color: white;
+}

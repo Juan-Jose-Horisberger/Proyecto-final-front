@@ -1,0 +1,16 @@
+.container{
+    /* background-color: red; */
+    /* border: 1px solid red; */
+}
+
+.container_Cards{
+    box-sizing: border-box;
+}
+
+.container_Filters{
+    width: 20%;
+}
+
+.container_SearchBar{
+    margin-bottom: 100px;
+}
