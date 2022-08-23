@@ -7,7 +7,28 @@ export default function useForm(initialForm, validateForm) {
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
     const [button, setButton] = useState("URL");
+    const [image, setImage] = useState("")
     // const [buttonCreate, setButtonCreate] = useState(false);
+
+    const uploadImage = async (e) => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append("file", files[0]);
+        data.append("upload_preset", "ProyectoFinalHenry");
+        
+        const res = await fetch(
+            "https://api.cloudinary.com/v1_1/dsnbvqwvs/image/upload",
+            {
+                method: "POST",
+                body: data
+            }
+        )
+
+        const file = await res.json();
+        console.log(file.secure_url);
+        setImage(file.secure_url);
+        setForm({...form, image: file.secure_url})
+    }
 
     const handleOnChange = (e) => {
 
@@ -64,6 +85,7 @@ export default function useForm(initialForm, validateForm) {
         if(!Object.entries(errores).length) {
             dispatch(createProduct(form))
             alert("se creo")
+            console.log(form)
         }
     }
 
@@ -84,5 +106,7 @@ export default function useForm(initialForm, validateForm) {
         handleSubmit,
         handleChecked,
         handleOnButton,
+        uploadImage,
+        image
     }
 }

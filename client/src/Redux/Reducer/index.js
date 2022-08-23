@@ -75,6 +75,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             };
 
         case CREATE_PRODUCT:
+            console.log(payload)
             return {
                 ...state, products: [...state.products, payload]
             };
