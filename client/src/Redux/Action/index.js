@@ -88,9 +88,8 @@ export const deleteCartProduct = (id) => {
 };
 
 export const createProduct = (data) => {
-  console.log(data)
   return async function () {
-    let newProduct = await axios.post(`https://proyecto-final-01.herokuapp.com/products`, data)
+    let newProduct = await axios.post(`"/products`, data)
     return ({
       type: CREATE_PRODUCT,
       payload: newProduct
