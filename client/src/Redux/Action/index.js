@@ -89,7 +89,7 @@ export const deleteCartProduct = (id) => {
 
 export const createProduct = (data) => {
   return async function () {
-    let newProduct = await axios.post(`"/products`, data)
+    let newProduct = await axios.post(`/products`, data)
     return ({
       type: CREATE_PRODUCT,
       payload: newProduct
