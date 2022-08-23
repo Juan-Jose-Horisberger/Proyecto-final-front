@@ -9,24 +9,22 @@ import Register from './Components/Register/Register.jsx';
 import FormProduct from './Components/FormProduct/FormProduct.jsx';
 import Contact from './Components/Contact/Contact.jsx';
 import Profile from './Components/Profile/Profile.jsx';
+import Logout from './Components/Logout/Logout';
 import { useAuth0 } from "@auth0/auth0-react";
-import {LogoutButton} from './Components/Logout/Logout';
 
 
 function App() {
   const { isAuthenticated } = useAuth0();
-
   return (
     <div className="App">
-{isAuthenticated ? (
+ {isAuthenticated ? (
           <>
             <Profile />
-            <LogoutButton />
+            <Logout />
           </>
         ) : (
-          <Login/>
+          <Login />
         )}
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
@@ -34,6 +32,7 @@ function App() {
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/Logout" element={<Logout/>} />
         <Route path="/Register" element={<Register />} />
         <Route path="/CreateProduct" element={<FormProduct />} />
         <Route path="/Contact" element={<Contact />} />
