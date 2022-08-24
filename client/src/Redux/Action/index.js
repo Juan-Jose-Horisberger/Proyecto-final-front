@@ -99,7 +99,6 @@ export const createProduct = (data) => {
 };
 
 export const filterByQuery = (params) => {
-  console.log(params)
   return async function (dispatch) {
     let filterProducts = await axios.get(`/products?${params}`)
     return dispatch({
