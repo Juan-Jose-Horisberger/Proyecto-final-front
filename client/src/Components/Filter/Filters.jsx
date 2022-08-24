@@ -71,6 +71,7 @@ export default function Filters() {
 
   const reset = (e) => {
     dispatch(getAllProducts());
+    setPrice("2.999")
 
     var options = document.querySelectorAll('#my_select');
     for (var i = 0, l = options.length; i < l; i++) {
