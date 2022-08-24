@@ -8,7 +8,7 @@ export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 export const GET_CART_PRODUCT = "GET_CART_PRODUCT";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
-export const FILTER_BY_BRAND = "FILTER_BY_BRAND";
+export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
 export const FILTER_GENRES = "FILTER_GENRES";
@@ -106,49 +106,56 @@ export const filterByQuery = (params) => {
       payload: filterProducts.data
     })
   }
+};
+
+export const filterByPrice = (price) => {
+  return {
+    type: FILTER_BY_PRICE,
+    payload: price
+  }
 }
 
-export const categoryFilter = (calzado) => {
-  return async function (dispatch) {
-    let category = await axios.get("/products/category/" + calzado)
-    return dispatch({
-      type: FILTER_CATEGORY,
-      payload: category.data
-    })
-  }
-};
+// export const categoryFilter = (calzado) => {
+//   return async function (dispatch) {
+//     let category = await axios.get("/products/category/" + calzado)
+//     return dispatch({
+//       type: FILTER_CATEGORY,
+//       payload: category.data
+//     })
+//   }
+// };
 
-export const genresFilter = (hombre) => {
-  return async function (dispatch) {
-    const infoFilter = await axios.get("/products/genres/" + hombre)
-    console.log(infoFilter)
-    return dispatch({
-      type: FILTER_GENRES,
-      payload: infoFilter.data
-    })
-  }
-};
+// export const genresFilter = (hombre) => {
+//   return async function (dispatch) {
+//     const infoFilter = await axios.get("/products/genres/" + hombre)
+//     console.log(infoFilter)
+//     return dispatch({
+//       type: FILTER_GENRES,
+//       payload: infoFilter.data
+//     })
+//   }
+// };
 
-export const brandFilter = (brand) => {
-  return async function (dispatch) {
-    const infoBrand = await axios.get("/products/brand/" + brand)
-    console.log(infoBrand)
-    return dispatch({
-      type: FILTER_BY_BRAND,
-      payload: infoBrand.data
-    })
-  }
-};
+// export const brandFilter = (brand) => {
+//   return async function (dispatch) {
+//     const infoBrand = await axios.get("/products/brand/" + brand)
+//     console.log(infoBrand)
+//     return dispatch({
+//       type: FILTER_BY_BRAND,
+//       payload: infoBrand.data
+//     })
+//   }
+// };
 
-export const sizeClothingFilter = (m) => {
-  return async function (dispatch) {
-    let sizeClothing = await axios.get("/products/size/" + m)
-    return dispatch({
-      type: FILTER_BY_CLOTHING_SIZE,
-      payload: sizeClothing.data
-    })
-  }
-};
+// export const sizeClothingFilter = (m) => {
+//   return async function (dispatch) {
+//     let sizeClothing = await axios.get("/products/size/" + m)
+//     return dispatch({
+//       type: FILTER_BY_CLOTHING_SIZE,
+//       payload: sizeClothing.data
+//     })
+//   }
+// };
 
 
 

@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { filterByQuery, getAllProducts } from '../../Redux/Action'
+import { filterByQuery, getAllProducts, filterByPrice } from '../../Redux/Action'
 import styles from './Filters.module.css';
 import resetImage from "../../Imagenes/reset.svg"
 
 export default function Filters() {
   const dispatch = useDispatch();
   const [params, setParams] = useState("");
+  const [price, setPrice] = useState("2.999")
   const [talle, setTalle] = useState("indumentaria")
 
   const validate = (e) => {
+    setPrice("2.999");
+
     if (params.includes(e.target.name)) {
 
       if (e.target.name === "category") {
@@ -18,7 +21,7 @@ export default function Filters() {
           const result = params.replace(regex, e.target.value);
           dispatch(filterByQuery(result));
           setParams(result);
-          setTalle("calzado")
+          setTalle("calzado");
         };
 
         if (e.target.value !== "calzado") {
@@ -26,7 +29,7 @@ export default function Filters() {
           const result = params.replace(regex, e.target.value);
           dispatch(filterByQuery(result));
           setParams(result);
-          setTalle("indumentaria")
+          setTalle("indumentaria");
         }
       };
 
@@ -57,6 +60,14 @@ export default function Filters() {
       setParams(actualFilter);
     };
   };
+
+  const handleRange = (e) => {
+    dispatch(filterByPrice(e.target.value))
+    setPrice(e.target.value)
+    // var range = document.querySelector("#customRange1")
+    // console.log(range)
+    // range.select = 0
+  }
 
   const reset = (e) => {
     dispatch(getAllProducts());
@@ -139,10 +150,15 @@ export default function Filters() {
 
       <div>
         <h4>Precio</h4>
-        <label className="form-label">Example range</label>
-        <input type="range" className="form-range" id="customRange1"></input>
+        <input type="range"
+          className="form-range"
+          id="customRange1"
+          onChange={handleRange}
+          value={price}
+          min="2.999"
+          max="65.999"></input>
 
-        <p>Mostramos la info del range</p>
+        <label className="form-label">${price}</label>
       </div>
     </div>
   )
