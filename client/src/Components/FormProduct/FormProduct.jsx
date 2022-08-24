@@ -28,8 +28,13 @@ export default function FormProduct() {
         errors.name = "El nombre del producto es requerido";
         setValidate({ ...validate, name: true });
 
-      } else if (!regexName.test(form.name.trim()) && nameInput === "name") {
+      } else if (!regexName.test(form.name.trim())) {
         errors.name = "El nombre del producto solo acepta letras y espacios.";
+        setValidate({ ...validate, name: true });
+
+      }
+      else if (form.name === "") {
+        errors.name = "El nombre del producto es requerido";
         setValidate({ ...validate, name: true });
 
       } else {
@@ -46,19 +51,19 @@ export default function FormProduct() {
     if (nameInput.includes("price")) {
       if (form.price > 150000) {
         errors.price = "El precio excede el maximo permitido";
-        setValidate({...validate, price: true});
+        setValidate({ ...validate, price: true });
 
       } else if (form.price < 0) {
         errors.price = "El precio no puede ser menor a 0"
-        setValidate({...validate, price: true});
+        setValidate({ ...validate, price: true });
 
       }
       else if (form.price === "") {
         errors.price = "El precio es requerido";
-        setValidate({...validate, price: true});
+        setValidate({ ...validate, price: true });
 
-      }else {
-        setValidate({...validate, price: false});
+      } else {
+        setValidate({ ...validate, price: false });
 
       }
     };
@@ -66,10 +71,10 @@ export default function FormProduct() {
     if (nameInput.includes("brand")) {
       if (form.brand === "") {
         errors.brand = "Debes seleccionar una marca";
-        setValidate({...validate, brand: true});
+        setValidate({ ...validate, brand: true });
 
-      }else {
-        setValidate({...validate, brand: false});
+      } else {
+        setValidate({ ...validate, brand: false });
 
       }
     };
@@ -77,15 +82,15 @@ export default function FormProduct() {
     if (nameInput.includes("stock")) {
       if (form.stock < 0) {
         errors.stock = "El disponible no puede ser menor a 0";
-        setValidate({...validate, stock: true});
+        setValidate({ ...validate, stock: true });
 
       }
       else if (form.stock === "") {
         errors.stock = "El disponible es requerido";
-        setValidate({...validate, stock: true});
+        setValidate({ ...validate, stock: true });
 
-      }else {
-        setValidate({...validate, stock: false});
+      } else {
+        setValidate({ ...validate, stock: false });
 
       };
     };
@@ -93,15 +98,15 @@ export default function FormProduct() {
     if (nameInput.includes("sold")) {
       if (form.sold < 0) {
         errors.sold = "El vendido no puede ser menor a 0";
-        setValidate({...validate, sold: true});
+        setValidate({ ...validate, sold: true });
 
       }
       else if (form.sold < 0) {
         errors.sold = "La cantidad vendida es requerida";
-        setValidate({...validate, sold: true});
+        setValidate({ ...validate, sold: true });
 
-      }else {
-        setValidate({...validate, sold: false});
+      } else {
+        setValidate({ ...validate, sold: false });
 
       };
     };
@@ -109,10 +114,10 @@ export default function FormProduct() {
     if (nameInput.includes("category")) {
       if (form.category === "") {
         errors.category = "Debes seleccionar una categoria";
-        setValidate({...validate, category: true});
+        setValidate({ ...validate, category: true });
 
-      }else {
-        setValidate({...validate, category: false});
+      } else {
+        setValidate({ ...validate, category: false });
 
       };
     };
@@ -120,20 +125,20 @@ export default function FormProduct() {
     if (nameInput.includes("score")) {
       if (form.score > 5) {
         errors.score = "La puntuacion excede el maximo permitido";
-        setValidate({...validate, score: true});
+        setValidate({ ...validate, score: true });
 
       }
       else if (form.score < 0) {
         errors.score = "La puntuacion excede el minimo permitido";
-        setValidate({...validate, score: true});
+        setValidate({ ...validate, score: true });
 
       }
       else if (form.score === "") {
         errors.score = "La puntuacion es requerida";
-        setValidate({...validate, score: true});
+        setValidate({ ...validate, score: true });
 
-      }else {
-        setValidate({...validate, score: false});
+      } else {
+        setValidate({ ...validate, score: false });
 
       };
     };
@@ -141,10 +146,10 @@ export default function FormProduct() {
     if (nameInput.includes("genre")) {
       if (form.genre === "") {
         errors.genre = "El producto debe pertener a un genero"
-        setValidate({...validate, genre: true});
+        setValidate({ ...validate, genre: true });
 
-      }else {
-        setValidate({...validate, price: false});
+      } else {
+        setValidate({ ...validate, price: false });
 
       }
     };
@@ -152,10 +157,10 @@ export default function FormProduct() {
     if (nameInput.includes("image")) {
       if (form.image === "") {
         errors.image = "El producto necesita una imagen";
-        setValidate({...validate, image: true});
+        setValidate({ ...validate, image: true });
 
-      }else {
-        setValidate({...validate, image: false});
+      } else {
+        setValidate({ ...validate, image: false });
 
       }
     };
@@ -175,7 +180,9 @@ export default function FormProduct() {
     uploadImage,
     image,
     validate,
-    setValidate
+    setValidate,
+    alert,
+    setAlert
   } = useForm(initialForm, validateForm);
 
 
@@ -230,7 +237,7 @@ export default function FormProduct() {
 
           <div className="input-group mb-3">
             <input type="file"
-              className={`form-control ${validate.image ? "is-valid" : (validate.image !== false ? "" : "is-invalid")}`}
+              className={`form-control ${validate.image ? "is-invalid" : (validate.image !== false ? "" : "is-valid")}`}
               id="inputGroupFile02"
               onChange={uploadImage}
               placeholder="asdasd">
@@ -372,9 +379,24 @@ export default function FormProduct() {
           </div>
 
           <button onSubmit={handleOnSubmit}
-            // className={errors.btn ? "btn btn-success m-3" : "btn btn-danger m-3"}
             className="btn btn-success m-3"
-          >Crear</button>
+          >Sumar al catalogo</button>
+
+          {alert ?
+            <div className="alert alert-danger alert-dismissible fade show" role="alert">
+              Debes completar el formulario con la informacion <strong>correcta!</strong>
+              <button type="button" className="btn-close" onClick={() => setAlert()} aria-label="Close"></button>
+            </div>
+            :
+            (
+              alert !== false ?
+                <div></div>
+                :
+                <div className="alert alert-success alert-dismissible fade show" role="alert">
+                  El producto se ha <strong>sumado al cataglogo</strong> con exito!
+                  <button type="button" className="btn-close" onClick={() => setAlert()} aria-label="Close"></button>
+                </div>)}
+
         </form>
       </div>
     </div>

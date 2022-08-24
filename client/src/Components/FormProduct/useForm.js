@@ -8,7 +8,8 @@ export default function useForm(initialForm, validateForm) {
     const [errors, setErrors] = useState({});
     const [button, setButton] = useState("URL");
     const [image, setImage] = useState("");
-    const [validate, setValidate] = useState({})
+    const [validate, setValidate] = useState({});
+    const [alert, setAlert] = useState()
     // const [buttonCreate, setButtonCreate] = useState(false);
 
     const uploadImage = async (e) => {
@@ -84,9 +85,12 @@ export default function useForm(initialForm, validateForm) {
         setErrors(errores);
 
         if(!Object.entries(errores).length) {
-            dispatch(createProduct(form))
-            alert("se creo")
-            console.log(form)
+            dispatch(createProduct(form));
+            
+            setAlert(false);
+        }else {
+            setAlert(true);
+
         }
     }
 
@@ -110,6 +114,8 @@ export default function useForm(initialForm, validateForm) {
         uploadImage,
         image,
         validate,
-        setValidate
+        setValidate,
+        alert,
+        setAlert
     }
 }
