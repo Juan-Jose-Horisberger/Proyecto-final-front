@@ -9,9 +9,11 @@ import FavoritesIcon from '../../Imagenes/favorites.svg';
 import FormIcon from '../../Imagenes/form.svg';
 
 
+
 export default function SearchBar() {
     const dispatch = useDispatch();
     const [productName, setProductName] = useState("")
+
 
     function handleOnClick() {
         productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");

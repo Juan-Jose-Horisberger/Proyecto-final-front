@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getProductDetail, filterByQuery } from '../../Redux/Action/index.js';
 import SearchBar from '../SearchBar/SearchBar';
 import Carousel from 'react-elastic-carousel';
-import stylesComponents from './stylesComponents.css'
+import stylesComponents from './stylesComponents.css';
 
 export default function ProductDetail() { //instalar style-component si no funciona
     const { id } = useParams();
@@ -29,6 +29,7 @@ export default function ProductDetail() { //instalar style-component si no funci
 
     useEffect(() => {
         // if (products.length) {
+        // if(products.length){
         //     return;
         // }
         dispatch(filterByQuery(`category=${productDetail.categoryName}&genre=${productDetail.genre}`));

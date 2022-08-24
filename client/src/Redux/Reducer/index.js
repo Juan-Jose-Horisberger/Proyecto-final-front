@@ -7,16 +7,17 @@ import {
     GET_CART_PRODUCT,
     DELETE_CART_PRODUCT,
     CREATE_PRODUCT,
-    FILTER_BY_BRAND,
     FILTER_CATEGORY,
     FILTER_BY_CLOTHING_SIZE,
     FILTER_GENRES,
-    FILTER_BY_QUERY
+    FILTER_BY_QUERY,
+    FILTER_BY_PRICE
 
 } from "../Action"
 
 const initialState = {
     products: [],
+    allProducts: [],
     productDetail: {},
     productFav: [],
     productCart: [],
@@ -82,26 +83,31 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
         case FILTER_BY_QUERY:
             return {
-                ...state, products: payload
+                ...state, products: payload, allProducts: payload
             };
 
-        case FILTER_GENRES:
+        case FILTER_BY_PRICE:
             return {
-                ...state, products: payload
-            };
+                ...state, products: state.allProducts.filter(e => e.price >= payload)
+            }
 
-        case FILTER_BY_BRAND:
-            return {
-                ...state, products: payload
-            };
-        case FILTER_CATEGORY:
-            return {
-                ...state, products: payload
-            };
-        case FILTER_BY_CLOTHING_SIZE:
-            return {
-                ...state, products: payload
-            };
+        // case FILTER_GENRES:
+        //     return {
+        //         ...state, products: payload
+        //     };
+
+        // case FILTER_BY_BRAND:
+        //     return {
+        //         ...state, products: payload
+        //     };
+        // case FILTER_CATEGORY:
+        //     return {
+        //         ...state, products: payload
+        //     };
+        // case FILTER_BY_CLOTHING_SIZE:
+        //     return {
+        //         ...state, products: payload
+        //     };
 
         default:
             return state;
