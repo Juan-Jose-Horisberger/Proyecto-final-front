@@ -47,7 +47,7 @@ h2 {
 .categoryBrand {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin: 20px;
 }
 
@@ -58,7 +58,7 @@ h2 {
 .categoryBrand div {
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 50%;
 }
 
@@ -99,7 +99,7 @@ h2 {
 }
 
 .divGenre {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     margin: 30px 0 30px 0;
 }
 
