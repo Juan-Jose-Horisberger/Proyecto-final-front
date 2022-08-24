@@ -11,14 +11,14 @@ export default function Pagination({ allProducts, loaded }) {
     const itemsPerPage = 9; //Elementos por pagina
     const allProductsSort = allProducts.sort(function (a, b) {
         if (a.id > b.id) {
-          return 1;
+            return 1;
         }
         if (a.id < b.id) {
-          return -1;
+            return -1;
         }
 
         return 0;
-      });
+    });
 
     //Mostrar flecha previos y next
     const [toShowPrevious, setToShowPrevious] = useState(false);
@@ -30,7 +30,7 @@ export default function Pagination({ allProducts, loaded }) {
         setPageCount(Math.ceil(allProductsSort.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, allProductsSort]);
 
-    
+
 
     const handlePageClick = (event) => { //Esta funcion cambiamos el indice del primer elemento en la pagina actual
         const newOffset = (event.selected * itemsPerPage) % allProductsSort.length;
@@ -59,11 +59,16 @@ export default function Pagination({ allProducts, loaded }) {
                                 image={p.image}
                             />
                         )
-                            : <p className={`${styles.loading}`}>Cargando...</p>
+                            : <div className="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
+                                <span className="visually-hidden">Loading...</span>
+                            </div>
+
                         }
                     </div>
                 )
-                    : <p className={`${styles.loading}`}>Cargando...</p>
+                    : <div className="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
             }
 
             <>
