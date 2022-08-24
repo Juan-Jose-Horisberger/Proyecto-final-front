@@ -30,9 +30,9 @@ export default function ProductDetail() {
 
 
     useEffect(() => {
-        if(products.length){
-            return;
-        }
+        // if(products.length){
+        //     return;
+        // }
         dispatch(filterByQuery(`category=${productDetail.categoryName}&genre=${productDetail.genre}`));
     }, [productDetail])
 
