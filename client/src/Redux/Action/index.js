@@ -13,6 +13,7 @@ export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
 export const FILTER_GENRES = "FILTER_GENRES";
 export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
+export const SET_NOTIFICATIONS_TO_0 = "SET_NOTIFICATIONS_TO_0";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -112,6 +113,12 @@ export const filterByPrice = (price) => {
   return {
     type: FILTER_BY_PRICE,
     payload: price
+  }
+}
+
+export const clearNotifications = () => {
+  return {
+    type: SET_NOTIFICATIONS_TO_0,
   }
 }
 
