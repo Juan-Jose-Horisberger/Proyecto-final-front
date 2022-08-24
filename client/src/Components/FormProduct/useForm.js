@@ -7,7 +7,8 @@ export default function useForm(initialForm, validateForm) {
     const [form, setForm] = useState(initialForm);
     const [errors, setErrors] = useState({});
     const [button, setButton] = useState("URL");
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState("");
+    const [validate, setValidate] = useState({})
     // const [buttonCreate, setButtonCreate] = useState(false);
 
     const uploadImage = async (e) => {
@@ -37,7 +38,7 @@ export default function useForm(initialForm, validateForm) {
                 setForm({
                     ...form, [e.target.name]: e.target.value, size: []
                 });
-                const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name);
+                const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name, setValidate, setErrors);
                 setErrors(errores)
 
             } else if (e.target.value !== "calzado") {
@@ -45,14 +46,14 @@ export default function useForm(initialForm, validateForm) {
                     ...form, [e.target.name]: e.target.value, size: [...form.size.filter(e => e === "M" || e === "S" || e === "XS" || e === "L")]
                 });
 
-                const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name);
+                const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name, setValidate, setErrors);
                 setErrors(errores)
             };
         } else {
             setForm({
                 ...form, [e.target.name]: e.target.value
             });
-            const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name);
+            const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name, setValidate, setErrors);
             setErrors(errores)
         }
     };
@@ -64,7 +65,7 @@ export default function useForm(initialForm, validateForm) {
                 ...form, size: [...form.size, ev.target.value]
             });
 
-            const errores = validateForm({ ...form, size: [...form.size, ev.target.value] }, ev.target.name);
+            const errores = validateForm({ ...form, size: [...form.size, ev.target.value] }, ev.target.name, setValidate, setErrors);
             setErrors(errores);
 
         } else {
@@ -72,14 +73,14 @@ export default function useForm(initialForm, validateForm) {
                 ...form, size: form.size.filter(e => e !== ev.target.value)
             });
 
-            const errores = validateForm({ ...form, size: form.size.filter(e => e !== ev.target.value) }, ev.target.name);
+            const errores = validateForm({ ...form, size: form.size.filter(e => e !== ev.target.value) }, ev.target.name, setValidate, setErrors);
             setErrors(errores);
         }
     };
 
     const handleSubmit = (ev) => {
         ev.preventDefault();
-        const errores = validateForm(form, "namebrandcategorypricestockimagesoldsizescoregenre");
+        const errores = validateForm(form, "namebrandcategorypricestockimagesoldsizescoregenre", setValidate, setErrors);
         setErrors(errores);
 
         if(!Object.entries(errores).length) {
@@ -107,6 +108,8 @@ export default function useForm(initialForm, validateForm) {
         handleChecked,
         handleOnButton,
         uploadImage,
-        image
+        image,
+        validate,
+        setValidate
     }
 }
