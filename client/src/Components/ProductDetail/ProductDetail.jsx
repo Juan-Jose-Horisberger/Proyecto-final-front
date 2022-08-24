@@ -5,38 +5,47 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link, useParams } from 'react-router-dom';
 import { getProductDetail, filterByQuery } from '../../Redux/Action/index.js';
 import SearchBar from '../SearchBar/SearchBar';
+import Carousel from 'react-elastic-carousel';
+import stylesComponents from './stylesComponents.css';
 
-export default function ProductDetail() {
+export default function ProductDetail() { //instalar style-component si no funciona
     const { id } = useParams();
     const dispatch = useDispatch()
     const productDetail = useSelector(state => state.productDetail);
     const products = useSelector(state => state.products);
-    const productsFiltered = products.filter((p, i) => i < 4);
+    // const productsFiltered = products.length && products.filter((p, i) => i < 4);
     const [detail, setDetail] = useState(0)
     const [loaded, setLoaded] = useState(false);
     // const [elements, setElements] = useState([])
 
     useEffect(() => {
-        if (productDetail.length > 0) {
-            setLoaded(true);
-            return
-        }
-
+        // if (productDetail.length > 0) {
+        //     setLoaded(true);
+        //     return
+        // }
         dispatch(getProductDetail(id))
             .then(res => res && setLoaded(true))
-        
-        // 
     }, [])
 
-
     useEffect(() => {
+        // if (products.length) {
         // if(products.length){
         //     return;
         // }
         dispatch(filterByQuery(`category=${productDetail.categoryName}&genre=${productDetail.genre}`));
     }, [productDetail])
 
+    const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 500, itemsToShow: 2 },
+        { width: 768, itemsToShow: 3 },
+        { width: 1200, itemsToShow: 4 },
+    ]
 
+    function handleOnClick(id){
+        dispatch(getProductDetail(id));
+        window.scrollTo({ behavior: 'smooth', top: '0px' });
+    }
 
     return (
         <div className={styles.container}>
@@ -45,7 +54,7 @@ export default function ProductDetail() {
                 loaded ? (<div>
                     <div className={styles.overallContainer}>
                         {console.log(products)}
-                        {console.log(productsFiltered)}
+                        {/* {console.log(productsFiltered)} */}
                         <div className={styles.container_1}>
                             <h1>
                                 <Link to="/"><span>Inicio</span></Link>
@@ -125,18 +134,20 @@ export default function ProductDetail() {
                             </div>
                         </div>
 
-                        <div>
-                            <h4>Aca mostramos 3 prendas relacionadas</h4>
-                            {
-
-                                productsFiltered.length && productsFiltered.map((p, i) => {
+                        <div className={`${styles.container_carrousel}`}>
+                            <h2 className='d-flex justify-content-center'>PRODUCTOS RELACIONADOS</h2>
+                            <Carousel breakPoints={breakPoints}>
+                                {products.map((p, i) => {
                                     return (
-                                        <div key={i}>
-                                            <img src={p.image} alt="img" width="300px" />
+                                        <div key={i} className={`${styles.carts}`}>
+                                            <img onClick={() => handleOnClick(p.id)} src={p.image} alt="img" width="300px" className='img-fluid' />
+                                            <p>{p.name}</p>
+                                            <p>$ {p.price}</p>
+                                            <p><b>3</b> Cuotas sin interés de <b>${(p.price / 3 + "").slice(0, 5)}</b></p>
                                         </div>
                                     )
-                                })
-                            }
+                                })}
+                            </Carousel>
                         </div>
                     </div>
                 </div>) : <p className={`${styles.loading}`}>Cargando...</p>
