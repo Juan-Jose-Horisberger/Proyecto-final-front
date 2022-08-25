@@ -7,21 +7,31 @@ import { Link } from 'react-router-dom';
 import CartIcon from '../../Imagenes/cart.svg';
 import FavoritesIcon from '../../Imagenes/favorites.svg';
 import FormIcon from '../../Imagenes/form.svg';
+import { useEffect } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 
-export default function SearchBar() {
+export default function SearchBar({ socket }) {
     const dispatch = useDispatch();
-    const [productName, setProductName] = useState("")
-    const countNotifications = useSelector(state => state.counterNotification);
-
+    const [productName, setProductName] = useState("");
+    const { loginWithRedirect } = useAuth0();
+    const notifications = useSelector(state => state.newNotification);
 
     function handleOnClick() {
         productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");
         setProductName("");
     }
 
-    function setNotificationsTo0(){
+    function setNotificationsTo0() {
         dispatch(clearNotifications());
     }
+
+    function handleNotification() {
+        //seguir.. xD
+    }
+
+    // useEffect(() => {
+
+    // }, [countNotifications])
 
     return (
         <div className={`${styles.container} container-fluid p-0 m-0`} >
@@ -103,7 +113,7 @@ export default function SearchBar() {
 
                                         <div onClick={() => setNotificationsTo0()} data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
                                             <img src="https://www.svgrepo.com/show/281772/alarm-bell.svg" style={{ width: "27px" }} alt="" />
-                                            <div>{countNotifications}</div>
+                                            <div>{notifications.counter}</div>
                                         </div>
                                     </div>
                                     <div className="offcanvas offcanvas-end" id="offcanvasRight">
@@ -112,7 +122,23 @@ export default function SearchBar() {
                                             <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
                                         </div>
                                         <div className="offcanvas-body">
-                                            Info notificaciones ...
+                                            {
+                                                notifications.length && notifications.newProducts.map((p, i) => {
+                                                    p.offert
+                                                        ? (
+                                                            <div key={i}>
+                                                                <p>{p.image}</p>
+                                                                <p>{p.name}</p>
+                                                            </div>
+                                                        )
+                                                        : (
+                                                            <div key={i}>
+                                                                <p>{p.image}</p>
+                                                                <p>{p.name}</p>
+                                                            </div>
+                                                        )
+                                                })
+                                            }
                                         </div>
                                     </div>
 

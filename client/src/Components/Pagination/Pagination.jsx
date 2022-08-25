@@ -45,7 +45,7 @@ export default function Pagination({ allProducts, loaded }) {
 
 
     return (
-        <div className={`${styles.container_Cards} col-9`}>
+        <div className={`${styles.container_Cards} col-12 col-lg-9`}>
 
             {
                 loaded ? (

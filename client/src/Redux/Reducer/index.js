@@ -21,7 +21,10 @@ const initialState = {
     productDetail: {},
     productFav: [],
     productCart: [],
-    counterNotification: 0
+    newNotification: {
+        counter: 0,
+        newProducts: []
+    }
 
 }
 
@@ -78,7 +81,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case CREATE_PRODUCT:
             console.log(payload)
             return {
-                ...state, products: [...state.products, payload], counterNotification: state.counterNotification + 1
+                ...state, products: [...state.products, payload],
+                notification: state.notification + 1,
+                newNotification: {
+                    counter: state.newNotification.counter + 1,
+                    newProducts: [...state.newNotification.newProducts, payload]
+                }
             };
 
         case FILTER_BY_QUERY:
@@ -92,7 +100,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case SET_NOTIFICATIONS_TO_0:
             return {
-                ...state, counterNotification: 0
+                ...state, newNotification: {...state, counter: 0}
             }
 
         // case FILTER_GENRES:
