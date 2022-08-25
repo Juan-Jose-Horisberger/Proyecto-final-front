@@ -12,7 +12,8 @@ import {
     FILTER_GENRES,
     FILTER_BY_QUERY,
     FILTER_BY_PRICE,
-    SET_NOTIFICATIONS_TO_0
+    SET_NOTIFICATIONS_TO_0,
+    GET_USER_BY_ID
 } from "../Action"
 
 const initialState = {
@@ -24,7 +25,8 @@ const initialState = {
     newNotification: {
         counter: 0,
         newProducts: []
-    }
+    },
+    users: {}
 
 }
 
@@ -100,7 +102,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case SET_NOTIFICATIONS_TO_0:
             return {
-                ...state, newNotification: {...state, counter: 0}
+                ...state, newNotification: { ...state, counter: 0 }
+            }
+        case GET_USER_BY_ID:
+            return {
+                ...state, users: payload
             }
 
         // case FILTER_GENRES:

@@ -15,6 +15,7 @@ export default function SearchBar({ socket }) {
     const [productName, setProductName] = useState("");
     const { loginWithRedirect } = useAuth0();
     const notifications = useSelector(state => state.newNotification);
+    const [purchaseNotifications, setPurchaseNotifications] = useState([]);  //Notificaciones de cuando el user compra un producto.
 
     function handleOnClick() {
         productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");
@@ -25,17 +26,20 @@ export default function SearchBar({ socket }) {
         dispatch(clearNotifications());
     }
 
+    //Guardamos en un estado local la info traida del servidor socket 
     function handleNotification() {
-        //seguir.. xD
+        socket?.on("getNotification", data => {
+            setPurchaseNotifications((prev) => [...prev, data])
+        })
     }
-
-    // useEffect(() => {
-
-    // }, [countNotifications])
+    
+    useEffect(() => {
+        handleNotification()
+    }, [socket])
 
     return (
         <div className={`${styles.container} container-fluid p-0 m-0`} >
-
+            {console.log(purchaseNotifications)}
             <div>
                 <nav className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}>
                     <div className="container-fluid d-flex flex-wrap">
@@ -121,22 +125,25 @@ export default function SearchBar({ socket }) {
                                         </div>
                                         <div className="offcanvas-body">
                                             {
-                                                notifications.length && notifications.newProducts.map((p, i) => {
-                                                    p.offert
-                                                        ? (
-                                                            <div key={i}>
-                                                                <p>{p.image}</p>
-                                                                <p>{p.name}</p>
-                                                            </div>
-                                                        )
-                                                        : (
-                                                            <div key={i}>
-                                                                <p>{p.image}</p>
-                                                                <p>{p.name}</p>
-                                                            </div>
-                                                        )
-                                                })
+                                                // notifications.length && notifications.newProducts.map((p, i) => {
+                                                //     p.offert
+                                                //         ? (
+                                                //             <div key={i}>
+                                                //                 <p>{p.image}</p>
+                                                //                 <p>{p.name}</p>
+                                                //             </div>
+                                                //         )
+                                                //         : (
+                                                //             <div key={i}>
+                                                //                 <p>{p.image}</p>
+                                                //                 <p>{p.name}</p>
+                                                //             </div>
+                                                //         )
+                                                // })
                                             }
+                                            <div>
+                                                hola
+                                            </div>
                                         </div>
                                     </div>
 
