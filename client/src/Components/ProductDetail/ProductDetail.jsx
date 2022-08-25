@@ -10,11 +10,11 @@ import stylesComponents from './stylesComponents.css';
 
 export default function ProductDetail() { //instalar style-component si no funciona
   const { id } = useParams();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const productDetail = useSelector(state => state.productDetail);
   const products = useSelector(state => state.products);
-  const productCart = useSelector(state => state.productCart)
-  const [detail, setDetail] = useState(0)
+  const productCart = useSelector(state => state.productCart);
+  const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {

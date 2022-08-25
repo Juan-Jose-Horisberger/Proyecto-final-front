@@ -1,18 +1,36 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFavoriteProduct, deleteFavProduct } from '../../Redux/Action';
+import { getFavoriteProduct, deleteFavProduct, getCartProduct, deleteCartProduct } from '../../Redux/Action';
 import styles from './FavoriteProduct.module.css';
 import SearchBar from "../SearchBar/SearchBar.jsx";
 import unaX from "../../Imagenes/unaX.svg"
+import { Link } from 'react-router-dom';
 
 export default function FavoriteProduct() {
   const productFav = useSelector(state => state.productFav);
+  const productCart = useSelector(state => state.productCart);
   const dispatch = useDispatch();
 
   const handleDelete = (id) => {
     dispatch(deleteFavProduct(id))
-  }
+  };
+
+  const handleOnCart = (id) => {
+    const findProduct = productCart.find(e => e.id === id)
+
+    if (findProduct) {
+      dispatch(deleteCartProduct(id))
+    } else {
+      dispatch(getCartProduct(id))
+    }
+  };
+
+  const validateCart = (id) => {
+    const findProductCart = productCart.find(e => e.id === id);
+
+    return findProductCart;
+  };
 
   return (
     <div className={styles.container} key="Asdasd">
@@ -23,17 +41,20 @@ export default function FavoriteProduct() {
 
             <div className={styles.divBtnDelete}>
               <button onClick={() => handleDelete(e.id)} className={styles.btnDelete}>
-               x
+                x
               </button>
             </div>
-            {/* <button type="button" className="btn-close btn-close-white"></button> */}
 
             <div className={styles.divImage}>
-              <img src={e.image} alt="Image not found" className={styles.image}/>
+              <Link to={`/ProductDetail/${e.id}`}>
+                <img src={e.image} alt="Image not found" className={styles.image} />
+              </Link>
             </div>
 
             <div className={styles.divName}>
-              <p>{e.name}</p>
+              <Link to={`/ProductDetail/${e.id}`}>
+                <p>{e.name}</p>
+              </Link>
             </div>
 
             <div className={styles.divPrice}>
@@ -41,20 +62,27 @@ export default function FavoriteProduct() {
             </div>
 
             <div className={styles.divStock}>
-              {e.stock === 0 ? 
-              <p className={styles.pStock}>OUT OF STOCK</p>
-              :
-              <p className={styles.pStock}>IN STOCK</p>}
+              {e.stock === 0 ?
+                <p className={styles.pStock}>OUT OF STOCK</p>
+                :
+                <p className={styles.pStock}>IN STOCK</p>}
             </div>
 
-            <div className={styles.divBtnCart}>
-              <button className={styles.btnCart}>Añadir al Carrito</button>
-            </div>
+            {validateCart(e.id) ?
+              <div className={styles.divBtnCart}>
+                <button onClick={(ev) => handleOnCart(e.id)}
+                  className={styles.btnCart}>Añadido al Carrito</button>
+              </div>
+              :
+              <div className={styles.divBtnCart}>
+                <button onClick={(ev) => handleOnCart(e.id)}
+                  className={styles.btnCart}>Añadir al Carrito</button>
+              </div>}
 
           </div>
         )
       }) :
-      <h1>No agregaste productos a tus favoritos</h1>}
+        <h1>No agregaste productos a tus favoritos</h1>}
     </div>
   )
 }
