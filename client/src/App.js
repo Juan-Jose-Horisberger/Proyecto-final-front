@@ -13,6 +13,7 @@ import Logout from './Components/Logout/Logout';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
 import { useAuth0 } from "@auth0/auth0-react";
 import { io } from "socket.io-client";
+import Checkout from './Components/Checkout/Checkout.jsx';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/CreateProduct" element={<FormProduct />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Dashboard" element={<Dashboard socket={socket} />}/>
+        <Route path="/Checkout" element={<Checkout />} />
       </Routes>
     </div>
   );
