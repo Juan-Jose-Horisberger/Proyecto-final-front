@@ -1,16 +1,24 @@
-.container{
-    /* background-color: red; */
-    /* border: 1px solid red; */
+.container {
+    width: 100%;
 }
 
-.container_Cards{
+.container_Cards {
     box-sizing: border-box;
 }
 
-.container_Filters{
+.container_Filters {
     width: 20%;
 }
 
-.container_SearchBar{
+.container_SearchBar {
     margin-bottom: 100px;
+}
+
+@media screen and (min-width: 100px) and (max-width: 992px) {
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
