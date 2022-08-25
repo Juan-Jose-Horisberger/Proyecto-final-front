@@ -19,7 +19,7 @@ function App() {
   const { isAuthenticated } = useAuth0();
   const [socket, setSocket] = useState(null);
   useEffect(() =>{
-    setSocket(io("http://localhost:5000"));
+    setSocket(io("http://localhost:3000"));
   },[]);
 
   return (
