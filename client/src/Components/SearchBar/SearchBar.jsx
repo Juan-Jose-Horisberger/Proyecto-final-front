@@ -1,23 +1,26 @@
 import React from 'react';
 import styles from './SearchBar.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { getProductByName } from '../../Redux/Action';
+import { getProductByName, clearNotifications } from '../../Redux/Action';
 import { Link } from 'react-router-dom';
 import CartIcon from '../../Imagenes/cart.svg';
 import FavoritesIcon from '../../Imagenes/favorites.svg';
 import FormIcon from '../../Imagenes/form.svg';
-import { useAuth0 } from "@auth0/auth0-react";
-
 
 export default function SearchBar() {
     const dispatch = useDispatch();
     const [productName, setProductName] = useState("")
-    const { loginWithRedirect } = useAuth0();
+    const countNotifications = useSelector(state => state.counterNotification);
+
 
     function handleOnClick() {
         productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");
         setProductName("");
+    }
+
+    function setNotificationsTo0(){
+        dispatch(clearNotifications());
     }
 
     return (
@@ -42,9 +45,9 @@ export default function SearchBar() {
                                 <div
                                     className={`d-flex justify-content-around align-items-center ${styles.container_Info_Navbar}`}
                                     style={{ border: '1px solid red' }}>
-                                    <Link to='/CreateProduct' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none' }} >
+                                    {/* <Link to='/CreateProduct' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none' }} >
                                         <p className={`nav-link mb-0 text-start text-sm-center`} style={{ color: 'white' }} aria-current="page">Crear producto</p>
-                                    </Link>
+                                    </Link> */}
                                     <Link to='/Offers' className="nav-item mx-3  mx-lg-2" style={{ textDecoration: 'none' }}>
                                         <p className={`nav-link mb-0 text-start text-sm-center`} style={{ color: 'white' }}>Ofertas</p>
                                     </Link>
@@ -89,6 +92,28 @@ export default function SearchBar() {
                                     <div className='col'>
                                         <img onClick={() => loginWithRedirect()} src="https://www.svgrepo.com/show/421823/user-people-man.svg" alt="img-icon" />
                                     </div>
+                                    <div className={`${styles.container_notification}`}>
+
+                                        {/* <Link to="">
+                                            <img src="https://www.svgrepo.com/show/281772/alarm-bell.svg" style={{ width: "27px" }} alt="" />
+                                            <div>{countNotifications}</div>
+                                        </Link> */}
+
+                                        <div onClick={() => setNotificationsTo0()} data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+                                            <img src="https://www.svgrepo.com/show/281772/alarm-bell.svg" style={{ width: "27px" }} alt="" />
+                                            <div>{countNotifications}</div>
+                                        </div>
+                                    </div>
+                                    <div className="offcanvas offcanvas-end" id="offcanvasRight">
+                                        <div className="offcanvas-header">
+                                            <h5>Notificaciones</h5>
+                                            <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                                        </div>
+                                        <div className="offcanvas-body">
+                                            Info notificaciones ...
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </ul>

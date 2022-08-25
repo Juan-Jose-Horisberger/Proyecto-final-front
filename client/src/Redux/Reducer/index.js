@@ -11,8 +11,8 @@ import {
     FILTER_BY_CLOTHING_SIZE,
     FILTER_GENRES,
     FILTER_BY_QUERY,
-    FILTER_BY_PRICE
-
+    FILTER_BY_PRICE,
+    SET_NOTIFICATIONS_TO_0
 } from "../Action"
 
 const initialState = {
@@ -21,7 +21,7 @@ const initialState = {
     productDetail: {},
     productFav: [],
     productCart: [],
-
+    counterNotification: 0
 
 }
 
@@ -78,7 +78,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case CREATE_PRODUCT:
             console.log(payload)
             return {
-                ...state, products: [...state.products, payload]
+                ...state, products: [...state.products, payload], counterNotification: state.counterNotification + 1
             };
 
         case FILTER_BY_QUERY:
@@ -89,6 +89,10 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case FILTER_BY_PRICE:
             return {
                 ...state, products: state.allProducts.filter(e => e.price >= payload)
+            }
+        case SET_NOTIFICATIONS_TO_0:
+            return {
+                ...state, counterNotification: 0
             }
 
         // case FILTER_GENRES:
