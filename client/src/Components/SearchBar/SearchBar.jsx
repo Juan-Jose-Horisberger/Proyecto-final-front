@@ -7,13 +7,14 @@ import { Link } from 'react-router-dom';
 import CartIcon from '../../Imagenes/cart.svg';
 import FavoritesIcon from '../../Imagenes/favorites.svg';
 import FormIcon from '../../Imagenes/form.svg';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 
 export default function SearchBar() {
     const dispatch = useDispatch();
     const [productName, setProductName] = useState("")
-
+    const { loginWithRedirect } = useAuth0();
 
     function handleOnClick() {
         productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");
@@ -87,9 +88,7 @@ export default function SearchBar() {
                                         </Link>
                                     </div>
                                     <div className='col'>
-                                        <Link to='/Login'>
-                                            <img src="https://www.svgrepo.com/show/421823/user-people-man.svg" alt="img-icon" />
-                                        </Link>
+                                        <img onClick={() => loginWithRedirect()} src="https://www.svgrepo.com/show/421823/user-people-man.svg" alt="img-icon" />
                                     </div>
                                 </div>
 
