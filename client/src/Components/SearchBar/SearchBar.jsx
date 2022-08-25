@@ -100,9 +100,7 @@ export default function SearchBar({ socket }) {
                                         </Link>
                                     </div>
                                     <div className='col'>
-                                        <Link to='/Login'>
-                                            <img src="https://www.svgrepo.com/show/421823/user-people-man.svg" alt="img-icon" />
-                                        </Link>
+                                        <img onClick={() => loginWithRedirect()} src="https://www.svgrepo.com/show/421823/user-people-man.svg" alt="img-icon" />
                                     </div>
                                     <div className={`${styles.container_notification}`}>
 
