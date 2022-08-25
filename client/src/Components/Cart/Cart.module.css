@@ -47,16 +47,36 @@
     cursor: pointer;
     width: 150px;
     font-family: 'Questrial', sans-serif !important;
-
 }
 
-.btnCart:hover {
+.btnBuy:hover {
     transition: 1s;
     color: #fff;
     background-color: #100f10;
     cursor: pointer;
     font-family: 'Questrial', sans-serif;
     
+}
+
+.btnCheckout{
+    font-weight: 500;
+    border-radius: 0;
+    background-color: #23232c;
+    color: #fff;
+    line-height: 70px;
+    padding: 10px;
+    margin: 20px 0 20px 0;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Questrial', sans-serif !important;
+}
+
+.btnCheckout:hover {
+    transition: 1s;
+    color: #fff;
+    background-color: #100f10;
+    cursor: pointer;
+    font-family: 'Questrial', sans-serif;   
 }
 
 .image {
