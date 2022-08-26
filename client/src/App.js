@@ -20,6 +20,7 @@ function App() {
   const { isAuthenticated } = useAuth0();
   const [socket, setSocket] = useState(null);
   useEffect(() =>{
+    
     setSocket(io("http://localhost:5000")) //Inicializamos la conexion con el servidor socket.
   },[]);
 
@@ -34,7 +35,7 @@ function App() {
         <Login />
       )}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home socket={socket} />} />
         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
         <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
         <Route path="/Cart" element={<Cart />} />

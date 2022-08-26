@@ -20,7 +20,7 @@ const removeUser = (socketId) => {
 }
 
 const getUser = (username) => { //Tomamos un usuario en concreto.
-    return onlineUsers.find(user => user.username === username);
+    return onlineUsers.filter(user => user.username === username);
 }
 
 io.on("connection", (socket) => {
@@ -30,16 +30,15 @@ io.on("connection", (socket) => {
         addNewUser(username, socket.id); //Se ve que por default con socket.id se le agrega un id
     })
 
-    socket.on("sendNotification", ({userIdentifier, userName}) => { //53:44
-        const receiver = getUser(userName) //Obtenemos un usuario en concreto
+    // socket.on("sendNotification", ({userIdentifier, userName}) => { //53:44
+    //     const receiver = getUser(userName) //Obtenemos un usuario en concreto
 
-        // io.to(receiver.socketId).emit("getNotification", { //Enviamos un evento a client, a un user en especifico
-        //     userName,
-        //     userIdentifier
-        // })
-
+    //     // io.to(receiver.socketId).emit("getNotification", { //Enviamos un evento a client, a un user en especifico
+    //     //     userName,
+    //     //     userIdentifier
+    //     // })
         
-    })
+    // })
 
     socket.on("disconnect", () => {//Cada vez que el usuario se desconecte
 

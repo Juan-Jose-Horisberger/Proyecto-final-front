@@ -10,12 +10,11 @@ import FormIcon from '../../Imagenes/form.svg';
 import { useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function SearchBar({ socket }) {
+export default function SearchBar() {
     const dispatch = useDispatch();
     const [productName, setProductName] = useState("");
     const { loginWithRedirect } = useAuth0();
     const notifications = useSelector(state => state.newNotification);
-    const [purchaseNotifications, setPurchaseNotifications] = useState([]);  //Notificaciones de cuando el user compra un producto.
 
     function handleOnClick() {
         productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");
@@ -26,20 +25,9 @@ export default function SearchBar({ socket }) {
         dispatch(clearNotifications());
     }
 
-    //Guardamos en un estado local la info traida del servidor socket 
-    function handleNotification() {
-        socket?.on("getNotification", data => {
-            setPurchaseNotifications((prev) => [...prev, data])
-        })
-    }
-    
-    useEffect(() => {
-        handleNotification()
-    }, [socket])
-
     return (
         <div className={`${styles.container} container-fluid p-0 m-0`} >
-            {console.log(purchaseNotifications)}
+            {/* {console.log(purchaseNotifications)} */}
             <div>
                 <nav className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}>
                     <div className="container-fluid d-flex flex-wrap">
