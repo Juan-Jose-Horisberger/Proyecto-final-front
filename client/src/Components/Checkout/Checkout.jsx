@@ -5,20 +5,22 @@ import SearchBar from "../SearchBar/SearchBar.jsx"
 import style from "./Checkout.module.css"
 import { useSelector } from "react-redux";
 import useForm from "./useForm.js"
+import Cookies from "universal-cookie"
 
+var cookies = new Cookies();
 const initialForm = {
-  name: "",
-  surname: "",
-  companyName: "",
-  country: "",
-  streetAddress: "",
-  apartment: "",
-  province: "",
-  codePostal: "",
-  phoneNumber: "",
-  email: "",
-  extraNotes: "",
-  price: "",
+  name: cookies.get("name"),
+  surname: cookies.get("surname"),
+  companyName: cookies.get("companyName"),
+  country: cookies.get("country"),
+  streetAddress: cookies.get("streetAddress"),
+  apartment: cookies.get("apartment"),
+  province: cookies.get("province"),
+  codePostal: cookies.get("codePostal"),
+  phoneNumber: cookies.get("phoneNumber"),
+  email: cookies.get("email"),
+  extraNotes: cookies.get("extraNotes"),
+  price: cookies.get("price"),
 };
 
 const validateForm = (form, nameInput) => {
@@ -114,138 +116,148 @@ export default function Checkout() {
       </div>
 
       <form onSubmit={handleSubmit}>
-      <div className={style.containerForm}>
-        <p>Nombre y apellido</p>
-        <div className={style.divNombreApellido}>
-          <input type="text"
-            placeholder="Nombre"
-            name="name"
-            onChange={handleOnChange} />
+        <div className={style.containerForm}>
+          <p>Nombre y apellido</p>
+          <div className={style.divNombreApellido}>
+            <input type="text"
+              placeholder="Nombre"
+              name="name"
+              onChange={handleOnChange}
+              value={cookies.get("name")} />
 
-          <input type="text"
-            placeholder="Apellido"
-            name="surname"
-            onChange={handleOnChange} />
+            <input type="text"
+              placeholder="Apellido"
+              name="surname"
+              onChange={handleOnChange}
+              value={cookies.get("surname")} />
 
-          {errors.name && <p className={style.error}>{errors.name}</p>}
-          {errors.surname && <p className={style.error}>{errors.surname}</p>}
+            {errors.name && <p className={style.error}>{errors.name}</p>}
+            {errors.surname && <p className={style.error}>{errors.surname}</p>}
+          </div>
+
+          <p>Nombre de la empresa (opcional)</p>
+          <div className={style.divEmpresa}>
+            <input type="text"
+              name="companyName"
+              onChange={handleOnChange}
+              value={cookies.get("companyName")} />
+          </div>
+
+          <p>Pais / Region</p>
+          <div className={style.divPais}>
+            <b>Argentina</b>
+          </div>
+
+          <p>Direccion de la calle</p>
+          <div className={style.divCalle}>
+            <input type="text"
+              placeholder="Nombre de la calle y direccion de la casa"
+              name="streetAddress"
+              onChange={handleOnChange}
+              value={cookies.get("streetAddress")} />
+
+            {errors.streetAddress && <p className={style.error}>{errors.streetAddress}</p>}
+          </div>
+          <div className={style.divCalle}>
+            <input type="text"
+              placeholder="Apartamento, piso, habitacion, etc (opcional)"
+              name="apartment"
+              onChange={handleOnChange}
+              value={cookies.get("apartment")} />
+          </div>
+
+          <p>Region / Provincia</p>
+          <div className={style.divProvincia}>
+            <select name="province" id="my_select" onChange={handleOnChange} value={cookies.get("province")}>
+              <option style={{ display: "none" }}>Selecciona tu Region / Provincia</option>
+              {provincias.length && provincias.map(e => {
+                return (
+                  <option key={e} value={e}>{e}</option>
+                )
+              })}
+            </select>
+          </div>
+
+          <p>Codigo Postal</p>
+          <div className={style.divPostal}>
+            <input type="text"
+              placeholder="Codigo Postal..."
+              name="codePostal"
+              onChange={handleOnChange}
+              value={cookies.get("codePostal")} />
+
+            {errors.codePostal && <p className={style.error}>{errors.codePostal}</p>}
+          </div>
+
+          <p>Teléfono</p>
+          <div className={style.divTelefono}>
+            <input type="text"
+              placeholder="Teléfono..."
+              name="phoneNumber"
+              onChange={handleOnChange}
+              value={cookies.get("phoneNumber")} />
+
+            {errors.phoneNumber && <p className={style.error}>{errors.phoneNumber}</p>}
+          </div>
+
+          <p>Direccion de correo electrónico</p>
+          <div className={style.divCorreo}>
+            <input type="email"
+              placeholder="Direccion de correo electrónico..."
+              name="email"
+              onChange={handleOnChange}
+              value={cookies.get("email")} />
+
+            {errors.email && <p className={style.error}>{errors.email}</p>}
+          </div>
+
+          <p>Notas del pedido (opcional)</p>
+          <div className={style.divNotas}>
+            <input type="text"
+              placeholder="Notas sobre tu pedido que puedan facilitar la entrega, etc."
+              name="extraNotes"
+              onChange={handleOnChange}
+              value={cookies.get("extraNotes")} />
+          </div>
         </div>
 
-        <p>Nombre de la empresa (opcional)</p>
-        <div className={style.divEmpresa}>
-          <input type="text"
-            name="companyName"
-            onChange={handleOnChange} />
+        <div className={style.containerRegisterCupon}>
+          <h3>Tu Pedido</h3>
         </div>
 
-        <p>Pais / Region</p>
-        <div className={style.divPais}>
-          <b>Argentina</b>
+        <div className={style.containerPedido}>
+
+          {productsToBuy.map(e => {
+            return (
+              <div key={e.id} className={style.divProduct}>
+                <img src={e.image} alt="" />
+                <p>{e.name}</p>
+                <p>${e.price}</p>
+              </div>
+            )
+          })}
+
+          <p className={style.cuentita}>{productsToBuy.map(e => subTotal = subTotal + e.price)}</p>
+          <div className={style.divTotal}>
+            <p>SUBTOTAL</p>
+            <p>${subTotal}</p>
+          </div>
+
+          <div className={style.divTotal}>
+            <p>ENVIO</p>
+            <p>CABA $500</p>
+          </div>
+
+          <div className={style.divTotal}>
+            <p>TOTAL</p>
+            <p>${subTotal + 0.5}</p>
+          </div>
+
+          <div className={style.divBtn} >
+            <button type="submit">REALIZAR EL PEDIDO</button>
+          </div>
+
         </div>
-
-        <p>Direccion de la calle</p>
-        <div className={style.divCalle}>
-          <input type="text"
-            placeholder="Nombre de la calle y direccion de la casa"
-            name="streetAddress"
-            onChange={handleOnChange} />
-
-          {errors.streetAddress && <p className={style.error}>{errors.streetAddress}</p>}
-        </div>
-        <div className={style.divCalle}>
-          <input type="text"
-            placeholder="Apartamento, piso, habitacion, etc (opcional)"
-            name="apartment"
-            onChange={handleOnChange} />
-        </div>
-
-        <p>Region / Provincia</p>
-        <div className={style.divProvincia}>
-          <select name="province" id="my_select" onChange={handleOnChange}>
-            {provincias.length && provincias.map(e => {
-              return (
-                <option key={e} value={e}>{e}</option>
-              )
-            })}
-          </select>
-        </div>
-
-        <p>Codigo Postal</p>
-        <div className={style.divPostal}>
-          <input type="text"
-            placeholder="Codigo Postal..."
-            name="codePostal"
-            onChange={handleOnChange} />
-
-          {errors.codePostal && <p className={style.error}>{errors.codePostal}</p>}
-        </div>
-
-        <p>Teléfono</p>
-        <div className={style.divTelefono}>
-          <input type="text"
-            placeholder="Teléfono..."
-            name="phoneNumber"
-            onChange={handleOnChange} />
-
-          {errors.phoneNumber && <p className={style.error}>{errors.phoneNumber}</p>}
-        </div>
-
-        <p>Direccion de correo electrónico</p>
-        <div className={style.divCorreo}>
-          <input type="email"
-            placeholder="Direccion de correo electrónico..."
-            name="email"
-            onChange={handleOnChange} />
-
-          {errors.email && <p className={style.error}>{errors.email}</p>}
-        </div>
-
-        <p>Notas del pedido (opcional)</p>
-        <div className={style.divNotas}>
-          <input type="text"
-            placeholder="Notas sobre tu pedido que puedan facilitar la entrega, etc."
-            name="extraNotes"
-            onChange={handleOnChange} />
-        </div>
-      </div>
-
-      <div className={style.containerRegisterCupon}>
-        <h3>Tu Pedido</h3>
-      </div>
-
-      <div className={style.containerPedido}>
-
-        {productsToBuy.map(e => {
-          return (
-            <div key={e.id} className={style.divProduct}>
-              <img src={e.image} alt="" />
-              <p>{e.name}</p>
-              <p>${e.price}</p>
-            </div>
-          )
-        })}
-
-        <p className={style.cuentita}>{productsToBuy.map(e => subTotal = subTotal + e.price)}</p>
-        <div className={style.divTotal}>
-          <p>SUBTOTAL</p>
-          <p>${subTotal}</p>
-        </div>
-
-        <div className={style.divTotal}>
-          <p>ENVIO</p>
-          <p>CABA $500</p>
-        </div>
-
-        <div className={style.divTotal}>
-          <p>TOTAL</p>
-          <p>${subTotal + 0.5}</p>
-        </div>
-
-        <div className={style.divBtn} >
-          <button type="submit">REALIZAR EL PEDIDO</button>
-        </div>
-
-      </div>
       </form>
 
     </div>
