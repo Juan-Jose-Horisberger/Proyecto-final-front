@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../Redux/Action";
+import Cookies from "universal-cookie"
 
 export default function useForm(initialForm, validateForm) {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [validate, setValidate] = useState({});
-  const [alert, setAlert] = useState()
+  const [alert, setAlert] = useState();
+  var cookies = new Cookies()
+  var expiryDate = new Date(Date.now() + (60 * 24 * 3600000));
 
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -28,28 +31,29 @@ export default function useForm(initialForm, validateForm) {
   }
 
   const handleOnChange = (e) => {
+    cookies.set(e.target.name, e.target.value, { path: "/", expires: expiryDate });
 
     if (e.target.name === "category") {
       if (e.target.value === "calzado") {
         setForm({
-          ...form, [e.target.name]: e.target.value, size: []
+          ...form, [e.target.name]: cookies.get(e.target.name), size: []
         });
-        const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name, setValidate, setErrors);
+        const errores = validateForm({ ...form, [e.target.name]: cookies.get(e.target.name) }, e.target.name, setValidate, setErrors);
         setErrors(errores)
 
       } else if (e.target.value !== "calzado") {
         setForm({
-          ...form, [e.target.name]: e.target.value, size: [...form.size.filter(e => e === "M" || e === "S" || e === "XS" || e === "L")]
+          ...form, [e.target.name]: cookies.get(e.target.name), size: [...form.size.filter(e => e === "M" || e === "S" || e === "XS" || e === "L")]
         });
 
-        const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name, setValidate, setErrors);
+        const errores = validateForm({ ...form, [e.target.name]: cookies.get(e.target.name) }, e.target.name, setValidate, setErrors);
         setErrors(errores)
       };
     } else {
       setForm({
-        ...form, [e.target.name]: e.target.value
+        ...form, [e.target.name]: cookies.get(e.target.name)
       });
-      const errores = validateForm({ ...form, [e.target.name]: e.target.value }, e.target.name, setValidate, setErrors);
+      const errores = validateForm({ ...form, [e.target.name]: cookies.get(e.target.name) }, e.target.name, setValidate, setErrors);
       setErrors(errores)
     }
   };
@@ -88,7 +92,7 @@ export default function useForm(initialForm, validateForm) {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    const errores = validateForm(form, "namebrandcategorypricestockimagesoldsizescoregenre", setValidate, validate);
+    const errores = validateForm(form, "namebrandcategorypricestockimagesoldsizescoregenreoffer", setValidate, validate);
     setErrors(errores);
 
     if (!Object.entries(errores).length) {
@@ -96,6 +100,14 @@ export default function useForm(initialForm, validateForm) {
       setAlert(false);
       setForm(initialForm);
       setValidate({});
+      cookies.remove("name");
+      cookies.remove("category");
+      cookies.remove("brand");
+      cookies.remove("price");
+      cookies.remove("stock");
+      cookies.remove("sold");
+      cookies.remove("score");
+      cookies.remove("genre");
 
       var options = document.querySelectorAll('#my_select');
       for (var i = 0, l = options.length; i < l; i++) {
@@ -103,9 +115,8 @@ export default function useForm(initialForm, validateForm) {
       }
     } else {
       setAlert(true);
-
     }
-  }
+  };
 
   return {
     form,
