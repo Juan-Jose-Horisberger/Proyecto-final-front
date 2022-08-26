@@ -19,10 +19,10 @@ import Checkout from './Components/Checkout/Checkout.jsx';
 function App() {
   const { isAuthenticated } = useAuth0();
   const [socket, setSocket] = useState(null);
-  useEffect(() =>{
+  // useEffect(() =>{
     
-    setSocket(io("http://localhost:5000")) //Inicializamos la conexion con el servidor socket.
-  },[]);
+  //   setSocket(io("http://localhost:5000")) //Inicializamos la conexion con el servidor socket.
+  // },[]);
 
   return (
     <div className="App">
