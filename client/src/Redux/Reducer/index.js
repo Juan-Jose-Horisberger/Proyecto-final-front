@@ -13,7 +13,7 @@ import {
     FILTER_GENRES,
     FILTER_BY_QUERY,
     FILTER_BY_PRICE,
-    SET_NOTIFICATIONS_TO_0
+    SET_NOTIFICATIONS_TO_0,
 } from "../Action"
 
 const initialState = {

@@ -10,7 +10,7 @@ import FormIcon from '../../Imagenes/form.svg';
 import { useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function SearchBar({ socket }) {
+export default function SearchBar() {
     const dispatch = useDispatch();
     const [productName, setProductName] = useState("");
     const { loginWithRedirect } = useAuth0();
@@ -25,17 +25,9 @@ export default function SearchBar({ socket }) {
         dispatch(clearNotifications());
     }
 
-    function handleNotification() {
-        //seguir.. xD
-    }
-
-    // useEffect(() => {
-
-    // }, [countNotifications])
-
     return (
         <div className={`${styles.container} container-fluid p-0 m-0`} >
-
+            {/* {console.log(purchaseNotifications)} */}
             <div>
                 <nav className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}>
                     <div className="container-fluid d-flex flex-wrap">
@@ -121,22 +113,25 @@ export default function SearchBar({ socket }) {
                                         </div>
                                         <div className="offcanvas-body">
                                             {
-                                                notifications.length && notifications.newProducts.map((p, i) => {
-                                                    p.offert
-                                                        ? (
-                                                            <div key={i}>
-                                                                <p>{p.image}</p>
-                                                                <p>{p.name}</p>
-                                                            </div>
-                                                        )
-                                                        : (
-                                                            <div key={i}>
-                                                                <p>{p.image}</p>
-                                                                <p>{p.name}</p>
-                                                            </div>
-                                                        )
-                                                })
+                                                // notifications.length && notifications.newProducts.map((p, i) => {
+                                                //     p.offert
+                                                //         ? (
+                                                //             <div key={i}>
+                                                //                 <p>{p.image}</p>
+                                                //                 <p>{p.name}</p>
+                                                //             </div>
+                                                //         )
+                                                //         : (
+                                                //             <div key={i}>
+                                                //                 <p>{p.image}</p>
+                                                //                 <p>{p.name}</p>
+                                                //             </div>
+                                                //         )
+                                                // })
                                             }
+                                            <div>
+                                                hola
+                                            </div>
                                         </div>
                                     </div>
 
