@@ -11,13 +11,13 @@ import Contact from './Components/Contact/Contact.jsx';
 import Profile from './Components/Profile/Profile.jsx';
 import Logout from './Components/Logout/Logout';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
-import { useAuth0 } from "@auth0/auth0-react";
-import { io } from "socket.io-client";
+
+//import { io } from "socket.io-client";
 import Checkout from './Components/Checkout/Checkout.jsx';
 
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  
   const [socket, setSocket] = useState(null);
   // useEffect(() =>{
     
@@ -26,27 +26,22 @@ function App() {
 
   return (
     <div className="App">
-      {isAuthenticated ? (
-        <>
-          <Profile />
-          <Logout />
-        </>
-      ) : (
-        <Login />
-      )}
+     
       <Routes>
         <Route path="/" element={<Home socket={socket} />} />
         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
         <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
         <Route path="/Cart" element={<Cart />} />
-        <Route path="/Login" element={<Login />} />
+        {/*<Route path="/Login" element={<Login />} />*/}
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Logout" element={<Logout />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/CreateProduct" element={<FormProduct />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/Checkout" element={<Checkout />} />
         <Route path="/Dashboard" element={<Dashboard socket={socket} />}/>
         <Route path="/Checkout" element={<Checkout socket={socket} />} />
+
       </Routes>
     </div>
   );
