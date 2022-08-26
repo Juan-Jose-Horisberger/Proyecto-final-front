@@ -6,6 +6,7 @@ import {
     DELETE_FAV_PRODUCT,
     GET_CART_PRODUCT,
     DELETE_CART_PRODUCT,
+    BUY_PRODUCT,
     CREATE_PRODUCT,
     FILTER_CATEGORY,
     FILTER_BY_CLOTHING_SIZE,
@@ -24,7 +25,8 @@ const initialState = {
     newNotification: {
         counter: 0,
         newProducts: []
-    }
+    },
+    productsToBuy: [],
 
 }
 
@@ -78,6 +80,18 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state, productCart: deleteCartProduct
             };
 
+        case BUY_PRODUCT:
+            if (payload) {
+                const productsBuy = state.productCart.filter(e => e.id === payload);
+                return {
+                    ...state, productsToBuy: productsBuy
+                }
+            }else {
+                return {
+                    ...state, productsToBuy: state.productCart
+                }
+            };
+
         case CREATE_PRODUCT:
             console.log(payload)
             return {
@@ -100,7 +114,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case SET_NOTIFICATIONS_TO_0:
             return {
-                ...state, newNotification: {...state, counter: 0}
+                ...state, newNotification: { ...state, counter: 0 }
             }
 
         // case FILTER_GENRES:

@@ -5,11 +5,13 @@ import styles from './Cart.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useForm from '../Checkout/useForm';
 
 export default function Cart() {
   const [checkout, setCheckout] = useState(0)
   const productCart = useSelector(state => state.productCart);
   const dispatch = useDispatch();
+  const { handleBuy } = useForm()
 
   const handleDelete = (id) => {
     dispatch(deleteCartProduct(id))
@@ -58,7 +60,9 @@ export default function Cart() {
             </div>
 
             <div className={styles.divBtnbuy}>
-              <button className={styles.btnBuy}>Comprar</button>
+              <Link to="/Checkout">
+                <button onClick={(ev) => handleBuy(e.id)} className={styles.btnBuy}>Comprar</button>
+              </Link>
             </div>
           </div>
         )
@@ -66,9 +70,11 @@ export default function Cart() {
         <h1>No agregaste productos a tus favoritos</h1>}
 
       <div>
-        <button className={styles.btnCheckout}>
-          ${checkout} Checkout
-        </button>
+        <Link to="/Checkout">
+          <button onClick={(ev) => handleBuy()} className={styles.btnCheckout}>
+            ${checkout} Checkout
+          </button>
+        </Link>
       </div>
     </div>
   )
