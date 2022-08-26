@@ -11,17 +11,17 @@ import Contact from './Components/Contact/Contact.jsx';
 import Profile from './Components/Profile/Profile.jsx';
 import Logout from './Components/Logout/Logout';
 import Dashboard from './Components/Dashboard/Dashboard.jsx';
-import { useAuth0 } from "@auth0/auth0-react";
-import { io } from "socket.io-client";
+
+//import { io } from "socket.io-client";
 import Checkout from './Components/Checkout/Checkout.jsx';
 
 
 function App() {
   
-  const [socket, setSocket] = useState(null);
+  /*const [socket, setSocket] = useState(null);
   useEffect(() =>{
     setSocket(io("http://localhost:3000"));
-  },[]);
+  },[]);*/
 
   return (
     <div className="App">
@@ -37,7 +37,7 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/CreateProduct" element={<FormProduct />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/Dashboard" element={<Dashboard socket={socket} />}/>
+        
         <Route path="/Checkout" element={<Checkout />} />
       </Routes>
     </div>
