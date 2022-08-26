@@ -1,4 +1,5 @@
-import infoJson from "../../info.json"
+import infoJson from "../../info.json";
+import infoUserJson from "../../infoUser.json";
 import axios from "axios"
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
@@ -7,6 +8,7 @@ export const GET_FAVORITE_PRODUCT = "GET_FAVORITE_PRODUCT";
 export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 export const GET_CART_PRODUCT = "GET_CART_PRODUCT";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
+export const BUY_PRODUCT = "BUY_PRODUCT";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
@@ -14,6 +16,7 @@ export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
 export const FILTER_GENRES = "FILTER_GENRES";
 export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
 export const SET_NOTIFICATIONS_TO_0 = "SET_NOTIFICATIONS_TO_0";
+export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -34,7 +37,7 @@ export const getProductDetail = (id) => {
         payload: productDetail.data
       })
     }
-  }else {
+  } else {
     return ({
       type: GET_PRODUCT_DETAIL,
     })
@@ -88,6 +91,13 @@ export const deleteCartProduct = (id) => {
   })
 };
 
+export const getProductToBuy = (id) => {
+  return ({
+    type: BUY_PRODUCT,
+    payload: id
+  })
+}
+
 export const createProduct = (data) => {
   return async function () {
     let newProduct = await axios.post(`/products`, data)
@@ -118,6 +128,13 @@ export const filterByPrice = (price) => {
 export const clearNotifications = () => {
   return {
     type: SET_NOTIFICATIONS_TO_0,
+  }
+}
+
+export const getUserById = () => {
+  return {
+    type: GET_USER_BY_ID,
+    payload: infoUserJson
   }
 }
 
