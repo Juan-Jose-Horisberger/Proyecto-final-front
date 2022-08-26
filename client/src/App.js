@@ -18,7 +18,6 @@ import Checkout from './Components/Checkout/Checkout.jsx';
 
 function App() {
   
-  const { isAuthenticated } = useAuth0();
   const [socket, setSocket] = useState(null);
   // useEffect(() =>{
     
