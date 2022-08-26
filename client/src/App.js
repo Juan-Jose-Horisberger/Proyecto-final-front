@@ -18,16 +18,17 @@ import Checkout from './Components/Checkout/Checkout.jsx';
 
 function App() {
   
-  /*const [socket, setSocket] = useState(null);
+  const { isAuthenticated } = useAuth0();
+  const [socket, setSocket] = useState(null);
   useEffect(() =>{
     setSocket(io("http://localhost:3000"));
-  },[]);*/
+  },[]);
 
   return (
     <div className="App">
      
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home socket={socket} />} />
         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
         <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
         <Route path="/Cart" element={<Cart />} />
@@ -37,8 +38,10 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/CreateProduct" element={<FormProduct />} />
         <Route path="/Contact" element={<Contact />} />
-        
         <Route path="/Checkout" element={<Checkout />} />
+        <Route path="/Dashboard" element={<Dashboard socket={socket} />}/>
+        <Route path="/Checkout" element={<Checkout socket={socket} />} />
+
       </Routes>
     </div>
   );
