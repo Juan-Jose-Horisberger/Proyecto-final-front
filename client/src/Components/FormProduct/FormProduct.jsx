@@ -3,21 +3,23 @@ import { Link } from "react-router-dom";
 import useForm from "./useForm";
 import infoJson from "../../info.json"
 import style from "./FormProduct.module.css"
+import Cookies from "universal-cookie"
 
 export default function FormProduct() {
+  var cookies = new Cookies()
 
   const initialForm = {
-    name: "",
-    brand: "",
-    category: "",
-    price: "",
-    stock: "",
+    name: cookies.get("name"),
+    brand: cookies.get("brand"),
+    category: cookies.get("category"),
+    price: cookies.get("price"),
+    stock: cookies.get("stock"),
     image: "",
-    sold: "",
+    sold: cookies.get("sold"),
     size: [],
-    score: "",
-    genre: "",
-    offer: false
+    score: cookies.get("score"),
+    genre: cookies.get("genre"),
+    offer: undefined
   }
 
   const validateForm = (form, nameInput, setValidate) => {
@@ -31,10 +33,6 @@ export default function FormProduct() {
 
       } else if (!regexName.test(form.name.trim())) {
         errors.name = "El nombre del producto solo acepta letras y espacios.";
-        setValidate({ ...validate, name: true });
-
-      } else if (form.name === "") {
-        errors.name = "El nombre del producto es requerido";
         setValidate({ ...validate, name: true });
 
       } else {
@@ -163,6 +161,10 @@ export default function FormProduct() {
       };
     };
 
+    if(nameInput.includes("offer")){
+      setValidate({})
+    };
+
     return errors;
   };
 
@@ -180,7 +182,6 @@ export default function FormProduct() {
     handleOffer
   } = useForm(initialForm, validateForm);
 
-
   return (
     <div className={style.containerPrincipal}>
       <Link to="/" className={style.link}>
@@ -191,10 +192,10 @@ export default function FormProduct() {
         <form onSubmit={handleSubmit}>
           <div>
             <input type="text"
-              className={`form-control ${validate.name ? "is-invalid" : (validate.name !== false ? "" : "is-valid")}`}
+              className={`form-control ${validate.name ? "is-invalid" : (validate.name !== false ? cookies.get("name") : "is-valid")}`}
               name="name"
               id="name"
-              value={form.name}
+              value={cookies.get("name")}
               placeholder="Nombre del producto..."
               onChange={handleOnChange} />
             {errors.name && <p className={style.error}>{errors.name}</p>}
@@ -204,7 +205,8 @@ export default function FormProduct() {
 
             <div>
               <label htmlFor="category">Categoria</label>
-              <select name="category" onChange={handleOnChange} id="my_select" className={`form-control ${validate.category ? "is-invalid" : (validate.category !== false ? "" : "is-valid")}`} >
+              <select name="category" onChange={handleOnChange} id="my_select" value={cookies.get("category")}
+                className={`form-control ${validate.category ? "is-invalid" : (validate.category !== false ? cookies.get("name") : "is-valid")}`} >
                 <option style={{ display: "none" }} >Categoria</option>
                 <option value="calzado" >Calzado</option>
                 <option value="camiseta" >Camiseta</option>
@@ -216,7 +218,8 @@ export default function FormProduct() {
 
             <div>
               <label htmlFor="brand">Marca</label>
-              <select name="brand" onChange={handleOnChange} id="my_select" className={`form-control ${validate.brand ? "is-invalid" : (validate.brand !== false ? "" : "is-valid")}`}>
+              <select name="brand" onChange={handleOnChange} id="my_select" value={cookies.get("brand")}
+              className={`form-control ${validate.brand ? "is-invalid" : (validate.brand !== false ? cookies.get("name") : "is-valid")}`}>
                 <option style={{ display: "none" }} >Marca</option>
                 <option value="Adidas" >Adidas</option>
                 <option value="Nike" >Nike</option>
@@ -232,10 +235,10 @@ export default function FormProduct() {
 
           <div className="input-group mb-3">
             <input type="file"
-              className={`form-control ${validate.image ? "is-invalid" : (validate.image !== false ? "" : "is-valid")}`}
+              className={`form-control ${validate.image ? "is-invalid" : (validate.image !== false ? cookies.get("name") : "is-valid")}`}
               id="inputGroupFile02"
-              onChange={uploadImage}
-              placeholder="asdasd">
+              name="image"
+              onChange={uploadImage}>
             </input>
           </div>
 
@@ -251,35 +254,35 @@ export default function FormProduct() {
             <div className={style.divStockPriceSold}>
               <label htmlFor="price">Precio</label>
               <input type="number"
-                className={`form-control ${validate.price ? "is-invalid" : (validate.price !== false ? "" : "is-valid")}`}
+                className={`form-control ${validate.price ? "is-invalid" : (validate.price !== false ? cookies.get("name") : "is-valid")}`}
                 name="price"
                 id="price"
                 placeholder="00.000"
-                value={form.price}
+                value={cookies.get("price")}
                 onChange={handleOnChange} />
             </div>
 
             <div className={style.divStockPriceSold}>
               <label htmlFor="stock">Disponible</label>
               <input type="number"
-                className={`form-control ${validate.stock ? "is-invalid" : (validate.stock !== false ? "" : "is-valid")}`}
+                className={`form-control ${validate.stock ? "is-invalid" : (validate.stock !== false ? cookies.get("name") : "is-valid")}`}
                 name="stock"
                 id="stock"
                 min="0"
                 placeholder="0"
-                value={form.stock}
+                value={cookies.get("stock")}
                 onChange={handleOnChange} />
             </div>
 
             <div className={style.divStockPriceSold}>
               <label htmlFor="sold">Vendidos</label>
               <input type="number"
-                className={`form-control ${validate.sold ? "is-invalid" : (validate.sold !== false ? "" : "is-valid")}`}
+                className={`form-control ${validate.sold ? "is-invalid" : (validate.sold !== false ? cookies.get("name") : "is-valid")}`}
                 name="sold"
                 id="sold"
                 min="0"
                 placeholder="0"
-                value={form.sold}
+                value={cookies.get("sold")}
                 onChange={handleOnChange} />
             </div>
           </div>
@@ -337,7 +340,8 @@ export default function FormProduct() {
 
           <div className={style.divGenre}>
             <label htmlFor="genre">Genero</label>
-            <select name="genre" onChange={handleOnChange} id="my_select" className={`form-control ${(validate.genre) ? "is-invalid" : (validate.genre !== false ? "" : "is-valid")}`}>
+            <select name="genre" onChange={handleOnChange} id="my_select" value={cookies.get("genre")}
+            className={`form-control ${(validate.genre) ? "is-invalid" : (validate.genre !== false ? cookies.get("name") : "is-valid")}`}>
               <option style={{ display: "none" }}>Genero</option>
               <option value="hombre" >Hombre</option>
               <option value="mujer" >Mujer</option>
@@ -349,14 +353,14 @@ export default function FormProduct() {
           <div className={style.divScore}>
             <label htmlFor="score">Calificacion</label>
             <input type="number"
-              className={`form-control ${(validate.score) ? `is-invalid` : (validate.score !== false ? "" : "is-valid")}`}
+              className={`form-control ${(validate.score) ? `is-invalid` : (validate.score !== false ? cookies.get("name") : "is-valid")}`}
               name="score"
               min="0"
               max="5"
               step="0.1"
               id="score"
               placeholder="0.0"
-              value={form.score}
+              value={cookies.get("score")}
               onChange={handleOnChange} />
 
             {errors.score && <p className={style.error}>{errors.score}</p>}
@@ -367,7 +371,7 @@ export default function FormProduct() {
             <input type="checkbox"
               className="form-check-input"
               name="size"
-              value={form.offer}
+              value={cookies.get("offer")}
               onChange={handleOffer} />
           </div>
 

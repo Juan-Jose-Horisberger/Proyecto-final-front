@@ -20,9 +20,10 @@ function App() {
   
   const { isAuthenticated } = useAuth0();
   const [socket, setSocket] = useState(null);
-  useEffect(() =>{
-    setSocket(io("http://localhost:3000"));
-  },[]);
+  // useEffect(() =>{
+    
+  //   setSocket(io("http://localhost:5000")) //Inicializamos la conexion con el servidor socket.
+  // },[]);
 
   return (
     <div className="App">
