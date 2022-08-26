@@ -6,6 +6,7 @@ import {
     DELETE_FAV_PRODUCT,
     GET_CART_PRODUCT,
     DELETE_CART_PRODUCT,
+    BUY_PRODUCT,
     CREATE_PRODUCT,
     FILTER_CATEGORY,
     FILTER_BY_CLOTHING_SIZE,
@@ -13,7 +14,6 @@ import {
     FILTER_BY_QUERY,
     FILTER_BY_PRICE,
     SET_NOTIFICATIONS_TO_0,
-    GET_USER_BY_ID
 } from "../Action"
 
 const initialState = {
@@ -26,7 +26,7 @@ const initialState = {
         counter: 0,
         newProducts: []
     },
-    users: {}
+    productsToBuy: [],
 
 }
 
@@ -80,6 +80,18 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 ...state, productCart: deleteCartProduct
             };
 
+        case BUY_PRODUCT:
+            if (payload) {
+                const productsBuy = state.productCart.filter(e => e.id === payload);
+                return {
+                    ...state, productsToBuy: productsBuy
+                }
+            }else {
+                return {
+                    ...state, productsToBuy: state.productCart
+                }
+            };
+
         case CREATE_PRODUCT:
             console.log(payload)
             return {
@@ -103,10 +115,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case SET_NOTIFICATIONS_TO_0:
             return {
                 ...state, newNotification: { ...state, counter: 0 }
-            }
-        case GET_USER_BY_ID:
-            return {
-                ...state, users: payload
             }
 
         // case FILTER_GENRES:

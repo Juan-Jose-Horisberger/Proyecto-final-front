@@ -8,6 +8,7 @@ export const GET_FAVORITE_PRODUCT = "GET_FAVORITE_PRODUCT";
 export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 export const GET_CART_PRODUCT = "GET_CART_PRODUCT";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
+export const BUY_PRODUCT = "BUY_PRODUCT";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
@@ -89,6 +90,13 @@ export const deleteCartProduct = (id) => {
     payload: id
   })
 };
+
+export const getProductToBuy = (id) => {
+  return ({
+    type: BUY_PRODUCT,
+    payload: id
+  })
+}
 
 export const createProduct = (data) => {
   return async function () {
