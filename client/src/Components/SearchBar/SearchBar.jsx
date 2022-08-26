@@ -7,14 +7,23 @@ import { Link } from 'react-router-dom';
 import CartIcon from '../../Imagenes/cart.svg';
 import FavoritesIcon from '../../Imagenes/favorites.svg';
 import FormIcon from '../../Imagenes/form.svg';
+
 import { useEffect } from 'react';
+
+
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function SearchBar({ socket }) {
     const dispatch = useDispatch();
-    const [productName, setProductName] = useState("");
-    const { loginWithRedirect } = useAuth0();
+
+    
+   
     const notifications = useSelector(state => state.newNotification);
+
+    const [productName, setProductName] = useState("")
+    const countNotifications = useSelector(state => state.counterNotification);
+    const { loginWithRedirect } = useAuth0();
+
 
     function handleOnClick() {
         productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");
