@@ -17,7 +17,7 @@ import Checkout from './Components/Checkout/Checkout.jsx';
 
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  
   const [socket, setSocket] = useState(null);
   useEffect(() =>{
     setSocket(io("http://localhost:3000"));
@@ -25,20 +25,13 @@ function App() {
 
   return (
     <div className="App">
-      {isAuthenticated ? (
-        <>
-          <Profile />
-          <Logout />
-        </>
-      ) : (
-        <Login />
-      )}
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
         <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
         <Route path="/Cart" element={<Cart />} />
-        <Route path="/Login" element={<Login />} />
+        {/*<Route path="/Login" element={<Login />} />*/}
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Logout" element={<Logout />} />
         <Route path="/Register" element={<Register />} />
