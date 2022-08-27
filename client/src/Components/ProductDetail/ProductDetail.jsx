@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getProductDetail, filterByQuery, getCartProduct, deleteCartProduct } from '../../Redux/Action/index.js';
 import SearchBar from '../SearchBar/SearchBar';
 import Carousel from 'react-elastic-carousel';
+import Cookies from "universal-cookie";
 import stylesComponents from './stylesComponents.css';
 
 export default function ProductDetail() { //instalar style-component si no funciona
@@ -14,6 +15,7 @@ export default function ProductDetail() { //instalar style-component si no funci
   const productDetail = useSelector(state => state.productDetail);
   const products = useSelector(state => state.products);
   const productCart = useSelector(state => state.productCart);
+  const cookies = new Cookies();
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
@@ -39,20 +41,23 @@ export default function ProductDetail() { //instalar style-component si no funci
   };
 
   const handleOnCart = () => {
-    const findProduct = productCart.find(e => e.id === id)
+    const findProduct = cookies.get(id)
 
     if (findProduct) {
-      dispatch(deleteCartProduct(id))
+        dispatch(deleteCartProduct(id));
+        cookies.remove(id)
     } else {
-      dispatch(getCartProduct(id))
+        dispatch(getCartProduct(id))
     }
-  };
+}
 
-  const validateCart = (id) => {
-    const findProductCart = productCart.find(e => e.id === id);
+const validateCart = (id) => {
+  const findProductCart = cookies.get(id);
 
-    return findProductCart;
-  }
+  if(findProductCart) return true;
+
+  return false;
+}
 
   return (
     <div className={styles.container}>

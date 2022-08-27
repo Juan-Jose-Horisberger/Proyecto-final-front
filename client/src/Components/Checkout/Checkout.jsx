@@ -30,23 +30,23 @@ const validateForm = (form, nameInput) => {
   let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 
   if (nameInput.includes("name")) {
-    if (!form.name.trim()) {
+    if (!form.name) {
       errors.name = "Debes colocar tu nombre";
-    } else if (!regexName.test(form.name.trim())) {
+    } else if (!regexName.test(form.name)) {
       errors.name = "Tu nombre solo debe contener letras y espacios.";
     };
   };
 
   if (nameInput.includes("surname")) {
-    if (!form.surname.trim()) {
+    if (!form.surname) {
       errors.surname = "Debes colocar tu apellido";
-    } else if (!regexName.test(form.surname.trim())) {
+    } else if (!regexName.test(form.surname)) {
       errors.surname = "Tu apellido solo debe contener letras y espacios.";
     };
   };
 
   if (nameInput.includes("streetAddress")) {
-    if (!form.streetAddress.trim()) {
+    if (!form.streetAddress) {
       errors.streetAddress = "Debes colocar tu direccion";
     } else if (form.streetAddress.length < 5) {
       errors.streetAddress = "Tu direccion tiene que tener al menos 5 caracteres";
@@ -54,7 +54,7 @@ const validateForm = (form, nameInput) => {
   };
 
   if (nameInput.includes("codePostal")) {
-    if (!form.codePostal.trim()) {
+    if (!form.codePostal) {
       errors.codePostal = "Debes colocar tu codigo postal";
     } else if (form.codePostal.length < 3) {
       errors.codePostal = "Tu codigo postal tiene que tener al menos 3 caracteres";
@@ -62,19 +62,19 @@ const validateForm = (form, nameInput) => {
   };
 
   if (nameInput.includes("phoneNumber")) {
-    if (!form.phoneNumber.trim()) {
+    if (!form.phoneNumber) {
       errors.phoneNumber = "Debes colocar un telefono celular"
     } else if (form.phoneNumber.length < 10) {
       errors.phoneNumber = "El telefeno celular tiene que tener al menos 10 caracteres";
-    } else if (!regexPhone.test(form.phoneNumber.trim())) {
+    } else if (!regexPhone.test(form.phoneNumber)) {
       errors.phoneNumber = "Tu numero celular solo debe contener numeros";
     };
   };
 
   if (nameInput.includes("email")) {
-    if (!form.email.trim()) {
+    if (!form.email) {
       errors.email = "Debes colocar un email valido"
-    } else if (!regexEmail.test(form.email.trim())) {
+    } else if (!regexEmail.test(form.email)) {
       errors.email = "El email no es valido";
     };
   };
