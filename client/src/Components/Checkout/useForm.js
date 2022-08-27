@@ -43,6 +43,10 @@ export default function useForm(initialForm, validateForm) {
     } else {
       dispatch(getProductToBuy())
     }
+  };
+
+  const handleRemoveCookies = (data) => {
+    data && data.map(e => cookies.remove(e[1].id))
   }
 
   return {
@@ -53,5 +57,6 @@ export default function useForm(initialForm, validateForm) {
     handleOnChange,
     handleSubmit,
     handleBuy,
+    handleRemoveCookies
   }
 }  
