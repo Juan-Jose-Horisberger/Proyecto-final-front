@@ -27,7 +27,7 @@ export default function Cart() {
 
   const handleCheckout = () => {
     var price = 0;
-    productCart.map(e => price = price + e.price);
+    products.map(e => price = price + e[1].price);
     setCheckout(price)
   }
 

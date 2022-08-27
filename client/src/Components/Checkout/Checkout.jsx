@@ -84,7 +84,9 @@ const validateForm = (form, nameInput) => {
 
 export default function Checkout() {
   const { loginWithRedirect } = useAuth0();
-  const productsToBuy = useSelector(state => state.productsToBuy);
+  const productCart = useSelector(state => state.productCart);
+  const cuki = cookies.getAll();
+  var productsToBuy = Object.entries(cuki)
   var subTotal = 0;
   const provincias = ["Ciudad Autonoma De Buenos Aires", "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Rios", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"]
   const {
@@ -92,6 +94,7 @@ export default function Checkout() {
     errors,
     handleOnChange,
     handleSubmit,
+    handleRemoveCookies
   } = useForm(initialForm, validateForm);
 
   return (
@@ -228,16 +231,16 @@ export default function Checkout() {
         <div className={style.containerPedido}>
 
           {productsToBuy.map(e => {
-            return (
-              <div key={e.id} className={style.divProduct}>
-                <img src={e.image} alt="" />
-                <p>{e.name}</p>
-                <p>${e.price}</p>
-              </div>
+            return ( e[1].id?
+              <div key={e[1].id} className={style.divProduct}>
+                <img src={e[1].image} alt="" />
+                <p>{e[1].name}</p>
+                <p>${e[1].price}</p>
+              </div>: true
             )
           })}
 
-          <p className={style.cuentita}>{productsToBuy.map(e => subTotal = subTotal + e.price)}</p>
+          <p className={style.cuentita}>{productsToBuy.map(e => subTotal = subTotal + e[1].price)}</p>
           <div className={style.divTotal}>
             <p>SUBTOTAL</p>
             <p>${subTotal}</p>
@@ -254,7 +257,7 @@ export default function Checkout() {
           </div>
 
           <div className={style.divBtn} >
-            <button type="submit">REALIZAR EL PEDIDO</button>
+            <button onClick={() => handleRemoveCookies(productsToBuy)} type="submit">REALIZAR EL PEDIDO</button>
           </div>
 
         </div>
