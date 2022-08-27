@@ -1,5 +1,5 @@
 import infoJson from "../../info.json";
-import infoUserJson from "../../infoUser.json";
+// import infoUserJson from "../../infoUser.json";
 import axios from "axios"
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
@@ -131,12 +131,12 @@ export const clearNotifications = () => {
   }
 }
 
-export const getUserById = () => {
-  return {
-    type: GET_USER_BY_ID,
-    payload: infoUserJson
-  }
-}
+// export const getUserById = () => {
+//   return {
+//     type: GET_USER_BY_ID,
+//     payload: infoUserJson
+//   }
+// }
 
 // export const categoryFilter = (calzado) => {
 //   return async function (dispatch) {
