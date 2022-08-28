@@ -1,36 +1,41 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Link} from "react-router-dom"
-import Logout from "../Logout/Logout";
-import styles from './Profile.module.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
+import { getUserDetail } from '../../Redux/Action';
+import Login from '../Login/Login.jsx';
+import Logout from '../Logout/Logout.jsx';
 
-export default function Profile(){
-  const { user, isAuthenticated, isLoading } = useAuth0();
+export default function Profile() {
+	const { user, isAuthenticated, isLoading } = useAuth0();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+	const dispatch = useDispatch();
+	const userDetail = useSelector((state) => state.userDetail);
 
-  return (
-    isAuthenticated && (
-      <div className={styles.container}> 
-      <div className="d-flex justify-content-center">
-      <Link to='/'>< button className="row mb-3">Regresar</button></Link>
-      </div>
-         <h2 className="d-flex justify-content-center">Mi Perfil</h2>
-         <div className="d-flex justify-content-center">
-          <img  src={user.picture} alt={user.name} /> 
-        </div>
+	useEffect(() => {
+		if (isAuthenticated && !isLoading) {
+			dispatch(getUserDetail(user.email));
+		}
+	}, [user]);
 
-        <div className="d-flex justify-content-center">
-          <h2>{user.name}</h2>
-        </div>
-
-        <div className="d-flex justify-content-center">
-        <p>Email: {user.email}</p>
-        </div>
-        <Logout/>
-      </div>
-    )
-  );
-};
+	const handleOnError = (e) => {
+		e.target.src =
+			'https://www.procainsa.com/wp-content/uploads/2017/02/Icono-Perfil-150x150.png';
+	};
+	if (isLoading || !userDetail) {
+		return <div>Loading...</div>;
+	} else if (!isAuthenticated) {
+		return <Login />;
+	} else {
+		return (
+			isAuthenticated && (
+				<div>
+					<img src={userDetail.img} onError={handleOnError} alt={user.name} />
+					<h2>{userDetail.name}</h2>
+					<h6>{userDetail.username}</h6>
+					<h6>Email: {userDetail.email}</h6>
+					<Logout />
+				</div>
+			)
+		);
+	}
+}
