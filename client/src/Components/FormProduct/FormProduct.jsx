@@ -5,7 +5,7 @@ import infoJson from "../../info.json"
 import style from "./FormProduct.module.css"
 import Cookies from "universal-cookie"
 
-export default function FormProduct() {
+export default function FormProduct({socket}) {
   var cookies = new Cookies()
 
   const initialForm = {
@@ -161,7 +161,7 @@ export default function FormProduct() {
       };
     };
 
-    if(nameInput.includes("offer")){
+    if (nameInput.includes("offer")) {
       setValidate({})
     };
 
@@ -180,7 +180,7 @@ export default function FormProduct() {
     alert,
     setAlert,
     handleOffer
-  } = useForm(initialForm, validateForm);
+  } = useForm(initialForm, validateForm, socket);
 
   return (
     <div className={style.containerPrincipal}>
@@ -219,7 +219,7 @@ export default function FormProduct() {
             <div>
               <label htmlFor="brand">Marca</label>
               <select name="brand" onChange={handleOnChange} id="my_select" value={cookies.get("brand")}
-              className={`form-control ${validate.brand ? "is-invalid" : (validate.brand !== false ? cookies.get("name") : "is-valid")}`}>
+                className={`form-control ${validate.brand ? "is-invalid" : (validate.brand !== false ? cookies.get("name") : "is-valid")}`}>
                 <option style={{ display: "none" }} >Marca</option>
                 <option value="Adidas" >Adidas</option>
                 <option value="Nike" >Nike</option>
@@ -341,7 +341,7 @@ export default function FormProduct() {
           <div className={style.divGenre}>
             <label htmlFor="genre">Genero</label>
             <select name="genre" onChange={handleOnChange} id="my_select" value={cookies.get("genre")}
-            className={`form-control ${(validate.genre) ? "is-invalid" : (validate.genre !== false ? cookies.get("name") : "is-valid")}`}>
+              className={`form-control ${(validate.genre) ? "is-invalid" : (validate.genre !== false ? cookies.get("name") : "is-valid")}`}>
               <option style={{ display: "none" }}>Genero</option>
               <option value="hombre" >Hombre</option>
               <option value="mujer" >Mujer</option>

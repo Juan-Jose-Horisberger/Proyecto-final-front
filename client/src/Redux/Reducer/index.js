@@ -26,7 +26,8 @@ const initialState = {
     productCart: [],
     newNotification: {
         counter: 0,
-        purchaseNotification: []
+        purchaseNotification: [],
+        newProducts: []
     },
     productsToBuy: [],
 
@@ -100,8 +101,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
             console.log(payload)
             return {
                 ...state, products: [...state.products, payload],
-                notification: state.notification + 1,
                 newNotification: {
+                    ...state,
                     counter: state.newNotification.counter + 1,
                     newProducts: [...state.newNotification.newProducts, payload]
                 }
@@ -131,6 +132,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             console.log(payload);
             return {
                 ...state, newNotification: {
+                    ...state,
                     counter: state.newNotification.counter + 1,
                     purchaseNotification: [...state.newNotification.purchaseNotification, payload],
                 }

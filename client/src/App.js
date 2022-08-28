@@ -34,7 +34,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Logout" element={<Logout />} />
-        <Route path="/Register" element={<Register />} />
+        <Route path="/Register" element={<Register socket={socket} />} />
         <Route path="/CreateProduct" element={<FormProduct />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Dashboard" element={<Dashboard socket={socket} />}/>

@@ -28,7 +28,7 @@ const getUser = (usernameid) => { //Tomamos un usuario en concreto.
 
 io.on("connection", (socket) => {
     io.emit("firstEvent", "Hola esto es una prueba!") //Enviamos un evento a cada user, (podemos hacer aca, lo de notifcaciones de new product)
-
+    // io.emit("newProducts", "¡Se agregaron nuevos productos!")
     socket.on("newUser", (username, usernameid) => { //Guardamos el user cuando se loggue en la pagina.
         addNewUser(username, usernameid, socket.id);
     })
@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
         });
     });
 
-
+    io.emit("newProducts", "¡Se agregaron nuevos productos!")
     socket.on("disconnect", () => {//Cada vez que el usuario se desconecte
 
         removeUser(socket.id) //No es un evento no estamos tomando nada del lado del cliente, solo elimina el usuario de el array cuando este se desconecte
