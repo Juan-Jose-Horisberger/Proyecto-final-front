@@ -1,3 +1,4 @@
+import Cookies from "universal-cookie"
 import {
     GET_ALL_PRODUCTS,
     GET_PRODUCT_BY_NAME,
@@ -15,7 +16,7 @@ import {
     FILTER_BY_PRICE,
     SET_NOTIFICATIONS_TO_0,
 } from "../Action"
-
+var cookies = new Cookies();
 const initialState = {
     products: [],
     allProducts: [],
@@ -69,6 +70,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
         case GET_CART_PRODUCT:
             if (payload) {
+                cookies.set(payload.id, payload);
                 return {
                     ...state, productCart: [...state.productCart, payload]
                 };

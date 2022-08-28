@@ -4,14 +4,17 @@ import { Link } from "react-router-dom";
 import styles from './Product.module.css';
 import addCart from "../../Imagenes/add-cart.svg";
 import deleteCart from "../../Imagenes/delete-cart.svg";
-import addFav from "../../Imagenes/add-fav.svg"
-import deleteFav from "../../Imagenes/delete-fav.svg"
+import addFav from "../../Imagenes/add-fav.svg";
+import deleteFav from "../../Imagenes/delete-fav.svg";
+import Cookies from "universal-cookie";
 import { deleteFavProduct, getFavoriteProduct, getCartProduct, deleteCartProduct } from '../../Redux/Action';
+import { useState } from 'react';
 
 export default function Product({ id, name, price, image }) {
-    const dispatch = useDispatch()
-    const productFav = useSelector(state => state.productFav)
-    const productCart = useSelector(state => state.productCart)
+    const dispatch = useDispatch();
+    const productFav = useSelector(state => state.productFav);
+    const productCart = useSelector(state => state.productCart);
+    const cookies = new Cookies();
 
     const handleOnFav = () => {
         const findProduct = productFav.find(e => e.id === id)
@@ -24,19 +27,22 @@ export default function Product({ id, name, price, image }) {
     }
 
     const handleOnCart = () => {
-        const findProduct = productCart.find(e => e.id === id)
+        const findProduct = cookies.get(id)
 
         if (findProduct) {
-            dispatch(deleteCartProduct(id))
+            dispatch(deleteCartProduct(id));
+            cookies.remove(id)
         } else {
             dispatch(getCartProduct(id))
         }
     }
 
     const validateCart = (id) => {
-        const findProductCart = productCart.find(e => e.id === id);
+        const findProductCart = cookies.get(id);
 
-        return findProductCart;
+        if(findProductCart) return true;
+
+        return false;
     }
 
     const validateFav = (id) => {
