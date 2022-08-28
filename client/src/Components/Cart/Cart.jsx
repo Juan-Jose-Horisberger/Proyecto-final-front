@@ -5,21 +5,29 @@ import styles from './Cart.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from "universal-cookie"
 import useForm from '../Checkout/useForm';
 
 export default function Cart() {
-  const [checkout, setCheckout] = useState(0)
+  const cookies = new Cookies()
+  var expiryDate = new Date(Date.now() + (100 * 24 * 3600000));
   const productCart = useSelector(state => state.productCart);
+  productCart.map(e => cookies.set(e.id, e, {path: "/", expires: expiryDate}))
+  const cuki = cookies.getAll();
+  var products = Object.entries(cuki)
+  const [checkout, setCheckout] = useState(0)
   const dispatch = useDispatch();
   const { handleBuy } = useForm()
 
   const handleDelete = (id) => {
     dispatch(deleteCartProduct(id))
+    cookies.remove(id)
+    console.log(id)
   };
 
   const handleCheckout = () => {
     var price = 0;
-    productCart.map(e => price = price + e.price);
+    products.map(e => price = price + e[1].price);
     setCheckout(price)
   }
 
@@ -30,30 +38,30 @@ export default function Cart() {
   return (
     <div className={styles.container} key="Asdasd">
       <SearchBar />
-      {productCart.length ? productCart.map(e => {
+      {products.length ? products.map(e => {
         return (
-          <div key={e.id} className={styles.divProduct}>
+          <div key={e[1].id} className={styles.divProduct}>
 
             <div className={styles.divBtnDelete}>
-              <button onClick={() => handleDelete(e.id)} className={styles.btnDelete}>
+              <button onClick={() => handleDelete(e[1].id)} className={styles.btnDelete}>
                 x
               </button>
             </div>
 
             <div className={styles.divImage}>
-              <Link to={`/ProductDetail/${e.id}`}><img src={e.image} alt="Image not found" className={styles.image} /></Link>
+              <Link to={`/ProductDetail/${e[1].id}`}><img src={e[1].image} alt="Image not found" className={styles.image} /></Link>
             </div>
 
             <div className={styles.divName}>
-              <Link to={`/ProductDetail/${e.id}`}><p>{e.name}</p></Link>
+              <Link to={`/ProductDetail/${e[1].id}`}><p>{e[1].name}</p></Link>
             </div>
 
             <div className={styles.divPrice}>
-              <p>$ {e.price}</p>
+              <p>$ {e[1].price}</p>
             </div>
 
             <div className={styles.divStock}>
-              {e.stock === 0 ?
+              {e[1].stock === 0 ?
                 <p className={styles.pStock}>OUT OF STOCK</p>
                 :
                 <p className={styles.pStock}>IN STOCK</p>}
@@ -61,7 +69,7 @@ export default function Cart() {
 
             <div className={styles.divBtnbuy}>
               <Link to="/Checkout">
-                <button onClick={(ev) => handleBuy(e.id)} className={styles.btnBuy}>Comprar</button>
+                <button onClick={(ev) => handleBuy(e[1].id)} className={styles.btnBuy}>Comprar</button>
               </Link>
             </div>
           </div>

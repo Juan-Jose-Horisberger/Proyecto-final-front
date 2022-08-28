@@ -1,8 +1,8 @@
 export const posts = [
     {
         id: 1,
-        username: "john",
-        fullname: "John Keller",
+        username: "Juan",
+        fullname: "Juan Jose Horisberger",
         userImg: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         postImg: "https://images.pexels.com/photos/9730025/pexels-photo-9730025.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
     },

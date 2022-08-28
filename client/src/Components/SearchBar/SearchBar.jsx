@@ -7,14 +7,21 @@ import { Link } from 'react-router-dom';
 import CartIcon from '../../Imagenes/cart.svg';
 import FavoritesIcon from '../../Imagenes/favorites.svg';
 import FormIcon from '../../Imagenes/form.svg';
+
 import { useEffect } from 'react';
+
+
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function SearchBar() {
+export default function SearchBar({ socket }) {
     const dispatch = useDispatch();
-    const [productName, setProductName] = useState("");
+    // const notifications = useSelector(state => state.newNotification);
+
+    const [productName, setProductName] = useState("")
+    // const countNotifications = useSelector(state => state.counterNotification);
     const { loginWithRedirect } = useAuth0();
-    const notifications = useSelector(state => state.newNotification);
+    // const [notificationsPrueba, setNotificationsPrueba] = useState([]);
+    // const [notifications, setNotifications] = useState([]);
 
     function handleOnClick() {
         productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");
@@ -24,6 +31,32 @@ export default function SearchBar() {
     function setNotificationsTo0() {
         dispatch(clearNotifications());
     }
+    const infoNotifications = useSelector(state => state.newNotification)
+
+
+    const displayNotification = ({ senderName, type }, i) => {
+        if (type === 1) { //compra
+            return (
+                <div key={i} className={`${styles.notifications}`}>
+                    <span>{`Muchas gracias ${senderName} por haber realizado una compra`}</span>
+                </div>
+            )
+        }
+        else if (type === 2) { //nuevo product
+            return (
+                <div key={i} className={`${styles.notifications}`}>
+                    <span>{`Se han agregado nuevos productos!`}</span>
+                </div>
+            )
+        }
+        else { // ofertas
+            return (
+                <div key={i} className={`${styles.notifications}`}>
+                    <span>{`Tenemos products en descuento!`} <button>Ver más</button></span>
+                </div>
+            )
+        }
+    };
 
     return (
         <div className={`${styles.container} container-fluid p-0 m-0`} >
@@ -101,17 +134,20 @@ export default function SearchBar() {
                                             <div>{countNotifications}</div>
                                         </Link> */}
 
-                                        <div onClick={() => setNotificationsTo0()} data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+                                        <div data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
                                             <img src="https://www.svgrepo.com/show/281772/alarm-bell.svg" style={{ width: "27px" }} alt="" />
-                                            <div>{notifications.counter}</div>
+                                            {
+                                                infoNotifications.counter > 0 &&
+                                                <div>{infoNotifications.counter}</div>
+                                            }
                                         </div>
                                     </div>
-                                    <div className="offcanvas offcanvas-end" id="offcanvasRight">
+                                    <div className={`offcanvas offcanvas-end ${styles.container_showNotifications}`} id="offcanvasRight">
                                         <div className="offcanvas-header">
                                             <h5>Notificaciones</h5>
-                                            <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                                            <button onClick={() => setNotificationsTo0()} type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
                                         </div>
-                                        <div className="offcanvas-body">
+                                        <div className={`offcanvas-body`}>
                                             {
                                                 // notifications.length && notifications.newProducts.map((p, i) => {
                                                 //     p.offert
@@ -129,9 +165,11 @@ export default function SearchBar() {
                                                 //         )
                                                 // })
                                             }
-                                            <div>
-                                                hola
-                                            </div>
+                                            {
+                                                infoNotifications.purchaseNotification
+                                                    ? infoNotifications.purchaseNotification.map((n, i) => displayNotification(n, i))
+                                                    : (<p>No hay notificaciones</p>)
+                                            }
                                         </div>
                                     </div>
 

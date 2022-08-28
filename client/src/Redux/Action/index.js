@@ -17,6 +17,8 @@ export const FILTER_GENRES = "FILTER_GENRES";
 export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
 export const SET_NOTIFICATIONS_TO_0 = "SET_NOTIFICATIONS_TO_0";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
+
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -128,6 +130,13 @@ export const filterByPrice = (price) => {
 export const clearNotifications = () => {
   return {
     type: SET_NOTIFICATIONS_TO_0,
+  }
+}
+
+export const sendInformation = (payload) =>{
+  return {
+    type: SET_NOTIFICATIONS,
+    payload
   }
 }
 

@@ -14,6 +14,7 @@ import {
     FILTER_BY_QUERY,
     FILTER_BY_PRICE,
     SET_NOTIFICATIONS_TO_0,
+    SET_NOTIFICATIONS,
 } from "../Action"
 
 const initialState = {
@@ -24,9 +25,10 @@ const initialState = {
     productCart: [],
     newNotification: {
         counter: 0,
-        newProducts: []
+        purchaseNotification: []
     },
     productsToBuy: [],
+
 
 }
 
@@ -86,7 +88,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
                 return {
                     ...state, productsToBuy: productsBuy
                 }
-            }else {
+            } else {
                 return {
                     ...state, productsToBuy: state.productCart
                 }
@@ -114,7 +116,20 @@ export default function rootReducer(state = initialState, { type, payload }) {
             }
         case SET_NOTIFICATIONS_TO_0:
             return {
-                ...state, newNotification: { ...state, counter: 0 }
+                ...state,
+                newNotification: {
+                    ...state,
+                    purchaseNotification: [...state.newNotification.purchaseNotification],
+                    counter: 0
+                }
+            }
+        case SET_NOTIFICATIONS:
+            console.log(payload);
+            return {
+                ...state, newNotification: {
+                    counter: state.newNotification.counter + 1,
+                    purchaseNotification: [...state.newNotification.purchaseNotification, payload],
+                }
             }
 
         // case FILTER_GENRES:

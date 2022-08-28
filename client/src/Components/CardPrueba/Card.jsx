@@ -9,7 +9,7 @@ import { useState } from "react";
 const Card = ({ post, socket, user }) => {
     const [liked, setLiked] = useState(false);
 
-    const handleNotification = (type) => { //Esto mismo tendria que estar en el componente checkout
+    const handleNotification = (type) => { //Esto mismo tendria que estar en el componente checkout, cuando se el de a "comprar"..
         type === 1 && setLiked(true);
         socket.emit("sendNotification", {
             senderName: user,
