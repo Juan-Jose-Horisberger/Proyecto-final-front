@@ -58,7 +58,7 @@ export default function useForm(initialForm, validateForm, socket) {
   };
 
   const handleRemoveCookies = (data) => {
-    // data && data.map(e => cookies.remove(e[1].id))
+    data && data.map(e => cookies.remove(e[1].id))
   }
 
   return {
