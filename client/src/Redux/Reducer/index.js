@@ -9,13 +9,13 @@ import {
     DELETE_CART_PRODUCT,
     BUY_PRODUCT,
     CREATE_PRODUCT,
-    FILTER_CATEGORY,
-    FILTER_BY_CLOTHING_SIZE,
-    FILTER_GENRES,
     FILTER_BY_QUERY,
     FILTER_BY_PRICE,
     SET_NOTIFICATIONS_TO_0,
     SET_NOTIFICATIONS,
+    GET_USERS,
+    GET_USER_DETAIL,
+    CREATE_USER
 } from "../Action"
 var cookies = new Cookies();
 const initialState = {
@@ -115,7 +115,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
         case FILTER_BY_PRICE:
             return {
                 ...state, products: state.allProducts.filter(e => e.price >= payload)
-            }
+            };
+
         case SET_NOTIFICATIONS_TO_0:
             return {
                 ...state,
@@ -124,7 +125,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
                     purchaseNotification: [...state.newNotification.purchaseNotification],
                     counter: 0
                 }
-            }
+            };
+
         case SET_NOTIFICATIONS:
             console.log(payload);
             return {
@@ -132,25 +134,25 @@ export default function rootReducer(state = initialState, { type, payload }) {
                     counter: state.newNotification.counter + 1,
                     purchaseNotification: [...state.newNotification.purchaseNotification, payload],
                 }
-            }
+            };
 
-        // case FILTER_GENRES:
-        //     return {
-        //         ...state, products: payload
-        //     };
+        case GET_USERS:
+            return {
+                ...state,
+                allUsers: payload
+            };
 
-        // case FILTER_BY_BRAND:
-        //     return {
-        //         ...state, products: payload
-        //     };
-        // case FILTER_CATEGORY:
-        //     return {
-        //         ...state, products: payload
-        //     };
-        // case FILTER_BY_CLOTHING_SIZE:
-        //     return {
-        //         ...state, products: payload
-        //     };
+        case GET_USER_DETAIL:
+            return {
+                ...state,
+                userDetail: payload
+            };
+
+        case CREATE_USER:
+            return {
+                ...state,
+                newUsers: [...state.allUsers, payload]
+            };
 
         default:
             return state;

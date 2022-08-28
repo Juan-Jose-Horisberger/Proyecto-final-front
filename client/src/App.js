@@ -39,6 +39,7 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Dashboard" element={<Dashboard socket={socket} />}/>
         <Route path="/Checkout" element={<Checkout socket={socket} />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </div>
   );

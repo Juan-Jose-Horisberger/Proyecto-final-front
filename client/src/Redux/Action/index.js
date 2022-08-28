@@ -11,13 +11,14 @@ export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
 export const BUY_PRODUCT = "BUY_PRODUCT";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
-export const FILTER_CATEGORY = "FILTER_CATEGORY";
-export const FILTER_BY_CLOTHING_SIZE = "FILTER_BY_CLOTHING_SIZE";
-export const FILTER_GENRES = "FILTER_GENRES";
 export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
 export const SET_NOTIFICATIONS_TO_0 = "SET_NOTIFICATIONS_TO_0";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
+export const GET_USERS = "GET_USERS";
+export const GET_USER_DETAIL = "GET_USER_DETAIL";
+export const CREATE_USER = "CREATE_USER";
+
 
 
 export const getAllProducts = () => {
@@ -140,54 +141,38 @@ export const sendInformation = (payload) =>{
   }
 }
 
-// export const getUserById = () => {
-//   return {
-//     type: GET_USER_BY_ID,
-//     payload: infoUserJson
-//   }
-// }
+export function getUsers() {
+	return async function call(dispatch) {
+		let allUsers = await axios.get('http://localhost:3001/users');
+		return dispatch({ type: GET_USERS, payload: allUsers.data });
+	};
+}
 
-// export const categoryFilter = (calzado) => {
-//   return async function (dispatch) {
-//     let category = await axios.get("/products/category/" + calzado)
-//     return dispatch({
-//       type: FILTER_CATEGORY,
-//       payload: category.data
-//     })
-//   }
-// };
+export const getUserDetail = (email) => {
+	return async function (dispatch) {
+		let userDetail = await axios.get(`http://localhost:3001/users/${email}`);
+		return dispatch({ type: GET_USER_DETAIL, payload: userDetail.data });
+	};
+};
 
-// export const genresFilter = (hombre) => {
-//   return async function (dispatch) {
-//     const infoFilter = await axios.get("/products/genres/" + hombre)
-//     console.log(infoFilter)
-//     return dispatch({
-//       type: FILTER_GENRES,
-//       payload: infoFilter.data
-//     })
-//   }
-// };
+export const createUser = (payload) => {
+	const user = {
+		given_name: payload.given_name,
+		family_name: payload.family_name,
+		nickname: payload.nickname,
+		email: payload.email,
+		picture: payload.picture
+	};
 
-// export const brandFilter = (brand) => {
-//   return async function (dispatch) {
-//     const infoBrand = await axios.get("/products/brand/" + brand)
-//     console.log(infoBrand)
-//     return dispatch({
-//       type: FILTER_BY_BRAND,
-//       payload: infoBrand.data
-//     })
-//   }
-// };
-
-// export const sizeClothingFilter = (m) => {
-//   return async function (dispatch) {
-//     let sizeClothing = await axios.get("/products/size/" + m)
-//     return dispatch({
-//       type: FILTER_BY_CLOTHING_SIZE,
-//       payload: sizeClothing.data
-//     })
-//   }
-// };
+	return async function (dispatch) {
+		let NewUser = await axios.post(
+			`https://pf-back-franco.herokuapp.com/users/post`,
+			// 'http://localhost:3001/users/post',
+			user
+		);
+		return dispatch({ type: CREATE_USER, payload: NewUser.data });
+	};
+};
 
 
 
