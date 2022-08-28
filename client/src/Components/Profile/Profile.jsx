@@ -13,20 +13,20 @@ export default function Profile(){
 
   return (
     isAuthenticated && (
-      <div class={styles.container}> 
-      <div class="d-flex justify-content-center">
-      <Link to='/'>< button class="row mb-3">Regresar</button></Link>
+      <div className={styles.container}> 
+      <div className="d-flex justify-content-center">
+      <Link to='/'>< button className="row mb-3">Regresar</button></Link>
       </div>
-         <h2 class="d-flex justify-content-center">Mi Perfil</h2>
-         <div class="d-flex justify-content-center">
+         <h2 className="d-flex justify-content-center">Mi Perfil</h2>
+         <div className="d-flex justify-content-center">
           <img  src={user.picture} alt={user.name} /> 
         </div>
 
-        <div class="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <h2>{user.name}</h2>
         </div>
 
-        <div class="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
         <p>Email: {user.email}</p>
         </div>
         <Logout/>
