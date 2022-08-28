@@ -12,7 +12,7 @@ export default function Cart() {
   const cookies = new Cookies()
   var expiryDate = new Date(Date.now() + (100 * 24 * 3600000));
   const productCart = useSelector(state => state.productCart);
-  productCart.map(e => cookies.set(e.id, e, {path: "/", expires: expiryDate}))
+  // productCart.map(e => cookies.set(e.id, e, {path: "/", expires: expiryDate}))
   const cuki = cookies.getAll();
   var products = Object.entries(cuki)
   const [checkout, setCheckout] = useState(0)
@@ -22,7 +22,6 @@ export default function Cart() {
   const handleDelete = (id) => {
     dispatch(deleteCartProduct(id))
     cookies.remove(id)
-    console.log(id)
   };
 
   const handleCheckout = () => {

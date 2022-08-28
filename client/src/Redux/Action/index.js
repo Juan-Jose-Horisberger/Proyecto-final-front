@@ -95,9 +95,15 @@ export const deleteCartProduct = (id) => {
 };
 
 export const getProductToBuy = (id) => {
+  if (id) {
+    return ({
+      type: BUY_PRODUCT,
+      payload: id
+    })
+  };
+
   return ({
     type: BUY_PRODUCT,
-    payload: id
   })
 }
 
