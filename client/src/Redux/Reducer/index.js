@@ -87,13 +87,14 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
         case BUY_PRODUCT:
             if (payload) {
-                const productsBuy = state.products.filter(e => e.id === payload);
+                const productsBuy = cookies.get(payload)
+                console.log(productsBuy)
                 return {
-                    ...state, productsToBuy: productsBuy
+                    ...state, productsToBuy: [productsBuy]
                 }
             } else {
                 return {
-                    ...state, productsToBuy: state.productCart
+                    ...state, productsToBuy: false
                 }
             };
 

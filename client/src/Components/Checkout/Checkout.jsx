@@ -84,14 +84,6 @@ const validateForm = (form, nameInput) => {
 };
 
 export default function Checkout({ socket }) {
-  const { loginWithRedirect } = useAuth0();
-  // const productCart = useSelector(state => state.productCart);
-  const cuki = cookies.getAll();
-  var productsToBuy = Object.entries(cuki)
-  var subTotal = 0;
-  const dispatch = useDispatch()
-  const infoNotifications = useSelector(state => state.newNotification)
-
   const provincias = ["Ciudad Autonoma De Buenos Aires", "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Rios", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"]
   const {
     form,
@@ -100,7 +92,13 @@ export default function Checkout({ socket }) {
     handleSubmit,
     handleRemoveCookies,
   } = useForm(initialForm, validateForm, socket);
-
+  const { loginWithRedirect } = useAuth0();
+  var cuki = cookies.getAll();
+  var productIndividual = useSelector(state => state.productsToBuy);
+  var productsToBuy = Object.entries(cuki)
+  var subTotal = 0;
+  const dispatch = useDispatch()
+  const infoNotifications = useSelector(state => state.newNotification)
 
   useEffect(() => { //Esto iria en searchbar
     // console.log(infoNotifications.newProducts.length)
@@ -114,7 +112,8 @@ export default function Checkout({ socket }) {
 
   return (
     <div className={style.containerPrincipal}>
-      <SearchBar />
+      {/* <SearchBar /> */}
+
       <div className={style.divCheckout}>
         <h2>Checkout</h2>
         <p><Link to="/">Inicio</Link>/Checkout</p>
@@ -243,16 +242,27 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-
-          {productsToBuy.map(e => {
-            return (e[1].id ?
-              <div key={e[1].id} className={style.divProduct}>
-                <img src={e[1].image} alt="" />
-                <p>{e[1].name}</p>
-                <p>${e[1].price}</p>
-              </div> : true
-            )
-          })}
+              {console.log(productIndividual)}
+          {productIndividual ?
+            productIndividual.map(e => {
+              return (e.id ?
+                <div key={e.id} className={style.divProduct}>
+                  <img src={e.image} alt="" />
+                  <p>{e.name}</p>
+                  <p>${e.price}</p>
+                </div> : true
+              )
+            })
+            :
+            productsToBuy.map(e => {
+              return (e[1].id ?
+                <div key={e[1].id} className={style.divProduct}>
+                  <img src={e[1].image} alt="" />
+                  <p>{e[1].name}</p>
+                  <p>${e[1].price}</p>
+                </div> : true
+              )
+            })}
 
           <p className={style.cuentita}>{productsToBuy.map(e => subTotal = subTotal + e[1].price)}</p>
           <div className={style.divTotal}>
