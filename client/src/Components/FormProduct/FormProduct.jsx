@@ -19,7 +19,7 @@ export default function FormProduct() {
     size: [],
     score: cookies.get("score"),
     genre: cookies.get("genre"),
-    // offer: undefined
+    offer: undefined
   }
 
   const validateForm = (form, nameInput, setValidate) => {
