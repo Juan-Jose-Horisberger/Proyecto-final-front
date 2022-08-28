@@ -61,15 +61,16 @@ const validateCart = (id) => {
 
   return (
     <div className={styles.container}>
-      <SearchBar />
+      {/* <SearchBar /> */}
+
       {
         loaded ? (<div>
           <div className={styles.overallContainer}>
             <div className={styles.container_1}>
               <h1>
                 <Link to="/"><span>Inicio</span></Link>
-                <span> / </span>
-                <Link to=""><span>{productDetail.categoryName}</span></Link>
+                {/* <span> / </span>
+                <Link to=""><span>{productDetail.categoryName}</span></Link> */}
                 <span> / </span>
                 <Link to="/"><span></span></Link>
                 <span className={`${styles.span_3}`}>{productDetail.name}</span>
