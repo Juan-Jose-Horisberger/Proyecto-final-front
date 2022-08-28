@@ -37,9 +37,12 @@ export default function Cart() {
 
   return (
     <div className={styles.container} key="Asdasd">
-      <SearchBar />
+      {/* <SearchBar /> */}
+
+      <p className='mb-4'><Link to="/">Inicio</Link>/Carrito</p>
+
       {products.length ? products.map(e => {
-        return (
+        return (e[1].id ?
           <div key={e[1].id} className={styles.divProduct}>
 
             <div className={styles.divBtnDelete}>
@@ -72,10 +75,10 @@ export default function Cart() {
                 <button onClick={(ev) => handleBuy(e[1].id)} className={styles.btnBuy}>Comprar</button>
               </Link>
             </div>
-          </div>
+          </div> : true
         )
       }) :
-        <h1>No agregaste productos a tus favoritos</h1>}
+        <h1>No agregaste productos a tu carrito</h1>}
 
       <div>
         <Link to="/Checkout">

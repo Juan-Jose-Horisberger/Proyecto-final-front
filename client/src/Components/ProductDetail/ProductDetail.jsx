@@ -61,7 +61,7 @@ export default function ProductDetail() { //instalar style-component si no funci
 
    return (
       <div className={styles.container}>
-         <SearchBar />
+         {/* <SearchBar /> */}
          {
             loaded ? (<div>
                <div className={styles.overallContainer}>
@@ -166,8 +166,7 @@ export default function ProductDetail() { //instalar style-component si no funci
                   </div>
                </div>
             </div>)
-               :
-               <div className={`d-flex justify-content-center flex-column ${styles.container_loading}`}>
+               : <div className={`d-flex justify-content-center flex-column ${styles.container_loading}`}>
                   <p>Cargando...</p>
                   <div className={`spinner-border ${styles.loading}`} style={{ width: "4rem", height: "4rem" }} role="status">
                      <span className="visually-hidden"></span>

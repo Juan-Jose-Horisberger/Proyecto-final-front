@@ -73,7 +73,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
         case GET_CART_PRODUCT:
             if (payload) {
-                cookies.set(payload.id, payload);
+                var expiryDate = new Date(Date.now() + (100 * 24 * 3600000));
+                cookies.set(payload.id, payload, { path: "/", expires: expiryDate });
                 return {
                     ...state, productCart: [...state.productCart, payload]
                 };
@@ -87,7 +88,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
         case BUY_PRODUCT:
             if (payload) {
-                const productsBuy = state.productCart.filter(e => e.id === payload);
+                const productsBuy = state.products.filter(e => e.id === payload);
                 return {
                     ...state, productsToBuy: productsBuy
                 }

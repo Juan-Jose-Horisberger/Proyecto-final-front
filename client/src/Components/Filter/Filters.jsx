@@ -64,9 +64,6 @@ export default function Filters() {
     const handleRange = (e) => {
         dispatch(filterByPrice(e.target.value))
         setPrice(e.target.value)
-        // var range = document.querySelector("#customRange1")
-        // console.log(range)
-        // range.select = 0
     }
 
     const reset = (e) => {

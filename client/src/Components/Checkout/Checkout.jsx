@@ -85,7 +85,7 @@ const validateForm = (form, nameInput) => {
 
 export default function Checkout({ socket }) {
   const { loginWithRedirect } = useAuth0();
-  const productCart = useSelector(state => state.productCart);
+  // const productCart = useSelector(state => state.productCart);
   const cuki = cookies.getAll();
   var productsToBuy = Object.entries(cuki)
   var subTotal = 0;

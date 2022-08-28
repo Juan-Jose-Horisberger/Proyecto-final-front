@@ -12,7 +12,8 @@ html {
 }
 
 .container_Info {
-    margin-top: 74px;
+    /* margin-top: 74px; */
+    margin-top: 0px;
 }
 
 .container {
