@@ -185,7 +185,7 @@ export default function Contact() {
 
     return (
         <div className={`container-fluid p-0 ${styles.container}`}>
-            <SearchBar />
+            {/* <SearchBar /> */}
             <div className={`${styles.container_Inicio}`}>
                 <div>
                     <Link to="/"><span>Inicio</span></Link>

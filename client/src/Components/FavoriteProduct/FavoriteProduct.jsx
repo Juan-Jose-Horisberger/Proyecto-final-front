@@ -37,7 +37,10 @@ export default function FavoriteProduct() {
   }
   return (
     <div className={styles.container} key="Asdasd">
-      <SearchBar />
+      {/* <SearchBar /> */}
+
+      <p className='mb-4'><Link to="/">Inicio</Link>/Favoritos</p>
+
       {productFav.length ? productFav.map(e => {
         return (
           <div key={e.id} className={styles.divProduct}>
