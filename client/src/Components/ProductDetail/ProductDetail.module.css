@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 /*font-family: 'Questrial', sans-serif;*/
 
-.container {
-    background-color: red;
-}
-
 .overallContainer {
     width: 100%;
     /* border: 1px solid black; */
@@ -235,14 +231,14 @@
     padding-left: 5px;
 }
 
-.loading {
+/* .loading {
     width: 100%;
     font-size: 100px;
     background-color: black;
     display: flex;
     justify-content: center;
     margin-top: 150px;
-}
+} */
 
 .container_cards {
     width: 400px;
@@ -273,7 +269,8 @@
 .carts:hover {
     background-color: #23232C;
 }
-.carts img:hover{
+
+.carts img:hover {
     cursor: pointer;
 }
 
@@ -287,6 +284,20 @@
     font-family: 'Questrial', sans-serif;
 }
 
+.container_loading {
+    height: 580px;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.container_loading p {
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    flex-direction: column !important;
+    color: white;
+}
+
 
 @media screen and (min-width: 100px) and (max-width: 576px) {
     .container_carrousel h2 {
@@ -298,12 +309,12 @@
         width: 100% !important;
     }
 
-    .container_3{
+    .container_3 {
         padding-left: 20px;
         padding-right: 20px;
     }
 
-    .container_3 div{
+    .container_3 div {
         width: 100% !important;
     }
 
@@ -314,7 +325,7 @@
     .container_4 div {
         width: 100% !important;
     }
-    
+
 }
 
 
@@ -331,14 +342,15 @@
         font-size: 20px !important;
     }
 
-    .container_3{
+    .container_3 {
         padding-left: 20px;
         padding-right: 20px;
     }
 
-    .container_3 div{
+    .container_3 div {
         width: 65%;
     }
+
     .container_3 div h5 {
         font-size: 17px;
     }

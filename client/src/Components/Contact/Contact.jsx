@@ -22,8 +22,6 @@ export default function Contact() {
         user_affair: "",
         user_message: ""
     }); //Estado maneja errores
-    const [errorLocal, setErrorLocal] = useState({})
-    // const [enableErrors, setEnableErrors] = useState(false);
     const [enableErrors, setEnableErrors] = useState({
         name: false,
         email: false,
