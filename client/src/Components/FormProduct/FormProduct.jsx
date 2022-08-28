@@ -27,11 +27,11 @@ export default function FormProduct() {
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
 
     if (nameInput.includes("name")) {
-      if (!form.name.trim()) {
+      if (!form.name) {
         errors.name = "El nombre del producto es requerido";
         setValidate({ ...validate, name: true });
 
-      } else if (!regexName.test(form.name.trim())) {
+      } else if (!regexName.test(form.name)) {
         errors.name = "El nombre del producto solo acepta letras y espacios.";
         setValidate({ ...validate, name: true });
 

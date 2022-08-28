@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchBar from "../SearchBar/SearchBar.jsx"
 import style from "./Checkout.module.css"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm.js"
 import Cookies from "universal-cookie"
+import { sendInformation } from '../../Redux/Action/index.js';
 
 var cookies = new Cookies();
 const initialForm = {
@@ -82,25 +83,38 @@ const validateForm = (form, nameInput) => {
   return errors;
 };
 
-export default function Checkout() {
+export default function Checkout({ socket }) {
   const { loginWithRedirect } = useAuth0();
   const productCart = useSelector(state => state.productCart);
   const cuki = cookies.getAll();
   var productsToBuy = Object.entries(cuki)
   var subTotal = 0;
+  const dispatch = useDispatch()
+  const infoNotifications = useSelector(state => state.newNotification)
+
   const provincias = ["Ciudad Autonoma De Buenos Aires", "Buenos Aires", "Catamarca", "Chaco", "Chubut", "Cordoba", "Corrientes", "Entre Rios", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Rio Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"]
   const {
     form,
     errors,
     handleOnChange,
     handleSubmit,
-    handleRemoveCookies
-  } = useForm(initialForm, validateForm);
+    handleRemoveCookies,
+  } = useForm(initialForm, validateForm, socket);
+
+
+  useEffect(() => { //Esto iria en searchbar
+    // console.log(infoNotifications.newProducts.length)
+
+    socket?.on("getNotification", function (data) {
+      dispatch(sendInformation(data))
+    });
+
+  }, [socket]);
+
 
   return (
     <div className={style.containerPrincipal}>
       <SearchBar />
-
       <div className={style.divCheckout}>
         <h2>Checkout</h2>
         <p><Link to="/">Inicio</Link>/Checkout</p>
@@ -231,12 +245,12 @@ export default function Checkout() {
         <div className={style.containerPedido}>
 
           {productsToBuy.map(e => {
-            return ( e[1].id?
+            return (e[1].id ?
               <div key={e[1].id} className={style.divProduct}>
                 <img src={e[1].image} alt="" />
                 <p>{e[1].name}</p>
                 <p>${e[1].price}</p>
-              </div>: true
+              </div> : true
             )
           })}
 

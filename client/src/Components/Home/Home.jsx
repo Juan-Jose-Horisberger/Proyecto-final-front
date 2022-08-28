@@ -8,7 +8,7 @@ import Filters from '../Filter/Filters.jsx';
 
 
 
-export default function Home() {
+export default function Home({ socket }) {
     const dispatch = useDispatch();
     const allProducts = useSelector(state => state.products);
     const [loaded, setLoaded] = useState(false);
@@ -25,7 +25,7 @@ export default function Home() {
     return (
         <div className={`${styles.container} container-fluid p-0 d-flex flex-wrap justify-content-evenly`}>
             <div className={`col-12 ${styles.container_SearchBar}`}>
-                <SearchBar />
+                <SearchBar socket={socket}/>
             </div>
 
             <Filters />

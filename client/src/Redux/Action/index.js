@@ -1,5 +1,5 @@
 import infoJson from "../../info.json";
-import infoUserJson from "../../infoUser.json";
+// import infoUserJson from "../../infoUser.json";
 import axios from "axios"
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
@@ -17,6 +17,8 @@ export const FILTER_GENRES = "FILTER_GENRES";
 export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
 export const SET_NOTIFICATIONS_TO_0 = "SET_NOTIFICATIONS_TO_0";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
+
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -131,12 +133,19 @@ export const clearNotifications = () => {
   }
 }
 
-export const getUserById = () => {
+export const sendInformation = (payload) =>{
   return {
-    type: GET_USER_BY_ID,
-    payload: infoUserJson
+    type: SET_NOTIFICATIONS,
+    payload
   }
 }
+
+// export const getUserById = () => {
+//   return {
+//     type: GET_USER_BY_ID,
+//     payload: infoUserJson
+//   }
+// }
 
 // export const categoryFilter = (calzado) => {
 //   return async function (dispatch) {
