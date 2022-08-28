@@ -114,7 +114,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
         case FILTER_BY_PRICE:
             return {
-                ...state, products: state.allProducts.filter(e => e.price >= payload)
+                ...state, products: state.allProducts.filter(e => e.price <= payload)
             };
 
         case SET_NOTIFICATIONS_TO_0:
