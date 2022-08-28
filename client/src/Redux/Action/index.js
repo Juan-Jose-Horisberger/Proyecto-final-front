@@ -143,14 +143,14 @@ export const sendInformation = (payload) =>{
 
 export function getUsers() {
 	return async function call(dispatch) {
-		let allUsers = await axios.get('http://localhost:3001/users');
+		let allUsers = await axios.get('/users');
 		return dispatch({ type: GET_USERS, payload: allUsers.data });
 	};
 }
 
 export const getUserDetail = (email) => {
 	return async function (dispatch) {
-		let userDetail = await axios.get(`http://localhost:3001/users/${email}`);
+		let userDetail = await axios.get(`/users/${email}`);
 		return dispatch({ type: GET_USER_DETAIL, payload: userDetail.data });
 	};
 };

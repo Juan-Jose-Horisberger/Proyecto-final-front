@@ -161,7 +161,7 @@ export default function FormProduct() {
       };
     };
 
-    if(nameInput.includes("offer")){
+    if (nameInput.includes("offer")) {
       setValidate({})
     };
 
@@ -181,12 +181,16 @@ export default function FormProduct() {
     setAlert,
     handleOffer
   } = useForm(initialForm, validateForm);
+  const talleRopa = ["XS", "S", "M", "L", "XL", "XXL"];
+  const talleCalzado = ["37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47"]
 
   return (
     <div className={style.containerPrincipal}>
-      <Link to="/" className={style.link}>
+      {/* <Link to="/" className={style.link}>
         <button type="button" className="btn-close btn-close-white" aria-label="Close"></button>
-      </Link>
+      </Link> */}
+      <p className="mt-3"><Link to="/">Inicio</Link>/Home</p>
+
 
       <div className={style.container}>
         <form onSubmit={handleSubmit}>
@@ -219,7 +223,7 @@ export default function FormProduct() {
             <div>
               <label htmlFor="brand">Marca</label>
               <select name="brand" onChange={handleOnChange} id="my_select" value={cookies.get("brand")}
-              className={`form-control ${validate.brand ? "is-invalid" : (validate.brand !== false ? cookies.get("name") : "is-valid")}`}>
+                className={`form-control ${validate.brand ? "is-invalid" : (validate.brand !== false ? cookies.get("name") : "is-valid")}`}>
                 <option style={{ display: "none" }} >Marca</option>
                 <option value="Adidas" >Adidas</option>
                 <option value="Nike" >Nike</option>
@@ -296,7 +300,7 @@ export default function FormProduct() {
           <div className="w-75 mx-auto">
             <h2>Talle/s</h2>
             {form.category === "calzado" ?
-              infoJson.hombres.calzado[0].talle.map(
+              talleCalzado.map(
                 e => {
                   return (
                     <div key={e} className="form-check-inline">
@@ -317,7 +321,7 @@ export default function FormProduct() {
 
               :
 
-              infoJson.hombres.camperas[0].talle.map(
+              talleRopa.map(
                 e => {
                   return (
                     <div key={e} className="form-check-inline">
@@ -341,7 +345,7 @@ export default function FormProduct() {
           <div className={style.divGenre}>
             <label htmlFor="genre">Genero</label>
             <select name="genre" onChange={handleOnChange} id="my_select" value={cookies.get("genre")}
-            className={`form-control ${(validate.genre) ? "is-invalid" : (validate.genre !== false ? cookies.get("name") : "is-valid")}`}>
+              className={`form-control ${(validate.genre) ? "is-invalid" : (validate.genre !== false ? cookies.get("name") : "is-valid")}`}>
               <option style={{ display: "none" }}>Genero</option>
               <option value="hombre" >Hombre</option>
               <option value="mujer" >Mujer</option>
