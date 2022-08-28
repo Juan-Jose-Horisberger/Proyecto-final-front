@@ -50,25 +50,33 @@ export default function Pagination({ allProducts, loaded }) {
             {
                 loaded ? (
                     <div className={`d-flex flex-wrap justify-content-sm-evenly`}>
-                        {currentItems.length ? currentItems.map((p, i) =>
-                            <Product
-                                key={i}
-                                id={p.id}
-                                name={p.name}
-                                price={p.price}
-                                image={p.image}
-                            />
-                        )
-                            : <div className="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-
+                        {currentItems.length
+                            ? currentItems.map((p, i) =>
+                                <Product
+                                    key={i}
+                                    id={p.id}
+                                    name={p.name}
+                                    price={p.price}
+                                    image={p.image}
+                                />
+                            )
+                            : (<div className={`${styles.notResult}`}>
+                                <p role="status">
+                                    NO HUBO RESULTADOS PARA TU BÚSQUEDA
+                                </p>
+                                <p onClick={() => window.location.reload(false)}>Reload</p>
+                            </div>)
                         }
                     </div>
                 )
-                    : <div className="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
+                    : (
+                        <div className={`d-flex justify-content-center flex-column ${styles.container_loading}`}>
+                            <p>Cargando...</p>
+                            <div className={`spinner-border ${styles.loading}`} style={{ width: "4rem", height: "4rem" }} role="status">
+                                <span className="visually-hidden"></span>
+                            </div>
+                        </div>
+                    )
             }
 
             <>

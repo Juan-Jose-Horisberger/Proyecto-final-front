@@ -47,13 +47,40 @@ a:hover{
     display: none;
 }
 
-.loading{
+.container_loading{
+    height: 340px;
+    align-items: center;
+    margin-bottom: 175px;
+}
+
+.container_loading p{
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    flex-direction: column !important;
+    color: white;
+}
+
+.notResult{
     width: 100%;
-    font-size: 90px;
-    background-color: black;
+    height: 50vh;
     display: flex;
     justify-content: center;
-    margin-top: 110px;
-    color: white;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: red; */
+}
+
+.notResult p{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.notResult p:nth-child(2){
+    text-decoration: underline;
+}
+
+.notResult p:nth-child(2):hover{
+    cursor: pointer;
 }
 

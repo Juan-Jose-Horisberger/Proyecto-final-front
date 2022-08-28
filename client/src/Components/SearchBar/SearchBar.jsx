@@ -6,23 +6,17 @@ import { getProductByName, clearNotifications } from '../../Redux/Action';
 import { Link } from 'react-router-dom';
 import CartIcon from '../../Imagenes/cart.svg';
 import FavoritesIcon from '../../Imagenes/favorites.svg';
-import FormIcon from '../../Imagenes/form.svg';
-import { useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function SearchBar({ socket }) {
    const dispatch = useDispatch();
-   // const notifications = useSelector(state => state.newNotification);
-
    const [productName, setProductName] = useState("")
-   // const countNotifications = useSelector(state => state.counterNotification);
    const { loginWithRedirect } = useAuth0();
    const { user, isAuthenticated, isLoading } = useAuth0();
-   // const [notificationsPrueba, setNotificationsPrueba] = useState([]);
-   // const [notifications, setNotifications] = useState([]);
+   const [errorsExist, setErrorsExist] = useState(false);
 
    function handleOnClick() {
-      productName ? dispatch(getProductByName(productName)) : alert("No escribiste nada");
+      productName ? dispatch(getProductByName(productName)) : setErrorsExist(true);
       setProductName("");
    }
 
@@ -60,9 +54,14 @@ export default function SearchBar({ socket }) {
       socket.on("newProducts", (data) => {
          console.log(data);
          return (
-            <h1 style={{backgroundColor: "red"}}>New product</h1>
+            <h1 style={{ backgroundColor: "red" }}>New product</h1>
          )
       })
+   }
+
+   function validateErrors(e){
+      e.preventDefault();
+      setErrorsExist(false);
    }
 
    return (
@@ -206,7 +205,7 @@ export default function SearchBar({ socket }) {
                                        ? infoNotifications.purchaseNotification.map((n, i) => displayNotification(n, i))
                                        : infoNotifications.length
                                           ? infoNotifications.newProducts.map(p => displayNotificationProducts(p))
-                                          : (<p style={{backgroundColor: "red"}}>No hay notificaciones</p>)
+                                          : (<p style={{ backgroundColor: "red" }}>No hay notificaciones</p>)
                                  }
                               </div>
                            </div>
@@ -215,10 +214,30 @@ export default function SearchBar({ socket }) {
 
                      </ul>
                   </div>
-
                </div>
             </nav>
-
+            <div
+               className={`
+                  alert alert-danger alert-dismissible fade show d-flex 
+                  ${styles.container_Alert} 
+                  ${errorsExist ? styles.open : styles.container_Alert}`}
+                  role="alert">
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  className="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
+                  viewBox="0 0 16 16"
+                  role="img"
+                  aria-label="Warning:">
+                  <path
+                     d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                  />
+               </svg>
+               <div className={`${styles.alertMsj}`}>Por favor complete el campo correspondientes</div>
+               <button type="button" className="btn-close" onClick={(e) => validateErrors(e)}></button>
+            </div>
          </div>
       </div>
    )

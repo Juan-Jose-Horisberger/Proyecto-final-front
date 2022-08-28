@@ -8,7 +8,7 @@ import Filters from '../Filter/Filters.jsx';
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home({ socket }) {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const { user, isAuthenticated, isLoading } = useAuth0();
 	const allUsers = useSelector((state) => state.allUsers);
 	const allProducts = useSelector((state) => state.products);
@@ -27,34 +27,28 @@ export default function Home({ socket }) {
 			}
 		}
 	}, [isAuthenticated]);
-    
+
 	useEffect(() => {
 		dispatch(getUsers());
-		dispatch(getAllProducts());
-		setLoaded(true);
-		console.log(process.env);
+		dispatch(getAllProducts())
+			.then(res => (typeof res === "object") && setLoaded(true))
 	}, []);
 
-    useEffect(() => {
-        dispatch(getAllProducts());
-        setLoaded(true);
-    }, [])
+	return (
+		<div className={`${styles.container} container-fluid p-0 d-flex flex-wrap justify-content-evenly`}>
+			<div className={`col-12 ${styles.container_SearchBar}`}>
+				<SearchBar socket={socket} />
+			</div>
 
-    return (
-        <div className={`${styles.container} container-fluid p-0 d-flex flex-wrap justify-content-evenly`}>
-            <div className={`col-12 ${styles.container_SearchBar}`}>
-                <SearchBar socket={socket}/>
-            </div>
-
-            <Filters />
+			<Filters />
 
 
 
-            <Pagination
-                allProducts={allProducts}
-                loaded={loaded}
-            />
+			<Pagination
+				allProducts={allProducts}
+				loaded={loaded}
+			/>
 
-        </div>
-    )
+		</div>
+	)
 }
