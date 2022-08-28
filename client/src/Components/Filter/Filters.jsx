@@ -7,11 +7,11 @@ import resetImage from "../../Imagenes/reset.svg"
 export default function Filters() {
     const dispatch = useDispatch();
     const [params, setParams] = useState("");
-    const [price, setPrice] = useState("2.999")
+    const [price, setPrice] = useState("65.999")
     const [talle, setTalle] = useState("indumentaria")
 
     const validate = (e) => {
-        setPrice("2.999");
+        setPrice("65.999");
 
         if (params.includes(e.target.name)) {
 
@@ -71,7 +71,7 @@ export default function Filters() {
 
     const reset = (e) => {
         dispatch(getAllProducts());
-        setPrice("2.999")
+        setPrice("65.999")
 
         var options = document.querySelectorAll('#my_select');
         for (var i = 0, l = options.length; i < l; i++) {
@@ -242,7 +242,7 @@ export default function Filters() {
                                     <option value="l">L</option>
                                 </select></div>}
                         <div>
-                            <h4>Precioooo</h4>
+                            <h4>Precio</h4>
                             <input type="range"
                                 className="form-range"
                                 id="customRange1"
