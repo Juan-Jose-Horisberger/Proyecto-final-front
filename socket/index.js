@@ -48,6 +48,7 @@ io.on("connection", (socket) => {
     });
 
     io.emit("newProducts", "¡Se agregaron nuevos productos!")
+    
     socket.on("disconnect", () => {//Cada vez que el usuario se desconecte
 
         removeUser(socket.id) //No es un evento no estamos tomando nada del lado del cliente, solo elimina el usuario de el array cuando este se desconecte

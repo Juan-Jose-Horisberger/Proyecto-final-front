@@ -30,6 +30,7 @@ const initialState = {
         newProducts: []
     },
     productsToBuy: [],
+    productsNotifications: [],
 
 
 }
@@ -100,11 +101,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
             };
 
         case CREATE_PRODUCT:
-            console.log(payload)
+            // console.log(payload);
             return {
                 ...state, products: [...state.products, payload],
                 newNotification: {
-                    ...state,
+                    ...state.newNotification,
                     counter: state.newNotification.counter + 1,
                     newProducts: [...state.newNotification.newProducts, payload]
                 }
@@ -124,8 +125,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 newNotification: {
-                    ...state,
-                    purchaseNotification: [...state.newNotification.purchaseNotification],
+                    ...state.newNotification,
                     counter: 0
                 }
             };
@@ -134,7 +134,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
             console.log(payload);
             return {
                 ...state, newNotification: {
-                    ...state,
+                    ...state.newNotification,
                     counter: state.newNotification.counter + 1,
                     purchaseNotification: [...state.newNotification.purchaseNotification, payload],
                 }

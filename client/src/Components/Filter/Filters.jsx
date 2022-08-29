@@ -150,7 +150,7 @@ export default function Filters() {
                         </select></div>}
 
                 <div>
-                    <h4>Precioooo</h4>
+                    <h4>Precio</h4>
                     <input type="range"
                         className="form-range"
                         id="customRange1"

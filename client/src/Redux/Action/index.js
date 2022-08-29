@@ -107,13 +107,13 @@ export const getProductToBuy = (id) => {
   })
 }
 
-export const createProduct = (data) => {
-  return async function () {
-    let newProduct = await axios.post(`/products`, data)
-    return ({
+export const createProduct = (payload) => {
+  return async function (dispatch) {
+    let newProduct = await axios.post(`/products`, payload)
+    return dispatch({
       type: CREATE_PRODUCT,
-      payload: newProduct
-    });
+      payload
+    })
   }
 };
 

@@ -292,7 +292,7 @@ export default function Contact() {
                                 <p className="invalid-feedback mb-0">{error.user_message}</p>
                             </div>
                             <div className={`${styles.container_button}`}>
-                                {console.log(errorsExist)}
+                                {/* {console.log(errorsExist)} */}
                                 {console.log(input.user_name, input.user_email, input.user_affair, input.user_message)}
                                 {
                                     (errorsExist && 
