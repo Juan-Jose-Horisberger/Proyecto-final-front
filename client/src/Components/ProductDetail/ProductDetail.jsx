@@ -265,7 +265,7 @@ export default function ProductDetail() {
         </div>
       )}
 
-      <div>
+      <div className={styles.comment}>
         <h1>Agrega un comentario!</h1>
 
         <input

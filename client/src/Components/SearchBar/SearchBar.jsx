@@ -36,7 +36,6 @@ export default function SearchBar({ socket }) {
       dispatch(getProductByName(getName));
     }
   }
-  const infoNotifications = useSelector((state) => state.newNotification);
 
   const displayNotification = ({ senderName, type }, i) => {
     if (type === 1) {
