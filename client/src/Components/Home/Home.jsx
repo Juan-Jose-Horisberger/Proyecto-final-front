@@ -1,40 +1,63 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import styles from './Home.module.css';
-import { getAllProducts } from '../../Redux/Action';
-import SearchBar from '../SearchBar/SearchBar.jsx';
-import Pagination from '../Pagination/Pagination.jsx';
-import Filters from '../Filter/Filters.jsx';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import styles from "./Home.module.css";
+import {
+  getAllProducts,
+  getUsers,
+  createUser,
+  getUserDetail,
+} from "../../Redux/Action";
+import SearchBar from "../SearchBar/SearchBar.jsx";
+import Pagination from "../Pagination/Pagination.jsx";
+import Filters from "../Filter/Filters.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export default function Home() {
-    const dispatch = useDispatch();
-    const allProducts = useSelector(state => state.products);
-    const [loaded, setLoaded] = useState(false)
+export default function Home({ socket }) {
+  const dispatch = useDispatch();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const allUsers = useSelector((state) => state.allUsers);
+  const allProducts = useSelector((state) => state.products);
+  const [loaded, setLoaded] = useState(false);
 
-    useEffect(() => {
-        // if (allProducts.length) {
-        //     return;
-        // }
-        dispatch(getAllProducts());
-        setLoaded(true);
-        console.log(process.env);
-    }, [])
+  let searchUser;
 
-    return (
-        <div className={`${styles.container} container-fluid p-0 d-flex flex-wrap justify-content-evenly`}>
-            <div className={`col-12 ${styles.container_SearchBar}`}>
-                <SearchBar />
-            </div>
+  if (!isLoading && isAuthenticated) {
+    searchUser = allUsers.length
+      ? allUsers.filter((e) => e.email === user.email)
+      : "nada";
+  }
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      if (searchUser === "nada" || !searchUser.length) {
+        dispatch(createUser(user));
+      }
+    }
+  }, [isAuthenticated]);
 
-            <Filters/>
-            
+  useEffect(() => {
+    dispatch(getUsers());
+    dispatch(getAllProducts()).then(
+      (res) => typeof res === "object" && setLoaded(true)
+    );
+  }, []);
 
-            <Pagination
-                allProducts={allProducts}
-                loaded={loaded}
-            />
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      dispatch(getUserDetail(user.email));
+    }
+  }, [user]);
 
-        </div>
-    )
+  return (
+    <div
+      className={`${styles.container} container-fluid p-0 d-flex flex-wrap justify-content-evenly`}
+    >
+      <div className={`col-12 ${styles.container_SearchBar}`}>
+        <SearchBar socket={socket} />
+      </div>
+
+      <Filters />
+
+      <Pagination allProducts={allProducts} loaded={loaded} />
+    </div>
+  );
 }

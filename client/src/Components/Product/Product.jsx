@@ -1,83 +1,100 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import styles from './Product.module.css';
+import styles from "./Product.module.css";
 import addCart from "../../Imagenes/add-cart.svg";
 import deleteCart from "../../Imagenes/delete-cart.svg";
-import addFav from "../../Imagenes/add-fav.svg"
-import deleteFav from "../../Imagenes/delete-fav.svg"
-import { deleteFavProduct, getFavoriteProduct, getCartProduct, deleteCartProduct } from '../../Redux/Action';
+import addFav from "../../Imagenes/add-fav.svg";
+import deleteFav from "../../Imagenes/delete-fav.svg";
+import Cookies from "universal-cookie";
+import {
+  deleteFavProduct,
+  getFavoriteProduct,
+  getCartProduct,
+  deleteCartProduct,
+} from "../../Redux/Action";
+import { useState } from "react";
 
 export default function Product({ id, name, price, image }) {
-    const dispatch = useDispatch()
-    const productFav = useSelector(state => state.productFav)
-    const productCart = useSelector(state => state.productCart)
+  const dispatch = useDispatch();
+  const productFav = useSelector((state) => state.productFav);
+  const productCart = useSelector((state) => state.productCart);
+  const cookies = new Cookies();
 
-    const handleOnFav = () => {
-        const findProduct = productFav.find(e => e.id === id)
+  const handleOnFav = () => {
+    const findProduct = productFav.find((e) => e.id === id);
 
-        if (findProduct) {
-            dispatch(deleteFavProduct(id))
-        } else {
-            dispatch(getFavoriteProduct(id))
-        }
+    if (findProduct) {
+      dispatch(deleteFavProduct(id));
+    } else {
+      dispatch(getFavoriteProduct(id));
     }
+  };
 
-    const handleOnCart = () => {
-        const findProduct = productCart.find(e => e.id === id)
+  const handleOnCart = () => {
+    const findProduct = cookies.get(id);
 
-        if (findProduct) {
-            dispatch(deleteCartProduct(id))
-        } else {
-            dispatch(getCartProduct(id))
-        }
+    if (findProduct) {
+      dispatch(deleteCartProduct(id));
+      cookies.remove(id);
+    } else {
+      dispatch(getCartProduct(id));
     }
+  };
 
-    const validateCart = (id) => {
-        const findProductCart = productCart.find(e => e.id === id);
+  const validateCart = (id) => {
+    const findProductCart = cookies.get(id);
 
-        return findProductCart;
-    }
+    if (findProductCart) return true;
 
-    const validateFav = (id) => {
-        const findProductFav = productFav.find(e => e.id === id);
+    return false;
+  };
 
-        return findProductFav;
-    }
+  const validateFav = (id) => {
+    const findProductFav = productFav.find((e) => e.id === id);
 
-    return (
+    return findProductFav;
+  };
 
-        <div className={`${styles.container}`}>
-            <div>
-                <div>
-                    <Link to={`/ProductDetail/${id}`}>
-                        <img src={image} alt="Imagen no encontrada" className={`img-fluid`} />
-                    </Link>
-                </div>
-                <div className={styles.divButtons}>  {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
-                    {validateCart(id) ?
-                        <button onClick={handleOnCart} className={styles.cart}>
-                            <img src={deleteCart} alt="image-not-found" width="55px" />
-                        </button> :
-                        <button onClick={handleOnCart} className={styles.cart}>
-                            <img src={addCart} alt="image-not-found" width="55px" />
-                        </button>
-                    }
-
-
-                    {validateFav(id) ?
-                        <button onClick={handleOnFav} className={styles.fav}>
-                            <img src={deleteFav} alt="image-not-found" width="40px" />
-                        </button> :
-                        <button onClick={handleOnFav} className={styles.fav}>
-                            <img src={addFav} alt="image-not-found" width="40px" />
-                        </button>}
-                </div>
-            </div>
-            <div>
-                <h1 className={styles.name_Product}>{name}</h1>
-                <h2 className={`${styles.price_Product}`}>$ {price}</h2>
-            </div>
+  return (
+    <div className={`${styles.container}`}>
+      <div>
+        <div>
+          <Link to={`/ProductDetail/${id}`}>
+            <img
+              src={image}
+              alt="Imagen no encontrada"
+              className={`img-fluid`}
+            />
+          </Link>
         </div>
-    )
+        <div className={styles.divButtons}>
+          {" "}
+          {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
+          {validateCart(id) ? (
+            <button onClick={handleOnCart} className={styles.cart}>
+              <img src={deleteCart} alt="image-not-found" width="55px" />
+            </button>
+          ) : (
+            <button onClick={handleOnCart} className={styles.cart}>
+              <img src={addCart} alt="image-not-found" width="55px" />
+            </button>
+          )}
+          {validateFav(id) ? (
+            <button onClick={handleOnFav} className={styles.fav}>
+              <img src={deleteFav} alt="image-not-found" width="40px" />
+            </button>
+          ) : (
+            <button onClick={handleOnFav} className={styles.fav}>
+              <img src={addFav} alt="image-not-found" width="40px" />
+            </button>
+          )}
+        </div>
+      </div>
+      <div>
+        <h1 className={styles.name_Product}>{name}</h1>
+        <h2 className={`${styles.price_Product}`}>$ {price}</h2>
+      </div>
+    </div>
+  );
 }
