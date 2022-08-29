@@ -2,7 +2,11 @@ import React from "react";
 import styles from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { getProductByName, clearNotifications } from "../../Redux/Action";
+import {
+  getProductByName,
+  clearNotifications,
+  getDetailNotification,
+} from "../../Redux/Action";
 import { Link } from "react-router-dom";
 import CartIcon from "../../Imagenes/cart.svg";
 import FavoritesIcon from "../../Imagenes/favorites.svg";
@@ -15,7 +19,9 @@ export default function SearchBar({ socket }) {
   const { loginWithRedirect } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [errorsExist, setErrorsExist] = useState(false);
-  const infoProductDefailt = useSelector((state) => state.products);
+  const infoProductDefailt = useSelector(
+    (state) => state.productsNotifications
+  );
   const [getDetails, setGetDetails] = useState(false);
   const [getName, setGetName] = useState("");
 
@@ -32,7 +38,7 @@ export default function SearchBar({ socket }) {
 
   function getDetailsOnClick() {
     if (getName.length) {
-      dispatch(getProductByName(getName));
+      dispatch(getDetailNotification(getName));
     }
   }
   const infoNotifications = useSelector((state) => state.newNotification);
@@ -135,9 +141,6 @@ export default function SearchBar({ socket }) {
                   className={`d-flex justify-content-around align-items-center ${styles.container_Info_Navbar}`}
                   style={{ border: "1px solid red" }}
                 >
-                  {/* <Link to='/CreateProduct' className="nav-item mx-3 mx-lg-2" style={{ textDecoration: 'none' }} >
-                                        <p className={`nav-link mb-0 text-start text-sm-center`} style={{ color: 'white' }} aria-current="page">Crear producto</p>
-                                    </Link> */}
                   <Link
                     to="/Offers"
                     className="nav-item mx-3  mx-lg-2"
@@ -240,13 +243,12 @@ export default function SearchBar({ socket }) {
                         alt="img-icon"
                       />
                     ) : !isAuthenticated ? (
-                      <button>
-                        <img
-                          onClick={() => loginWithRedirect()}
-                          src="https://www.svgrepo.com/show/421823/user-people-man.svg"
-                          alt="img-icon"
-                        />
-                      </button>
+                      <img
+                        onClick={() => loginWithRedirect()}
+                        src="https://www.svgrepo.com/show/421823/user-people-man.svg"
+                        alt="img-icon"
+                        style={{ cursor: "pointer" }}
+                      />
                     ) : (
                       <Link to="/profile">
                         <img
@@ -258,6 +260,17 @@ export default function SearchBar({ socket }) {
                       </Link>
                     )}
                   </div>
+
+                  <Link
+                    to="/CreateProduct"
+                    className="nav-item mx-3 mx-lg-2"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <img
+                      src="https://www.svgrepo.com/show/422474/cloud-computing-data-2.svg"
+                      alt=""
+                    />
+                  </Link>
 
                   <div
                     className={`${styles.container_notification} `}
@@ -296,23 +309,6 @@ export default function SearchBar({ socket }) {
                       ></button>
                     </div>
                     <div className={`offcanvas-body`}>
-                      {
-                        // notifications.length && notifications.newProducts.map((p, i) => {
-                        //     p.offert
-                        //         ? (
-                        //             <div key={i}>
-                        //                 <p>{p.image}</p>
-                        //                 <p>{p.name}</p>
-                        //             </div>
-                        //         )
-                        //         : (
-                        //             <div key={i}>
-                        //                 <p>{p.image}</p>
-                        //                 <p>{p.name}</p>
-                        //             </div>
-                        //         )
-                        // })
-                      }
                       {infoNotifications.newProducts.length ? (
                         infoNotifications.newProducts.map((p) =>
                           displayNotificationProducts(p)
@@ -332,9 +328,9 @@ export default function SearchBar({ socket }) {
         </nav>
         <div
           className={`
-                  alert alert-danger alert-dismissible fade show d-flex 
-                  ${styles.container_Alert} 
-                  ${errorsExist ? styles.open : styles.container_Alert}`}
+            alert alert-danger alert-dismissible fade show d-flex 
+            ${styles.container_Alert} 
+            ${errorsExist ? styles.open : styles.container_Alert}`}
           role="alert"
         >
           <svg
