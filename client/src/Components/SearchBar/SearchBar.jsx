@@ -179,6 +179,7 @@ export default function SearchBar({ socket }) {
                     aria-describedby="search-addon"
                     value={productName}
                     onChange={(e) => setProductName(e.target.value)}
+                    style={{ color: "white" }}
                   />
 
                   <span
