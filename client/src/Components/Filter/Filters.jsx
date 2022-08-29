@@ -62,6 +62,7 @@ export default function Filters() {
       );
       dispatch(filterByQuery(actualFilter));
       setParams(actualFilter);
+      if (e.target.value === "calzado") setTalle("calzado");
     }
   };
 
@@ -73,6 +74,7 @@ export default function Filters() {
   const reset = (e) => {
     dispatch(getAllProducts());
     setPrice("65.999");
+    setTalle("indumentaria");
 
     var options = document.querySelectorAll("#my_select");
     for (var i = 0, l = options.length; i < l; i++) {
@@ -107,7 +109,7 @@ export default function Filters() {
             <option value="campera">Camperas</option>
             <option value="buzo">Buzos</option>
             <option value="pantalon">Pantalones</option>
-            <option value="calzado">Zapatillas</option>
+            <option value="calzado">Calzado</option>
           </select>
         </div>
         <div>
@@ -164,6 +166,10 @@ export default function Filters() {
               <option value="41">41</option>
               <option value="42">42</option>
               <option value="43">43</option>
+              <option value="44">44</option>
+              <option value="45">45</option>
+              <option value="46">46</option>
+              <option value="47">47</option>
             </select>
           </div>
         ) : (
@@ -301,6 +307,10 @@ export default function Filters() {
                   <option value="41">41</option>
                   <option value="42">42</option>
                   <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
                 </select>
               </div>
             ) : (
@@ -320,6 +330,8 @@ export default function Filters() {
                   <option value="s">S</option>
                   <option value="m">M</option>
                   <option value="l">L</option>
+                  <option value="xl">XL</option>
+                  <option value="xxl">XXL</option>
                 </select>
               </div>
             )}
