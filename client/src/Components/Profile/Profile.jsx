@@ -49,6 +49,7 @@ export default function Profile() {
             <h6>Email: {userDetail.email}</h6>
             <Logout />
           </div>
+         </div>
       )
     );
   }
