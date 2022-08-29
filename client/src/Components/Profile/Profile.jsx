@@ -30,23 +30,27 @@ export default function Profile() {
   } else {
     return (
       isAuthenticated && (
-        <div className="d-flex justify-content-center">
-          <div class={`d-flex flex-column  ${styles.container_Info}`}>
-            <Link to="/">
-              <button>Regresar</button>
-            </Link>
-            <h3 className="d-flex justify-content-center">Mi Perfil</h3> <br />
-            <img
-              className="d-flex justify-content-center"
-              src={userDetail.img}
-              onError={handleOnError}
-              alt={user.name}
-            />{" "}
-            <br />
-            <h2>{userDetail.name}</h2>
+        <div className={styles.container}>
+          <div className={styles.container_Info}>
+            <p>
+              <Link to="/">Inicio</Link>/Mi Perfil
+            </p>
+            <h3>Mi Perfil</h3>
+            <div>
+              <img
+                src={user.img}
+                onError={handleOnError}
+                // alt={user.name}
+              />
+            </div>
+            <div>
+              <h2>{userDetail.name}</h2>
+            </div>
             <h6>{userDetail.username}</h6>
-            <h6>Email: {userDetail.email}</h6>
-            <Logout />
+            <h6>Email: {user.email}</h6>
+            <div>
+              <Logout />
+            </div>
           </div>
         </div>
       )
