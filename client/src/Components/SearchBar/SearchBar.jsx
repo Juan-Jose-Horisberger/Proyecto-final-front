@@ -18,6 +18,7 @@ export default function SearchBar({ socket }) {
   const infoProductDefailt = useSelector((state) => state.products);
   const [getDetails, setGetDetails] = useState(false);
   const [getName, setGetName] = useState("");
+  var infoNotifications = useSelector((state) => state.newNotification);
 
   function handleOnClick() {
     productName
@@ -35,7 +36,6 @@ export default function SearchBar({ socket }) {
       dispatch(getProductByName(getName));
     }
   }
-  const infoNotifications = useSelector((state) => state.newNotification);
 
   const displayNotification = ({ senderName, type }, i) => {
     if (type === 1) {
@@ -46,20 +46,6 @@ export default function SearchBar({ socket }) {
         </div>
       );
     }
-    // else if (type === 2) { //nuevo product
-    //    return (
-    //       <div key={i} className={`${styles.notifications}`}>
-    //          <span>{`Se han agregado nuevos productos!`}</span>
-    //       </div>
-    //    )
-    // }
-    // else { // ofertas
-    //    return (
-    //       <div key={i} className={`${styles.notifications}`}>
-    //          <span>{`Tenemos products en descuento!`} <button>Ver más</button></span>
-    //       </div>
-    //    )
-    // }
   };
 
   const displayNotificationProducts = (p) => {
