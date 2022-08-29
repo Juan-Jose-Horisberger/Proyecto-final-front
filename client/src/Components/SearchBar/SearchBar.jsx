@@ -293,6 +293,7 @@ export default function SearchBar({ socket }) {
                         type="button"
                         className="btn-close text-reset"
                         data-bs-dismiss="offcanvas"
+                        style={{ backgroundColor: "white" }}
                       ></button>
                     </div>
                     <div className={`offcanvas-body`}>
