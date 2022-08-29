@@ -179,3 +179,22 @@ export const createUser = (payload) => {
     return dispatch({ type: CREATE_USER, payload: NewUser.data });
   };
 };
+
+export const addReviewToProduct = async (review) => {
+  const reviewParse = {
+    email: review.email,
+    idProduct: review.idProduct,
+    number: parseInt(review.number),
+    comment: review.comment,
+  };
+
+  const response = await axios.put(
+    "https://proyecto-final-01.herokuapp.com/scores/",
+    review
+  );
+  if (!response.status !== 200) {
+    return alert("comentario agregado");
+  } else {
+    return alert("ya haz comentado este producto");
+  }
+};
