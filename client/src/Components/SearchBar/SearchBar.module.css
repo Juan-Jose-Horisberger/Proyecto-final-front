@@ -1,169 +1,181 @@
-@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 /*font-family: 'Questrial', sans-serif;*/
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-    width: 100% !important;
-    padding: 0 0px !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
+  width: 100% !important;
+  padding: 0 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
 
 button {
-    border: none !important;
+  border: none !important;
 }
 
 .button_NavBar {
-    border: none !important;
+  border: none !important;
 }
 
 .container_icons img:first-child,
 .container_icons img:nth-child(2) {
-    width: 30px !important;
-    height: auto;
+  width: 30px !important;
+  height: auto;
 }
 
 .container_NavBar {
-    width: 100%;
+  width: 100%;
 
-    background-color: #1F2021 !important;
-    position: fixed;
-    z-index: 5;
-    top: 0;
+  background-color: #1f2021 !important;
+  position: fixed;
+  z-index: 5;
+  top: 0;
 }
 
 .container_NavBar h1 {
-    color: white;
-    font-family: 'Questrial', sans-serif;
-    font-weight: bold;
+  color: white;
+  font-family: "Questrial", sans-serif;
+  font-weight: bold;
 }
 
 .button_Search {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    background-color: #272A2C !important;
-    border: 1px solid #3d3e3f !important;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #272a2c !important;
+  border: 1px solid #3d3e3f !important;
 }
 
 .container_Info_Navbar {
-    width: 50%;
-    border: none !important;
+  width: 50%;
+  border: none !important;
 }
 
 .container_Searchbar {
-    width: 20% !important;
-
+  width: 20% !important;
 }
 
 .container_Searchbar input {
-    background-color: #272A2C !important;
-    border: 1px solid #3d3e3f !important;
-    font-family: 'Questrial', sans-serif;
+  background-color: #272a2c !important;
+  border: 1px solid #3d3e3f !important;
+  font-family: "Questrial", sans-serif;
 }
 
 .container_favAndCart {
-    width: 20%;
-    padding: 0 10px;
+  width: 20%;
+  padding: 0 10px;
 }
 
-.container_notification{
-    background-color: red;
-}
+/* .container_notification {
+  background-color: red;
+} */
 
 .container_favAndCart .container_notification div {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    /* border: 1px solid red; */
-    position: relative;
-    padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* border: 1px solid red; */
+  position: relative;
+  padding: 5px;
 }
 
 .container_favAndCart .container_notification div:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .container_favAndCart .container_notification div div {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: red;
-    padding: 3px;
-    padding-top: 4px;
-    color: white;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: -3px;
-    right: -0px;
-    font-family: 'Questrial', sans-serif;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: red;
+  padding: 3px;
+  padding-top: 4px;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -3px;
+  right: -0px;
+  font-family: "Questrial", sans-serif;
 }
 
 .container_showNotifications {
-    width: 40%;
-    /* background-color: red; */
+  width: 40%;
+  /* background-color: red; */
 }
 
 .notifications {
-    width: 100%;
-    height: 85px;
-    background-color: blue;
-    margin-bottom: 10px;
+  width: 100%;
+  height: 85px;
+  background-color: blue;
+  margin-bottom: 10px;
 }
 
 .notifications span {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .container_Alert {
-    width: 45%;
-    position: fixed;
-    top: 85%;
-    left: 0;
-    transform: translateX(-200%);
-    transition: transform 0.4s, opacity 0.5s ease-out;
+  width: 45%;
+  position: fixed;
+  top: 85%;
+  left: 0;
+  transform: translateX(-200%);
+  transition: transform 0.4s, opacity 0.5s ease-out;
 }
 
 .container_Alert.open {
-    transform: translateX(-0);
+  transform: translateX(-0);
 }
 
-.container_NotificationsRender{
-    display: flex;
-    flex-wrap: wrap;
-    border: 1px solid #2E3235;
+.container_NotificationsRender {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #2e3235;
 }
 
-.container_NotificationsRender:hover{
-    cursor: pointer;
+.container_NotificationsRender:hover {
+  cursor: pointer;
 
-    box-shadow: 0 0 5px 5px#23232C;
+  box-shadow: 0 0 5px 5px#23232C;
 }
 
-.container_NotificationsRender div:nth-child(2){
-    width: 100px;
-    border: 1px solid red;
-    margin-right: 20px;
+.container_NotificationsRender div:nth-child(2) {
+  width: 100px;
+  border: 1px solid red;
+  margin-right: 5px;
 }
 
-.container_NotificationsRender h5{
-    width: 100%;
-    border: 1px solid red;
-    text-align: center;
-    font-weight: bold;
-    padding: 0;
+.container_NotificationsRender div:nth-child(3) {
+  width: 255px;
+  border: 1px solid red;
+  align-self: center;
 }
 
-.container_NotificationsRender p:nth-child(1){
-    margin: 0;
+.container_NotificationsRender a {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container_NotificationsRender a h5 {
+  width: 100%;
+  border: 1px solid red;
+  text-align: center;
+  font-weight: bold;
+  padding: 0;
+  color: white;
+}
+
+.container_NotificationsRender p:nth-child(1) {
+  margin: 0;
 }

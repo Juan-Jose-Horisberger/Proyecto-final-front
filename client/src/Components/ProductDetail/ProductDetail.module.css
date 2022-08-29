@@ -1,234 +1,238 @@
-@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 /*font-family: 'Questrial', sans-serif;*/
 
 .overallContainer {
-    width: 100%;
-    /* border: 1px solid black; */
-    display: flex;
-    justify-content: center;
-    margin-top: 45px;
-    flex-wrap: wrap;
-    background-color: black;
+  width: 100%;
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  margin-top: 45px;
+  flex-wrap: wrap;
+  background-color: black;
+}
+
+.container {
+  background-color: black;
 }
 
 .container_1 {
-    width: 40%;
-    /* border: 1px solid black; */
-    font-family: 'Questrial', sans-serif;
+  width: 40%;
+  /* border: 1px solid black; */
+  font-family: "Questrial", sans-serif;
 }
 
 .container_1 h1 {
-    font-size: 20px;
-    color: white !important;
+  font-size: 20px;
+  color: white !important;
 }
 
 .container_1 h1 .span_3 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .container_2 {
-    width: 50%;
-    padding-left: 70px;
-    padding-top: 40px;
+  width: 50%;
+  padding-left: 70px;
+  padding-top: 40px;
 }
 
 .size_Container div {
-    width: 300px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .size_Container {
-    font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
 }
 
 .size_Container h3 {
-    color: white;
-    font-size: 25px;
+  color: white;
+  font-size: 25px;
 }
 
 .size_Container div p {
-    margin: 0;
-    padding: 4px 16px;
-    border-radius: 3px;
-    /* border: 1px solid black; */
-    background-color: #23232C;
-    color: white;
+  margin: 0;
+  padding: 4px 16px;
+  border-radius: 3px;
+  /* border: 1px solid black; */
+  background-color: #23232c;
+  color: white;
 }
 
 .size_Container div p:hover {
-    cursor: pointer;
-    background-color: black;
-    /* border: 1px solid red; */
+  cursor: pointer;
+  background-color: black;
+  /* border: 1px solid red; */
 }
 
 .container_2 h1 {
-    font-family: 'Questrial', sans-serif;
-    color: white !important;
-    font-size: 35px;
+  font-family: "Questrial", sans-serif;
+  color: white !important;
+  font-size: 35px;
 }
 
 .container_2 h2 {
-    /* width: 100%; */
-    font-size: 30px;
-    margin-bottom: 5px;
-    font-family: 'Questrial', sans-serif;
-    font-weight: bold;
-    /* border: 1px solid black; */
-    color: white !important;
+  /* width: 100%; */
+  font-size: 30px;
+  margin-bottom: 5px;
+  font-family: "Questrial", sans-serif;
+  font-weight: bold;
+  /* border: 1px solid black; */
+  color: white !important;
 }
 
 .container_button {
-    width: 100%;
-    display: flex;
-    margin-top: 20px;
-    /* border: 1px solid black; */
-    margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+  /* border: 1px solid black; */
+  margin-bottom: 10px;
 }
 
 .container_button button {
-    width: 70%;
-    padding: 8px;
-    background-color: #23232C;
-    border-radius: 3px;
-    font-family: 'Questrial', sans-serif;
-    font-weight: 600;
-    color: white;
+  width: 70%;
+  padding: 8px;
+  background-color: #23232c;
+  border-radius: 3px;
+  font-family: "Questrial", sans-serif;
+  font-weight: 600;
+  color: white;
 }
 
 .container_button button:hover {
-    cursor: pointer;
-    background-color: black;
-    transition: 0.5s;
+  cursor: pointer;
+  background-color: black;
+  transition: 0.5s;
 }
 
 .container_3 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-    border: 1px solid black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  border: 1px solid black;
 }
 
 .container_3 div {
-    width: 450px;
-    border: 1px solid black;
-    /* background-color: black; */
+  width: 450px;
+  border: 1px solid black;
+  /* background-color: black; */
 }
 
 .container_3 div h3 {
-    font-family: 'Questrial', sans-serif;
-    font-weight: bold;
-    background-color: black;
-    color: white;
-    margin: 0;
+  font-family: "Questrial", sans-serif;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  margin: 0;
 }
 
 .container_3 div h5 {
-    font-family: 'Questrial', sans-serif;
-    background-color: #2A2A2A;
-    padding: 7px 0;
-    margin: 0;
-    color: white !important;
+  font-family: "Questrial", sans-serif;
+  background-color: #2a2a2a;
+  padding: 7px 0;
+  margin: 0;
+  color: white !important;
 }
 
 .container_3 div .qualification {
-    background-color: #222222;
-    padding: 7px 0;
-    margin: 0;
+  background-color: #222222;
+  padding: 7px 0;
+  margin: 0;
 }
 
 .container_3 div .available {
-    background-color: #2A2A2A;
-    padding: 7px 0;
-    margin: 0;
+  background-color: #2a2a2a;
+  padding: 7px 0;
+  margin: 0;
 }
 
 .container_3 div .soldOut {
-    background-color: #222222;
-    padding: 7px 0;
-    margin: 0;
+  background-color: #222222;
+  padding: 7px 0;
+  margin: 0;
 }
 
 .container_4 {
-    width: 100%;
-    margin-top: 30px;
-    font-family: 'Questrial', sans-serif;
+  width: 100%;
+  margin-top: 30px;
+  font-family: "Questrial", sans-serif;
 }
 
 .container_4 h4 {
-    width: 630px;
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    color: white;
-    padding: 7px 0;
-    margin: 0;
+  width: 630px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 7px 0;
+  margin: 0;
 }
 
 .container_4 div {
-    width: 640px;
-    display: flex;
-    flex-wrap: wrap;
-    /* border: 1px solid black; */
+  width: 640px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid black; */
 }
 
 .container_4 div p {
-    width: 50%;
-    padding: 7px 0;
-    margin: 0;
+  width: 50%;
+  padding: 7px 0;
+  margin: 0;
 }
 
 .container_4 div p:first-child {
-    padding-left: 10px;
-    background-color: #2A2A2A;
+  padding-left: 10px;
+  background-color: #2a2a2a;
 }
 
 .container_4 div p:nth-child(2) {
-    padding-left: 10px;
-    background-color: #222222;
+  padding-left: 10px;
+  background-color: #222222;
 }
 
 .container_4 div p:nth-child(3) {
-    padding-left: 10px;
-    background-color: #222222;
+  padding-left: 10px;
+  background-color: #222222;
 }
 
 .container_4 div p:nth-child(4) {
-    padding-left: 10px;
-    background-color: #2A2A2A;
+  padding-left: 10px;
+  background-color: #2a2a2a;
 }
 
 .container_4 div p:nth-child(5) {
-    padding-left: 10px;
-    background-color: #2A2A2A;
+  padding-left: 10px;
+  background-color: #2a2a2a;
 }
 
 .container_4 div p:nth-child(6) {
-    padding-left: 10px;
-    background-color: #222222;
+  padding-left: 10px;
+  background-color: #222222;
 }
 
 .container_4 div p:nth-child(7) {
-    padding-left: 10px;
-    background-color: #222222;
+  padding-left: 10px;
+  background-color: #222222;
 }
 
 .container_4 div p:nth-child(8) {
-    padding-left: 10px;
-    background-color: #2A2A2A;
+  padding-left: 10px;
+  background-color: #2a2a2a;
 }
 
 .container_img1 {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .container_img1 p {
-    padding: 0;
-    padding-top: 15px;
-    padding-left: 5px;
+  padding: 0;
+  padding-top: 15px;
+  padding-left: 5px;
 }
 
 /* .loading {
@@ -241,180 +245,230 @@
 } */
 
 .container_cards {
-    width: 400px;
-    height: 200px;
-    background-color: blue;
+  width: 400px;
+  height: 200px;
+  background-color: blue;
 }
 
 .container_carrousel {
-    width: 100% !important;
-    /* background-color: red; */
-    margin-top: 50px;
+  width: 100% !important;
+  /* background-color: red; */
+  margin-top: 50px;
 }
 
 .container_carrousel h2 {
-    font-family: 'Questrial', sans-serif !important;
-    font-weight: 600;
-    margin: 15px 0;
-    color: white;
+  font-family: "Questrial", sans-serif !important;
+  font-weight: 600;
+  margin: 15px 0;
+  color: white;
 }
 
 .carts {
-    width: 290px;
-    /* border: 1px solid black !important; */
-    margin: 0 10px;
-    font-family: 'Questrial', sans-serif;
+  width: 290px;
+  /* border: 1px solid black !important; */
+  margin: 0 10px;
+  font-family: "Questrial", sans-serif;
 }
 
 .carts:hover {
-    background-color: #23232C;
+  background-color: #23232c;
 }
 
 .carts img:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .carts p {
-    text-align: center;
-    color: white;
+  text-align: center;
+  color: white;
 }
 
 .carts p:nth-child(3) {
-    font-weight: bold;
-    font-family: 'Questrial', sans-serif;
+  font-weight: bold;
+  font-family: "Questrial", sans-serif;
 }
 
 .container_loading {
-    height: 580px;
-    align-items: center;
-    /* background-color: red; */
+  height: 580px;
+  align-items: center;
+  /* background-color: red; */
 }
 
 .container_loading p {
-    font-size: 40px;
-    margin: 0;
-    padding: 0;
-    flex-direction: column !important;
-    color: white;
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+  flex-direction: column !important;
+  color: white;
 }
-
 
 @media screen and (min-width: 100px) and (max-width: 576px) {
-    .container_carrousel h2 {
-        font-size: 20px !important;
-        padding-left: 20px;
-    }
+  .container_carrousel h2 {
+    font-size: 20px !important;
+    padding-left: 20px;
+  }
 
-    .container_1 div {
-        width: 100% !important;
-    }
+  .container_1 div {
+    width: 100% !important;
+  }
 
-    .container_3 {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  .container_3 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-    .container_3 div {
-        width: 100% !important;
-    }
+  .container_3 div {
+    width: 100% !important;
+  }
 
-    .container_4 h4 {
-        width: 100% !important;
-    }
+  .container_4 h4 {
+    width: 100% !important;
+  }
 
-    .container_4 div {
-        width: 100% !important;
-    }
-
+  .container_4 div {
+    width: 100% !important;
+  }
 }
 
-
 @media screen and (min-width: 100px) and (max-width: 768px) {
-    .container_carrousel h2 {
-        font-size: 25px;
-    }
+  .container_carrousel h2 {
+    font-size: 25px;
+  }
 
-    .container_1 div {
-        width: 80% !important;
-    }
+  .container_1 div {
+    width: 80% !important;
+  }
 
-    .container_2 h1 {
-        font-size: 20px !important;
-    }
+  .container_2 h1 {
+    font-size: 20px !important;
+  }
 
-    .container_3 {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  .container_3 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-    .container_3 div {
-        width: 65%;
-    }
+  .container_3 div {
+    width: 65%;
+  }
 
-    .container_3 div h5 {
-        font-size: 17px;
-    }
+  .container_3 div h5 {
+    font-size: 17px;
+  }
 
+  .container_4 h4 {
+    width: 85%;
+  }
 
-    .container_4 h4 {
-        width: 85%;
-    }
-
-    .container_4 div {
-        width: 85%;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
+  .container_4 div {
+    width: 85%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 @media screen and (min-width: 100px) and (max-width: 992px) {
-    .overallContainer {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 50px;
-    }
+  .overallContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
 
-    .container_1 {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+  .container_1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-    .container_1 h1 {
-        width: 100%;
-        text-align: center;
-    }
+  .container_1 h1 {
+    width: 100%;
+    text-align: center;
+  }
 
-    .container_1 div {
-        width: 60%;
-    }
+  .container_1 div {
+    width: 60%;
+  }
 
-    .container_2 {
-        width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  .container_2 {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
-    .size_Container div {
-        width: auto;
-        /* border: 1px solid red; */
-        display: flex;
-        justify-content: center;
-    }
+  .size_Container div {
+    width: auto;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+  }
 
-    .size_Container div p {
-        margin: 0 15px;
-    }
+  .size_Container div p {
+    margin: 0 15px;
+  }
 
+  .container_2 h1 {
+    font-size: 25px;
+  }
 
-    .container_2 h1 {
-        font-size: 25px;
-    }
+  .container_2 .container_button button {
+    width: 100%;
+  }
+}
 
-    .container_2 .container_button button {
-        width: 100%;
-    }
+.divComments {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: azure;
+  /* border: 1px solid red; */
+  padding: 20px;
+  margin-top: 40px;
+  /* align-items: center; */
+}
+
+.commentsScore {
+  width: 20%;
+  margin: 20px 20px 20px 0;
+  background-color: #17171a;
+  border: 1px solid black;
+  border-radius: 7px;
+  height: 35px;
+  width: 10%;
+  color: azure;
+}
+
+.commentsText {
+  color: azure;
+  margin-bottom: 20px;
+  background-color: #17171a;
+  width: 50%;
+  height: 200px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1px solid black;
+  font-size: 18px;
+}
+
+.commentsBtn {
+  font-weight: 500;
+  border-radius: 0;
+  background-color: #23232c;
+  color: #fff;
+  line-height: 60px;
+  cursor: pointer;
+  width: 50%;
+  /* margin: auto; */
+  font-family: "Questrial", sans-serif !important;
+}
+
+.commentsBtn:hover {
+  transition: 0.4s;
+  color: #fff;
+  background-color: #100f10;
+  cursor: pointer;
+  font-family: "Questrial", sans-serif;
 }
