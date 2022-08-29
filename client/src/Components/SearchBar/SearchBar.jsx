@@ -18,7 +18,7 @@ export default function SearchBar({ socket }) {
   const infoProductDefailt = useSelector((state) => state.products);
   const [getDetails, setGetDetails] = useState(false);
   const [getName, setGetName] = useState("");
-  const infoNotifications = useSelector((state) => state.newNotification);
+  var infoNotifications = useSelector((state) => state.newNotification);
 
   function handleOnClick() {
     productName
