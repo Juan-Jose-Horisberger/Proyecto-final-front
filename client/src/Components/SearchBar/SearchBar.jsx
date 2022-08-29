@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import CartIcon from "../../Imagenes/cart.svg";
 import FavoritesIcon from "../../Imagenes/favorites.svg";
 import { useAuth0 } from "@auth0/auth0-react";
+const infoNotifications = useSelector((state) => state.newNotification);
 
 export default function SearchBar({ socket }) {
   const dispatch = useDispatch();
@@ -25,7 +26,6 @@ export default function SearchBar({ socket }) {
   function setNotificationsTo0() {
     dispatch(clearNotifications());
   }
-  const infoNotifications = useSelector((state) => state.newNotification);
 
   const displayNotification = ({ senderName, type }, i) => {
     if (type === 1) {
