@@ -336,7 +336,7 @@ export default function Contact() {
                 <textarea
                   name="user_message"
                   className={`
-                  form-control 
+                                    form-control 
                                     ${styles.inputs}
                                     ${
                                       enableErrors.message &&
