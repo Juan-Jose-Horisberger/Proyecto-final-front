@@ -110,7 +110,8 @@ button {
 
 .container_showNotifications {
   width: 40%;
-  /* background-color: red; */
+  background-color: black;
+  color: white;
 }
 
 .notifications {
@@ -151,13 +152,13 @@ button {
 
 .container_NotificationsRender div:nth-child(2) {
   width: 100px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin-right: 5px;
 }
 
 .container_NotificationsRender div:nth-child(3) {
   width: 255px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   align-self: center;
 }
 
@@ -169,7 +170,7 @@ button {
 
 .container_NotificationsRender a h5 {
   width: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   text-align: center;
   font-weight: bold;
   padding: 0;
