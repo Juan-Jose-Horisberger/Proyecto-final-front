@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../Redux/Action";
-import Cookies from "universal-cookie"
+import Cookies from "universal-cookie";
 
 export default function useForm(initialForm, validateForm) {
   const dispatch = useDispatch();
@@ -9,8 +9,8 @@ export default function useForm(initialForm, validateForm) {
   const [errors, setErrors] = useState({});
   const [validate, setValidate] = useState({});
   const [alert, setAlert] = useState();
-  var cookies = new Cookies()
-  var expiryDate = new Date(Date.now() + (60 * 24 * 3600000));
+  var cookies = new Cookies();
+  var expiryDate = new Date(Date.now() + 60 * 24 * 3600000);
 
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -22,58 +22,94 @@ export default function useForm(initialForm, validateForm) {
       "https://api.cloudinary.com/v1_1/dsnbvqwvs/image/upload",
       {
         method: "POST",
-        body: data
+        body: data,
       }
-    )
+    );
 
     const file = await res.json();
-    setForm({ ...form, image: file.secure_url })
-  }
+    setForm({ ...form, image: file.secure_url });
+  };
 
   const handleOnChange = (e) => {
-    cookies.set(e.target.name, e.target.value, { path: "/", expires: expiryDate });
+    cookies.set(e.target.name, e.target.value, {
+      path: "/",
+      expires: expiryDate,
+    });
 
     if (e.target.name === "category") {
       if (e.target.value === "calzado") {
         setForm({
-          ...form, [e.target.name]: cookies.get(e.target.name), size: []
+          ...form,
+          [e.target.name]: cookies.get(e.target.name),
+          size: [],
         });
-        const errores = validateForm({ ...form, [e.target.name]: cookies.get(e.target.name) }, e.target.name, setValidate, setErrors);
-        setErrors(errores)
-
+        const errores = validateForm(
+          { ...form, [e.target.name]: cookies.get(e.target.name) },
+          e.target.name,
+          setValidate,
+          setErrors
+        );
+        setErrors(errores);
       } else if (e.target.value !== "calzado") {
         setForm({
-          ...form, [e.target.name]: cookies.get(e.target.name), size: [...form.size.filter(e => e === "M" || e === "S" || e === "XS" || e === "L")]
+          ...form,
+          [e.target.name]: cookies.get(e.target.name),
+          size: [
+            ...form.size.filter(
+              (e) => e === "M" || e === "S" || e === "XS" || e === "L"
+            ),
+          ],
         });
 
-        const errores = validateForm({ ...form, [e.target.name]: cookies.get(e.target.name) }, e.target.name, setValidate, setErrors);
-        setErrors(errores)
-      };
+        const errores = validateForm(
+          { ...form, [e.target.name]: cookies.get(e.target.name) },
+          e.target.name,
+          setValidate,
+          setErrors
+        );
+        setErrors(errores);
+      }
     } else {
       setForm({
-        ...form, [e.target.name]: cookies.get(e.target.name)
+        ...form,
+        [e.target.name]: cookies.get(e.target.name),
       });
-      const errores = validateForm({ ...form, [e.target.name]: cookies.get(e.target.name) }, e.target.name, setValidate, setErrors);
-      setErrors(errores)
+      const errores = validateForm(
+        { ...form, [e.target.name]: cookies.get(e.target.name) },
+        e.target.name,
+        setValidate,
+        setErrors
+      );
+      setErrors(errores);
     }
   };
 
   const handleChecked = (ev) => {
-
     if (ev.target.checked) {
       setForm({
-        ...form, size: [...form.size, ev.target.value]
+        ...form,
+        size: [...form.size, ev.target.value],
       });
 
-      const errores = validateForm({ ...form, size: [...form.size, ev.target.value] }, ev.target.name, setValidate, setErrors);
+      const errores = validateForm(
+        { ...form, size: [...form.size, ev.target.value] },
+        ev.target.name,
+        setValidate,
+        setErrors
+      );
       setErrors(errores);
-
     } else {
       setForm({
-        ...form, size: form.size.filter(e => e !== ev.target.value)
+        ...form,
+        size: form.size.filter((e) => e !== ev.target.value),
       });
 
-      const errores = validateForm({ ...form, size: form.size.filter(e => e !== ev.target.value) }, ev.target.name, setValidate, setErrors);
+      const errores = validateForm(
+        { ...form, size: form.size.filter((e) => e !== ev.target.value) },
+        ev.target.name,
+        setValidate,
+        setErrors
+      );
       setErrors(errores);
     }
   };
@@ -81,18 +117,25 @@ export default function useForm(initialForm, validateForm) {
   const handleOffer = (ev) => {
     if (ev.target.checked) {
       setForm({
-        ...form, offer: true
+        ...form,
+        offer: true,
       });
     } else {
       setForm({
-        ...form, offer: false
+        ...form,
+        offer: false,
       });
     }
-  }
+  };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    const errores = validateForm(form, "namebrandcategorypricestockimagesoldsizescoregenreoffer", setValidate, validate);
+    const errores = validateForm(
+      form,
+      "namebrandcategorypricestockimagesoldsizescoregenreoffer",
+      setValidate,
+      validate
+    );
     setErrors(errores);
 
     if (!Object.entries(errores).length) {
@@ -109,9 +152,9 @@ export default function useForm(initialForm, validateForm) {
       cookies.remove("score");
       cookies.remove("genre");
 
-      var options = document.querySelectorAll('#my_select');
+      var options = document.querySelectorAll("#my_select");
       for (var i = 0, l = options.length; i < l; i++) {
-        options[i].selectedIndex = 0
+        options[i].selectedIndex = 0;
       }
     } else {
       setAlert(true);
@@ -131,5 +174,5 @@ export default function useForm(initialForm, validateForm) {
     setAlert,
     handleOffer,
     uploadImage,
-  }
+  };
 }
