@@ -53,7 +53,7 @@ export default function ProductDetail() {
   }
 
   const [review, setReview] = useState({
-    email: user.email,
+    email: "",
     idProduct: "",
     number: 0,
     comment: "",
