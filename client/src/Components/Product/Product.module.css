@@ -1,50 +1,51 @@
-.container{
-    width: 31%;
-    /* border: 1px solid red; */
-    /* margin: 10px; */
+.container {
+  width: 31%;
+  /* border: 1px solid red; */
+  /* margin: 10px; */
+  color: azure;
 }
 
-.name_Product{
-    font-size: 15px;
+.name_Product {
+  font-size: 15px;
 }
 
-.price_Product{
-    font-size: 15px;
+.price_Product {
+  font-size: 15px;
 }
 
 .fav {
-    background-color: black;
-    /* margin: 10px; */
-    padding: 11px;
-    margin: 10px;
-    border-radius: 40px;
+  background-color: azure;
+  /* margin: 10px; */
+  padding: 11px;
+  margin: 10px;
+  border-radius: 40px;
 }
 
 .cart {
-    background-color: black;
-    margin: 10px;
-    /* padding: 11px; */
-    /* width: 60px; */
-    height: 60px;
-    border-radius: 100px;
+  background-color: azure;
+  margin: 10px;
+  /* padding: 11px; */
+  /* width: 60px; */
+  height: 60px;
+  border-radius: 100px;
 }
 
 .divButtons {
-    /* align-items: center;
+  /* align-items: center;
     text-align: center; */
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 @media screen and (min-width: 100px) and (max-width: 576px) {
-    .container{
-        width: 100%;
-        padding: 0 40px;
-    }
+  .container {
+    width: 100%;
+    padding: 0 40px;
+  }
 }
 
 @media screen and (min-width: 576px) and (max-width: 992px) {
-    .container{
-        width: 45%;
-    }
+  .container {
+    width: 45%;
+  }
 }
