@@ -54,14 +54,14 @@ export default function SearchBar({ socket }) {
     }
   };
 
-  const displayNotificationProducts = (p) => {
+  const displayNotificationProducts = (p, i) => {
     if (!getName) {
       setGetName(p.name);
     }
     // setGetDetails(true);
     console.log(infoProductDefailt.length);
     return (
-      <div className={`${styles.container_NotificationsRender}`}>
+      <div key={i} className={`${styles.container_NotificationsRender}`}>
         {infoProductDefailt.length && (
           <Link to={`/ProductDetail/${infoProductDefailt[0].id}`}>
             <h5>Nuevo producto</h5>
@@ -298,8 +298,8 @@ export default function SearchBar({ socket }) {
                     </div>
                     <div className={`offcanvas-body`}>
                       {infoNotifications.newProducts.length ? (
-                        infoNotifications.newProducts.map((p) =>
-                          displayNotificationProducts(p)
+                        infoNotifications.newProducts.map((p, i) =>
+                          displayNotificationProducts(p, i)
                         )
                       ) : (
                         <p className="fs-4 text-center">
