@@ -18,6 +18,7 @@ export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
 export const GET_USERS = "GET_USERS";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const CREATE_USER = "CREATE_USER";
+export const SET_DETAIL_NOTIFICATIONS = "SET_DETAIL_NOTIFICATIONS";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -197,4 +198,11 @@ export const addReviewToProduct = async (review) => {
   } else {
     return alert("ya haz comentado este producto");
   }
+};
+
+export const getDetailNotification = (payload) => {
+  return {
+    type: SET_DETAIL_NOTIFICATIONS,
+    payload,
+  };
 };

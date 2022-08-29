@@ -16,6 +16,7 @@ import {
   GET_USERS,
   GET_USER_DETAIL,
   CREATE_USER,
+  SET_DETAIL_NOTIFICATIONS,
 } from "../Action";
 var cookies = new Cookies();
 const initialState = {
@@ -174,6 +175,19 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         newUsers: [...state.allUsers, payload],
+      };
+    case SET_DETAIL_NOTIFICATIONS:
+      const allProducts = state.products;
+      const productsFiltered = allProducts.filter((p) => {
+        let check = false;
+        if (p.name.toLowerCase().includes(payload.toLowerCase())) {
+          check = true;
+        }
+        return check;
+      });
+      return {
+        ...state,
+        productsNotifications: productsFiltered,
       };
 
     default:
