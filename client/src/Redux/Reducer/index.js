@@ -178,7 +178,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
     case SET_DETAIL_NOTIFICATIONS:
       const allProducts = state.products;
-      // console.log(allRecipes)
       const productsFiltered = allProducts.filter((p) => {
         let check = false;
         if (p.name.toLowerCase().includes(payload.toLowerCase())) {

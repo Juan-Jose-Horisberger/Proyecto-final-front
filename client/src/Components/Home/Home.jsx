@@ -20,6 +20,7 @@ export default function Home({ socket }) {
   const [loaded, setLoaded] = useState(false);
 
   let searchUser;
+
   if (!isLoading && isAuthenticated) {
     searchUser = allUsers.length
       ? allUsers.filter((e) => e.email === user.email)

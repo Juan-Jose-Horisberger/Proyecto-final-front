@@ -10,7 +10,6 @@ export default function Dashboard() {
         <div>
           <h2>GAED.JM</h2>
         </div>
-
         <div>
           <Link
             to="/CreateProduct"

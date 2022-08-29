@@ -265,20 +265,25 @@ export default function ProductDetail() {
         </div>
       )}
 
-      <h1>add your review</h1>
-      <input
-        name="comment"
-        type="text"
-        placeholder="comment"
-        onChange={(e) => onChangeReview(e)}
-      />
-      <input
-        name="number"
-        type="number"
-        placeholder="⭐ score "
-        onChange={(e) => onChangeReview(e)}
-      />
-      <button onClick={() => addReview()}>add review</button>
+      <div className={styles.divComments}>
+        <input
+          className={styles.commentsScore}
+          name="number"
+          type="number"
+          placeholder="⭐ score "
+          onChange={(e) => onChangeReview(e)}
+        />
+        <textarea
+          className={styles.commentsText}
+          name="comment"
+          type="text"
+          placeholder="Dejanos un comentario junto a tu puntuacion del producto"
+          onChange={(e) => onChangeReview(e)}
+        ></textarea>
+        <button className={styles.commentsBtn} onClick={() => addReview()}>
+          Comentar
+        </button>
+      </div>
     </div>
   );
 }
