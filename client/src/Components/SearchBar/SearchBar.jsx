@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import CartIcon from "../../Imagenes/cart.svg";
 import FavoritesIcon from "../../Imagenes/favorites.svg";
 import { useAuth0 } from "@auth0/auth0-react";
-const infoNotifications = useSelector((state) => state.newNotification);
 import { useEffect } from "react";
 
 export default function SearchBar({ socket }) {
@@ -19,6 +18,7 @@ export default function SearchBar({ socket }) {
   const infoProductDefailt = useSelector((state) => state.products);
   const [getDetails, setGetDetails] = useState(false);
   const [getName, setGetName] = useState("");
+  const infoNotifications = useSelector((state) => state.newNotification);
 
   function handleOnClick() {
     productName
