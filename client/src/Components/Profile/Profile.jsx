@@ -4,6 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetail } from "../../Redux/Action";
 import Login from "../Login/Login.jsx";
 import Logout from "../Logout/Logout.jsx";
+import { Link } from "react-router-dom";
+import styles from "./Profile.module.css";
 
 export default function Profile() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -28,12 +30,28 @@ export default function Profile() {
   } else {
     return (
       isAuthenticated && (
-        <div>
-          <img src={userDetail.img} onError={handleOnError} alt={user.name} />
-          <h2>{userDetail.name}</h2>
-          <h6>{userDetail.username}</h6>
-          <h6>Email: {userDetail.email}</h6>
-          <Logout />
+        <div className={styles.container}>
+          <div className={styles.container_Info}>
+            <p>
+              <Link to="/">Inicio</Link>/Mi Perfil
+            </p>
+            <h3>Mi Perfil</h3>
+            <div>
+              <img
+                src={user.img}
+                onError={handleOnError}
+                // alt={user.name}
+              />
+            </div>
+            <div>
+              <h2>{userDetail.name}</h2>
+            </div>
+            <h6>{userDetail.username}</h6>
+            <h6>Email: {user.email}</h6>
+            <div>
+              <Logout />
+            </div>
+          </div>
         </div>
       )
     );
