@@ -33,7 +33,7 @@ export default function Profile() {
         <div className={styles.container}>
           <div className={styles.container_Info}>
             <p>
-              <Link to="/">Inicio</Link>/Checkout
+              <Link to="/">Inicio</Link>/Mi Perfil
             </p>
             <h3>Mi Perfil</h3>
             <div>
