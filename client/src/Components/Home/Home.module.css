@@ -1,27 +1,28 @@
 .container {
-    width: 100%;
-    /* background-color: black;
+  width: 100%;
+  /* background-color: black;
      */
-     background-color: #121212;
+  background-color: #000000;
+  color: azure;
 }
 
 .container_Cards {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .container_Filters {
-    width: 20%;
+  width: 20%;
 }
 
 .container_SearchBar {
-    margin-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 @media screen and (min-width: 100px) and (max-width: 992px) {
-    .container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
