@@ -305,7 +305,6 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {console.log(productIndividual)}
           {productIndividual
             ? productIndividual.map((e) => {
                 return e.id ? (
