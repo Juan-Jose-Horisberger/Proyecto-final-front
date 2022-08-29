@@ -30,7 +30,6 @@ export default function Profile() {
   } else {
     return (
       isAuthenticated && (
-
         <div className="d-flex justify-content-center">
           <div class={`d-flex flex-column  ${styles.container_Info}`}>
             <Link to="/">
@@ -49,6 +48,7 @@ export default function Profile() {
             <h6>Email: {userDetail.email}</h6>
             <Logout />
           </div>
+        </div>
       )
     );
   }
