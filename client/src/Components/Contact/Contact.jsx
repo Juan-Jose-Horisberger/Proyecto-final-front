@@ -336,7 +336,7 @@ export default function Contact() {
                 <textarea
                   name="user_message"
                   className={`
-                                    form-control 
+                  form-control 
                                     ${styles.inputs}
                                     ${
                                       enableErrors.message &&
@@ -355,7 +355,7 @@ export default function Contact() {
                 <p className="invalid-feedback mb-0">{error.user_message}</p>
               </div>
               <div className={`${styles.container_button}`}>
-                {console.log(errorsExist)}
+                {/* {console.log(errorsExist)} */}
                 {console.log(
                   input.user_name,
                   input.user_email,

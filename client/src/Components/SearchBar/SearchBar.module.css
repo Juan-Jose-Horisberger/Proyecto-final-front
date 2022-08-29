@@ -73,6 +73,10 @@ button {
     padding: 0 10px;
 }
 
+.container_notification{
+    background-color: red;
+}
+
 .container_favAndCart .container_notification div {
     width: 100%;
     display: flex;
@@ -132,4 +136,34 @@ button {
 
 .container_Alert.open {
     transform: translateX(-0);
+}
+
+.container_NotificationsRender{
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #2E3235;
+}
+
+.container_NotificationsRender:hover{
+    cursor: pointer;
+
+    box-shadow: 0 0 5px 5px#23232C;
+}
+
+.container_NotificationsRender div:nth-child(2){
+    width: 100px;
+    border: 1px solid red;
+    margin-right: 20px;
+}
+
+.container_NotificationsRender h5{
+    width: 100%;
+    border: 1px solid red;
+    text-align: center;
+    font-weight: bold;
+    padding: 0;
+}
+
+.container_NotificationsRender p:nth-child(1){
+    margin: 0;
 }
