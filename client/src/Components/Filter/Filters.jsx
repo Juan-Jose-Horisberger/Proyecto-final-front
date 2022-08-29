@@ -16,23 +16,52 @@ export default function Filters() {
 
   const validate = (e) => {
     setPrice("65.999");
+    var regexTalle = /[A-Z]+|37|38|39|40|41|42|43|44|45|46|47/;
 
     if (params.includes(e.target.name)) {
       if (e.target.name === "category") {
         if (e.target.value === "calzado") {
           const regex = /calzado|campera|camiseta|pantalon|buzo/i;
           const result = params.replace(regex, e.target.value);
-          dispatch(filterByQuery(result));
-          setParams(result);
-          setTalle("calzado");
+
+          if (result.includes("size")) {
+            // const result2 = params.replace(`size=${regexTalle}`, "");
+            const result = `category=${e.target.value}&`;
+            dispatch(filterByQuery(result));
+            setParams(result);
+            setTalle("calzado");
+
+            var options2 = document.querySelectorAll("#my_select");
+            for (var i = 0, l = options2.length; i < l; i++) {
+              options2[i].selectedIndex = 0;
+            }
+          } else {
+            dispatch(filterByQuery(result));
+            setParams(result);
+            setTalle("calzado");
+          }
         }
 
         if (e.target.value !== "calzado") {
           const regex = /calzado|campera|camiseta|pantalon|buzo/i;
           const result = params.replace(regex, e.target.value);
-          dispatch(filterByQuery(result));
-          setParams(result);
-          setTalle("indumentaria");
+
+          if (result.includes("size")) {
+            // const result2 = params.replace(`size=${regexTalle}`, "");
+            const result = `category=${e.target.value}&`;
+            dispatch(filterByQuery(result));
+            setParams(result);
+            setTalle("indumentaria");
+
+            var options2 = document.querySelectorAll("#my_select");
+            for (var i = 0, l = options2.length; i < l; i++) {
+              options2[i].selectedIndex = 0;
+            }
+          } else {
+            dispatch(filterByQuery(result));
+            setParams(result);
+            setTalle("indumentaria");
+          }
         }
       }
 
@@ -51,8 +80,7 @@ export default function Filters() {
       }
 
       if (e.target.name === "size") {
-        const regex = /XS|S|L|M|37|38|39|40|41|42|43/i;
-        const result = params.replace(regex, e.target.value);
+        const result = params.replace(regexTalle, e.target.value);
         dispatch(filterByQuery(result));
         setParams(result);
       }
@@ -80,6 +108,9 @@ export default function Filters() {
     for (var i = 0, l = options.length; i < l; i++) {
       options[i].selectedIndex = 0;
     }
+
+    var options2 = document.querySelectorAll("#my_select1");
+    options2.selectedIndex = 0;
   };
 
   return (
@@ -97,7 +128,7 @@ export default function Filters() {
           <h4>Categoria</h4>
           <select
             onChange={validate}
-            id="my_select"
+            id="my_select1"
             name="category"
             className="form-select"
             aria-label="Default select example"
@@ -185,12 +216,12 @@ export default function Filters() {
               <option style={{ display: "none" }} defaultValue="selected">
                 Selecciona un talle
               </option>
-              <option value="xs">XS</option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-              <option value="xl">XL</option>
-              <option value="xxl">XXL</option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
             </select>
           </div>
         )}
