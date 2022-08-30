@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { getProductToBuy } from "../../Redux/Action";
 import Cookies from "universal-cookie";
+import Swal from "sweetalert2";
 import { posts } from "../../infoUser.js"; //User ficticio
 
 export default function useForm(initialForm, validateForm, socket) {
@@ -68,7 +69,23 @@ export default function useForm(initialForm, validateForm, socket) {
   const handleCupon = (code) => {
     if (code.value === "MZF5JKA7") {
       setCupon("1");
-    }
+      Swal.fire({
+        icon: "success",
+        title: "Codigo de cupón valido",
+        text: "Se te hara el descuento correspondiente",
+        background: "#000",
+        confirmButtonText: "Continuar",
+        confirmButtonColor: "#282626",
+      });
+    } else
+      Swal.fire({
+        icon: "error",
+        title: "Codigo de cupón invalido",
+        text: "Tu codigo no existe, o paso su fecha de uso",
+        background: "#000",
+        confirmButtonText: "Continuar",
+        confirmButtonColor: "#282626",
+      });
   };
 
   const handleRemoveCookies = (data) => {

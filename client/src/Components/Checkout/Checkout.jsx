@@ -163,7 +163,7 @@ export default function Checkout({ socket }) {
           <div
             className="modal"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
