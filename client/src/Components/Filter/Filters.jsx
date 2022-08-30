@@ -25,7 +25,6 @@ export default function Filters() {
           const result = params.replace(regex, e.target.value);
 
           if (result.includes("size")) {
-            // const result2 = params.replace(`size=${regexTalle}`, "");
             const result = `category=${e.target.value}&`;
             dispatch(filterByQuery(result));
             setParams(result);
@@ -47,7 +46,6 @@ export default function Filters() {
           const result = params.replace(regex, e.target.value);
 
           if (result.includes("size")) {
-            // const result2 = params.replace(`size=${regexTalle}`, "");
             const result = `category=${e.target.value}&`;
             dispatch(filterByQuery(result));
             setParams(result);
@@ -83,6 +81,16 @@ export default function Filters() {
         const result = params.replace(regexTalle, e.target.value);
         dispatch(filterByQuery(result));
         setParams(result);
+      }
+    } else if (params.includes("size") && e.target.name === "category") {
+      const result = `category=${e.target.value}&`;
+      dispatch(filterByQuery(result));
+      setParams(result);
+      setTalle(e.target.value === "calzado" ? "calzado" : "indumentaria");
+
+      var options2 = document.querySelectorAll("#my_select");
+      for (var i = 0, l = options2.length; i < l; i++) {
+        options2[i].selectedIndex = 0;
       }
     } else {
       const actualFilter = params.concat(

@@ -107,7 +107,7 @@ export default function Cart() {
       <div>
         <Link to="/Checkout">
           <button onClick={(ev) => handleBuy()} className={styles.btnCheckout}>
-            ${checkout} Checkout
+            ${(checkout + "").slice(0, 6)} Checkout
           </button>
         </Link>
       </div>
