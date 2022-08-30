@@ -140,7 +140,7 @@ export default function SearchBar({ socket }) {
                     </p>
                   </Link>
                   <Link
-                    to="/Contact"
+                    to="/About"
                     className="nav-item mx-3 mx-lg-2"
                     style={{ textDecoration: "none" }}
                   >
