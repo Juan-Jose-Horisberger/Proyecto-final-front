@@ -183,6 +183,7 @@ export default function Checkout({ socket }) {
                         handleCupon(document.getElementById("inputCupon"))
                       }
                       className={style.btnPopOut}
+                      data-bs-dismiss="modal"
                     >
                       Ingresar
                     </button>
