@@ -25,6 +25,7 @@ const initialState = {
   productDetail: {},
   productFav: [],
   productCart: [],
+  productToBuy: [],
   newNotification: {
     counter: 0,
     purchaseNotification: [],
@@ -97,9 +98,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
     case PRODUCT_TO_BUY:
       if (payload) {
-        cookies.set("oneProduct", payload);
-        return state;
-      } else return state;
+        cookies.set("oneProduct", [...state.productToBuy, payload], {
+          path: "/Checkout",
+        });
+        return { ...state, productToBuy: [...state.productToBuy, payload] };
+      }
 
     case CREATE_PRODUCT:
       // console.log(payload);

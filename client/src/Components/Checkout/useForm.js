@@ -61,8 +61,6 @@ export default function useForm(initialForm, validateForm, socket) {
   const handleBuy = (id) => {
     if (id) {
       dispatch(getProductToBuy(id));
-    } else {
-      dispatch(getProductToBuy());
     }
   };
 
