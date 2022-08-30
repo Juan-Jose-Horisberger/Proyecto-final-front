@@ -5,6 +5,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.10.2",
     "@emailjs/browser": "^3.6.2",
+    "@react-hook/hover": "^4.0.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.1",
