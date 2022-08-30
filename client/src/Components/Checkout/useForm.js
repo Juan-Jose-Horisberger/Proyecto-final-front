@@ -9,6 +9,7 @@ export default function useForm(initialForm, validateForm, socket) {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
+  const [cupon, setCupon] = useState(0);
   const cookies = new Cookies();
   var expiryDate = new Date(Date.now() + 60 * 24 * 3600000);
 
@@ -64,6 +65,12 @@ export default function useForm(initialForm, validateForm, socket) {
     }
   };
 
+  const handleCupon = (code) => {
+    if (code.value === "MZF5JKA7") {
+      setCupon("1");
+    }
+  };
+
   const handleRemoveCookies = (data) => {
     data && data.map((e) => cookies.remove(e[1].id));
   };
@@ -72,10 +79,12 @@ export default function useForm(initialForm, validateForm, socket) {
     form,
     setForm,
     errors,
+    cupon,
     setErrors,
     handleOnChange,
     handleSubmit,
     handleBuy,
     handleRemoveCookies,
+    handleCupon,
   };
 }
