@@ -255,7 +255,8 @@ export default function Contact() {
             className={`container-fluid d-flex justify-content-center col-12 p-0`}
           >
             <div className={`row col-12`}>
-              <div className="mb-3">
+              <div className="mb-3 container-input">
+              
                 <input
                   type="text"
                   // className={`form-control ms-0 ${error.name ? 'is-invalid' : 'is-valid'}`}
@@ -270,15 +271,18 @@ export default function Contact() {
                                           : "is-valid"
                                         : "form-control"
                                     }`}
-                  placeholder="Nombre *"
+                  /* placeholder="Nombre *" */
                   name="user_name"
                   value={input.user_name}
                   autoComplete="off"
                   onChange={(e) => handleOnChange(e)}
+                  required                  
                 />
                 {error.user_name && (
                   <p className="invalid-feedback mb-0">{error.user_name}</p>
                 )}
+                
+                <label>Nombre</label>
               </div>
               <div className="mb-3">
                 <input
@@ -294,15 +298,17 @@ export default function Contact() {
                                           : "is-valid"
                                         : "form-control"
                                     }`}
-                  placeholder="Email *"
+                  /* placeholder="Email *" */
                   name="user_email"
                   value={input.user_email}
                   autoComplete="off"
                   onChange={(e) => handleOnChange(e)}
+                  required
                 />
                 {error.user_email && (
                   <p className="invalid-feedback mb-0">{error.user_email}</p>
                 )}
+                <label>Email</label>
               </div>
               <div className="mb-3">
                 <input
@@ -318,15 +324,17 @@ export default function Contact() {
                                           : "is-valid"
                                         : "form-control"
                                     }`}
-                  placeholder="Asunto *"
+                 /*  placeholder="Asunto *" */
                   name="user_affair"
                   value={input.user_affair}
                   autoComplete="off"
                   onChange={(e) => handleOnChange(e)}
+                  required
                 />
                 {error.user_affair && (
                   <p className="invalid-feedback mb-0">{error.user_affair}</p>
                 )}
+                <label>Asunto</label>
               </div>
 
               <div
@@ -347,12 +355,14 @@ export default function Contact() {
                                         : "form-control"
                                     }`}
                   autoComplete="off"
-                  placeholder="Mensaje *"
+                  /* placeholder="Mensaje *" */
                   value={input.user_message}
                   onChange={(e) => handleOnChange(e)}
                   style={{ resize: "none" }}
+                  required
                 ></textarea>
                 <p className="invalid-feedback mb-0">{error.user_message}</p>
+                <label>Mensaje</label>
               </div>
               <div className={`${styles.container_button}`}>
                 {/* {console.log(errorsExist)} */}
@@ -374,7 +384,7 @@ export default function Contact() {
                   <button
                     name="button"
                     onClick={(e) => errorExist(e)}
-                    className={`${styles.button_send}`}
+                    className={`${styles.btn}`}
                   >
                     ENVIAR MENSAJE
                   </button>
@@ -382,7 +392,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     name="button"
-                    className={`${styles.button_send}`}
+                    className={`${styles.btn }`}
                   >
                     ENVIAR MENSAJE
                   </button>
