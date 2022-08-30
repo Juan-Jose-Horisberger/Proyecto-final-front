@@ -116,7 +116,8 @@ export default function Checkout({ socket }) {
   const { form, errors, handleOnChange, handleSubmit, handleRemoveCookies } =
     useForm(initialForm, validateForm, socket);
   const { loginWithRedirect } = useAuth0();
-  var oneProduct = cookies.get("oneProduct");
+  const oneProductState = useSelector((state) => state.productToBuy);
+  const oneProduct = cookies.get("oneProduct");
   var cuki = cookies.getAll();
   var productsToBuy = Object.entries(cuki);
   var subTotal = 0;
@@ -309,11 +310,27 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {oneProduct ? (
+          {console.log(oneProduct)}
+          {oneProductState.length || oneProduct ? (
             <div className={style.divProduct}>
-              <img src={oneProduct.image} alt="" />
-              <p>{oneProduct.name}</p>
-              <p>${oneProduct.price}</p>
+              <img
+                src={
+                  oneProductState.length
+                    ? oneProductState[0].image
+                    : oneProduct[0].image
+                }
+              />
+              <p>
+                {oneProductState.length
+                  ? oneProductState[0].name
+                  : oneProduct[0].name}
+              </p>
+              <p>
+                $
+                {oneProductState.length
+                  ? oneProductState[0].price
+                  : oneProduct[0].price}
+              </p>
             </div>
           ) : (
             productsToBuy.map((e) => {
@@ -330,11 +347,16 @@ export default function Checkout({ socket }) {
           )}
 
           <p className={style.cuentita}>
-            {productsToBuy.map((e) =>
-              e[1].id
-                ? (subTotal = subTotal + e[1].price)
-                : (subTotal = subTotal)
-            )}
+            {oneProductState.length || oneProduct
+              ? (subTotal =
+                  subTotal + oneProductState.length
+                    ? oneProductState[0].price
+                    : oneProduct[0].price)
+              : productsToBuy.map((e) =>
+                  e[1].id
+                    ? (subTotal = subTotal + e[1].price)
+                    : (subTotal = subTotal)
+                )}
           </p>
           <div className={style.divTotal}>
             <p>SUBTOTAL</p>
