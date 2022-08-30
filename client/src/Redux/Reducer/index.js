@@ -7,7 +7,7 @@ import {
   DELETE_FAV_PRODUCT,
   GET_CART_PRODUCT,
   DELETE_CART_PRODUCT,
-  BUY_PRODUCT,
+  PRODUCT_TO_BUY,
   CREATE_PRODUCT,
   FILTER_BY_QUERY,
   FILTER_BY_PRICE,
@@ -30,7 +30,6 @@ const initialState = {
     purchaseNotification: [],
     newProducts: [],
   },
-  productsToBuy: [],
   productsNotifications: [],
 };
 
@@ -96,20 +95,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         productCart: deleteCartProduct,
       };
 
-    case BUY_PRODUCT:
+    case PRODUCT_TO_BUY:
       if (payload) {
-        const productsBuy = cookies.get(payload);
-        console.log(productsBuy);
-        return {
-          ...state,
-          productsToBuy: [productsBuy],
-        };
-      } else {
-        return {
-          ...state,
-          productsToBuy: false,
-        };
-      }
+        cookies.set("oneProduct", payload);
+        return state;
+      } else return state;
 
     case CREATE_PRODUCT:
       // console.log(payload);
