@@ -82,7 +82,7 @@ export default function Product({ id, name, price, image }) {
           className={
             Hovered || onHoverButton.current
               ? (onHover.current = true)
-              : (onHover.current = false)
+              : (onHover.current = false) /*Cambiamos a false para que no tire warning*/
           }
         >
           <img src={image} alt="Imagen no encontrada" className={`img-fluid`} />
@@ -124,7 +124,6 @@ export default function Product({ id, name, price, image }) {
           ) : (
             <img src={addFav} alt="image-not-found" />
           )}
-          {console.log(HovertargetButton)}
         </button>
       </div>
 
