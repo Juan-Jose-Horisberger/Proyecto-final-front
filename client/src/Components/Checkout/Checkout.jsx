@@ -10,16 +10,16 @@ import { sendInformation } from "../../Redux/Action/index.js";
 
 var cookies = new Cookies();
 const initialForm = {
-  name: cookies.get("name"),
-  surname: cookies.get("surname"),
+  nameCompra: cookies.get("nameCompra"),
+  surnameCompra: cookies.get("surnameCompra"),
   companyName: cookies.get("companyName"),
-  country: cookies.get("country"),
+  country: "Argentina",
   streetAddress: cookies.get("streetAddress"),
   apartment: cookies.get("apartment"),
   province: cookies.get("province"),
   codePostal: cookies.get("codePostal"),
   phoneNumber: cookies.get("phoneNumber"),
-  email: cookies.get("email"),
+  emailCompra: cookies.get("emailCompra"),
   extraNotes: cookies.get("extraNotes"),
   price: cookies.get("price"),
 };
@@ -30,18 +30,18 @@ const validateForm = (form, nameInput) => {
   let regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
   let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-  if (nameInput.includes("name")) {
-    if (!form.name) {
+  if (nameInput.includes("nameCompra")) {
+    if (!form.nameCompra) {
       errors.name = "Debes colocar tu nombre";
-    } else if (!regexName.test(form.name)) {
+    } else if (!regexName.test(form.nameCompra)) {
       errors.name = "Tu nombre solo debe contener letras y espacios.";
     }
   }
 
-  if (nameInput.includes("surname")) {
-    if (!form.surname) {
+  if (nameInput.includes("surnameCompra")) {
+    if (!form.surnameCompra) {
       errors.surname = "Debes colocar tu apellido";
-    } else if (!regexName.test(form.surname)) {
+    } else if (!regexName.test(form.surnameCompra)) {
       errors.surname = "Tu apellido solo debe contener letras y espacios.";
     }
   }
@@ -75,10 +75,10 @@ const validateForm = (form, nameInput) => {
     }
   }
 
-  if (nameInput.includes("email")) {
-    if (!form.email) {
+  if (nameInput.includes("emailCompra")) {
+    if (!form.emailCompra) {
       errors.email = "Debes colocar un email valido";
-    } else if (!regexEmail.test(form.email)) {
+    } else if (!regexEmail.test(form.emailCompra)) {
       errors.email = "El email no es valido";
     }
   }
@@ -116,8 +116,8 @@ export default function Checkout({ socket }) {
   const { form, errors, handleOnChange, handleSubmit, handleRemoveCookies } =
     useForm(initialForm, validateForm, socket);
   const { loginWithRedirect } = useAuth0();
+  var oneProduct = cookies.get("oneProduct");
   var cuki = cookies.getAll();
-  var productIndividual = useSelector((state) => state.productsToBuy);
   var productsToBuy = Object.entries(cuki);
   var subTotal = 0;
   const dispatch = useDispatch();
@@ -164,24 +164,28 @@ export default function Checkout({ socket }) {
         <div className={style.containerForm}>
           <p>Nombre y apellido</p>
           <div className={style.divNombreApellido}>
-            <input
-              type="text"
-              placeholder="Nombre"
-              name="name"
-              onChange={handleOnChange}
-              value={cookies.get("name")}
-            />
-
-            <input
-              type="text"
-              placeholder="Apellido"
-              name="surname"
-              onChange={handleOnChange}
-              value={cookies.get("surname")}
-            />
-
-            {errors.name && <p className={style.error}>{errors.name}</p>}
-            {errors.surname && <p className={style.error}>{errors.surname}</p>}
+            <div className={style.divNombre}>
+              <input
+                type="text"
+                placeholder="Nombre"
+                name="nameCompra"
+                onChange={handleOnChange}
+                value={form.nameCompra}
+              />
+              {errors.name && <p className={style.error}>{errors.name}</p>}
+            </div>
+            <div className={style.divApellido}>
+              <input
+                type="text"
+                placeholder="Apellido"
+                name="surnameCompra"
+                onChange={handleOnChange}
+                value={form.surnameCompra}
+              />
+              {errors.surname && (
+                <p className={style.error}>{errors.surname}</p>
+              )}
+            </div>
           </div>
 
           <p>Nombre de la empresa (opcional)</p>
@@ -190,7 +194,7 @@ export default function Checkout({ socket }) {
               type="text"
               name="companyName"
               onChange={handleOnChange}
-              value={cookies.get("companyName")}
+              value={form.companyName}
             />
           </div>
 
@@ -206,7 +210,7 @@ export default function Checkout({ socket }) {
               placeholder="Nombre de la calle y direccion de la casa"
               name="streetAddress"
               onChange={handleOnChange}
-              value={cookies.get("streetAddress")}
+              value={form.streetAddress}
             />
 
             {errors.streetAddress && (
@@ -219,7 +223,7 @@ export default function Checkout({ socket }) {
               placeholder="Apartamento, piso, habitacion, etc (opcional)"
               name="apartment"
               onChange={handleOnChange}
-              value={cookies.get("apartment")}
+              value={form.apartment}
             />
           </div>
 
@@ -229,7 +233,7 @@ export default function Checkout({ socket }) {
               name="province"
               id="my_select"
               onChange={handleOnChange}
-              value={cookies.get("province")}
+              value={form.province}
             >
               <option style={{ display: "none" }}>
                 Selecciona tu Region / Provincia
@@ -252,7 +256,7 @@ export default function Checkout({ socket }) {
               placeholder="Codigo Postal..."
               name="codePostal"
               onChange={handleOnChange}
-              value={cookies.get("codePostal")}
+              value={form.codePostal}
             />
 
             {errors.codePostal && (
@@ -267,7 +271,7 @@ export default function Checkout({ socket }) {
               placeholder="Teléfono..."
               name="phoneNumber"
               onChange={handleOnChange}
-              value={cookies.get("phoneNumber")}
+              value={form.phoneNumber}
             />
 
             {errors.phoneNumber && (
@@ -280,9 +284,9 @@ export default function Checkout({ socket }) {
             <input
               type="email"
               placeholder="Direccion de correo electrónico..."
-              name="email"
+              name="emailCompra"
               onChange={handleOnChange}
-              value={cookies.get("email")}
+              value={form.emailCompra}
             />
 
             {errors.email && <p className={style.error}>{errors.email}</p>}
@@ -295,7 +299,7 @@ export default function Checkout({ socket }) {
               placeholder="Notas sobre tu pedido que puedan facilitar la entrega, etc."
               name="extraNotes"
               onChange={handleOnChange}
-              value={cookies.get("extraNotes")}
+              value={form.extraNotes}
             />
           </div>
         </div>
@@ -305,36 +309,36 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {productIndividual
-            ? productIndividual.map((e) => {
-                return e.id ? (
-                  <div key={e.id} className={style.divProduct}>
-                    <img src={e.image} alt="" />
-                    <p>{e.name}</p>
-                    <p>${e.price}</p>
-                  </div>
-                ) : (
-                  true
-                );
-              })
-            : productsToBuy.map((e) => {
-                return e[1].id ? (
-                  <div key={e[1].id} className={style.divProduct}>
-                    <img src={e[1].image} alt="" />
-                    <p>{e[1].name}</p>
-                    <p>${e[1].price}</p>
-                  </div>
-                ) : (
-                  true
-                );
-              })}
+          {oneProduct ? (
+            <div className={style.divProduct}>
+              <img src={oneProduct.image} alt="" />
+              <p>{oneProduct.name}</p>
+              <p>${oneProduct.price}</p>
+            </div>
+          ) : (
+            productsToBuy.map((e) => {
+              return e[1].id ? (
+                <div key={e[1].id} className={style.divProduct}>
+                  <img src={e[1].image} alt="" />
+                  <p>{e[1].name}</p>
+                  <p>${e[1].price}</p>
+                </div>
+              ) : (
+                true
+              );
+            })
+          )}
 
           <p className={style.cuentita}>
-            {productsToBuy.map((e) => (subTotal = subTotal + e[1].price))}
+            {productsToBuy.map((e) =>
+              e[1].id
+                ? (subTotal = subTotal + e[1].price)
+                : (subTotal = subTotal)
+            )}
           </p>
           <div className={style.divTotal}>
             <p>SUBTOTAL</p>
-            <p>${subTotal}</p>
+            <p>${(subTotal + "").slice(0, 6)}</p>
           </div>
 
           <div className={style.divTotal}>
@@ -344,7 +348,7 @@ export default function Checkout({ socket }) {
 
           <div className={style.divTotal}>
             <p>TOTAL</p>
-            <p>${subTotal + 0.5}</p>
+            <p>${(subTotal + 0.5 + "").slice(0, 6)}</p>
           </div>
 
           <div className={style.divBtn}>
