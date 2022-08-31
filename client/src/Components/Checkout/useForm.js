@@ -76,7 +76,7 @@ export default function useForm(initialForm, validateForm, socket) {
   };
 
   const handleCupon = (code) => {
-    if (cupones.find(code.value)) {
+    if (cupones.find((e) => e === code.value)) {
       setCupon("1");
       Swal.fire({
         icon: "success",
