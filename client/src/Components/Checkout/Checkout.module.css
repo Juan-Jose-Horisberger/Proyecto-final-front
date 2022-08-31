@@ -39,7 +39,7 @@
   margin-bottom: 30px;
 }
 
-.divRegisterCupon button {
+.btnRe {
   background-color: black;
   color: azure;
   font-weight: bold;
@@ -267,4 +267,35 @@
 
 .error {
   color: red;
+}
+
+.divPopOut {
+  background-color: rgb(20, 19, 19);
+}
+
+.inputPopOut {
+  background-color: rgb(20, 19, 19);
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid azure;
+  color: azure;
+  outline: none;
+}
+
+.btnPopOut {
+  margin: 0px 10px 10px 10px;
+  background-color: rgb(39, 38, 38);
+  color: azure;
+  font-weight: bold;
+  padding: 20px;
+  width: 100%;
+}
+
+.btnPopOut:hover {
+  background-color: rgb(17, 16, 16);
+  transition: 0.4s;
+}
+
+.footerPopOut {
+  border: none;
 }

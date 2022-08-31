@@ -99,7 +99,7 @@ export const getProductToBuy = (id) => {
   if (id) {
     return async function (dispatch) {
       let productToBuy = await axios.get(`/products/${id}`);
-      console.log(productToBuy.data);
+      // console.log(productToBuy.data);
       return dispatch({
         type: PRODUCT_TO_BUY,
         payload: productToBuy.data,

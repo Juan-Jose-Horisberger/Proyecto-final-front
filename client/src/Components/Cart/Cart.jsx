@@ -10,9 +10,7 @@ import useForm from "../Checkout/useForm";
 
 export default function Cart() {
   const cookies = new Cookies();
-  var expiryDate = new Date(Date.now() + 100 * 24 * 3600000);
   const productCart = useSelector((state) => state.productCart);
-  // productCart.map(e => cookies.set(e.id, e, {path: "/", expires: expiryDate}))
   const cuki = cookies.getAll();
   var products = Object.entries(cuki);
   const [checkout, setCheckout] = useState(0);
@@ -38,8 +36,6 @@ export default function Cart() {
 
   return (
     <div className={styles.container} key="Asdasd">
-      {/* <SearchBar /> */}
-
       <p className="mb-4">
         <Link to="/">Inicio</Link>/Carrito
       </p>
@@ -106,7 +102,7 @@ export default function Cart() {
 
       <div>
         <Link to="/Checkout">
-          <button onClick={(ev) => handleBuy()} className={styles.btnCheckout}>
+          <button className={styles.btnCheckout}>
             ${(checkout + "").slice(0, 6)} Checkout
           </button>
         </Link>
