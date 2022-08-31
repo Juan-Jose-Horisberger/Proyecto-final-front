@@ -472,3 +472,27 @@
   cursor: pointer;
   font-family: "Questrial", sans-serif;
 }
+
+.comments{
+  background-color: rgb(65, 65, 65);
+}
+.handleComment{
+  color: #ffffff;
+  display: flex;
+  margin-top: 1rem;
+  background-color: #100f10;
+  height: 2rem;
+  border-style: double;
+  border-color: #fff;
+  
+}
+.h1comment{
+  margin-right: 2rem;
+  font-size: 1rem;
+}
+.imgUser{
+  height: 20px;
+  margin-right: 1rem;
+}
+
+
