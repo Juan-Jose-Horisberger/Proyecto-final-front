@@ -9,6 +9,7 @@ import {
   getCartProduct,
   deleteCartProduct,
   addReviewToProduct,
+  getUserDetail
 } from "../../Redux/Action/index.js";
 import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
@@ -18,6 +19,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const { id } = useParams();
   const dispatch = useDispatch();
   const productDetail = useSelector((state) => state.productDetail);
@@ -26,7 +28,15 @@ export default function ProductDetail() {
   const cookies = new Cookies();
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      dispatch(getUserDetail(user.email));
+    }
+  }, [user]);
+
+const userDetail = useSelector(state => state.userDetail)
 
   useEffect(() => {
     dispatch(getProductDetail(id)).then((res) => res && setLoaded(true));
@@ -62,12 +72,22 @@ export default function ProductDetail() {
     e.preventDefault();
     setReview({
       ...review,
+       email: userDetail.email,
       idProduct: productDetail.id,
       [e.target.name]: e.target.value,
     });
   };
   const addReview = () => {
-    dispatch(addReviewToProduct(review));
+    if (isAuthenticated && !isLoading) {
+      if(productDetail.review.length >= 2){
+        return alert("nuestra base de datos no puede soportar mas de dos reviews por producto :(")
+      }else
+      dispatch(addReviewToProduct(review));
+    }else{
+      
+      return alert("deberías iniciar sesion")
+    }
+    
   };
 
   const handleOnCart = () => {
@@ -283,6 +303,23 @@ export default function ProductDetail() {
         <button className={styles.commentsBtn} onClick={() => addReview()}>
           Comentar
         </button>
+        <div className={styles.comments}>
+         {
+          
+           productDetail.review && 
+             productDetail.review.map(e => {
+               return( 
+                    <div className={styles.handleComment}>
+                      <img  className={styles.imgUser} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU" alt="not found" />
+                      <h1 className={styles.h1comment}>email: {e.email}   </h1>
+                      <h1 className={styles.h1comment}>username:  {e.username}:</h1>
+                      <h1 className={styles.h1comment}>{e.comment}</h1>
+                    </div>
+               )
+               })
+           
+         }
+         </div>
       </div>
     </div>
   );
