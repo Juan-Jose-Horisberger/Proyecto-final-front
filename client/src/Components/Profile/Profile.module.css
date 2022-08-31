@@ -4,10 +4,11 @@
   align-items: center;
   background-color: black;
   color: azure;
+  margin-top: 30px;
 }
 
 .container_Info {
-  margin-top: 20px;
+  margin-top: 100px;
   background-color: rgb(0, 0, 0);
   font-family: "Readex Pro", sans-serif;
   text-align: center;

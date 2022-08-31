@@ -31,6 +31,7 @@ export default function Profile() {
     return (
       isAuthenticated && (
         <div className={styles.container}>
+          <Logout />
           <div className={styles.container_Info}>
             <p>
               <Link to="/">Inicio</Link>/Mi Perfil
@@ -48,9 +49,15 @@ export default function Profile() {
             </div>
             <h6>{userDetail.username}</h6>
             <h6>Email: {user.email}</h6>
-            <div>
-              <Logout />
-            </div>
+            <Link to="/Register">
+              <img
+                src="https://www.svgrepo.com/show/421823/user-people-man.svg"
+                alt="img-icon"
+                style={{ cursor: "pointer" }}
+              />
+              <h4>Mis Datos</h4>
+              <h6>Gestiona tus datos personales</h6>
+            </Link>
           </div>
         </div>
       )
