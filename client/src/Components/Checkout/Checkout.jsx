@@ -22,6 +22,7 @@ const initialForm = {
   emailCompra: cookies.get("emailCompra"),
   extraNotes: cookies.get("extraNotes"),
   price: cookies.get("price"),
+  cupon: "",
 };
 
 const validateForm = (form, nameInput) => {
@@ -113,10 +114,18 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
-  const { form, errors, handleOnChange, handleSubmit, handleRemoveCookies } =
-    useForm(initialForm, validateForm, socket);
+  const {
+    form,
+    errors,
+    handleOnChange,
+    handleSubmit,
+    handleRemoveCookies,
+    handleCupon,
+    cupon,
+  } = useForm(initialForm, validateForm, socket);
   const { loginWithRedirect } = useAuth0();
-  var oneProduct = cookies.get("oneProduct");
+  const oneProductState = useSelector((state) => state.productToBuy);
+  const oneProduct = cookies.get("oneProduct");
   var cuki = cookies.getAll();
   var productsToBuy = Object.entries(cuki);
   var subTotal = 0;
@@ -134,8 +143,6 @@ export default function Checkout({ socket }) {
 
   return (
     <div className={style.containerPrincipal}>
-      {/* <SearchBar /> */}
-
       <div className={style.divCheckout}>
         <h2>Checkout</h2>
         <p>
@@ -147,13 +154,58 @@ export default function Checkout({ socket }) {
         <div className={style.divRegisterCupon}>
           <p>
             ¿No tienes una cuenta?
-            <button onClick={() => loginWithRedirect()}>REGISTRATE</button>
+            <button className={style.btnRe} onClick={() => loginWithRedirect()}>
+              REGISTRATE
+            </button>
           </p>
         </div>
 
         <div className={style.divRegisterCupon}>
+          <div
+            className="modal"
+            id="exampleModal"
+            tabIndex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className={style.divPopOut}>
+                  <div className="modal-body">
+                    <input
+                      type="text"
+                      id="inputCupon"
+                      className={style.inputPopOut}
+                      onChange={handleOnChange}
+                      name="cupon"
+                      value={form.cupon}
+                    />
+                  </div>
+                  <div className={`${style.footerPopOut} modal-footer`}>
+                    <button
+                      onClick={(e) =>
+                        handleCupon(document.getElementById("inputCupon"))
+                      }
+                      className={style.btnPopOut}
+                      data-bs-dismiss="modal"
+                    >
+                      Ingresar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <p>
-            ¿Tienes un cupón?<button>INGRESA TU CODIGO</button>
+            ¿Tienes un cupón?
+            <button
+              className={style.btnRe}
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              INGRESA TU CODIGO
+            </button>
           </p>
         </div>
 
@@ -309,11 +361,26 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {oneProduct ? (
+          {oneProductState.length || oneProduct ? (
             <div className={style.divProduct}>
-              <img src={oneProduct.image} alt="" />
-              <p>{oneProduct.name}</p>
-              <p>${oneProduct.price}</p>
+              <img
+                src={
+                  oneProductState.length
+                    ? oneProductState[0].image
+                    : oneProduct[0].image
+                }
+              />
+              <p>
+                {oneProductState.length
+                  ? oneProductState[0].name
+                  : oneProduct[0].name}
+              </p>
+              <p>
+                $
+                {oneProductState.length
+                  ? oneProductState[0].price
+                  : oneProduct[0].price}
+              </p>
             </div>
           ) : (
             productsToBuy.map((e) => {
@@ -330,11 +397,16 @@ export default function Checkout({ socket }) {
           )}
 
           <p className={style.cuentita}>
-            {productsToBuy.map((e) =>
-              e[1].id
-                ? (subTotal = subTotal + e[1].price)
-                : (subTotal = subTotal)
-            )}
+            {oneProductState.length || oneProduct
+              ? (subTotal =
+                  subTotal + oneProductState.length
+                    ? oneProductState[0].price
+                    : oneProduct[0].price)
+              : productsToBuy.map((e) =>
+                  e[1].id
+                    ? (subTotal = subTotal + e[1].price)
+                    : (subTotal = subTotal)
+                )}
           </p>
           <div className={style.divTotal}>
             <p>SUBTOTAL</p>
@@ -347,8 +419,13 @@ export default function Checkout({ socket }) {
           </div>
 
           <div className={style.divTotal}>
+            <p>DESCUENTO</p>
+            <p>${cupon}</p>
+          </div>
+
+          <div className={style.divTotal}>
             <p>TOTAL</p>
-            <p>${(subTotal + 0.5 + "").slice(0, 6)}</p>
+            <p>${(subTotal + 0.5 - cupon + "").slice(0, 6)}</p>
           </div>
 
           <div className={style.divBtn}>

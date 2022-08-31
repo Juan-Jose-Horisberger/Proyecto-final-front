@@ -99,7 +99,7 @@ export const getProductToBuy = (id) => {
   if (id) {
     return async function (dispatch) {
       let productToBuy = await axios.get(`/products/${id}`);
-      console.log(productToBuy.data);
+      // console.log(productToBuy.data);
       return dispatch({
         type: PRODUCT_TO_BUY,
         payload: productToBuy.data,
@@ -176,7 +176,7 @@ export const createUser = (payload) => {
 
   return async function (dispatch) {
     let NewUser = await axios.post(
-      `https://pf-back-franco.herokuapp.com/users/post`,
+      `https://proyecto-final-01.herokuapp.com/users/post`,
       // 'http://localhost:3001/users/post',
       user
     );
@@ -191,16 +191,16 @@ export const addReviewToProduct = async (review) => {
     number: parseInt(review.number),
     comment: review.comment,
   };
-
+  console.log(reviewParse)
   const response = await axios.put(
     "https://proyecto-final-01.herokuapp.com/scores/",
-    review
+    reviewParse
   );
-  if (!response.status !== 200) {
-    return alert("comentario agregado");
-  } else {
-    return alert("ya haz comentado este producto");
-  }
+    if(response.data.message){
+      alert(response.data.message)
+    }else{
+      alert(response.data)
+    }
 };
 
 export const getDetailNotification = (payload) => {
