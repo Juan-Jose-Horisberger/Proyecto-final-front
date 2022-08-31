@@ -11,6 +11,15 @@ export default function useForm(initialForm, validateForm, socket) {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [cupon, setCupon] = useState(0);
+  const cupones = [
+    "SoyHenry",
+    "MZF5JKA7",
+    "KASDJ17",
+    "JAUVMI2",
+    "KASIQP2",
+    "891NJAD",
+    "1S2NDGA",
+  ];
   const cookies = new Cookies();
   var expiryDate = new Date(Date.now() + 60 * 24 * 3600000);
 
@@ -67,7 +76,7 @@ export default function useForm(initialForm, validateForm, socket) {
   };
 
   const handleCupon = (code) => {
-    if (code.value === "MZF5JKA7") {
+    if (cupones.find(code.value)) {
       setCupon("1");
       Swal.fire({
         icon: "success",
@@ -86,6 +95,8 @@ export default function useForm(initialForm, validateForm, socket) {
         confirmButtonText: "Continuar",
         confirmButtonColor: "#282626",
       });
+
+    setForm({ ...form, cupon: "" });
   };
 
   const handleRemoveCookies = (data) => {
