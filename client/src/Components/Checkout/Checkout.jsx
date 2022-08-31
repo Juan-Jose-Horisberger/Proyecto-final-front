@@ -22,6 +22,7 @@ const initialForm = {
   emailCompra: cookies.get("emailCompra"),
   extraNotes: cookies.get("extraNotes"),
   price: cookies.get("price"),
+  cupon: "",
 };
 
 const validateForm = (form, nameInput) => {
@@ -175,6 +176,9 @@ export default function Checkout({ socket }) {
                       type="text"
                       id="inputCupon"
                       className={style.inputPopOut}
+                      onChange={handleOnChange}
+                      name="cupon"
+                      value={form.cupon}
                     />
                   </div>
                   <div className={`${style.footerPopOut} modal-footer`}>
@@ -357,7 +361,6 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {console.log(oneProduct)}
           {oneProductState.length || oneProduct ? (
             <div className={style.divProduct}>
               <img
