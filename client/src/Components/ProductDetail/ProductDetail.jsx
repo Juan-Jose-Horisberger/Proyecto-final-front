@@ -81,8 +81,9 @@ const userDetail = useSelector(state => state.userDetail)
     if (isAuthenticated && !isLoading) {
       if(productDetail.review.length >= 2){
         return alert("nuestra base de datos no puede soportar mas de dos reviews por producto :(")
-      }else
-      dispatch(addReviewToProduct(review));
+      }else{
+         dispatch(addReviewToProduct(review));
+      }
     }else{
       
       return alert("deberías iniciar sesion")
