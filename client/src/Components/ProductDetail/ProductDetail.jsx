@@ -69,6 +69,9 @@ const userDetail = useSelector(state => state.userDetail)
     comment: "",
   });
   const onChangeReview = (e) => {
+    if(!isAuthenticated){
+      return //puse este return para que no se rompa, porque tarda en traerse los datos aveces :D
+    }
     e.preventDefault();
     setReview({
       ...review,
@@ -79,14 +82,23 @@ const userDetail = useSelector(state => state.userDetail)
   };
   const addReview = () => {
     if (isAuthenticated && !isLoading) {
-      if(productDetail.review.length >= 2){
+      if(productDetail.review && productDetail.review.length >= 2){
         return alert("nuestra base de datos no puede soportar mas de dos reviews por producto :(")
       }else{
-         dispatch(addReviewToProduct(review));
+        if(review.comment.length <= 5){
+          return alert("ingresa un comentario mas largo")
+        }
+       dispatch(addReviewToProduct(review));
+       setReview({
+        email: "",
+        idProduct: "",
+        number: 0,
+        comment: "",
+       })
       }
     }else{
       
-      return alert("deberías iniciar sesion")
+      return alert("debes estar registrado")
     }
     
   };
@@ -294,7 +306,7 @@ const userDetail = useSelector(state => state.userDetail)
           placeholder="⭐ score "
           onChange={(e) => onChangeReview(e)}
         />
-        <textarea
+        <textarea 
           className={styles.commentsText}
           name="comment"
           type="text"
