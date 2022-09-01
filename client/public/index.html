@@ -36,7 +36,7 @@
   <body>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-    <div class="cho-container"></div>
+    <div class="page-content-btn"></div>
     <script>
       const mp = new MercadoPago("PUBLIC_KEY", {
         locale: "es-AR",
@@ -44,7 +44,8 @@
 
       mp.checkout({
         render: {
-          container: ".page-content",
+          container: "page-content-btn",
+          label: "asd",
         },
       });
     </script>

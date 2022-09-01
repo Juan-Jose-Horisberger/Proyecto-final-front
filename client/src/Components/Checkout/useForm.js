@@ -5,6 +5,7 @@ import { getProductToBuy } from "../../Redux/Action";
 import Cookies from "universal-cookie";
 import Swal from "sweetalert2";
 import { posts } from "../../infoUser.js"; //User ficticio
+import axios from "axios";
 
 export default function useForm(initialForm, validateForm, socket) {
   const dispatch = useDispatch();
@@ -106,18 +107,27 @@ export default function useForm(initialForm, validateForm, socket) {
   };
 
   const pay = async (data) => {
+    console.log(data);
+    const errores = validateForm(
+      form,
+      "nameComprasurnameComprastreetAddresscodePostalphoneNumberemailCompra"
+    );
+
     try {
-      const preference = await (
-        await fetch("http://localhost:3001/Checkout", {
-          method: "post",
-          body: {
-            id: 112,
-          },
-          // headers: {
-          //   "Content-Type": "application/json",
-          // },
-        })
-      ).json();
+      const preference =
+        // await axios.post(
+        //   "http://localhost:3001/Checkout",
+        //   data
+        // );
+        await (
+          await fetch("http://localhost:3001/Checkout", {
+            method: "post",
+            body: data,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+        ).json();
 
       var script = document.createElement("script");
       script.src =

@@ -432,7 +432,7 @@ export default function Checkout({ socket }) {
 
           <div className={style.divTotal}>
             <p>DESCUENTO</p>
-            <p>${cupon}</p>
+            <p>{cupon}</p>
           </div>
 
           <div className={style.divTotal}>
@@ -442,7 +442,7 @@ export default function Checkout({ socket }) {
 
           <div id="page-content" className={style.divBtn}>
             <button id="page-content-btn" onClick={() => pay(productsToBuy)}>
-              REALIZAR EL PEDIDO
+              CONFIRMAR EL PEDIDO
             </button>
           </div>
         </div>
