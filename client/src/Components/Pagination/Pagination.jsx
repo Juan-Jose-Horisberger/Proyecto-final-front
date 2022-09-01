@@ -68,6 +68,8 @@ export default function Pagination({ allProducts, loaded }) {
                 name={p.name}
                 price={p.price}
                 image={p.image}
+                offer={p.offer}
+                discount={p.discount}
               />
             ))
           ) : (

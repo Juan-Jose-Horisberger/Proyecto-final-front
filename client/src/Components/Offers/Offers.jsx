@@ -38,6 +38,7 @@ export default function Offers() {
       return;
     }
     setLoaded(true);
+    console.log(sales);
     if (typeof conteinerCards === "object") {
       window.scrollTo({
         top: 525,
@@ -46,21 +47,24 @@ export default function Offers() {
     }
   }, [sales]);
 
-  function priceWithDiscount(price, min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    const i = Math.floor(Math.random() * (max - min + 1) + min); //Indice random;
-    const discountLogic = price * discounts[i]; //Calculamos descuento
-
-    if (discounts[i] === 0.1) {
-      renderOnce3.current = "-10%";
-    } else if (discounts[i] === 0.2) {
-      renderOnce3.current = "-20%";
-    } else if (discounts[i] === 0.3) {
-      renderOnce3.current = "-30%";
-    } else {
-      renderOnce3.current = "-50%";
+  function priceWithDiscount(price, discount) {
+    let discountNumber;
+    if (discount) {
+      if (discount === "10%") {
+        discountNumber = 0.1;
+      } else if (discount === "20%") {
+        discountNumber = 0.2;
+      } else if (discount === "30%") {
+        discountNumber = 0.3;
+      } else if (discount === "40%") {
+        discountNumber = 0.4;
+      } else {
+        discountNumber = 0.5;
+      }
     }
+    const discountLogic = price * discountNumber; //Calculamos descuento
+    console.log(discountNumber);
+
     const grandTotal = price - discountLogic; //El total con descuento.
     return (
       <div className={`${styles.container_InfoDiscount}`}>
@@ -68,7 +72,7 @@ export default function Offers() {
         <p>
           <b>${grandTotal}</b>
         </p>
-        <p>{renderOnce3.current} DE DESCUENTO!</p>
+        <p>{discount} DE DESCUENTO!</p>
       </div>
     );
   }
@@ -134,7 +138,8 @@ export default function Offers() {
                     <div>
                       <p className="mt-3">{p.name}</p>
                       {renderOnce2.current === 0 &&
-                        priceWithDiscount(p.price, 0, 3)}
+                        priceWithDiscount(p.price, p.discount)}{" "}
+                      {/*discount*/}
                       <Link to={`/ProductDetail/${p.id}`}>
                         <button>VER MÁS</button>
                       </Link>

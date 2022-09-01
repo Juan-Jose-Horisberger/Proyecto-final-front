@@ -20,6 +20,7 @@ export default function FormProduct() {
     score: cookies.get("score"),
     genre: cookies.get("genre"),
     offer: undefined,
+    discount: "",
   };
 
   const validateForm = (form, nameInput, setValidate) => {
@@ -138,6 +139,13 @@ export default function FormProduct() {
       setValidate({});
     }
 
+    if (nameInput.includes("discount")) {
+      if (!form.discount) {
+        errors.discount = "El descuento del producto es requerido";
+        setValidate({});
+      }
+    }
+
     return errors;
   };
 
@@ -153,6 +161,8 @@ export default function FormProduct() {
     alert,
     setAlert,
     handleOffer,
+    checkedInput,
+    handleDiscount,
   } = useForm(initialForm, validateForm);
   const talleRopa = ["XS", "S", "M", "L", "XL", "XXL"];
   const talleCalzado = [
@@ -353,32 +363,35 @@ export default function FormProduct() {
             {form.category === "calzado"
               ? talleCalzado.map((e) => {
                   return (
-                    <div key={e} className="form-check-inline">
-                      <label className="form-check-label" htmlFor={e}>
+                    <div
+                      key={e}
+                      className={`form-check-inline mb-5 px-2 ${style.containerCalzadoChecks}`}
+                    >
+                      <label className="form-check-label">
                         <input
                           type="checkbox"
                           className="form-check-input"
                           name="size"
                           id={e}
                           value={e}
-                          onChange={handleChecked}
+                          onClick={handleChecked}
                         />
                         {e}
                       </label>
                     </div>
                   );
                 })
-              : talleRopa.map((e) => {
+              : talleRopa.map((e, i) => {
                   return (
-                    <div key={e} className="form-check-inline">
-                      <label className="form-check-label" htmlFor={e}>
+                    <div key={i} className="form-check-inline mb-5 px-2">
+                      <label className="form-check-label">
                         <input
                           type="checkbox"
                           className="form-check-input"
                           name="size"
                           id={e}
                           value={e}
-                          onChange={handleChecked}
+                          onClick={handleChecked}
                         />
                         {e}
                       </label>
@@ -445,6 +458,64 @@ export default function FormProduct() {
               onChange={handleOffer}
             />
           </div>
+
+          {checkedInput && (
+            <div className="container-fluid">
+              <div>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="discount"
+                  value="10%"
+                  onChange={handleDiscount}
+                ></input>
+                <label className="form-check-label">10% de descuento</label>
+              </div>
+              <div>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="discount"
+                  value="20%"
+                  onChange={handleDiscount}
+                ></input>
+                <label className="form-check-label">20% de descuento</label>
+              </div>
+              <div>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="discount"
+                  value="30%"
+                  onChange={handleDiscount}
+                ></input>
+                <label className="form-check-label">30% de descuento</label>
+              </div>
+              <div>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="discount"
+                  value="40%"
+                  onChange={handleDiscount}
+                ></input>
+                <label className="form-check-label">40% de descuento</label>
+              </div>
+              <div>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="discount"
+                  value="50%"
+                  onChange={handleDiscount}
+                ></input>
+                <label className="form-check-label">50% de descuento</label>
+              </div>
+              {errors.discount && (
+                <p className={style.error}>{errors.discount}</p>
+              )}
+            </div>
+          )}
 
           <button onSubmit={handleOnSubmit} className="btn btn-success m-3">
             Sumar al catalogo
