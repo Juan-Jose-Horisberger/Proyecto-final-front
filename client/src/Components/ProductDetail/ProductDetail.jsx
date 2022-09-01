@@ -38,6 +38,7 @@ export default function ProductDetail() {
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
+    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
