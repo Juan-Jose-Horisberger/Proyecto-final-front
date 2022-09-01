@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm.js";
 import Cookies from "universal-cookie";
 import { sendInformation } from "../../Redux/Action/index.js";
+import mercadopago from "mercadopago";
 
 var cookies = new Cookies();
 const initialForm = {
@@ -122,6 +123,8 @@ export default function Checkout({ socket }) {
     handleRemoveCookies,
     handleCupon,
     cupon,
+    oneProd,
+    pay,
   } = useForm(initialForm, validateForm, socket);
   const { loginWithRedirect } = useAuth0();
   const oneProductState = useSelector((state) => state.productToBuy);
@@ -131,6 +134,22 @@ export default function Checkout({ socket }) {
   var subTotal = 0;
   const dispatch = useDispatch();
   const infoNotifications = useSelector((state) => state.newNotification);
+
+  // // <script src="https://sdk.mercadopago.com/js/v2"></script>
+  // // <div class="cho-container"></div>
+  // const mp = new mercadopago("APP_USR-18b41654-56c7-4bbd-a2ca-c80dc122712e", {
+  //   locale: "es-AR",
+  // });
+
+  // mp.checkout({
+  //   preference: {
+  //     id: 123,
+  //   },
+  //   render: {
+  //     container: ".cho-container",
+  //     label: "Pagar",
+  //   },
+  // });
 
   useEffect(() => {
     //Esto iria en searchbar
@@ -361,27 +380,20 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {oneProductState.length || oneProduct ? (
-            <div className={style.divProduct}>
-              <img
-                src={
-                  oneProductState.length
-                    ? oneProductState[0].image
-                    : oneProduct[0].image
-                }
-              />
-              <p>
-                {oneProductState.length
-                  ? oneProductState[0].name
-                  : oneProduct[0].name}
-              </p>
-              <p>
-                $
-                {oneProductState.length
-                  ? oneProductState[0].price
-                  : oneProduct[0].price}
-              </p>
-            </div>
+          {oneProd ? (
+            oneProductState.length ? (
+              <div className={style.divProduct}>
+                <img src={oneProductState[0].image} />
+                <p>{oneProductState[0].name}</p>
+                <p>${oneProductState[0].price}</p>
+              </div>
+            ) : (
+              <div className={style.divProduct}>
+                <img src={oneProduct[0].image} />
+                <p>{oneProduct[0].name}</p>
+                <p>${oneProduct[0].price}</p>
+              </div>
+            )
           ) : (
             productsToBuy.map((e) => {
               return e[1].id ? (
@@ -428,11 +440,8 @@ export default function Checkout({ socket }) {
             <p>${(subTotal + 0.5 - cupon + "").slice(0, 6)}</p>
           </div>
 
-          <div className={style.divBtn}>
-            <button
-              onClick={() => handleRemoveCookies(productsToBuy)}
-              type="submit"
-            >
+          <div id="page-content" className={style.divBtn}>
+            <button id="page-content-btn" onClick={() => pay(productsToBuy)}>
               REALIZAR EL PEDIDO
             </button>
           </div>

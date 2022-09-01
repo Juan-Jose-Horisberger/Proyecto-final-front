@@ -27,12 +27,12 @@ export default function Product({ id, name, price, image }) {
   const Hovered = useHover(Hovertarget);
   const onHover = React.useRef(false);
 
-  /*Hover en el button*/
+  /*Hover en el button2*/
   const HovertargetButton = React.useRef(null);
   const HoveredButton = useHover(HovertargetButton);
   const onHoverButton = React.useRef(false);
 
-  /*Hover en el img del button*/
+  /*Hover en el button1*/
   const HovertargetButton1 = React.useRef(null);
   const HoveredButton1 = useHover(HovertargetButton1);
   const onHoverButton1 = React.useRef(false);

@@ -48,6 +48,7 @@ const userDetail = useSelector(state => state.userDetail)
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
+    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
