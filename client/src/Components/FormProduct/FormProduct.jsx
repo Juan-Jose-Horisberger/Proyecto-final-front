@@ -358,7 +358,7 @@ export default function FormProduct() {
             {errors.sold && <p className={style.error}>{errors.sold}</p>}
           </div>
 
-          <div className="w-75 mx-auto" style={{ border: "1px solid red" }}>
+          <div className="w-75 mx-auto">
             <h2>Talle/s</h2>
             {form.category === "calzado"
               ? talleCalzado.map((e) => {
@@ -399,15 +399,6 @@ export default function FormProduct() {
                   );
                 })}
             {errors.size && <p className={style.error}>{errors.size}</p>}
-          </div>
-
-          <div>
-            <input
-              type="checkbox"
-              className="form-check-input"
-              name="size"
-              onChange={handleChecked}
-            />
           </div>
 
           <div className={style.divGenre}>

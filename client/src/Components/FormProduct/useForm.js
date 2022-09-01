@@ -155,6 +155,7 @@ export default function useForm(initialForm, validateForm) {
     setErrors(errores);
 
     if (!Object.entries(errores).length) {
+      console.log(form);
       dispatch(createProduct(form));
       setAlert(false);
       setForm(initialForm);
