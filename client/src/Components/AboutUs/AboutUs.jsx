@@ -50,9 +50,22 @@ export default function About() {
       </div>
 
       <div className={`col-5 ${styles.container_image}`}>
+        {/*https://i.pinimg.com/564x/79/86/91/7986914867d6366dcc16143021f41de5.jpg
+
+          Esta va si o si
+        https://drops-ba.com/wp-content/uploads/2021/07/Sumate.jpg drops
+
+        https://images.unsplash.com/photo-1611858447060-7e516251cf4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
+        https://images.unsplash.com/photo-1611858447026-b16c9351c9df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
+        https://images.unsplash.com/photo-1591009986876-28ee2a1912cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80
+        https://images.unsplash.com/photo-1513188732907-5f732b831ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80
+        https://images.unsplash.com/photo-1611858447198-c6b3cc794943?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
+        https://images.unsplash.com/photo-1578592383917-2f0c0f16c78f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80
+        */}
         <img
-          src="https://i.pinimg.com/564x/79/86/91/7986914867d6366dcc16143021f41de5.jpg"
+          src="https://images.unsplash.com/photo-1590884226650-3611f205c13e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
           alt=""
+          className="img-fluid"
         />
       </div>
     </div>

@@ -1,196 +1,187 @@
 * {
-    box-sizing: border-box;
-    
+  box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap");
 /*font-family: 'Readex Pro', sans-serif;*/
-@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 
 /*font-family: 'Questrial', sans-serif;*/
 html {
-    background-color: black;
+  background-color: black;
 }
 
 .container_Info {
-    /* margin-top: 74px; */
-    margin-top: 0px;
+  /* margin-top: 74px; */
+  margin-top: 0px;
 }
 
 .container {
-    background-color: black;
+  background-color: black;
 }
 
 .container_button {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .container_button button {
-    width: 100%;
-    height: 80px;
-    background-color: #23232C;
-    line-height: 80px;
-    border-radius: 3px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    font-family: 'Readex Pro', sans-serif;
+  width: 100%;
+  height: 80px;
+  background-color: #23232c;
+  line-height: 80px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-family: "Readex Pro", sans-serif;
 }
 
 .container_button button:hover {
-    cursor: pointer;
-    background-color: black;
-    transition: 0.5s;
+  cursor: pointer;
+  background-color: black;
+  transition: 0.5s;
 }
 
 .container_infoContact h2,
 p {
-    font-family: 'Questrial', sans-serif;
-    color: white;
+  font-family: "Questrial", sans-serif;
+  color: white;
 }
 
 .container_infoContact h2 {
-    font-weight: bold;
-    margin-bottom: 15px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
-
 .container_infoContact p {
-    letter-spacing: 1px;
-    line-height: 35px;
+  letter-spacing: 1px;
+  line-height: 35px;
 }
 
 .container_infoContact2 {
-    padding: 12px;
+  padding: 12px;
 }
 
 .localInfop {
-    line-height: 30px !important;
-    /* border: 1px solid red; */
+  line-height: 30px !important;
+  /* border: 1px solid red; */
 }
 
 .container_image {
-    width: 557px;
-    min-width: 508;
-    height: auto;
+  width: 557px;
+  min-width: 508;
+  height: auto;
 }
 
 .container_image img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .container_infoAndForm {
-    /* width: 100%;
+  /* width: 100%;
     min-width: 600px;
     height: auto; */
-    width: 783px;
-    height: auto;
+  width: 783px;
+  height: auto;
 }
 
 .container_TextArea {
-    margin-bottom: 42px;
+  margin-bottom: 42px;
 }
 
 .alertMsj {
-    font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
 }
 
 .container_Alert {
-    width: 45%;
-    position: fixed;
-    top: 85%;
-    left: 0;
-    transform: translateX(-200%);
-    transition: transform 0.4s, opacity 0.5s ease-out;
+  width: 45%;
+  position: fixed;
+  top: 85%;
+  left: 0;
+  transform: translateX(-200%);
+  transition: transform 0.4s, opacity 0.5s ease-out;
 }
 
 .container_Alert.open {
-    transform: translateX(-0);
+  transform: translateX(-0);
 }
 
 .container_AlertSuccess {
-    width: 45%;
-    position: fixed;
-    top: 85%;
-    left: 0;
-    transform: translateX(-200%);
-    transition: transform 0.4s, opacity 0.5s ease-out;
-    /* display: none !important; */
+  width: 45%;
+  position: fixed;
+  top: 85%;
+  left: 0;
+  transform: translateX(-200%);
+  transition: transform 0.4s, opacity 0.5s ease-out;
+  /* display: none !important; */
 }
 
 .container_AlertSuccess.open {
-    transform: translateX(-0);
+  transform: translateX(-0);
 }
 
 .container_Inicio {
-    width: 100%;
-    height: 50px;
-    font-size: 20px;
-    display: flex;
-    padding-left: 20px;
-    align-items: center;
-    /* border: 1px solid red; */
-    position: fixed;
-    top: 12%;
-    font-family: 'Questrial', sans-serif;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  padding-left: 20px;
+  align-items: center;
+  /* border: 1px solid red; */
+  position: fixed;
+  top: 5%;
+  z-index: 5;
+  font-family: "Questrial", sans-serif;
 }
 
 .container_Inicio span:nth-child(3) {
-    color: white;
-    font-weight: 600;
+  color: white;
+  font-weight: 600;
 }
 
 .container_Inicio span:nth-child(2) {
-    color: white;
-    font-weight: 600;
+  color: white;
+  font-weight: 600;
 }
 
 .container_Inicio span:nth-child(1) {
-    color: rgb(128, 128, 128);
+  color: rgb(128, 128, 128);
 }
 
 .container_Inicio span:nth-child(1):hover {
-    color: white;
-}
-div{
-    position: relative;
+  color: white;
 }
 
 .inputs {
-    color: #fff !important;
-    background-color: #121212 !important;
-    border: 1px solid #686868 !important;
-    font-family: 'Questrial', sans-serif !important;
- 
+  color: #fff !important;
+  background-color: #121212 !important;
+  border: 1px solid #686868 !important;
+  font-family: "Questrial", sans-serif !important;
 }
 form .inputs:valid ~ label,
 form .inputs:focus ~ label,
-form .inputs:hover ~ label{
-    top: -31px;
-    left: 20px;
-    font-size: 16px;
+form .inputs:hover ~ label {
+  top: -31px;
+  left: 20px;
+  font-size: 16px;
 }
 
-
-
-form label{
-    position: absolute;
-    top: 0px;
-    left: 20px;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .5s;
-    
+form label {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
 }
-
 
 .btn,
 .btn *,
@@ -225,7 +216,6 @@ form label{
 }
 .btn svg {
   display: block;
-
 }
 .btn [hidden] {
   display: none;
@@ -237,7 +227,7 @@ form label{
   font-weight: 900;
   padding: 1.2rem 3rem;
   position: relative;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
@@ -308,52 +298,50 @@ form label{
   }
 }
 
-
 .button_send {
-    background-color: #23232C;
-    color: white;
+  background-color: #23232c;
+  color: white;
 }
 
 .button_send:hover {
-    border: 1px solid #686868 !important;
-    box-sizing: border-box;
+  border: 1px solid #686868 !important;
+  box-sizing: border-box;
 }
 
-
 @media screen and (min-width: 100px) and (max-width: 992px) {
-    .container_image {
-        display: none;
-    }
+  .container_image {
+    display: none;
+  }
 
-    .container_Info {
-        margin-top: 0px;
-    }
+  .container_Info {
+    margin-top: 0px;
+  }
 
-    .container_infoAndForm {
-        width: 100%;
-    }
+  .container_infoAndForm {
+    width: 100%;
+  }
 
-    .container_button {
-        margin-bottom: 10px;
-    }
+  .container_button {
+    margin-bottom: 10px;
+  }
 
-    .container_Alert {
-        width: 450px;
-        top: 80%;
-    }
+  .container_Alert {
+    width: 450px;
+    top: 80%;
+  }
 
-    .container_AlertSuccess {
-        width: 450px;
-    }
+  .container_AlertSuccess {
+    width: 450px;
+  }
 
-    .container_Inicio {
-        margin-top: 74px;
-        position: relative;
-    }
+  .container_Inicio {
+    margin-top: 74px;
+    position: relative;
+  }
 }
 
 @media screen and (min-width: 1343px) {
-    .container_infoAndForm {
-        width: 100%;
-    }
+  .container_infoAndForm {
+    width: 100%;
+  }
 }
