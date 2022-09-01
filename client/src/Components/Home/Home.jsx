@@ -14,7 +14,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home({ socket }) {
   const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
+    useAuth0();
+
   const allUsers = useSelector((state) => state.allUsers);
   const allProducts = useSelector((state) => state.products);
   const [loaded, setLoaded] = useState(false);
