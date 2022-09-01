@@ -157,6 +157,9 @@ p {
 .container_Inicio span:nth-child(1):hover {
   color: white;
 }
+div {
+  position: relative;
+}
 
 .inputs {
   color: #fff !important;
