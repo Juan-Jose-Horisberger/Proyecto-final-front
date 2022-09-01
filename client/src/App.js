@@ -15,6 +15,7 @@ import { io } from "socket.io-client";
 import Checkout from "./Components/Checkout/Checkout.jsx";
 import { posts } from "./infoUser.js";
 import Offers from "./Components/Offers/Offers.jsx";
+import About from "./Components/AboutUs/AboutUs";
 // import Navbar from './Components/NavbarPrueba/NavBar.jsx';
 // import Card from './Components/CardPrueba/Card.jsx';
 // import "./app.css";
@@ -42,6 +43,7 @@ function App() {
         <Route path="/Checkout" element={<Checkout socket={socket} />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Offers" element={<Offers />} />
+        <Route path="/About" element={<About />} />
       </Routes>
     </div>
   );

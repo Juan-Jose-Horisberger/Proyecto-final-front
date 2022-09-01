@@ -4,21 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Register.module.css";
 
-function validate(input) {
-  let errors = {};
-  if (!input.direccion) {
-    errors.direccion = "Se requiere una direccion";
-  } else if (!input.localidad) {
-    errors.localidad = "Se requiere una localidad";
-  } else if (!input.date) {
-    errors.date = "Se requiere una fecha";
-  } else if (!input.celular) {
-    errors.celular = "Ingrese un numero";
-  }
-
-  return errors;
-}
-
 export default function Register() {
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -37,13 +22,6 @@ export default function Register() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    setError(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
-    console.log(input);
   }
 
   function handleSubmit(e) {
@@ -52,8 +30,8 @@ export default function Register() {
     dispatch(input);
     alert("Datos guardados");
     setInput({
-      direccion: "",
-      localidad: "",
+      name: "",
+      lastName: "",
       date: "",
       celular: "",
     });
@@ -61,30 +39,43 @@ export default function Register() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className="d-flex justify-content-center">
         <form onSubmit={(e) => handleSubmit(e)}>
-          <h3>Datos Personales</h3>
+          <Link to="/Profile">
+            <button>Atras</button>
+          </Link>
+
+          <button>Modificar datos personales</button>
+
           <div>
-            <label>Direccion</label> <br />
+            <label>Apodo</label> <br />
             <input
               type="text"
-              value={input.direccion}
-              name="direccion"
+              value={input.apodo}
+              name="apodo"
               onChange={(e) => handleChange(e)}
             />
-            {error.direccion && <p> {error.direccion} </p>}
           </div>
 
           <div>
-            <label>Localidad</label> <br />
+            <label>Nombre</label> <br />
             <input
               type="text"
-              value={input.localidad}
-              name="localidad"
+              value={input.name}
+              name="name"
               onChange={(e) => handleChange(e)}
             />
-            {error.localidad && <p> {error.localidad} </p>}
+          </div>
+
+          <div>
+            <label>Apellido</label> <br />
+            <input
+              type="text"
+              value={input.lastName}
+              name="lastName"
+              onChange={(e) => handleChange(e)}
+            />
           </div>
 
           <div>
@@ -95,30 +86,47 @@ export default function Register() {
               name="date"
               onChange={(e) => handleChange(e)}
             />
-            {error.date && <p> {error.date} </p>}
           </div>
 
           <div>
-            <label>Celular</label> <br />
+            <label>Direccion</label> <br />
             <input
               type="text"
+              value={input.direction}
+              name="direction"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div>
+            <label>Provincia</label> <br />
+            <input
+              type="text"
+              value={input.provincia}
+              name="provincia"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div>
+            <label>Codigo Postal</label> <br />
+            <input
+              type="number"
+              value={input.cp}
+              name="cp"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div>
+            <label>Celular</label> <br />
+            <input
+              type="number"
               value={input.celular}
               name="celular"
               onChange={(e) => handleChange(e)}
             />
-            {error.celular && <p> {error.celular} </p>}
           </div>
+          <br />
 
-          {!input.direccion ||
-          !input.localidad ||
-          !input.date ||
-          !input.celular ? (
-            <button disabled type="submit">
-              Guardar
-            </button>
-          ) : (
-            <button type="submit">Guardar</button>
-          )}
+          <button>GUARDAR CAMBIOS</button>
         </form>
       </div>
     </div>
