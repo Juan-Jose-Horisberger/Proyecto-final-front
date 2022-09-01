@@ -114,20 +114,15 @@ export default function useForm(initialForm, validateForm, socket) {
     );
 
     try {
-      const preference =
-        // await axios.post(
-        //   "http://localhost:3001/Checkout",
-        //   data
-        // );
-        await (
-          await fetch("http://localhost:3001/Checkout", {
-            method: "post",
-            body: data,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-        ).json();
+      const preference = await (
+        await fetch("http://localhost:3001/products/comprar", {
+          method: "post",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+      ).json();
 
       var script = document.createElement("script");
       script.src =
@@ -142,7 +137,6 @@ export default function useForm(initialForm, validateForm, socket) {
       Swal.fire({
         icon: "error",
         title: "Algo salio mal",
-        // text: "Tu codigo no existe, o paso su fecha de uso",
         background: "#000",
         confirmButtonText: "Continuar",
         confirmButtonColor: "#282626",
