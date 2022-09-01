@@ -10,6 +10,7 @@ export default function useForm(initialForm, validateForm, socket) {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
+  const [oneProd, setOneProd] = useState(false);
   const [cupon, setCupon] = useState(0);
   const cupones = [
     "SoyHenry",
@@ -72,11 +73,12 @@ export default function useForm(initialForm, validateForm, socket) {
   const handleBuy = (id) => {
     if (id) {
       dispatch(getProductToBuy(id));
-    }
+      setOneProd(true);
+    } else setOneProd(false);
   };
 
   const handleCupon = (code) => {
-    if (cupones.find(code.value)) {
+    if (cupones.find((e) => e === code.value)) {
       setCupon("1");
       Swal.fire({
         icon: "success",
@@ -103,16 +105,53 @@ export default function useForm(initialForm, validateForm, socket) {
     data && data.map((e) => cookies.remove(e[1].id));
   };
 
+  const pay = async (data) => {
+    try {
+      const preference = await (
+        await fetch("http://localhost:3001/Checkout", {
+          method: "post",
+          body: {
+            id: 112,
+          },
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
+        })
+      ).json();
+
+      var script = document.createElement("script");
+      script.src =
+        "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.type = "text/javascript";
+      script.dataset.preferenceId = preference.preferenceId;
+      script.value = "Realizar el pago";
+      document.getElementById("page-content-btn").remove();
+      document.querySelector("#page-content").appendChild(script);
+      // document.querySelector("#page-content").innerHTML = "Realizar el pago";
+    } catch {
+      Swal.fire({
+        icon: "error",
+        title: "Algo salio mal",
+        // text: "Tu codigo no existe, o paso su fecha de uso",
+        background: "#000",
+        confirmButtonText: "Continuar",
+        confirmButtonColor: "#282626",
+      });
+    }
+  };
+
   return {
     form,
     setForm,
     errors,
     cupon,
+    oneProd,
     setErrors,
     handleOnChange,
     handleSubmit,
     handleBuy,
     handleRemoveCookies,
     handleCupon,
+    pay,
   };
 }
