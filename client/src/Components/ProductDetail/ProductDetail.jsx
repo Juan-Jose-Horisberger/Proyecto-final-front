@@ -9,13 +9,14 @@ import {
   getCartProduct,
   deleteCartProduct,
   addReviewToProduct,
-  getUserDetail
+  getUserDetail,
 } from "../../Redux/Action/index.js";
 import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
 import stylesComponents from "./stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import BuyProduct from "./MercadoLibre.jsx";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
@@ -28,7 +29,7 @@ export default function ProductDetail() {
   const cookies = new Cookies();
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
-
+  const [preferenceId, setPreferenceId] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
@@ -168,7 +169,7 @@ const userDetail = useSelector(state => state.userDetail)
                     })}
                 </div>
               </div>
-
+                
               {validateCart(id) ? (
                 <div className={`${styles.container_button}`}>
                   <button onClick={handleOnCart}>AGREGADO AL CARRITO</button>
@@ -224,7 +225,7 @@ const userDetail = useSelector(state => state.userDetail)
                 </div>
               </div>
             </div>
-
+          
             <div className={styles.container_3}>
               <div>
                 <h3>DESCRIPCIÓN</h3>
@@ -240,6 +241,10 @@ const userDetail = useSelector(state => state.userDetail)
                 </p>
               </div>
             </div>
+
+            {/* ///////////////                    COMPRAR PRODUCTO PRUEBA XD /////////////////////////// */}
+              <BuyProduct user={userDetail}/>
+            {/* ///////////////// */}
 
             <div className={styles.container_4}>
               <h4>Especificaciones</h4>
