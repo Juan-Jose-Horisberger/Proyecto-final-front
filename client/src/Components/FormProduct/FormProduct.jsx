@@ -40,7 +40,7 @@ export default function FormProduct() {
     }
 
     if (nameInput.includes("category")) {
-      if (form.category === "") {
+      if (!form.category) {
         errors.category = "Debes seleccionar una categoria";
         setValidate({ ...validate, category: true });
       } else {
@@ -49,7 +49,7 @@ export default function FormProduct() {
     }
 
     if (nameInput.includes("brand")) {
-      if (form.brand === "") {
+      if (!form.brand) {
         errors.brand = "Debes seleccionar una marca";
         setValidate({ ...validate, brand: true });
       } else {
@@ -186,7 +186,7 @@ export default function FormProduct() {
       </p>
 
       <div className={style.container}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={style.formulario}>
           <div className={style.divName}>
             <input
               type="text"
@@ -207,7 +207,7 @@ export default function FormProduct() {
           </div>
 
           <div className={style.categoryBrand}>
-            <div>
+            <div className={style.divCategory}>
               <label htmlFor="category">Categoria</label>
               <select
                 name="category"
@@ -229,9 +229,13 @@ export default function FormProduct() {
                 <option value="buzo">Buzo</option>
                 <option value="campera">Campera</option>
               </select>
+
+              {errors.category && (
+                <p className={style.error}>{errors.category}</p>
+              )}
             </div>
 
-            <div>
+            <div className={style.divBrand}>
               <label htmlFor="brand">Marca</label>
               <select
                 name="brand"
@@ -251,14 +255,9 @@ export default function FormProduct() {
                 <option value="Nike">Nike</option>
                 <option value="Puma">Puma</option>
               </select>
-            </div>
-          </div>
 
-          <div>
-            {errors.category && (
-              <p className={style.error}>{errors.category}</p>
-            )}
-            {errors.brand && <p className={style.error}>{errors.brand}</p>}
+              {errors.brand && <p className={style.error}>{errors.brand}</p>}
+            </div>
           </div>
 
           <div className="input-group mb-3">
@@ -517,7 +516,7 @@ export default function FormProduct() {
             </div>
           )}
 
-          <button onSubmit={handleOnSubmit} className="btn btn-success m-3">
+          <button onSubmit={handleOnSubmit} className={style.btnSubmit}>
             Sumar al catalogo
           </button>
 

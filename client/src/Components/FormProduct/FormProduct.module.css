@@ -44,34 +44,45 @@ h2 {
   width: 60px;
 }
 
+.formulario {
+  width: 70%;
+  /* border: 1px solid red; */
+}
+
+.formulario input {
+  border: 1px solid azure;
+  background-color: black !important;
+  color: azure !important;
+}
+
+.formulario select {
+  margin: auto;
+  width: 80%;
+  background-color: black !important;
+  color: azure !important;
+}
+
 .divName {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .categoryBrand {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 20px;
 }
 
-.categoryBrand label {
-  margin: auto;
-}
-
-.categoryBrand div {
-  display: flex;
-  flex-direction: column;
-  /* border: 1px solid red; */
+.divCategory {
   width: 50%;
+  /* border: 1px solid red; */
 }
-
-.categoryBrand select {
-  width: auto;
-  margin: auto;
-  margin-top: 10px;
+.divBrand {
+  width: 50%;
+  /* border: 1px solid red; */
 }
 
 .divImage {
@@ -126,6 +137,18 @@ h2 {
   margin-top: 10px;
 }
 
+.btnSubmit {
+  background-color: rgb(39, 38, 38);
+  color: azure;
+  padding: 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.btnSubmit:hover {
+  background-color: rgb(17, 16, 16);
+  transition: 0.4s;
+}
 .container_AlertDangerOpen {
   width: 45%;
   position: fixed;
