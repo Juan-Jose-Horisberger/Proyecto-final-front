@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,7 +9,7 @@ import {
   getCartProduct,
   deleteCartProduct,
   addReviewToProduct,
-  getUserDetail
+  getUserDetail,
 } from "../../Redux/Action/index.js";
 import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
@@ -28,7 +28,7 @@ export default function ProductDetail() {
   const cookies = new Cookies();
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
-
+  const grandTotalRef = useRef("");
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
@@ -36,7 +36,7 @@ export default function ProductDetail() {
     }
   }, [user]);
 
-const userDetail = useSelector(state => state.userDetail)
+  const userDetail = useSelector((state) => state.userDetail);
 
   useEffect(() => {
     dispatch(getProductDetail(id)).then((res) => res && setLoaded(true));
@@ -73,23 +73,23 @@ const userDetail = useSelector(state => state.userDetail)
     e.preventDefault();
     setReview({
       ...review,
-       email: userDetail.email,
+      email: userDetail.email,
       idProduct: productDetail.id,
       [e.target.name]: e.target.value,
     });
   };
   const addReview = () => {
     if (isAuthenticated && !isLoading) {
-      if(productDetail.review.length >= 2){
-        return alert("nuestra base de datos no puede soportar mas de dos reviews por producto :(")
-      }else{
-         dispatch(addReviewToProduct(review));
+      if (productDetail.review.length >= 2) {
+        return alert(
+          "nuestra base de datos no puede soportar mas de dos reviews por producto :("
+        );
+      } else {
+        dispatch(addReviewToProduct(review));
       }
-    }else{
-      
-      return alert("deberías iniciar sesion")
+    } else {
+      return alert("deberías iniciar sesion");
     }
-    
   };
 
   const handleOnCart = () => {
@@ -109,6 +109,34 @@ const userDetail = useSelector(state => state.userDetail)
     if (findProductCart) return true;
 
     return false;
+  };
+
+  const priceWithDiscount = (price, discount) => {
+    let discountNumber;
+    if (discount) {
+      if (discount === "10%") {
+        discountNumber = 0.1;
+      } else if (discount === "20%") {
+        discountNumber = 0.2;
+      } else if (discount === "30%") {
+        discountNumber = 0.3;
+      } else if (discount === "40%") {
+        discountNumber = 0.4;
+      } else {
+        discountNumber = 0.5;
+      }
+    }
+    const discountLogic = price * discountNumber; //Calculamos descuento
+    // console.log(discountNumber);
+
+    const grandTotal = price - discountLogic; //El total con descuento.
+    grandTotalRef.current = grandTotal;
+    return (
+      <div className={`${styles.container_price}`}>
+        <p>${productDetail.price}</p>
+        <h2>${grandTotal}</h2>
+      </div>
+    );
   };
 
   return (
@@ -132,21 +160,31 @@ const userDetail = useSelector(state => state.userDetail)
                 </Link>
                 <span className={`${styles.span_3}`}>{productDetail.name}</span>
               </h1>
-              <div>
+              <div className={`${styles.container_Img}`}>
                 <img
                   src={productDetail.image}
                   alt="imagen"
                   className="img-fluid"
                 />
+                {productDetail.offer && <p>-{productDetail.discount}</p>}
               </div>
             </div>
             <div className={styles.container_2}>
               {/* <img src="" alt="" />img de marca */}
               <h1>{productDetail.name}</h1>
-              <h2>$ {productDetail.price}</h2>
+              {productDetail.offer ? (
+                priceWithDiscount(productDetail.price, productDetail.discount)
+              ) : (
+                <div>
+                  <h2 className="mb-3">${productDetail.price}</h2>
+                </div>
+              )}
+
               <p>
                 3 Cuotas sin interés de{" "}
-                {(productDetail.price / 3 + "").slice(0, 5)}
+                {productDetail.offer
+                  ? (grandTotalRef.current / 3 + "").slice(0, 5)
+                  : (productDetail.price / 3 + "").slice(0, 5)}
               </p>
               <div className={`${styles.size_Container}`}>
                 <h3>SELECCIONE TALLE: </h3>
@@ -306,22 +344,22 @@ const userDetail = useSelector(state => state.userDetail)
           Comentar
         </button>
         <div className={styles.comments}>
-         {
-          
-           productDetail.review && 
-             productDetail.review.map(e => {
-               return( 
-                    <div className={styles.handleComment}>
-                      <img  className={styles.imgUser} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU" alt="not found" />
-                      <h1 className={styles.h1comment}>email: {e.email}   </h1>
-                      <h1 className={styles.h1comment}>username:  {e.username}:</h1>
-                      <h1 className={styles.h1comment}>{e.comment}</h1>
-                    </div>
-               )
-               })
-           
-         }
-         </div>
+          {productDetail.review &&
+            productDetail.review.map((e) => {
+              return (
+                <div className={styles.handleComment}>
+                  <img
+                    className={styles.imgUser}
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                    alt="not found"
+                  />
+                  <h1 className={styles.h1comment}>email: {e.email} </h1>
+                  <h1 className={styles.h1comment}>username: {e.username}:</h1>
+                  <h1 className={styles.h1comment}>{e.comment}</h1>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );

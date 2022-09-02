@@ -1,148 +1,151 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap%27");
 
 h2 {
-    margin-bottom: 40px;
-    font-size: 40px;
+  margin-bottom: 40px;
+  font-size: 40px;
 }
 
 .containerPrincipal {
-    background-color: rgba(0, 0, 0, 0.938);
-    color: azure;
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    font-family: 'Questrial', sans-serif;
+  background-color: rgba(0, 0, 0, 0.938);
+  color: azure;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  font-family: "Questrial", sans-serif;
 }
 
 .error {
-    color: rgb(174, 22, 22);
+  color: rgb(174, 22, 22);
 }
 
 .container {
-    margin: auto;
-    margin-bottom: 20px;
-    padding-bottom: 40px;
-    padding-top: 50px;
-    display: flex;
-    justify-content: center;
-    width: 60%;
-    background-color: rgba(0, 0, 0, 0.743);
-    border-radius: 20px;
-    /* border: 1px solid red; */
+  margin: auto;
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.743);
+  border-radius: 20px;
+  /* border: 1px solid red; */
 }
 
 .link {
-    text-decoration: none;
-    background-color: rgb(255, 0, 0);
-    color: azure;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 20px 0px 0px 20px;
-    height: 50px;
-    width: 60px;
+  text-decoration: none;
+  background-color: rgb(255, 0, 0);
+  color: azure;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px 0px 0px 20px;
+  height: 50px;
+  width: 60px;
 }
 
 .categoryBrand {
-    display: flex;
-    flex-wrap: wrap;
-    /* border: 1px solid red; */
-    margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+  margin: 20px;
 }
 
 .categoryBrand label {
-    margin: auto;
+  margin: auto;
 }
 
 .categoryBrand div {
-    display: flex;
-    flex-direction: column;
-    /* border: 1px solid red; */
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  width: 50%;
 }
 
 .categoryBrand select {
-    width: auto;
-    margin: auto;
-    margin-top: 10px;
+  width: auto;
+  margin: auto;
+  margin-top: 10px;
 }
 
 .divImage {
-    margin: 20px;
+  margin: 20px;
 }
 
 .imagen {
-    width: 60%;
-    margin-bottom: 30px;
+  width: 60%;
+  margin-bottom: 30px;
 }
 
 .stockPriceVendido {
-    margin: 20px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    /* border: 1px solid red; */
+  margin: 20px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
 }
 
 .stockPriceVendido input {
-    width: 80%;
-    /* margin: 10px 20px 20px 20px; */
+  width: 80%;
+  /* margin: 10px 20px 20px 20px; */
 }
 
 .divStockPriceSold {
-    /* border: 1px solid blue; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .divGenre {
-    /* border: 1px solid red; */
-    margin: 30px 0 30px 0;
+  /* border: 1px solid red; */
+  margin: 30px 0 30px 0;
 }
 
 .divGenre select {
-    width: 27%;
-    margin: auto;
-    margin-top: 10px;
+  width: 27%;
+  margin: auto;
+  margin-top: 10px;
 }
 
 .divScore {
-    /* border: 1px solid red; */
-    margin: 30px 0 30px 0;
+  /* border: 1px solid red; */
+  margin: 30px 0 30px 0;
 }
 
 .divScore input {
-    width: 170px;
-    margin: auto;
-    margin-top: 10px;
+  width: 170px;
+  margin: auto;
+  margin-top: 10px;
 }
 
-
 .container_AlertDangerOpen {
-    width: 45%;
-    position: fixed;
-    top: 85%;
-    left: 0;
-    transition: transform 0.4s, opacity 0.5s ease-out;
-    transform: translateX(-0);
+  width: 45%;
+  position: fixed;
+  top: 85%;
+  left: 0;
+  transition: transform 0.4s, opacity 0.5s ease-out;
+  transform: translateX(-0);
 }
 
 .container_AlertDanger {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .container_AlertSuccessOpen {
-    width: 45%;
-    position: fixed;
-    top: 85%;
-    left: 0;
-    transform: translateX(-0);
-    transition: transform 0.8s, opacity 0.5s ease-out;
+  width: 45%;
+  position: fixed;
+  top: 85%;
+  left: 0;
+  transform: translateX(-0);
+  transition: transform 0.8s, opacity 0.5s ease-out;
 }
 
 .container_AlertSuccess {
-    transform: translateX(-200%);
+  transform: translateX(-200%);
+}
+
+.containerCalzadoChecks {
+  z-index: 5 !important;
 }

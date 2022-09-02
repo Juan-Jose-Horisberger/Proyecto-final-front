@@ -17,7 +17,7 @@ import {
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function Product({ id, name, price, image }) {
+export default function Product({ id, name, price, image, offer, discount }) {
   const dispatch = useDispatch();
   const productFav = useSelector((state) => state.productFav);
   const productCart = useSelector((state) => state.productCart);
@@ -36,6 +36,8 @@ export default function Product({ id, name, price, image }) {
   const HovertargetButton1 = React.useRef(null);
   const HoveredButton1 = useHover(HovertargetButton1);
   const onHoverButton1 = React.useRef(false);
+
+  const grandTotalRef = React.useRef("");
 
   const handleOnFav = () => {
     const findProduct = productFav.find((e) => e.id === id);
@@ -72,6 +74,34 @@ export default function Product({ id, name, price, image }) {
     return findProductFav;
   };
 
+  const priceWithDiscount = (price, discount) => {
+    let discountNumber;
+    if (discount) {
+      if (discount === "10%") {
+        discountNumber = 0.1;
+      } else if (discount === "20%") {
+        discountNumber = 0.2;
+      } else if (discount === "30%") {
+        discountNumber = 0.3;
+      } else if (discount === "40%") {
+        discountNumber = 0.4;
+      } else {
+        discountNumber = 0.5;
+      }
+    }
+    const discountLogic = price * discountNumber; //Calculamos descuento
+    // console.log(discountNumber);
+
+    const grandTotal = price - discountLogic; //El total con descuento.
+    grandTotalRef.current = grandTotal;
+    return (
+      <div className={`${styles.container_price}`}>
+        <p>${price}</p>
+        <h2>${grandTotal}</h2>
+      </div>
+    );
+  };
+
   return (
     <div className={`${styles.container}`}>
       <div className={`${styles.container_productInfo}`}>
@@ -86,6 +116,7 @@ export default function Product({ id, name, price, image }) {
           }
         >
           <img src={image} alt="Imagen no encontrada" className={`img-fluid`} />
+          {offer && <p className={`${styles.discountP}`}>-{discount}</p>}
         </Link>
         {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
 
@@ -128,8 +159,16 @@ export default function Product({ id, name, price, image }) {
       </div>
 
       <div className={`${styles.info} mt-2`}>
-        <h1 className={styles.name_Product}>{name}</h1>
-        <h2 className={`${styles.price_Product} text-center`}>$ {price}</h2>
+        <div className="col-12">
+          <h3 className={`${styles.name_Product}`}>{name}</h3>
+        </div>
+        {offer ? (
+          priceWithDiscount(price, discount)
+        ) : (
+          <div>
+            <h2 className="mb-3 fs-5">${price}</h2>
+          </div>
+        )}
       </div>
     </div>
   );
