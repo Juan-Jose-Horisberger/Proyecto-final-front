@@ -12,6 +12,12 @@
   /* border: 1px solid red; */
 }
 
+.container select {
+  background-color: #121212;
+  color: azure;
+  margin-bottom: 18px;
+}
+
 .containerBtn {
   /* border: 1px solid red; */
   display: flex;
@@ -45,7 +51,7 @@
 }
 
 .pInFilters {
-  line-height: 40px;
+  line-height: 30px;
   font-size: 20px;
   user-select: none;
 }
@@ -62,16 +68,19 @@
 @media screen and (min-width: 100px) and (max-width: 576px) {
   .container {
     padding-right: 50px !important;
+    background-color: black !important;
   }
 }
 
 @media screen and (min-width: 100px) and (max-width: 992px) {
   .container_Filters {
     display: none;
+    background-color: black !important;
   }
 
   .containerFilters_992px {
     display: flex;
+    background-color: black !important;
   }
 
   .container {
@@ -81,5 +90,6 @@
     padding: 10px;
     padding-top: 0;
     padding-right: 25px;
+    background-color: black !important;
   }
 }

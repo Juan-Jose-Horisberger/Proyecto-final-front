@@ -9,6 +9,7 @@ import {
 } from "../../Redux/Action";
 import { Link } from "react-router-dom";
 import CartIcon from "../../Imagenes/cart.svg";
+import Campanita from "../../Imagenes/campanita.svg";
 import FavoritesIcon from "../../Imagenes/favorites.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
@@ -272,11 +273,7 @@ export default function SearchBar({ socket }) {
                       data-bs-toggle="offcanvas"
                       data-bs-target="#offcanvasRight"
                     >
-                      <img
-                        src="https://www.svgrepo.com/show/281772/alarm-bell.svg"
-                        style={{ width: "27px" }}
-                        alt=""
-                      />
+                      <img src={Campanita} style={{ width: "24px" }} alt="" />
                       {infoNotifications.counter > 0 && (
                         <div>{infoNotifications.counter}</div>
                       )}
