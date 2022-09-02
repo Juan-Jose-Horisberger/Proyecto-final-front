@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
   background-color: black;
-  color: azure;
+  color: white;
   margin-top: 30px;
+}
+.error {
+  color: red;
 }
