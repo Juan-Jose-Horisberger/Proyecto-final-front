@@ -1,37 +1,84 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./Dashboard.module.css";
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import Cards from "../Cards/Cards";
+import Earnings from "../Earnings/Earnings";
+import FAQ from "../FAQ/FAQ";
+import Navbar from "../Navbar/Navbar";
+import ProfileAdm from "../ProfileAdm/ProfileAdm";
+import Transfers from "../Transfers/Transfers";
+import Sidebar from "../Sidebar/Sidebar";
 
+import scrollreveal from "scrollreveal";
 export default function Dashboard() {
+  useEffect(() => {
+    const sr = scrollreveal({
+      origin: "bottom",
+      distance: "80px",
+      duration: 2000,
+      reset: false,
+    });
+    sr.reveal(
+      `
+        nav,
+        .row__one,
+        .row__two
+    `,
+      {
+        opacity: 0,
+        interval: 100,
+      }
+    );
+  }, []);
   return (
-    <div>
-      <h3>Este es del lado del administrador</h3>
-      <div className="col-3" style={{ border: "1px solid red" }}>
-        <div>
-          <h2>GAED.JM</h2>
+    <Section>
+      <Sidebar />
+      <Navbar />
+      <div className="grid">
+        <div className="row__one">
+          <Cards />
+          <FAQ />
         </div>
-        <div>
-          <Link
-            to="/CreateProduct"
-            className="nav-item mx-3 mx-lg-2"
-            style={{ textDecoration: "none" }}
-          >
-            <p
-              className={`nav-link mb-0 text-start text-sm-center`}
-              style={{ color: "white", border: "1px solid red" }}
-              aria-current="page"
-            >
-              Agregar producto
-            </p>
-          </Link>
-        </div>
-        <div>
-          <button>Usuarios info</button>
+        <div className="row__two">
+          <Earnings />
+          <Transfers />
+          <ProfileAdm />
         </div>
       </div>
-      <div>
-        <p>Cards...</p>
-      </div>
-    </div>
+    </Section>
   );
 }
+
+const Section = styled.section`
+  margin-left: 18vw;
+  padding: 2rem;
+  height: 100%;
+  background-color: black;
+  .grid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+    margin-top: 2rem;
+    .row__one {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      height: 50%;
+      gap: 1rem;
+    }
+    .row__two {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      height: 50%;
+    }
+  }
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    margin-left: 0;
+    .grid {
+      .row__one,
+      .row__two {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+`;
