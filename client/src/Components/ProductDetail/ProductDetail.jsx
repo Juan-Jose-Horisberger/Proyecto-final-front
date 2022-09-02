@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,7 +16,6 @@ import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
 import stylesComponents from "./stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import BuyProduct from "./MercadoLibre.jsx";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
@@ -29,7 +28,7 @@ export default function ProductDetail() {
   const cookies = new Cookies();
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const [preferenceId, setPreferenceId] = useState(null);
+  const grandTotalRef = useRef("");
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
@@ -49,6 +48,7 @@ export default function ProductDetail() {
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
+    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
@@ -70,9 +70,6 @@ export default function ProductDetail() {
     comment: "",
   });
   const onChangeReview = (e) => {
-    if (!isAuthenticated) {
-      return; //puse este return para que no se rompa, porque tarda en traerse los datos aveces :D
-    }
     e.preventDefault();
     setReview({
       ...review,
@@ -83,24 +80,15 @@ export default function ProductDetail() {
   };
   const addReview = () => {
     if (isAuthenticated && !isLoading) {
-      if (productDetail.review && productDetail.review.length >= 2) {
+      if (productDetail.review.length >= 2) {
         return alert(
           "nuestra base de datos no puede soportar mas de dos reviews por producto :("
         );
       } else {
-        if (review.comment.length <= 5) {
-          return alert("ingresa un comentario mas largo");
-        }
         dispatch(addReviewToProduct(review));
-        setReview({
-          email: "",
-          idProduct: "",
-          number: 0,
-          comment: "",
-        });
       }
     } else {
-      return alert("debes estar registrado");
+      return alert("deberías iniciar sesion");
     }
   };
 
@@ -121,6 +109,34 @@ export default function ProductDetail() {
     if (findProductCart) return true;
 
     return false;
+  };
+
+  const priceWithDiscount = (price, discount) => {
+    let discountNumber;
+    if (discount) {
+      if (discount === "10%") {
+        discountNumber = 0.1;
+      } else if (discount === "20%") {
+        discountNumber = 0.2;
+      } else if (discount === "30%") {
+        discountNumber = 0.3;
+      } else if (discount === "40%") {
+        discountNumber = 0.4;
+      } else {
+        discountNumber = 0.5;
+      }
+    }
+    const discountLogic = price * discountNumber; //Calculamos descuento
+    // console.log(discountNumber);
+
+    const grandTotal = price - discountLogic; //El total con descuento.
+    grandTotalRef.current = grandTotal;
+    return (
+      <div className={`${styles.container_price}`}>
+        <p>${productDetail.price}</p>
+        <h2>${grandTotal}</h2>
+      </div>
+    );
   };
 
   return (
@@ -144,21 +160,31 @@ export default function ProductDetail() {
                 </Link>
                 <span className={`${styles.span_3}`}>{productDetail.name}</span>
               </h1>
-              <div>
+              <div className={`${styles.container_Img}`}>
                 <img
                   src={productDetail.image}
                   alt="imagen"
                   className="img-fluid"
                 />
+                {productDetail.offer && <p>-{productDetail.discount}</p>}
               </div>
             </div>
             <div className={styles.container_2}>
               {/* <img src="" alt="" />img de marca */}
               <h1>{productDetail.name}</h1>
-              <h2>$ {productDetail.price}</h2>
+              {productDetail.offer ? (
+                priceWithDiscount(productDetail.price, productDetail.discount)
+              ) : (
+                <div>
+                  <h2 className="mb-3">${productDetail.price}</h2>
+                </div>
+              )}
+
               <p>
                 3 Cuotas sin interés de{" "}
-                {(productDetail.price / 3 + "").slice(0, 5)}
+                {productDetail.offer
+                  ? (grandTotalRef.current / 3 + "").slice(0, 5)
+                  : (productDetail.price / 3 + "").slice(0, 5)}
               </p>
               <div className={`${styles.size_Container}`}>
                 <h3>SELECCIONE TALLE: </h3>
@@ -241,10 +267,6 @@ export default function ProductDetail() {
                 </p>
               </div>
             </div>
-
-            {/* ///////////////                    COMPRAR PRODUCTO PRUEBA XD /////////////////////////// */}
-            {/* <BuyProduct user={userDetail} /> */}
-            {/* ///////////////// */}
 
             <div className={styles.container_4}>
               <h4>Especificaciones</h4>
