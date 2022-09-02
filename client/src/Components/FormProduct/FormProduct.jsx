@@ -40,7 +40,7 @@ export default function FormProduct() {
     }
 
     if (nameInput.includes("category")) {
-      if (form.category === "") {
+      if (!form.category) {
         errors.category = "Debes seleccionar una categoria";
         setValidate({ ...validate, category: true });
       } else {
@@ -49,7 +49,7 @@ export default function FormProduct() {
     }
 
     if (nameInput.includes("brand")) {
-      if (form.brand === "") {
+      if (!form.brand) {
         errors.brand = "Debes seleccionar una marca";
         setValidate({ ...validate, brand: true });
       } else {
@@ -73,7 +73,7 @@ export default function FormProduct() {
       } else if (form.price < 0) {
         errors.price = "El precio no puede ser menor a 0";
         setValidate({ ...validate, price: true });
-      } else if (form.price === "") {
+      } else if (!form.price) {
         errors.price = "El precio es requerido";
         setValidate({ ...validate, price: true });
       } else {
@@ -85,7 +85,7 @@ export default function FormProduct() {
       if (form.stock < 0) {
         errors.stock = "El disponible no puede ser menor a 0";
         setValidate({ ...validate, stock: true });
-      } else if (form.stock === "") {
+      } else if (!form.stock) {
         errors.stock = "El disponible es requerido";
         setValidate({ ...validate, stock: true });
       } else {
@@ -112,7 +112,7 @@ export default function FormProduct() {
     }
 
     if (nameInput.includes("genre")) {
-      if (form.genre === "") {
+      if (!form.genre) {
         errors.genre = "El producto debe pertener a un genero";
         setValidate({ ...validate, genre: true });
       } else {
@@ -186,7 +186,7 @@ export default function FormProduct() {
       </p>
 
       <div className={style.container}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={style.formulario}>
           <div className={style.divName}>
             <input
               type="text"
@@ -207,7 +207,7 @@ export default function FormProduct() {
           </div>
 
           <div className={style.categoryBrand}>
-            <div>
+            <div className={style.divCategory}>
               <label htmlFor="category">Categoria</label>
               <select
                 name="category"
@@ -229,9 +229,13 @@ export default function FormProduct() {
                 <option value="buzo">Buzo</option>
                 <option value="campera">Campera</option>
               </select>
+
+              {errors.category && (
+                <p className={style.error}>{errors.category}</p>
+              )}
             </div>
 
-            <div>
+            <div className={style.divBrand}>
               <label htmlFor="brand">Marca</label>
               <select
                 name="brand"
@@ -251,14 +255,9 @@ export default function FormProduct() {
                 <option value="Nike">Nike</option>
                 <option value="Puma">Puma</option>
               </select>
-            </div>
-          </div>
 
-          <div>
-            {errors.category && (
-              <p className={style.error}>{errors.category}</p>
-            )}
-            {errors.brand && <p className={style.error}>{errors.brand}</p>}
+              {errors.brand && <p className={style.error}>{errors.brand}</p>}
+            </div>
           </div>
 
           <div className="input-group mb-3">
@@ -309,6 +308,7 @@ export default function FormProduct() {
                 value={cookies.get("price")}
                 onChange={handleOnChange}
               />
+              {errors.price && <p className={style.error}>{errors.price}</p>}
             </div>
 
             <div className={style.divStockPriceSold}>
@@ -329,6 +329,7 @@ export default function FormProduct() {
                 value={cookies.get("stock")}
                 onChange={handleOnChange}
               />
+              {errors.stock && <p className={style.error}>{errors.stock}</p>}
             </div>
             {/* 
             <div className={style.divStockPriceSold}>
@@ -350,12 +351,6 @@ export default function FormProduct() {
                 onChange={handleOnChange}
               />
             </div> */}
-          </div>
-
-          <div>
-            {errors.price && <p className={style.error}>{errors.price}</p>}
-            {errors.stock && <p className={style.error}>{errors.stock}</p>}
-            {/* {errors.sold && <p className={style.error}>{errors.sold}</p>} */}
           </div>
 
           <div className="w-75 mx-auto">
@@ -517,7 +512,7 @@ export default function FormProduct() {
             </div>
           )}
 
-          <button onSubmit={handleOnSubmit} className="btn btn-success m-3">
+          <button onSubmit={handleOnSubmit} className={style.btnSubmit}>
             Sumar al catalogo
           </button>
 

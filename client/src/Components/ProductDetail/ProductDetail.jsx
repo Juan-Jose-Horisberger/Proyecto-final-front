@@ -290,23 +290,67 @@ export default function ProductDetail() {
                 {products.map((p, i) => {
                   return (
                     <div key={i} className={`${styles.carts}`}>
-                      <img
-                        onClick={() => handleOnClick(p.id)}
-                        src={p.image}
-                        alt="img"
-                        width="300px"
-                        className="img-fluid"
-                      />
-                      <p>{p.name}</p>
-                      <p>$ {p.price}</p>
-                      <p>
-                        <b>3</b> Cuotas sin interés de{" "}
-                        <b>${(p.price / 3 + "").slice(0, 5)}</b>
-                      </p>
+                      <Link to={`/ProductDetail/${p.id}`}>
+                        <img
+                          onClick={() => handleOnClick(p.id)}
+                          src={p.image}
+                          alt="img"
+                          width="300px"
+                          className="img-fluid"
+                        />
+                        <p>{p.name}</p>
+                        <p>$ {p.price}</p>
+                        <p>
+                          <b>3</b> Cuotas sin interés de{" "}
+                          <b>${(p.price / 3 + "").slice(0, 5)}</b>
+                        </p>
+                      </Link>
                     </div>
                   );
                 })}
               </Carousel>
+            </div>
+
+            <div className={styles.divComments}>
+              <input
+                className={styles.commentsScore}
+                name="number"
+                type="number"
+                placeholder="⭐ score "
+                onChange={(e) => onChangeReview(e)}
+              />
+              <textarea
+                className={styles.commentsText}
+                name="comment"
+                type="text"
+                placeholder="Dejanos un comentario junto a tu puntuacion del producto"
+                onChange={(e) => onChangeReview(e)}
+              ></textarea>
+              <button
+                className={styles.commentsBtn}
+                onClick={() => addReview()}
+              >
+                Comentar
+              </button>
+              <div className={styles.comments}>
+                {productDetail.review &&
+                  productDetail.review.map((e) => {
+                    return (
+                      <div className={styles.handleComment}>
+                        <img
+                          className={styles.imgUser}
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                          alt="not found"
+                        />
+                        <h1 className={styles.h1comment}>email: {e.email} </h1>
+                        <h1 className={styles.h1comment}>
+                          username: {e.username}:
+                        </h1>
+                        <h1 className={styles.h1comment}>{e.comment}</h1>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
         </div>
@@ -324,43 +368,6 @@ export default function ProductDetail() {
           </div>
         </div>
       )}
-
-      <div className={styles.divComments}>
-        <input
-          className={styles.commentsScore}
-          name="number"
-          type="number"
-          placeholder="⭐ score "
-          onChange={(e) => onChangeReview(e)}
-        />
-        <textarea
-          className={styles.commentsText}
-          name="comment"
-          type="text"
-          placeholder="Dejanos un comentario junto a tu puntuacion del producto"
-          onChange={(e) => onChangeReview(e)}
-        ></textarea>
-        <button className={styles.commentsBtn} onClick={() => addReview()}>
-          Comentar
-        </button>
-        <div className={styles.comments}>
-          {productDetail.review &&
-            productDetail.review.map((e) => {
-              return (
-                <div className={styles.handleComment}>
-                  <img
-                    className={styles.imgUser}
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
-                    alt="not found"
-                  />
-                  <h1 className={styles.h1comment}>email: {e.email} </h1>
-                  <h1 className={styles.h1comment}>username: {e.username}:</h1>
-                  <h1 className={styles.h1comment}>{e.comment}</h1>
-                </div>
-              );
-            })}
-        </div>
-      </div>
     </div>
   );
 }
