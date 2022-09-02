@@ -115,6 +115,14 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
+  const { loginWithRedirect } = useAuth0();
+  const oneProductState = useSelector((state) => state.productToBuy);
+  const oneProduct = cookies.get("oneProduct");
+  var cuki = cookies.getAll();
+  var productsToBuy = Object.entries(cuki);
+  var subTotal = 0;
+  const dispatch = useDispatch();
+  const infoNotifications = useSelector((state) => state.newNotification);
   const {
     form,
     errors,
@@ -126,30 +134,6 @@ export default function Checkout({ socket }) {
     oneProd,
     pay,
   } = useForm(initialForm, validateForm, socket);
-  const { loginWithRedirect } = useAuth0();
-  const oneProductState = useSelector((state) => state.productToBuy);
-  const oneProduct = cookies.get("oneProduct");
-  var cuki = cookies.getAll();
-  var productsToBuy = Object.entries(cuki);
-  var subTotal = 0;
-  const dispatch = useDispatch();
-  const infoNotifications = useSelector((state) => state.newNotification);
-
-  // // <script src="https://sdk.mercadopago.com/js/v2"></script>
-  // // <div class="cho-container"></div>
-  // const mp = new mercadopago("APP_USR-18b41654-56c7-4bbd-a2ca-c80dc122712e", {
-  //   locale: "es-AR",
-  // });
-
-  // mp.checkout({
-  //   preference: {
-  //     id: 123,
-  //   },
-  //   render: {
-  //     container: ".cho-container",
-  //     label: "Pagar",
-  //   },
-  // });
 
   useEffect(() => {
     //Esto iria en searchbar
@@ -432,7 +416,7 @@ export default function Checkout({ socket }) {
 
           <div className={style.divTotal}>
             <p>DESCUENTO</p>
-            <p>${cupon}</p>
+            <p>{cupon}</p>
           </div>
 
           <div className={style.divTotal}>
@@ -442,7 +426,7 @@ export default function Checkout({ socket }) {
 
           <div id="page-content" className={style.divBtn}>
             <button id="page-content-btn" onClick={() => pay(productsToBuy)}>
-              REALIZAR EL PEDIDO
+              CONFIRMAR EL PEDIDO
             </button>
           </div>
         </div>

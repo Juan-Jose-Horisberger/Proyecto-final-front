@@ -15,9 +15,9 @@ export default function FormProduct() {
     price: cookies.get("price"),
     stock: cookies.get("stock"),
     image: "",
-    sold: cookies.get("sold"),
+    // sold: cookies.get("sold"),
     size: [],
-    score: cookies.get("score"),
+    // score: cookies.get("score"),
     genre: cookies.get("genre"),
     offer: undefined,
     discount: "",
@@ -93,17 +93,17 @@ export default function FormProduct() {
       }
     }
 
-    if (nameInput.includes("sold")) {
-      if (form.sold < 0) {
-        errors.sold = "El vendido no puede ser menor a 0";
-        setValidate({ ...validate, sold: true });
-      } else if (form.sold === "") {
-        errors.sold = "La cantidad vendida es requerida";
-        setValidate({ ...validate, sold: true });
-      } else {
-        setValidate({ ...validate, sold: false });
-      }
-    }
+    // if (nameInput.includes("sold")) {
+    //   if (form.sold < 0) {
+    //     errors.sold = "El vendido no puede ser menor a 0";
+    //     setValidate({ ...validate, sold: true });
+    //   } else if (form.sold === "") {
+    //     errors.sold = "La cantidad vendida es requerida";
+    //     setValidate({ ...validate, sold: true });
+    //   } else {
+    //     setValidate({ ...validate, sold: false });
+    //   }
+    // }
 
     if (nameInput.includes("size")) {
       if (form.size.length === 0) {
@@ -120,20 +120,20 @@ export default function FormProduct() {
       }
     }
 
-    if (nameInput.includes("score")) {
-      if (form.score > 5) {
-        errors.score = "La puntuacion excede el maximo permitido";
-        setValidate({ ...validate, score: true });
-      } else if (form.score < 0) {
-        errors.score = "La puntuacion excede el minimo permitido";
-        setValidate({ ...validate, score: true });
-      } else if (form.score === "") {
-        errors.score = "La puntuacion es requerida";
-        setValidate({ ...validate, score: true });
-      } else {
-        setValidate({ ...validate, score: false });
-      }
-    }
+    // if (nameInput.includes("score")) {
+    //   if (form.score > 5) {
+    //     errors.score = "La puntuacion excede el maximo permitido";
+    //     setValidate({ ...validate, score: true });
+    //   } else if (form.score < 0) {
+    //     errors.score = "La puntuacion excede el minimo permitido";
+    //     setValidate({ ...validate, score: true });
+    //   } else if (form.score === "") {
+    //     errors.score = "La puntuacion es requerida";
+    //     setValidate({ ...validate, score: true });
+    //   } else {
+    //     setValidate({ ...validate, score: false });
+    //   }
+    // }
 
     if (nameInput.includes("offer")) {
       setValidate({});
@@ -187,7 +187,7 @@ export default function FormProduct() {
 
       <div className={style.container}>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className={style.divName}>
             <input
               type="text"
               className={`form-control ${
@@ -330,7 +330,7 @@ export default function FormProduct() {
                 onChange={handleOnChange}
               />
             </div>
-
+            {/* 
             <div className={style.divStockPriceSold}>
               <label htmlFor="sold">Vendidos</label>
               <input
@@ -349,13 +349,13 @@ export default function FormProduct() {
                 value={cookies.get("sold")}
                 onChange={handleOnChange}
               />
-            </div>
+            </div> */}
           </div>
 
           <div>
             {errors.price && <p className={style.error}>{errors.price}</p>}
             {errors.stock && <p className={style.error}>{errors.stock}</p>}
-            {errors.sold && <p className={style.error}>{errors.sold}</p>}
+            {/* {errors.sold && <p className={style.error}>{errors.sold}</p>} */}
           </div>
 
           <div className="w-75 mx-auto">
@@ -424,7 +424,7 @@ export default function FormProduct() {
             {errors.genre && <p className={style.error}>{errors.genre}</p>}
           </div>
 
-          <div className={style.divScore}>
+          {/* <div className={style.divScore}>
             <label htmlFor="score">Calificacion</label>
             <input
               type="number"
@@ -446,7 +446,7 @@ export default function FormProduct() {
             />
 
             {errors.score && <p className={style.error}>{errors.score}</p>}
-          </div>
+          </div> */}
 
           <div>
             <label className="form-check-label">En oferta</label>
