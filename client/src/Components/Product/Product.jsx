@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import styles from "./Product.module.css";
 import addCart from "../../Imagenes/add-cart.svg";
 import deleteCart from "../../Imagenes/delete-cart.svg";
-import addFav from "../../Imagenes/add-fav.svg";
+// import addFav from "../../Imagenes/add-fav.svg";
+import addFav from "../../Imagenes/favorites.svg";
+
 import deleteFav from "../../Imagenes/delete-fav.svg";
 import Cookies from "universal-cookie";
 import useHover from "@react-hook/hover";

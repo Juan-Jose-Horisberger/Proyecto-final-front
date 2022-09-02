@@ -115,6 +115,7 @@ export default function useForm(initialForm, validateForm, socket, user) {
           script.src =
             "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
           script.setAttribute("data-preference-id", order.data);
+          console.log(order);
           document.getElementById("page-content-btn").remove();
           document.querySelector("#page-content").appendChild(script);
         });
