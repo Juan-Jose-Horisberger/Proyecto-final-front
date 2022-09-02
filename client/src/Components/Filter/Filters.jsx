@@ -128,7 +128,7 @@ export default function Filters() {
           <h3>Filtros</h3>
 
           <button className={styles.btn} onClick={reset}>
-            <img src={resetImage} alt="no" />
+            <img src={resetImage} width="80%" alt="no" />
           </button>
         </div>
 
