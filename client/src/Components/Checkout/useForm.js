@@ -12,10 +12,10 @@ export default function useForm(initialForm, validateForm, socket, user) {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [oneProd, setOneProd] = useState(false);
-  const [cupon, setCupon] = useState(0);
-  const [preferenceId, setPreferenceId] = useState(null);
+  const [cupon, setCupon] = useState(["0", 0]);
+  const [envio, setEnvio] = useState(["500", 0.5]);
 
-  const cupones = ["SoyHenry"];
+  const cupones = ["SoyHenry", "Alejo"];
   const cookies = new Cookies();
   var expiryDate = new Date(Date.now() + 60 * 24 * 3600000);
 
@@ -33,6 +33,14 @@ export default function useForm(initialForm, validateForm, socket, user) {
       e.target.name
     );
     setErrors(errores);
+
+    if (e.target.name === "province") {
+      if (e.target.value === "Ciudad Autonoma De Buenos Aires") {
+        setEnvio(["500", 0.5]);
+      } else if (e.target.value === "Buenos Aires") {
+        setEnvio(["700", 0.7]);
+      } else setEnvio(["1000", 1]);
+    }
   };
 
   const handleSubmit = (ev) => {
@@ -67,7 +75,10 @@ export default function useForm(initialForm, validateForm, socket, user) {
 
   const handleCupon = (code) => {
     if (cupones.find((e) => e === code.value)) {
-      setCupon("1");
+      if (code.value === "Alejo") {
+        setCupon(["3000", 3]);
+      } else setCupon(["1000", 1]);
+
       Swal.fire({
         icon: "success",
         title: "Codigo de cupón valido",
@@ -95,17 +106,17 @@ export default function useForm(initialForm, validateForm, socket, user) {
 
   const pay = async (data) => {
     try {
-      let body;
-      if (user) {
-        body = {
-          usuario: {
-            name: user.username || "alex",
-            surname: user.surname || "jonatan",
-            email: user.email,
-          },
-          data: data,
-        };
-      }
+      // let body;
+      // if (user) {
+      //   body = {
+      //     usuario: {
+      //       name: user.username || "alex",
+      //       surname: user.surname || "jonatan",
+      //       email: user.email,
+      //     },
+      //     data: data,
+      //   };
+      // }
 
       const preference = axios
         .post("https://proyecto-final-01.herokuapp.com/products/comprar/", data)
@@ -144,5 +155,6 @@ export default function useForm(initialForm, validateForm, socket, user) {
     handleRemoveCookies,
     handleCupon,
     pay,
+    envio,
   };
 }
