@@ -95,48 +95,29 @@ export default function useForm(initialForm, validateForm, socket, user) {
 
   const pay = async (data) => {
     try {
-      // let body;
-      // if (user) {
-      //   body = {
-      //     usuario: {
-      //       name: user.username || "alex",
-      //       surname: user.surname || "jonatan",
-      //       email: user.email,
-      //     },
-      //     data: data,
-      //   };
-      // }
+      let body;
+      if (user) {
+        body = {
+          usuario: {
+            name: user.username || "alex",
+            surname: user.surname || "jonatan",
+            email: user.email,
+          },
+          data: data,
+        };
+      }
 
-      // const asd = axios
-      //   .post(
-      //     "https://proyecto-final-01.herokuapp.com/products/comprar/1",
-      //     data
-      //   )
-      //   .then((order) => {
-      //     setPreferenceId(order.data);
-      // });
-      const preference = await (
-        await fetch(
-          "https://proyecto-final-01.herokuapp.com/products/comprar/",
-          {
-            method: "post",
-            body: JSON.stringify(data),
-            // usuario: JSON.stringify(usuario),
-
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-      ).json();
-
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src =
-        "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-      script.setAttribute("data-preference-id", preference.preferenceId);
-      document.getElementById("page-content-btn").remove();
-      document.querySelector("#page-content").appendChild(script);
+      const preference = axios
+        .post("https://proyecto-final-01.herokuapp.com/products/comprar/", data)
+        .then((order) => {
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.src =
+            "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+          script.setAttribute("data-preference-id", order.data);
+          document.getElementById("page-content-btn").remove();
+          document.querySelector("#page-content").appendChild(script);
+        });
       // document.querySelector("#page-content").innerHTML = "Realizar el pago";
     } catch {
       Swal.fire({
