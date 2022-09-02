@@ -28,6 +28,14 @@ export default function Register() {
       ...input,
       [e.target.name]: e.target.value,
     });
+
+    setError(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+    console.log(input);
   }
   function handleSelect(e) {
     setInput({
