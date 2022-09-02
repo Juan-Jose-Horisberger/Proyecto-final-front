@@ -30,6 +30,21 @@
   font-weight: bold;
 }
 
+.container_1 .container_Img {
+  /* border: 1px solid red; */
+  position: relative;
+}
+
+.container_1 .container_Img p {
+  top: 3%;
+  padding: 0 10px;
+  font-size: 20px;
+  background-color: #100f10;
+  color: white;
+  position: absolute;
+  /* border: 1px solid red; */
+}
+
 .container_2 {
   width: 50%;
   padding-left: 70px;
@@ -73,14 +88,29 @@
   font-size: 35px;
 }
 
-.container_2 h2 {
-  /* width: 100%; */
-  font-size: 30px;
+.container_2 .container_price {
+  width: 100%;
+  display: flex;
+  /* border: 1px solid red; */
   margin-bottom: 5px;
+}
+
+.container_2 .container_price p {
+  font-size: 22px;
+  margin-bottom: 0px;
   font-family: "Questrial", sans-serif;
-  font-weight: bold;
-  /* border: 1px solid black; */
+  text-decoration: line-through 2px;
   color: white !important;
+  line-height: 45px;
+  margin-right: 18px;
+}
+
+.container_2 .container_price h2 {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  /* border: 1px solid red; */
+  margin: 0;
 }
 
 .container_button {
@@ -473,10 +503,10 @@
   font-family: "Questrial", sans-serif;
 }
 
-.comments{
+.comments {
   background-color: rgb(65, 65, 65);
 }
-.handleComment{
+.handleComment {
   color: #ffffff;
   display: flex;
   margin-top: 1rem;
@@ -484,15 +514,12 @@
   height: 2rem;
   border-style: double;
   border-color: #fff;
-  
 }
-.h1comment{
+.h1comment {
   margin-right: 2rem;
   font-size: 1rem;
 }
-.imgUser{
+.imgUser {
   height: 20px;
   margin-right: 1rem;
 }
-
-
