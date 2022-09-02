@@ -7,21 +7,15 @@ import Swal from "sweetalert2";
 import { posts } from "../../infoUser.js"; //User ficticio
 import axios from "axios";
 
-export default function useForm(initialForm, validateForm, socket) {
+export default function useForm(initialForm, validateForm, socket, user) {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [oneProd, setOneProd] = useState(false);
   const [cupon, setCupon] = useState(0);
-  const cupones = [
-    "SoyHenry",
-    "MZF5JKA7",
-    "KASDJ17",
-    "JAUVMI2",
-    "KASIQP2",
-    "891NJAD",
-    "1S2NDGA",
-  ];
+  const [preferenceId, setPreferenceId] = useState(null);
+
+  const cupones = ["SoyHenry"];
   const cookies = new Cookies();
   var expiryDate = new Date(Date.now() + 60 * 24 * 3600000);
 
@@ -48,17 +42,10 @@ export default function useForm(initialForm, validateForm, socket) {
       "nameComprasurnameComprastreetAddresscodePostalphoneNumberemailCompra"
     );
     setErrors(errores);
-    // console.log("hola entra aca?");
-    // console.log(posts[0].id, posts[0].username)
-    //Esto va a estar en checkout
 
     socket?.emit("newUser", posts[0].username, posts[0].id);
 
     if (!Object.entries(errores).length) {
-      // dispatch(createProduct(form));
-      setForm(initialForm);
-      cookies.remove();
-
       var options = document.querySelectorAll("#my_select");
       options[0].selectedIndex = 0;
 
@@ -107,29 +94,47 @@ export default function useForm(initialForm, validateForm, socket) {
   };
 
   const pay = async (data) => {
-    console.log(data);
-    const errores = validateForm(
-      form,
-      "nameComprasurnameComprastreetAddresscodePostalphoneNumberemailCompra"
-    );
-
     try {
+      // let body;
+      // if (user) {
+      //   body = {
+      //     usuario: {
+      //       name: user.username || "alex",
+      //       surname: user.surname || "jonatan",
+      //       email: user.email,
+      //     },
+      //     data: data,
+      //   };
+      // }
+
+      // const asd = axios
+      //   .post(
+      //     "https://proyecto-final-01.herokuapp.com/products/comprar/1",
+      //     data
+      //   )
+      //   .then((order) => {
+      //     setPreferenceId(order.data);
+      // });
       const preference = await (
-        await fetch("http://localhost:3001/products/comprar", {
-          method: "post",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+        await fetch(
+          "https://proyecto-final-01.herokuapp.com/products/comprar/",
+          {
+            method: "post",
+            body: JSON.stringify(data),
+            // usuario: JSON.stringify(usuario),
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
       ).json();
 
-      var script = document.createElement("script");
+      const script = document.createElement("script");
+      script.type = "text/javascript";
       script.src =
         "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-      script.type = "text/javascript";
-      script.dataset.preferenceId = preference.preferenceId;
-      script.value = "Realizar el pago";
+      script.setAttribute("data-preference-id", preference.preferenceId);
       document.getElementById("page-content-btn").remove();
       document.querySelector("#page-content").appendChild(script);
       // document.querySelector("#page-content").innerHTML = "Realizar el pago";

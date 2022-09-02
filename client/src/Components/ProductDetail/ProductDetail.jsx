@@ -9,13 +9,14 @@ import {
   getCartProduct,
   deleteCartProduct,
   addReviewToProduct,
-  getUserDetail
+  getUserDetail,
 } from "../../Redux/Action/index.js";
 import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
 import stylesComponents from "./stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import BuyProduct from "./MercadoLibre.jsx";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
@@ -28,7 +29,7 @@ export default function ProductDetail() {
   const cookies = new Cookies();
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
-
+  const [preferenceId, setPreferenceId] = useState(null);
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
@@ -36,7 +37,7 @@ export default function ProductDetail() {
     }
   }, [user]);
 
-const userDetail = useSelector(state => state.userDetail)
+  const userDetail = useSelector((state) => state.userDetail);
 
   useEffect(() => {
     dispatch(getProductDetail(id)).then((res) => res && setLoaded(true));
@@ -48,7 +49,6 @@ const userDetail = useSelector(state => state.userDetail)
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
-    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
@@ -70,26 +70,38 @@ const userDetail = useSelector(state => state.userDetail)
     comment: "",
   });
   const onChangeReview = (e) => {
+    if (!isAuthenticated) {
+      return; //puse este return para que no se rompa, porque tarda en traerse los datos aveces :D
+    }
     e.preventDefault();
     setReview({
       ...review,
-       email: userDetail.email,
+      email: userDetail.email,
       idProduct: productDetail.id,
       [e.target.name]: e.target.value,
     });
   };
   const addReview = () => {
     if (isAuthenticated && !isLoading) {
-      if(productDetail.review.length >= 2){
-        return alert("nuestra base de datos no puede soportar mas de dos reviews por producto :(")
-      }else{
-         dispatch(addReviewToProduct(review));
+      if (productDetail.review && productDetail.review.length >= 2) {
+        return alert(
+          "nuestra base de datos no puede soportar mas de dos reviews por producto :("
+        );
+      } else {
+        if (review.comment.length <= 5) {
+          return alert("ingresa un comentario mas largo");
+        }
+        dispatch(addReviewToProduct(review));
+        setReview({
+          email: "",
+          idProduct: "",
+          number: 0,
+          comment: "",
+        });
       }
-    }else{
-      
-      return alert("deberías iniciar sesion")
+    } else {
+      return alert("debes estar registrado");
     }
-    
   };
 
   const handleOnCart = () => {
@@ -230,6 +242,10 @@ const userDetail = useSelector(state => state.userDetail)
               </div>
             </div>
 
+            {/* ///////////////                    COMPRAR PRODUCTO PRUEBA XD /////////////////////////// */}
+            {/* <BuyProduct user={userDetail} /> */}
+            {/* ///////////////// */}
+
             <div className={styles.container_4}>
               <h4>Especificaciones</h4>
               <div>
@@ -306,22 +322,22 @@ const userDetail = useSelector(state => state.userDetail)
           Comentar
         </button>
         <div className={styles.comments}>
-         {
-          
-           productDetail.review && 
-             productDetail.review.map(e => {
-               return( 
-                    <div className={styles.handleComment}>
-                      <img  className={styles.imgUser} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU" alt="not found" />
-                      <h1 className={styles.h1comment}>email: {e.email}   </h1>
-                      <h1 className={styles.h1comment}>username:  {e.username}:</h1>
-                      <h1 className={styles.h1comment}>{e.comment}</h1>
-                    </div>
-               )
-               })
-           
-         }
-         </div>
+          {productDetail.review &&
+            productDetail.review.map((e) => {
+              return (
+                <div className={styles.handleComment}>
+                  <img
+                    className={styles.imgUser}
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                    alt="not found"
+                  />
+                  <h1 className={styles.h1comment}>email: {e.email} </h1>
+                  <h1 className={styles.h1comment}>username: {e.username}:</h1>
+                  <h1 className={styles.h1comment}>{e.comment}</h1>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );

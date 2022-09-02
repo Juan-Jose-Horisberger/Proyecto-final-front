@@ -115,6 +115,13 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
+  const oneProductState = useSelector((state) => state.productToBuy);
+  const oneProduct = cookies.get("oneProduct");
+  var cuki = cookies.getAll();
+  var productsToBuy = Object.entries(cuki);
+  var subTotal = 0;
+  const dispatch = useDispatch();
+  const infoNotifications = useSelector((state) => state.newNotification);
   const {
     form,
     errors,
@@ -125,31 +132,13 @@ export default function Checkout({ socket }) {
     cupon,
     oneProd,
     pay,
-  } = useForm(initialForm, validateForm, socket);
-  const { loginWithRedirect } = useAuth0();
-  const oneProductState = useSelector((state) => state.productToBuy);
-  const oneProduct = cookies.get("oneProduct");
-  var cuki = cookies.getAll();
-  var productsToBuy = Object.entries(cuki);
-  var subTotal = 0;
-  const dispatch = useDispatch();
-  const infoNotifications = useSelector((state) => state.newNotification);
+  } = useForm(initialForm, validateForm, socket, userDetail);
 
-  // // <script src="https://sdk.mercadopago.com/js/v2"></script>
-  // // <div class="cho-container"></div>
-  // const mp = new mercadopago("APP_USR-18b41654-56c7-4bbd-a2ca-c80dc122712e", {
-  //   locale: "es-AR",
-  // });
-
-  // mp.checkout({
-  //   preference: {
-  //     id: 123,
-  //   },
-  //   render: {
-  //     container: ".cho-container",
-  //     label: "Pagar",
-  //   },
-  // });
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      dispatch(getUserDetail(user.email));
+    }
+  }, [user]);
 
   useEffect(() => {
     //Esto iria en searchbar
