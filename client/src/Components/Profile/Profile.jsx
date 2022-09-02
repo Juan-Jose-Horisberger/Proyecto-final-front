@@ -38,7 +38,7 @@ export default function Profile() {
             <h3>Mi Perfil</h3>
             <div>
               <img
-                src={user.img}
+                src={userDetail.img}
                 onError={handleOnError}
                 // alt={user.name}
               />
@@ -47,10 +47,11 @@ export default function Profile() {
               <h2>{userDetail.name}</h2>
             </div>
             <h6>{userDetail.username}</h6>
-            <h6>Email: {user.email}</h6>
+            <h6>Email: {userDetail.email}</h6>
             <div>
               <Logout />
             </div>
+            {userDetail.admin === true ? <h1>hola</h1> : ""}
           </div>
         </div>
       )

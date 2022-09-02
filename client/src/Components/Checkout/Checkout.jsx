@@ -123,7 +123,7 @@ export default function Checkout({ socket }) {
     handleCupon,
     cupon,
   } = useForm(initialForm, validateForm, socket);
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   const oneProductState = useSelector((state) => state.productToBuy);
   const oneProduct = cookies.get("oneProduct");
   var cuki = cookies.getAll();
@@ -151,14 +151,21 @@ export default function Checkout({ socket }) {
       </div>
 
       <div className={style.containerRegisterCupon}>
-        <div className={style.divRegisterCupon}>
-          <p>
-            ¿No tienes una cuenta?
-            <button className={style.btnRe} onClick={() => loginWithRedirect()}>
-              REGISTRATE
-            </button>
-          </p>
-        </div>
+        {!isAuthenticated ? (
+          <div className={style.divRegisterCupon}>
+            <p>
+              ¿No tienes una cuenta?
+              <button
+                className={style.btnRe}
+                onClick={() => loginWithRedirect()}
+              >
+                REGISTRATE
+              </button>
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className={style.divRegisterCupon}>
           <div

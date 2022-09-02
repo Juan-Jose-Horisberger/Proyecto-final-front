@@ -9,7 +9,7 @@ import {
   getCartProduct,
   deleteCartProduct,
   addReviewToProduct,
-  getUserDetail
+  getUserDetail,
 } from "../../Redux/Action/index.js";
 import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
@@ -29,14 +29,13 @@ export default function ProductDetail() {
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
-
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
       dispatch(getUserDetail(user.email));
     }
   }, [user]);
 
-const userDetail = useSelector(state => state.userDetail)
+  const userDetail = useSelector((state) => state.userDetail);
 
   useEffect(() => {
     dispatch(getProductDetail(id)).then((res) => res && setLoaded(true));
@@ -72,23 +71,23 @@ const userDetail = useSelector(state => state.userDetail)
     e.preventDefault();
     setReview({
       ...review,
-       email: userDetail.email,
+      email: userDetail.email,
       idProduct: productDetail.id,
       [e.target.name]: e.target.value,
     });
   };
   const addReview = () => {
     if (isAuthenticated && !isLoading) {
-      if(productDetail.review.length >= 2){
-        return alert("nuestra base de datos no puede soportar mas de dos reviews por producto :(")
-      }else{
-         dispatch(addReviewToProduct(review));
+      if (productDetail.review.length >= 2) {
+        return alert(
+          "nuestra base de datos no puede soportar mas de dos reviews por producto :("
+        );
+      } else {
+        dispatch(addReviewToProduct(review));
       }
-    }else{
-      
-      return alert("deberías iniciar sesion")
+    } else {
+      return alert("deberías iniciar sesion");
     }
-    
   };
 
   const handleOnCart = () => {
@@ -305,22 +304,22 @@ const userDetail = useSelector(state => state.userDetail)
           Comentar
         </button>
         <div className={styles.comments}>
-         {
-          
-           productDetail.review && 
-             productDetail.review.map(e => {
-               return( 
-                    <div className={styles.handleComment}>
-                      <img  className={styles.imgUser} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU" alt="not found" />
-                      <h1 className={styles.h1comment}>email: {e.email}   </h1>
-                      <h1 className={styles.h1comment}>username:  {e.username}:</h1>
-                      <h1 className={styles.h1comment}>{e.comment}</h1>
-                    </div>
-               )
-               })
-           
-         }
-         </div>
+          {productDetail.review &&
+            productDetail.review.map((e) => {
+              return (
+                <div className={styles.handleComment}>
+                  <img
+                    className={styles.imgUser}
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                    alt="not found"
+                  />
+                  <h1 className={styles.h1comment}>email: {e.email} </h1>
+                  <h1 className={styles.h1comment}>username: {e.username}:</h1>
+                  <h1 className={styles.h1comment}>{e.comment}</h1>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );
