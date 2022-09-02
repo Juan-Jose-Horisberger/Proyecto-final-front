@@ -105,7 +105,7 @@ h2 {
 
 .stockPriceVendido input {
   width: 80%;
-  /* margin: 10px 20px 20px 20px; */
+  margin: 0px 20px 0px 10px;
 }
 
 .divStockPriceSold {
@@ -123,7 +123,6 @@ h2 {
 .divGenre select {
   width: 27%;
   margin: auto;
-  margin-top: 10px;
 }
 
 .divScore {

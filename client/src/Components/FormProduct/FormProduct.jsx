@@ -73,7 +73,7 @@ export default function FormProduct() {
       } else if (form.price < 0) {
         errors.price = "El precio no puede ser menor a 0";
         setValidate({ ...validate, price: true });
-      } else if (form.price === "") {
+      } else if (!form.price) {
         errors.price = "El precio es requerido";
         setValidate({ ...validate, price: true });
       } else {
@@ -85,7 +85,7 @@ export default function FormProduct() {
       if (form.stock < 0) {
         errors.stock = "El disponible no puede ser menor a 0";
         setValidate({ ...validate, stock: true });
-      } else if (form.stock === "") {
+      } else if (!form.stock) {
         errors.stock = "El disponible es requerido";
         setValidate({ ...validate, stock: true });
       } else {
@@ -112,7 +112,7 @@ export default function FormProduct() {
     }
 
     if (nameInput.includes("genre")) {
-      if (form.genre === "") {
+      if (!form.genre) {
         errors.genre = "El producto debe pertener a un genero";
         setValidate({ ...validate, genre: true });
       } else {
@@ -308,6 +308,7 @@ export default function FormProduct() {
                 value={cookies.get("price")}
                 onChange={handleOnChange}
               />
+              {errors.price && <p className={style.error}>{errors.price}</p>}
             </div>
 
             <div className={style.divStockPriceSold}>
@@ -328,6 +329,7 @@ export default function FormProduct() {
                 value={cookies.get("stock")}
                 onChange={handleOnChange}
               />
+              {errors.stock && <p className={style.error}>{errors.stock}</p>}
             </div>
             {/* 
             <div className={style.divStockPriceSold}>
@@ -349,12 +351,6 @@ export default function FormProduct() {
                 onChange={handleOnChange}
               />
             </div> */}
-          </div>
-
-          <div>
-            {errors.price && <p className={style.error}>{errors.price}</p>}
-            {errors.stock && <p className={style.error}>{errors.stock}</p>}
-            {/* {errors.sold && <p className={style.error}>{errors.sold}</p>} */}
           </div>
 
           <div className="w-75 mx-auto">
