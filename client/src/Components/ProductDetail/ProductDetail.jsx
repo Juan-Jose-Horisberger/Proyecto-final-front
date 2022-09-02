@@ -290,19 +290,21 @@ export default function ProductDetail() {
                 {products.map((p, i) => {
                   return (
                     <div key={i} className={`${styles.carts}`}>
-                      <img
-                        onClick={() => handleOnClick(p.id)}
-                        src={p.image}
-                        alt="img"
-                        width="300px"
-                        className="img-fluid"
-                      />
-                      <p>{p.name}</p>
-                      <p>$ {p.price}</p>
-                      <p>
-                        <b>3</b> Cuotas sin interés de{" "}
-                        <b>${(p.price / 3 + "").slice(0, 5)}</b>
-                      </p>
+                      <Link to={`/ProductDetail/${p.id}`}>
+                        <img
+                          onClick={() => handleOnClick(p.id)}
+                          src={p.image}
+                          alt="img"
+                          width="300px"
+                          className="img-fluid"
+                        />
+                        <p>{p.name}</p>
+                        <p>$ {p.price}</p>
+                        <p>
+                          <b>3</b> Cuotas sin interés de{" "}
+                          <b>${(p.price / 3 + "").slice(0, 5)}</b>
+                        </p>
+                      </Link>
                     </div>
                   );
                 })}
