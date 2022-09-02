@@ -115,6 +115,7 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
+  const { loginWithRedirect } = useAuth0();
   const oneProductState = useSelector((state) => state.productToBuy);
   const oneProduct = cookies.get("oneProduct");
   var cuki = cookies.getAll();
@@ -132,13 +133,7 @@ export default function Checkout({ socket }) {
     cupon,
     oneProd,
     pay,
-  } = useForm(initialForm, validateForm, socket, userDetail);
-
-  useEffect(() => {
-    if (isAuthenticated && !isLoading) {
-      dispatch(getUserDetail(user.email));
-    }
-  }, [user]);
+  } = useForm(initialForm, validateForm, socket);
 
   useEffect(() => {
     //Esto iria en searchbar
