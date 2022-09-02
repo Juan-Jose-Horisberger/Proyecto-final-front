@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm.js";
 import Cookies from "universal-cookie";
 import { sendInformation } from "../../Redux/Action/index.js";
-import mercadopago from "mercadopago";
+import BuyProduct from "../ProductDetail/MercadoLibre.jsx";
 
 var cookies = new Cookies();
 const initialForm = {

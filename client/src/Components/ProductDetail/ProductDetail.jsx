@@ -11,6 +11,7 @@ import {
   addReviewToProduct,
   getUserDetail,
 } from "../../Redux/Action/index.js";
+import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
@@ -198,7 +199,10 @@ export default function ProductDetail() {
 
               {validateCart(id) ? (
                 <div className={`${styles.container_button}`}>
-                  <button onClick={handleOnCart}>AGREGADO AL CARRITO</button>
+                  <button onClick={handleOnCart}>
+                    AGREGADO AL CARRITO
+                    <img src={agregadoImage} className={styles.tilde} alt="" />
+                  </button>
                 </div>
               ) : (
                 <div className={`${styles.container_button}`}>
