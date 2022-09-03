@@ -1,0 +1,43 @@
+.containerPrincipal {
+  background-color: black;
+  display: flex;
+  /* justify-content: center; */
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+  color: azure;
+  font-size: 18px;
+}
+
+.container {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.containerCard {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 29%;
+  border: 1px solid azure;
+}
+
+.containerCard img {
+  width: 100%;
+}
+
+.divBtn {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  /* border: 1px solid red; */
+}
+
+.divBtn button {
+  background-color: rgb(40, 38, 38);
+  border-radius: 50px;
+  width: 20%;
+  height: 60px;
+}

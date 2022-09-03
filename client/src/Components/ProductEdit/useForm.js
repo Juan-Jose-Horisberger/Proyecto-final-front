@@ -40,6 +40,7 @@ export default function useForm(initialForm, validateForm) {
           { ...form, [e.target.name]: e.target.value },
           e.target.name,
           setValidate,
+          validate,
           setErrors
         );
         setErrors(errores);
@@ -58,6 +59,7 @@ export default function useForm(initialForm, validateForm) {
           { ...form, [e.target.name]: e.target.value },
           e.target.name,
           setValidate,
+          validate,
           setErrors
         );
         setErrors(errores);
@@ -71,6 +73,7 @@ export default function useForm(initialForm, validateForm) {
         { ...form, [e.target.name]: e.target.value },
         e.target.name,
         setValidate,
+        validate,
         setErrors
       );
       setErrors(errores);
@@ -88,6 +91,7 @@ export default function useForm(initialForm, validateForm) {
         { ...form, size: [...form.size, ev.target.value] },
         ev.target.name,
         setValidate,
+        validate,
         setErrors
       );
       setErrors(errores);
@@ -101,6 +105,7 @@ export default function useForm(initialForm, validateForm) {
         { ...form, size: form.size.filter((e) => e !== ev.target.value) },
         ev.target.name,
         setValidate,
+        validate,
         setErrors
       );
       setErrors(errores);
@@ -132,6 +137,7 @@ export default function useForm(initialForm, validateForm) {
       { ...form, [e.target.name]: e.target.value },
       e.target.name,
       setValidate,
+      validate,
       setErrors
     );
     setErrors(errores);
