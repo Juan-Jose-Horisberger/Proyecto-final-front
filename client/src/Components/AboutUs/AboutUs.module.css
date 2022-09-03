@@ -109,13 +109,6 @@ h1 {
 .container_sales .container_infoSales {
   width: 40%;
   margin-top: 50px;
-  /* transform: translateX(120%); */
-  transition: transform 0.4s, opacity 0.5s ease-out;
-}
-
-.container_sales .container_infoSales.open {
-  width: 40%;
-  transform: translateX(-0);
 }
 
 .container_sales .container_infoSales h4 {
@@ -133,17 +126,19 @@ h1 {
   font-family: "Questrial", sans-serif;
 }
 
-.container_sales .container_infoSales button {
-  width: 120px;
+.container_sales .container_infoSales a {
+  width: 100px;
   padding: 7px;
+  display: block;
   font-weight: bold;
   color: white;
+  text-align: center;
   background-color: #23232c;
   letter-spacing: 1px;
   font-family: "Questrial", sans-serif;
 }
 
-.container_sales .container_infoSales button:hover {
+.container_sales .container_infoSales a:hover {
   cursor: pointer;
   background-color: transparent;
 }
@@ -192,9 +187,48 @@ h1 {
   text-align: center;
 }
 
-@media screen and (max-width: 1200px) {
-  .p1,
-  .p2 {
-    margin: 0;
-  }
+/*~~~~~~~~~~Footer~~~~~~~~~~*/
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #23232c;
+  color: white;
+}
+
+.containerInfoFooter {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 50px; */
+  /* border-bottom: 1px solid white; */
+}
+
+.containerInfoFooter h4,
+.containerInfoFooter p {
+  color: white;
+  font-family: "Questrial", sans-serif;
+}
+
+.containerInfoFooter div {
+  width: 100%;
+  /* border: 1px solid red; */
+  border-left: 1px solid white;
+  padding: 10px 10px 0px 15px;
+  /* border: 1px solid red; */
+}
+
+.footer .containerInfoP p {
+  padding: 10px 0;
+  margin: 0;
+}
+
+.footer .containerInfoP {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
 }

@@ -6,6 +6,14 @@ import stylesComponents from "./stylesComponents.css";
 import CartImg from "../../Imagenes/imagenCart2.jpg";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { FaTruck } from "react-icons/fa";
+import {
+  BsShieldCheck,
+  BsCheckCircle,
+  BsFillTelephoneFill,
+} from "react-icons/bs";
+import { GiPadlock } from "react-icons/gi";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 export default function About() {
   useEffect(() => {
@@ -167,7 +175,8 @@ export default function About() {
             Sumate a nuestro servicio premium de consignación para vender tus
             ítems en nuestro local en Buenos Aires y a través de nuestras redes.
           </p>
-          <button>VENDER</button>
+
+          <Link to="/Contact">VENDER</Link>
         </div>
       </div>
 
@@ -189,6 +198,84 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <footer className={`${styles.footer}`}>
+        <div className={`${styles.containerInfoFooter}`}>
+          <div>
+            <h4>Soporte</h4>
+            <Link to="/Faqs">
+              <p>
+                <RiArrowRightSLine size="20px" color="white" /> Preguntas
+                frecuentes
+              </p>
+            </Link>
+            <Link to="/TermsAndConditions">
+              <p>
+                <RiArrowRightSLine size="20px" color="white" /> Política de
+                privacidad
+              </p>
+            </Link>
+            <Link to="/Returns">
+              <p>
+                <RiArrowRightSLine size="20px" color="white" /> Política de
+                devoluciones
+              </p>
+            </Link>
+            {/* <p>
+              <RiArrowRightSLine size="20px" color="white" /> Consignación de
+              usados
+            </p> */}
+            <p>
+              <img
+                src="https://www.svgrepo.com/show/423308/envelope.svg"
+                alt=""
+                width="20px"
+                className="me-1"
+              />
+              Gaedjminfo@gmail.com
+            </p>
+            <p>
+              <BsFillTelephoneFill size="15px" color="white" />{" "}
+              <span style={{ paddingLeft: "5px" }}>11 6631-8575</span>
+            </p>
+          </div>
+
+          <div>
+            <h4>¿Por qué Gaed.jm?</h4>
+            <p>
+              <BsCheckCircle size="20px" color="white" /> Variedad de productos
+              exclusivos
+            </p>
+            <p>
+              <FaTruck size="20px" color="white" /> Envios a todo el pais
+            </p>
+            <p>
+              <GiPadlock size="20px" color="white" /> Sitio Seguro
+            </p>
+            <p>
+              <BsShieldCheck size="20px" color="white" /> Garantía de calidad
+            </p>
+          </div>
+
+          <div>
+            <h4>Metodos de pago</h4>
+            <img
+              src="https://drops-ba.com/wp-content/uploads/2021/11/Visa-Mastercard-American-Express-Naranja-Tarjeta-Shopping-Nativa-Cencosud-Cabal-Argencard-Diners-Cordobesa-CMR-Cordial.png"
+              alt=""
+              className="img-fluid"
+            />
+          </div>
+
+          <div>
+            <h4>Newsletter Semanal</h4>
+            <button>Subscribite!</button>
+          </div>
+        </div>
+
+        <div className={`${styles.containerInfoP}`}>
+          <p>© GEAD.JM, 2022. Todos los derechos reservados</p>
+        </div>
+      </footer>
     </div>
   );
 }
