@@ -8,22 +8,22 @@ import { cardStyles } from "../ReusableStyles/ReusableStyles";
 export default function Cards() {
   return (
     <Section>
-      <div className="analytic ">
+      {/* <div className="analytic ">
         <div className="content">
           <h6>COMENTARIOS</h6>
         </div>
         <div className="logo">
           <BsFillCalendar2WeekFill />
         </div>
-      </div>
-      <div className="analytic">
+      </div> */}
+      {/* <div className="analytic">
         <div className="logo">
           <IoStatsChart />
         </div>
         <div className="content">
           <h6>NOTIFICACIONES</h6>
         </div>
-      </div>
+      </div> */}
       <div className="analytic">
         <div className="logo">
           <BiGroup />
