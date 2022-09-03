@@ -6,7 +6,7 @@ import stylesComponents from "./stylesComponents.css";
 import CartImg from "../../Imagenes/imagenCart2.jpg";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { FaTruck } from "react-icons/fa";
+import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
 import {
   BsShieldCheck,
   BsCheckCircle,
@@ -280,10 +280,31 @@ export default function About() {
             </span>
           </div>
         </div>
-        <div>
-          <h4>REDES SOCIALES</h4>
-          <div>
-            <AiOutlineInstagram size="22px" color="white" />
+        <div className={`${styles.container_SocialNetworks}`}>
+          <div
+            className={`d-flex justify-content-center flex-wrap`}
+            //  style={{ border: "1px solid red" }}
+          >
+            <h4
+              className="col-12 text-center"
+              // style={{ border: "1px solid red" }}
+            >
+              REDES SOCIALES
+            </h4>
+            <div
+              className="col-10 d-flex justify-content-around pt-2"
+              // style={{ border: "1px solid red" }}
+            >
+              <span style={{ cursor: "pointer" }}>
+                <AiOutlineInstagram size="22px" color="white" />
+              </span>
+              <span style={{ cursor: "pointer" }}>
+                <FaTiktok size="22px" color="white" />
+              </span>
+              <span style={{ cursor: "pointer" }}>
+                <FaFacebookSquare size="22px" color="white" />{" "}
+              </span>
+            </div>
           </div>
         </div>
         <div className={`${styles.containerInfoP}`}>
