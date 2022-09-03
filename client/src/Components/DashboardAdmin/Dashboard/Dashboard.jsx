@@ -32,11 +32,11 @@ export default function Dashboard() {
   return (
     <Section>
       <Sidebar />
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="grid">
         <div className="row__one">
           <Cards />
-          <FAQ />
+          {/* <FAQ /> */}
         </div>
         <div className="row__two">
           <Earnings />

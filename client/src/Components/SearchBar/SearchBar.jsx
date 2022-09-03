@@ -249,17 +249,6 @@ export default function SearchBar({ socket }) {
                     )}
                   </div>
 
-                  <Link
-                    to="/CreateProduct"
-                    className="nav-item mx-3 mx-lg-2"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <img
-                      src="https://www.svgrepo.com/show/422474/cloud-computing-data-2.svg"
-                      alt=""
-                    />
-                  </Link>
-
                   <div
                     className={`${styles.container_notification} `}
                     onClick={() => getDetailsOnClick()}

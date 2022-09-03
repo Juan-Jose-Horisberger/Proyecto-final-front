@@ -110,6 +110,7 @@ button {
 }
 
 .container_showNotifications {
+  z-index: 1000000000 !important;
   width: 40%;
   background-color: black;
   color: white;
@@ -140,9 +141,10 @@ button {
 }
 
 .container_NotificationsRender {
+  padding-bottom: 7px;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid #2e3235;
+  border-bottom: 1px solid azure;
 }
 
 .container_NotificationsRender:hover {
