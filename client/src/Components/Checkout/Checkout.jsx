@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm.js";
 import Cookies from "universal-cookie";
 import { sendInformation } from "../../Redux/Action/index.js";
+import BuyProduct from "../ProductDetail/MercadoLibre.jsx";
 
 var cookies = new Cookies();
 const initialForm = {
@@ -114,6 +115,13 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
+  const { loginWithRedirect } = useAuth0();
+  const oneProductState = useSelector((state) => state.productToBuy);
+  var cuki = cookies.getAll();
+  var productsToBuy = Object.entries(cuki);
+  var subTotal = 0;
+  const dispatch = useDispatch();
+  const infoNotifications = useSelector((state) => state.newNotification);
   const {
     form,
     errors,
@@ -122,15 +130,10 @@ export default function Checkout({ socket }) {
     handleRemoveCookies,
     handleCupon,
     cupon,
+    oneProd,
+    pay,
+    envio,
   } = useForm(initialForm, validateForm, socket);
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
-  const oneProductState = useSelector((state) => state.productToBuy);
-  const oneProduct = cookies.get("oneProduct");
-  var cuki = cookies.getAll();
-  var productsToBuy = Object.entries(cuki);
-  var subTotal = 0;
-  const dispatch = useDispatch();
-  const infoNotifications = useSelector((state) => state.newNotification);
 
   useEffect(() => {
     //Esto iria en searchbar
@@ -294,9 +297,6 @@ export default function Checkout({ socket }) {
               onChange={handleOnChange}
               value={form.province}
             >
-              <option style={{ display: "none" }}>
-                Selecciona tu Region / Provincia
-              </option>
               {provincias.length &&
                 provincias.map((e) => {
                   return (
@@ -368,26 +368,11 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {oneProductState.length || oneProduct ? (
+          {oneProductState.length ? (
             <div className={style.divProduct}>
-              <img
-                src={
-                  oneProductState.length
-                    ? oneProductState[0].image
-                    : oneProduct[0].image
-                }
-              />
-              <p>
-                {oneProductState.length
-                  ? oneProductState[0].name
-                  : oneProduct[0].name}
-              </p>
-              <p>
-                $
-                {oneProductState.length
-                  ? oneProductState[0].price
-                  : oneProduct[0].price}
-              </p>
+              <img src={oneProductState[0].image} />
+              <p>{oneProductState[0].name}</p>
+              <p>${oneProductState[0].price}</p>
             </div>
           ) : (
             productsToBuy.map((e) => {
@@ -404,11 +389,8 @@ export default function Checkout({ socket }) {
           )}
 
           <p className={style.cuentita}>
-            {oneProductState.length || oneProduct
-              ? (subTotal =
-                  subTotal + oneProductState.length
-                    ? oneProductState[0].price
-                    : oneProduct[0].price)
+            {oneProductState.length
+              ? (subTotal = subTotal + oneProductState[0].price)
               : productsToBuy.map((e) =>
                   e[1].id
                     ? (subTotal = subTotal + e[1].price)
@@ -422,25 +404,22 @@ export default function Checkout({ socket }) {
 
           <div className={style.divTotal}>
             <p>ENVIO</p>
-            <p>CABA $500</p>
+            <p>${envio[0]}</p>
           </div>
 
           <div className={style.divTotal}>
             <p>DESCUENTO</p>
-            <p>${cupon}</p>
+            <p>${cupon[0]}</p>
           </div>
 
           <div className={style.divTotal}>
             <p>TOTAL</p>
-            <p>${(subTotal + 0.5 - cupon + "").slice(0, 6)}</p>
+            <p>${(subTotal - cupon[1] + envio[1] + "").slice(0, 6)}</p>
           </div>
 
-          <div className={style.divBtn}>
-            <button
-              onClick={() => handleRemoveCookies(productsToBuy)}
-              type="submit"
-            >
-              REALIZAR EL PEDIDO
+          <div id="page-content" className={style.divBtn}>
+            <button id="page-content-btn" onClick={() => pay(productsToBuy)}>
+              CONFIRMAR EL PEDIDO
             </button>
           </div>
         </div>

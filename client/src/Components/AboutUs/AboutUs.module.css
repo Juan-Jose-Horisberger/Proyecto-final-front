@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+/*font-family: 'Questrial', sans-serif;*/
+
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  background-color: #121212;
+}
+
+.container h1 {
+  color: white;
+}
+
+h1 {
+  font-family: "Questrial", sans-serif;
+}
+
+.p1 {
+  font-family: "Questrial", sans-serif;
+}
+
+.p2 {
+  font-family: "Questrial", sans-serif;
+}
+
+.container_Inicio {
+  margin-left: 17px;
+  margin-top: 17px;
+}
+
+.container_Inicio span {
+  font-size: 20px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_Inicio div span:nth-child(2) {
+  color: white;
+}
+
+.container_Inicio div span:nth-child(3) {
+  color: white;
+  font-weight: bold;
+}
+
+.container_image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container_Info {
+  width: 400px;
+  border: 5px solid #e2dedb;
+}
+
+.container_image div {
+  width: 400px;
+}
+
+.container_title {
+  margin-bottom: 180px;
+  margin-top: 130px;
+  color: white;
+}
+
+.container_title h3 {
+  margin: 0;
+  font-family: "Questrial", sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+.carts {
+  width: 290px;
+  height: 362px;
+  /* border: 1px solid red !important; */
+  margin: 0 10px;
+  padding: 0;
+  font-family: "Questrial", sans-serif;
+}
+
+.carts2 {
+  width: 290px;
+  height: 362px;
+  margin: 0 10px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_sales {
+  width: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0;
+  margin-bottom: 180px;
+}
+
+.container_sales .container_imageSales {
+  width: 45%;
+  /* transform: translateX(-120%); */
+  transition: transform 0.4s, opacity 0.5s ease-out;
+}
+
+.container_sales .container_imageSales.open {
+  transform: translateX(-0);
+}
+
+.container_sales .container_infoSales {
+  width: 40%;
+  margin-top: 50px;
+}
+
+.container_sales .container_infoSales h4 {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Questrial", sans-serif;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.container_sales .container_infoSales p {
+  font-size: 23px;
+  color: white;
+  margin-bottom: 25px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_sales .container_infoSales a {
+  width: 100px;
+  padding: 7px;
+  display: block;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  background-color: #23232c;
+  letter-spacing: 1px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_sales .container_infoSales a:hover {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.container_Img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 40px;
+}
+
+.container_Img div {
+  width: auto;
+  position: relative;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container_Img div div {
+  width: 500px;
+  top: 30%;
+  position: absolute;
+  /* border: 1px solid red; */
+}
+
+.container_Img div div p:first-child {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.container_Img div div img {
+  margin-bottom: 15px;
+}
+
+.container_Img div div p:last-child {
+  width: 70%;
+  /* border: 1px solid red; */
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/*~~~~~~~~~~Footer~~~~~~~~~~*/
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #23232c;
+  color: white;
+}
+
+.containerInfoFooter {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 50px; */
+  margin-top: 20px;
+}
+
+.containerInfoFooter h4,
+.containerInfoFooter p {
+  color: white;
+  font-family: "Questrial", sans-serif;
+}
+
+.containerInfoFooter div {
+  width: 100%;
+  border-left: 1px solid white;
+  padding: 10px 10px 0px 15px;
+  /* border: 1px solid red; */
+}
+
+.footer .containerInfoP p {
+  padding: 10px 0;
+  margin: 0;
+}
+
+.footer .containerInfoP {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.Footer_div4 {
+  position: relative;
+}
+
+.Footer_div4 span {
+  position: absolute;
+  top: 45%;
+  right: 2%;
+}
+
+.Footer_div4 span:hover {
+  cursor: pointer;
+}
+
+.Footer_div4 button {
+  width: 120px;
+  padding: 5px;
+  font-family: "Questrial", sans-serif;
+  background-color: #121212;
+}
+.Footer_div4 button:hover {
+  background-color: transparent;
+  transition: background-color 0.5s;
+}

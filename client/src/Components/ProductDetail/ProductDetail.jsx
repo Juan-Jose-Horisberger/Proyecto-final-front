@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import {
   addReviewToProduct,
   getUserDetail,
 } from "../../Redux/Action/index.js";
+import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
@@ -28,6 +29,7 @@ export default function ProductDetail() {
   const cookies = new Cookies();
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
+  const grandTotalRef = useRef("");
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
@@ -47,6 +49,7 @@ export default function ProductDetail() {
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
+    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
@@ -109,6 +112,34 @@ export default function ProductDetail() {
     return false;
   };
 
+  const priceWithDiscount = (price, discount) => {
+    let discountNumber;
+    if (discount) {
+      if (discount === "10%") {
+        discountNumber = 0.1;
+      } else if (discount === "20%") {
+        discountNumber = 0.2;
+      } else if (discount === "30%") {
+        discountNumber = 0.3;
+      } else if (discount === "40%") {
+        discountNumber = 0.4;
+      } else {
+        discountNumber = 0.5;
+      }
+    }
+    const discountLogic = price * discountNumber; //Calculamos descuento
+    // console.log(discountNumber);
+
+    const grandTotal = price - discountLogic; //El total con descuento.
+    grandTotalRef.current = grandTotal;
+    return (
+      <div className={`${styles.container_price}`}>
+        <p>${productDetail.price}</p>
+        <h2>${grandTotal}</h2>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.container}>
       {/* <SearchBar /> */}
@@ -130,21 +161,31 @@ export default function ProductDetail() {
                 </Link>
                 <span className={`${styles.span_3}`}>{productDetail.name}</span>
               </h1>
-              <div>
+              <div className={`${styles.container_Img}`}>
                 <img
                   src={productDetail.image}
                   alt="imagen"
                   className="img-fluid"
                 />
+                {productDetail.offer && <p>-{productDetail.discount}</p>}
               </div>
             </div>
             <div className={styles.container_2}>
               {/* <img src="" alt="" />img de marca */}
               <h1>{productDetail.name}</h1>
-              <h2>$ {productDetail.price}</h2>
+              {productDetail.offer ? (
+                priceWithDiscount(productDetail.price, productDetail.discount)
+              ) : (
+                <div>
+                  <h2 className="mb-3">${productDetail.price}</h2>
+                </div>
+              )}
+
               <p>
                 3 Cuotas sin interés de{" "}
-                {(productDetail.price / 3 + "").slice(0, 5)}
+                {productDetail.offer
+                  ? (grandTotalRef.current / 3 + "").slice(0, 5)
+                  : (productDetail.price / 3 + "").slice(0, 5)}
               </p>
               <div className={`${styles.size_Container}`}>
                 <h3>SELECCIONE TALLE: </h3>
@@ -158,7 +199,10 @@ export default function ProductDetail() {
 
               {validateCart(id) ? (
                 <div className={`${styles.container_button}`}>
-                  <button onClick={handleOnCart}>AGREGADO AL CARRITO</button>
+                  <button onClick={handleOnCart}>
+                    AGREGADO AL CARRITO
+                    <img src={agregadoImage} className={styles.tilde} alt="" />
+                  </button>
                 </div>
               ) : (
                 <div className={`${styles.container_button}`}>
@@ -250,23 +294,67 @@ export default function ProductDetail() {
                 {products.map((p, i) => {
                   return (
                     <div key={i} className={`${styles.carts}`}>
-                      <img
-                        onClick={() => handleOnClick(p.id)}
-                        src={p.image}
-                        alt="img"
-                        width="300px"
-                        className="img-fluid"
-                      />
-                      <p>{p.name}</p>
-                      <p>$ {p.price}</p>
-                      <p>
-                        <b>3</b> Cuotas sin interés de{" "}
-                        <b>${(p.price / 3 + "").slice(0, 5)}</b>
-                      </p>
+                      <Link to={`/ProductDetail/${p.id}`}>
+                        <img
+                          onClick={() => handleOnClick(p.id)}
+                          src={p.image}
+                          alt="img"
+                          width="300px"
+                          className="img-fluid"
+                        />
+                        <p>{p.name}</p>
+                        <p>$ {p.price}</p>
+                        <p>
+                          <b>3</b> Cuotas sin interés de{" "}
+                          <b>${(p.price / 3 + "").slice(0, 5)}</b>
+                        </p>
+                      </Link>
                     </div>
                   );
                 })}
               </Carousel>
+            </div>
+
+            <div className={styles.divComments}>
+              <input
+                className={styles.commentsScore}
+                name="number"
+                type="number"
+                placeholder="⭐ score "
+                onChange={(e) => onChangeReview(e)}
+              />
+              <textarea
+                className={styles.commentsText}
+                name="comment"
+                type="text"
+                placeholder="Dejanos un comentario junto a tu puntuacion del producto"
+                onChange={(e) => onChangeReview(e)}
+              ></textarea>
+              <button
+                className={styles.commentsBtn}
+                onClick={() => addReview()}
+              >
+                Comentar
+              </button>
+              <div className={styles.comments}>
+                {productDetail.review &&
+                  productDetail.review.map((e) => {
+                    return (
+                      <div className={styles.handleComment}>
+                        <img
+                          className={styles.imgUser}
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                          alt="not found"
+                        />
+                        <h1 className={styles.h1comment}>email: {e.email} </h1>
+                        <h1 className={styles.h1comment}>
+                          username: {e.username}:
+                        </h1>
+                        <h1 className={styles.h1comment}>{e.comment}</h1>
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
         </div>
@@ -284,6 +372,7 @@ export default function ProductDetail() {
           </div>
         </div>
       )}
+<<<<<<< HEAD
 
       <div className={styles.divComments}>
         <input
@@ -321,6 +410,8 @@ export default function ProductDetail() {
             })}
         </div>
       </div>
+=======
+>>>>>>> f36e6c629059c41f1ec9bfcb7fff76519da5d563
     </div>
   );
 }

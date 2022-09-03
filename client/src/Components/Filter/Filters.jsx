@@ -7,6 +7,7 @@ import {
 } from "../../Redux/Action";
 import styles from "./Filters.module.css";
 import resetImage from "../../Imagenes/reset.svg";
+import flechitaFilter from "../../Imagenes/flechitaFilters.svg";
 
 export default function Filters() {
   const dispatch = useDispatch();
@@ -128,7 +129,7 @@ export default function Filters() {
           <h3>Filtros</h3>
 
           <button className={styles.btn} onClick={reset}>
-            <img src={resetImage} alt="no" />
+            <img src={resetImage} width="80%" alt="no" />
           </button>
         </div>
 
@@ -255,11 +256,7 @@ export default function Filters() {
       <div className={`${styles.containerFilters_992px}`}>
         <div className="d-flex" data-bs-toggle="dropdown">
           <div className={`${styles.container_icon}`}>
-            <img
-              src="https://www.svgrepo.com/show/246/down-arrow.svg"
-              alt=""
-              width="37px"
-            />
+            <img src={flechitaFilter} alt="" width="25px" />
           </div>
           <p className={`m-0 ps-2 ${styles.pInFilters}`}>Filters</p>
         </div>
@@ -269,7 +266,7 @@ export default function Filters() {
               <h3>Filtros</h3>
 
               <button className={styles.btn} onClick={reset}>
-                <img src={resetImage} alt="no" />
+                <img src={resetImage} width="80%" alt="no" />
               </button>
             </div>
 

@@ -62,6 +62,7 @@
   color: azure;
   border: 1px solid black;
   border-bottom: 2px solid rgb(202, 192, 192);
+  outline: none;
 }
 
 .divNombreApellido {

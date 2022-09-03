@@ -5,21 +5,17 @@ import { getProductToBuy } from "../../Redux/Action";
 import Cookies from "universal-cookie";
 import Swal from "sweetalert2";
 import { posts } from "../../infoUser.js"; //User ficticio
+import axios from "axios";
 
-export default function useForm(initialForm, validateForm, socket) {
+export default function useForm(initialForm, validateForm, socket, user) {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [cupon, setCupon] = useState(0);
-  const cupones = [
-    "SoyHenry",
-    "MZF5JKA7",
-    "KASDJ17",
-    "JAUVMI2",
-    "KASIQP2",
-    "891NJAD",
-    "1S2NDGA",
-  ];
+  const [oneProd, setOneProd] = useState(false);
+  const [cupon, setCupon] = useState(["0", 0]);
+  const [envio, setEnvio] = useState(["500", 0.5]);
+
+  const cupones = ["SoyHenry", "Alejo"];
   const cookies = new Cookies();
   var expiryDate = new Date(Date.now() + 60 * 24 * 3600000);
 
@@ -37,6 +33,14 @@ export default function useForm(initialForm, validateForm, socket) {
       e.target.name
     );
     setErrors(errores);
+
+    if (e.target.name === "province") {
+      if (e.target.value === "Ciudad Autonoma De Buenos Aires") {
+        setEnvio(["500", 0.5]);
+      } else if (e.target.value === "Buenos Aires") {
+        setEnvio(["700", 0.7]);
+      } else setEnvio(["1000", 1]);
+    }
   };
 
   const handleSubmit = (ev) => {
@@ -46,17 +50,10 @@ export default function useForm(initialForm, validateForm, socket) {
       "nameComprasurnameComprastreetAddresscodePostalphoneNumberemailCompra"
     );
     setErrors(errores);
-    // console.log("hola entra aca?");
-    // console.log(posts[0].id, posts[0].username)
-    //Esto va a estar en checkout
 
     socket?.emit("newUser", posts[0].username, posts[0].id);
 
     if (!Object.entries(errores).length) {
-      // dispatch(createProduct(form));
-      setForm(initialForm);
-      cookies.remove();
-
       var options = document.querySelectorAll("#my_select");
       options[0].selectedIndex = 0;
 
@@ -72,12 +69,16 @@ export default function useForm(initialForm, validateForm, socket) {
   const handleBuy = (id) => {
     if (id) {
       dispatch(getProductToBuy(id));
-    }
+      setOneProd(true);
+    } else setOneProd(false);
   };
 
   const handleCupon = (code) => {
-    if (cupones.find(code.value)) {
-      setCupon("1");
+    if (cupones.find((e) => e === code.value)) {
+      if (code.value === "Alejo") {
+        setCupon(["3000", 3]);
+      } else setCupon(["1000", 1]);
+
       Swal.fire({
         icon: "success",
         title: "Codigo de cupón valido",
@@ -103,16 +104,57 @@ export default function useForm(initialForm, validateForm, socket) {
     data && data.map((e) => cookies.remove(e[1].id));
   };
 
+  const pay = async (data) => {
+    try {
+      // let body;
+      // if (user) {
+      //   body = {
+      //     usuario: {
+      //       name: user.username || "alex",
+      //       surname: user.surname || "jonatan",
+      //       email: user.email,
+      //     },
+      //     data: data,
+      //   };
+      // }
+
+      const preference = axios
+        .post("https://proyecto-final-01.herokuapp.com/products/comprar/", data)
+        .then((order) => {
+          const script = document.createElement("script");
+          script.type = "text/javascript";
+          script.src =
+            "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+          script.setAttribute("data-preference-id", order.data);
+          console.log(order);
+          document.getElementById("page-content-btn").remove();
+          document.querySelector("#page-content").appendChild(script);
+        });
+      // document.querySelector("#page-content").innerHTML = "Realizar el pago";
+    } catch {
+      Swal.fire({
+        icon: "error",
+        title: "Algo salio mal",
+        background: "#000",
+        confirmButtonText: "Continuar",
+        confirmButtonColor: "#282626",
+      });
+    }
+  };
+
   return {
     form,
     setForm,
     errors,
     cupon,
+    oneProd,
     setErrors,
     handleOnChange,
     handleSubmit,
     handleBuy,
     handleRemoveCookies,
     handleCupon,
+    pay,
+    envio,
   };
 }

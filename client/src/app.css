@@ -1,10 +1,8 @@
-/* body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+body {
+  padding: 0 !important;
+  overflow: unset !important;
 }
-
+/*
 .container {
     width: 50vh;
     border-radius: 5px;
