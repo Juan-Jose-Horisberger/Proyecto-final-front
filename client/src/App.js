@@ -10,7 +10,7 @@ import FormProduct from "./Components/FormProduct/FormProduct.jsx";
 import Contact from "./Components/Contact/Contact.jsx";
 import Profile from "./Components/Profile/Profile.jsx";
 import Logout from "./Components/Logout/Logout";
-import Dashboard from "./Components/Dashboard/Dashboard.jsx";
+import Dashboard from "./Components/DashboardAdmin/Dashboard/Dashboard.jsx";
 import { io } from "socket.io-client";
 import Checkout from "./Components/Checkout/Checkout.jsx";
 import { posts } from "./infoUser.js";
