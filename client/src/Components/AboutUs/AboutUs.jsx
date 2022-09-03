@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./AboutUs.module.css";
+import Carousel from "react-elastic-carousel";
+import stylesComponents from "./stylesComponents.css";
+import CartImg from "../../Imagenes/imagenCart2.jpg";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export default function About() {
+  useEffect(() => {
+    Aos.init({ duration: 2000 });
+  }, []);
+
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 500, itemsToShow: 2 },
+    { width: 768, itemsToShow: 3 },
+    { width: 1200, itemsToShow: 4 },
+  ];
+
   return (
     <div className={`container-fluid p-0 ${styles.container}`}>
       <div className={`${styles.container_Inicio}`}>
@@ -16,57 +32,162 @@ export default function About() {
       </div>
       <h1 className="d-flex justify-content-center">¿Quienes Somos?</h1>
 
-      <div className={`${styles.container_informacion}`}>
-        <div className={`col-12 ${styles.container_infoAbout}`}>
-          <div className={`${styles.container_infoAbout2}`}>
-            <p>
-              Somos una empresa dedicada a la venta de indumentaria Hombre y
-              Mujer. Nos encontramos en movimiento constante y fusionando las
-              últimas tendencias de la moda urbana y el deporte con una nueva
-              propuesta orientada al público joven que incorpora nuevas marcas y
-              diseños de vanguardia. Nos adaptamos a tiempos de cambios, a las
-              nuevas generaciones, y por eso te traemos los más exclusivos
-              productos de las mejores marcas para que crees tu propio estilo.
-            </p>
-            <div className={`d-flex mb-3`}>
-              <p>
-                Misión: Vivimos entrenando para ganar y conquistar a los
-                consumidores ofreciendo una experiencia premium. Hablamos a
-                través del deporte y de la moda con el objetivo de acompañarlos
-                en cada momento de sus vidas para que puedan competir, entrenar
-                o lucir su estilo personal, transmitiendo inspiración e
-                innovación.
-              </p>
-            </div>
-            <div className={`d-flex`}>
-              <p className="m-0">
-                {" "}
-                Visión: Ser el retailer líder en ventas y en servicio al
-                cliente, siendo siempre cercano al consumidor.
-              </p>
-            </div>
+      <div
+        className="container-fluid d-flex flex-row-reverse justify-content-center"
+        // style={{ border: "1px solid red" }}
+      >
+        <div className={`${styles.container_Info}`}>
+          <p className={`p-3 mb-0 ${styles.p1}`}>
+            Somos una empresa dedicada a la venta de indumentaria Hombre y
+            Mujer. Nos encontramos en movimiento constante y fusionando las
+            últimas tendencias de la moda urbana y el deporte con una nueva
+            propuesta orientada al público joven que incorpora nuevas marcas y
+            diseños de vanguardia. Nos adaptamos a tiempos de cambios, a las
+            nuevas generaciones, y por eso te traemos los más exclusivos
+            productos de las mejores marcas para que crees tu propio estilo.
+          </p>
+          <p className={`p-3 mb-0 ${styles.p2}`}>
+            Misión: Vivimos entrenando para ganar y conquistar a los
+            consumidores ofreciendo una experiencia premium. Hablamos a través
+            del deporte y de la moda con el objetivo de acompañarlos en cada
+            momento de sus vidas para que puedan competir, entrenar o lucir su
+            estilo personal, transmitiendo inspiración e innovación.
+          </p>
+          <p className={`p-3 mb-0 ${styles.p1}`}>
+            Visión: Ser el retailer líder en ventas y en servicio al cliente,
+            siendo siempre cercano al consumidor.
+          </p>
+        </div>
+        <div className={`${styles.container_image}`}>
+          <div>
+            <img
+              src="https://i.pinimg.com/564x/43/b1/a6/43b1a62a851490bfef2c6fbf95689ea9.jpg"
+              alt=""
+              className="img-fluid"
+            />
           </div>
         </div>
       </div>
 
-      <div className={`col-5 ${styles.container_image}`}>
-        {/*https://i.pinimg.com/564x/79/86/91/7986914867d6366dcc16143021f41de5.jpg
+      <div
+        // style={{ border: "1px solid red" }}
+        className={`${styles.container_title}`}
+        data-aos="fade-up"
+        data-aos-duration="1000"
+      >
+        <h3 className="text-center mb-3">SHOWROOM</h3>
+        <Carousel breakPoints={breakPoints}>
+          <div className={`${styles.carts}`}>
+            <img
+              src="https://images.unsplash.com/photo-1611858447060-7e516251cf4c?ixlib=rb-1.2.1&"
+              alt="img"
+              width="300px"
+              className="img-fluid"
+            />
+          </div>
+          <div className={`${styles.carts2}`}>
+            <img
+              src="https://images.unsplash.com/photo-1611858447195-ce967dd3ff49?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+              alt="img"
+              width="300px"
+              className="img-fluid"
+            />
+          </div>
+          <div className={`${styles.carts}`}>
+            <img
+              src="https://images.unsplash.com/photo-1611858447026-b16c9351c9df?ixlib=rb-1.2.1&"
+              alt="img"
+              width="300px"
+              className="img-fluid"
+            />
+          </div>
+          <div className={`${styles.carts}`}>
+            <img
+              src="https://images.unsplash.com/photo-1611858447198-c6b3cc794943?ixlib=rb-1.2.1&"
+              alt="img"
+              width="300px"
+              className="img-fluid"
+            />
+          </div>
+          <div className={`${styles.carts}`}>
+            <img
+              src="https://images.unsplash.com/photo-1611858447092-90f0433a3b9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+              alt="img"
+              width="300px"
+              className="img-fluid"
+            />
+          </div>
+          <div className={`${styles.carts}`}>
+            <img
+              src="https://images.unsplash.com/photo-1611858447443-dd7ba81accb3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80"
+              alt="img"
+              width="300px"
+              className="img-fluid"
+            />
+          </div>
+          <div className={`${styles.carts}`}>
+            <img
+              src="https://images.unsplash.com/photo-1611858447638-1113f15f7177?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1528&q=80"
+              alt="img"
+              width="300px"
+              className="img-fluid"
+            />
+          </div>
+          <div className={`${styles.carts}`}>
+            <img
+              src={CartImg}
+              alt="img"
+              width="300px"
+              height="322px"
+              className="img-fluid"
+            />
+          </div>
+        </Carousel>
+      </div>
 
-          Esta va si o si
-        https://drops-ba.com/wp-content/uploads/2021/07/Sumate.jpg drops
+      <div className={`${styles.container_sales}`}>
+        <div
+          data-aos="fade-right"
+          data-aos-duration="3000"
+          className={`${styles.container_imageSales}`}
+        >
+          <img
+            src="https://drops-ba.com/wp-content/uploads/2021/07/Sumate.jpg"
+            className="img-fluid"
+            alt=""
+          />
+        </div>
+        <div
+          data-aos="zoom-out-left"
+          data-aos-duration="3000"
+          className={`${styles.container_infoSales}`}
+        >
+          <h4>SUMATE AL LAS PROXIMAS VENTAS</h4>
+          <p>
+            Sumate a nuestro servicio premium de consignación para vender tus
+            ítems en nuestro local en Buenos Aires y a través de nuestras redes.
+          </p>
+          <button>VENDER</button>
+        </div>
+      </div>
 
-        https://images.unsplash.com/photo-1611858447060-7e516251cf4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
-        https://images.unsplash.com/photo-1611858447026-b16c9351c9df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
-        https://images.unsplash.com/photo-1591009986876-28ee2a1912cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=327&q=80
-        https://images.unsplash.com/photo-1513188732907-5f732b831ca8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80
-        https://images.unsplash.com/photo-1611858447198-c6b3cc794943?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80
-        https://images.unsplash.com/photo-1578592383917-2f0c0f16c78f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80
-        */}
-        <img
-          src="https://images.unsplash.com/photo-1590884226650-3611f205c13e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-          alt=""
-          className="img-fluid"
-        />
+      <div className={`${styles.container_Img}`}>
+        <div>
+          <img
+            src="https://images.unsplash.com/photo-1631774577666-9ce632e70af7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+            alt=""
+            className="img-fluid"
+          />
+          <div data-aos="fade-up">
+            <p>ENCONTRANOS EN</p>
+            <img
+              src="https://www.svgrepo.com/show/423301/location.svg"
+              width="50px"
+              alt=""
+            />
+            <p>Olazabal 1515 Oficina 201 Cuerpo A, Belgrano,Cp 1428</p>
+          </div>
+        </div>
       </div>
     </div>
   );
