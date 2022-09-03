@@ -11,16 +11,36 @@ export default function Register() {
   const [error, setError] = useState({});
 
   const [input, setInput] = useState({
-    direccion: "",
-    localidad: "",
-    date: "",
-    celular: "",
+    username: "",
+    name: "",
+    surname: "",
+    img: "",
+    age: "",
+    province: "",
+    location: "",
+    postal: "",
+    telephone: "",
+    extra: "",
   });
 
   function handleChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
+    });
+
+    setError(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+    console.log(input);
+  }
+  function handleSelect(e) {
+    setInput({
+      ...input,
+      province: [...input.province, e.target.value],
     });
   }
 
@@ -30,14 +50,45 @@ export default function Register() {
     dispatch(input);
     alert("Datos guardados");
     setInput({
+      username: "",
       name: "",
-      lastName: "",
-      date: "",
-      celular: "",
+      surname: "",
+      img: "",
+      age: "",
+      province: "",
+      location: "",
+      postal: "",
+      telephone: "",
+      extra: "",
     });
     history("/");
   }
-
+  const provincias = [
+    "Ciudad Autonoma De Buenos Aires",
+    "Buenos Aires",
+    "Catamarca",
+    "Chaco",
+    "Chubut",
+    "Cordoba",
+    "Corrientes",
+    "Entre Rios",
+    "Formosa",
+    "Jujuy",
+    "La Pampa",
+    "La Rioja",
+    "Mendoza",
+    "Misiones",
+    "Neuquén",
+    "Rio Negro",
+    "Salta",
+    "San Juan",
+    "San Luis",
+    "Santa Cruz",
+    "Santa Fe",
+    "Santiago del Estero",
+    "Tierra del Fuego",
+    "Tucumán",
+  ];
   return (
     <div className={styles.container}>
       <div className="d-flex justify-content-center">
@@ -49,11 +100,11 @@ export default function Register() {
           <button>Modificar datos personales</button>
 
           <div>
-            <label>Apodo</label> <br />
+            <label>Nombre de Usuario</label> <br />
             <input
               type="text"
-              value={input.apodo}
-              name="apodo"
+              value={input.username}
+              name="username"
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -72,9 +123,20 @@ export default function Register() {
             <label>Apellido</label> <br />
             <input
               type="text"
-              value={input.lastName}
-              name="lastName"
+              value={input.surname}
+              name="surname"
               onChange={(e) => handleChange(e)}
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlFile1">Imagen</label>
+            <br />
+            <input
+              type="file"
+              value={input.img}
+              class="form-control-file"
+              id="exampleFormControlFile1"
             />
           </div>
 
@@ -82,27 +144,38 @@ export default function Register() {
             <label>Fecha de nacimiento</label> <br />
             <input
               type="date"
-              value={input.date}
-              name="date"
+              value={input.age}
+              name="age"
               onChange={(e) => handleChange(e)}
             />
           </div>
 
           <div>
-            <label>Direccion</label> <br />
-            <input
+            <label>Provincias</label>
+            <br />
+            <select
+              onChange={(e) => handleSelect(e)}
+              name="province"
               type="text"
-              value={input.direction}
-              name="direction"
-              onChange={(e) => handleChange(e)}
-            />
+            >
+              {provincias.length &&
+                provincias.map((e) => {
+                  return (
+                    <option key={e} value={e}>
+                      {e}
+                    </option>
+                  );
+                })}
+            </select>
+
+            <br />
           </div>
           <div>
-            <label>Provincia</label> <br />
+            <label>Localidad</label> <br />
             <input
               type="text"
-              value={input.provincia}
-              name="provincia"
+              value={input.location}
+              name="location"
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -110,8 +183,8 @@ export default function Register() {
             <label>Codigo Postal</label> <br />
             <input
               type="number"
-              value={input.cp}
-              name="cp"
+              value={input.postal}
+              name="postal"
               onChange={(e) => handleChange(e)}
             />
           </div>
@@ -119,8 +192,18 @@ export default function Register() {
             <label>Celular</label> <br />
             <input
               type="number"
-              value={input.celular}
-              name="celular"
+              value={input.telephone}
+              name="telephone"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <br />
+          <div>
+            <label>Informacion extra</label> <br />
+            <input
+              type="text"
+              value={input.extra}
+              name="extra"
               onChange={(e) => handleChange(e)}
             />
           </div>
