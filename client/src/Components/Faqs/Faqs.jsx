@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Faqs.module.css";
 import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
@@ -13,19 +13,19 @@ import { RiArrowRightSLine } from "react-icons/ri";
 import { AiOutlineInstagram } from "react-icons/ai";
 
 export default function Faqs() {
+  useEffect(() => {
+    window.scrollTo({ behavior: "smooth", top: "0px" });
+  }, []);
+
   return (
-    <div style={{ border: "1px solid red" }}>
+    <div className={`${styles.container}`}>
       <div className={`${styles.container_Inicio}`}>
         <div>
-          <Link to="/Home">
-            <span>Inicio</span>
-          </Link>
-          <span> / </span>
           <Link to="/">
-            <span>Quienes somos</span>
+            <span className={`${styles.span1}`}>Inicio</span>
           </Link>
-          <span> / </span>
-          <span>Preguntas frecuentes</span>
+          <span className={`${styles.span2}`}> / </span>
+          <span className={`${styles.span5}`}>Preguntas frecuentes</span>
         </div>
       </div>
 
@@ -34,10 +34,10 @@ export default function Faqs() {
           className={`accordion ${styles.container_accordion}`}
           id="accordionExample"
         >
-          <div className="accordion-item">
-            <h2 className="accordion-header" id="Question1">
+          <div className={`accordion-item ${styles.containerDiv_accordion}`}>
+            <h2 className="accordion-header border border-white" id="Question1">
               <button
-                className="accordion-button collapsed"
+                className={`accordion-button collapsed text-light`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseOne"
@@ -53,7 +53,7 @@ export default function Faqs() {
               aria-labelledby="Question1"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body">
+              <div className={` accordion-body ${styles.containerText}`}>
                 <p className="m-0">
                   No, no es necesario, abrimos de Lunes a Sabado de 11 a 18hs.
                 </p>
@@ -61,10 +61,10 @@ export default function Faqs() {
             </div>
           </div>
 
-          <div className="accordion-item">
+          <div className={`accordion-item ${styles.containerDiv_accordion}`}>
             <h2 className="accordion-header" id="Question2">
               <button
-                className="accordion-button collapsed"
+                className={`accordion-button collapsed text-light`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseTwo"
@@ -76,11 +76,11 @@ export default function Faqs() {
             </h2>
             <div
               id="collapseTwo"
-              className="accordion-collapse collapse"
+              className="accordion-collapse collapse bg-dark"
               aria-labelledby="Question2"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body">
+              <div className={` accordion-body ${styles.containerText}`}>
                 <p className="m-0">
                   En CABA un máximo de 48hs. El resto del país entre 2-7 días
                   hábiles.
@@ -89,10 +89,10 @@ export default function Faqs() {
             </div>
           </div>
 
-          <div className="accordion-item">
+          <div className={`accordion-item ${styles.containerDiv_accordion}`}>
             <h2 className="accordion-header" id="Question3">
               <button
-                className="accordion-button collapsed"
+                className={`accordion-button collapsed text-light`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseThree"
@@ -108,7 +108,7 @@ export default function Faqs() {
               aria-labelledby="Question3"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body">
+              <div className={` accordion-body ${styles.containerText}`}>
                 <p className="m-0">
                   Todas las tarjetas disponibles por Mercadopago o transferencia
                   bancaria.
@@ -117,10 +117,10 @@ export default function Faqs() {
             </div>
           </div>
 
-          <div className="accordion-item">
+          <div className={`accordion-item ${styles.containerDiv_accordion}`}>
             <h2 className="accordion-header" id="Question4">
               <button
-                className="accordion-button collapsed"
+                className={`accordion-button collapsed text-light`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseFour"
@@ -136,7 +136,7 @@ export default function Faqs() {
               aria-labelledby="Question4"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body">
+              <div className={` accordion-body ${styles.containerText}`}>
                 <p className="m-0">
                   No, no hay garantía. Los items se pueden devolver dentro de
                   las primeras 48hs y en las condiciones que se adquirieron.
@@ -146,10 +146,10 @@ export default function Faqs() {
             </div>
           </div>
 
-          <div className="accordion-item">
+          <div className={`accordion-item ${styles.containerDiv_accordion}`}>
             <h2 className="accordion-header" id="Question5">
               <button
-                className="accordion-button collapsed"
+                className={`accordion-button collapsed text-light`}
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseFive"
@@ -165,7 +165,7 @@ export default function Faqs() {
               aria-labelledby="Question5"
               data-bs-parent="#accordionExample"
             >
-              <div className="accordion-body">
+              <div className={` accordion-body ${styles.containerText}`}>
                 <p className="m-0">
                   Comunicarse al +54 9 11 6631-8575 o enviar un email a
                   Gaedjminfo@gmail.com. Si el orden ya se despacho consultar
