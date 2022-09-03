@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import styles from "../../SearchBar/SearchBar.module.css";
+import { Link } from "react-router-dom";
+import { getAllProducts } from "../../../Redux/Action";
+import { useDispatch, useSelector } from "react-redux";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
@@ -11,6 +15,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import scrollreveal from "scrollreveal";
 export default function Sidebar() {
+  const dispatch = useDispatch();
+  const allProducts = useSelector((state) => state.products);
   const [currentLink, setCurrentLink] = useState(1);
   const [navbarState, setNavbarState] = useState(false);
   const html = document.querySelector("html");
@@ -42,6 +48,29 @@ export default function Sidebar() {
     );
   }, []);
 
+  const getProducts = () => {
+    console.log("dadas");
+    dispatch(getAllProducts());
+  };
+
+  const displayProducts = (p, i) => {
+    return (
+      <div key={i} className={`${styles.container_NotificationsRender}`}>
+        {allProducts.length && (
+          <Link to={`/EditProduct/${p.id}`}>
+            <h5></h5>
+            <div>
+              <img src={p.image} alt="img" className="img-fluid" />
+            </div>
+            <div>
+              <p>{p.name}</p>
+            </div>
+          </Link>
+        )}
+      </div>
+    );
+  };
+
   return (
     <>
       <Section>
@@ -63,7 +92,7 @@ export default function Sidebar() {
           </div>
           <div className="links">
             <ul>
-              <li
+              {/* <li
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
               >
@@ -71,12 +100,12 @@ export default function Sidebar() {
                   <MdSpaceDashboard />
                   <span> Dashboard</span>
                 </a>
-              </li>
+              </li> */}
               <li
                 className={currentLink === 2 ? "active" : "none"}
                 onClick={() => setCurrentLink(2)}
               >
-                <a href="#">
+                <a href="/CreateProduct">
                   <RiDashboard2Fill />
                   <span>AGREGAR PRODUCTO</span>
                 </a>
@@ -85,11 +114,40 @@ export default function Sidebar() {
                 className={currentLink === 3 ? "active" : "none"}
                 onClick={() => setCurrentLink(3)}
               >
-                <a href="#">
-                  <FaAddressCard />
-                  <span>EDITAR PRODUCTO</span>
+                <a>
+                  <div
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight"
+                  >
+                    <FaAddressCard />
+                    <span onClick={getProducts}>EDITAR PRODUCTO</span>
+                  </div>
                 </a>
               </li>
+
+              <div
+                className={`offcanvas offcanvas-end  ${styles.container_showNotifications} `}
+                id="offcanvasRight"
+              >
+                <div className="offcanvas-header">
+                  <h5>Productos</h5>
+                  <button
+                    type="button"
+                    className="btn-close text-reset"
+                    data-bs-dismiss="offcanvas"
+                    style={{ backgroundColor: "white" }}
+                  ></button>
+                </div>
+                <div className={`offcanvas-body`}>
+                  {allProducts.length ? (
+                    allProducts.map((p, i) => displayProducts(p, i))
+                  ) : (
+                    <p className="fs-4 text-center"></p>
+                  )}
+                  {console.log(allProducts)}
+                </div>
+              </div>
+
               <li
                 className={currentLink === 4 ? "active" : "none"}
                 onClick={() => setCurrentLink(4)}
@@ -143,7 +201,7 @@ export default function Sidebar() {
               className={currentLink === 2 ? "active" : "none"}
               onClick={() => setCurrentLink(2)}
             >
-              <a href="#">
+              <a href="/CreateProduct">
                 <RiDashboard2Fill />
                 <span> AGREGAR PRODUCTO</span>
               </a>
@@ -152,7 +210,7 @@ export default function Sidebar() {
               className={currentLink === 3 ? "active" : "none"}
               onClick={() => setCurrentLink(3)}
             >
-              <a href="#">
+              <a href="/EditProduct">
                 <FaAddressCard />
                 <span> EDITAR PRODUCTO</span>
               </a>
@@ -286,7 +344,7 @@ const Section = styled.section`
       .toggle {
         display: block;
         color: white;
-        z-index: 99;
+
         svg {
           font-size: 1.4rem;
         }
