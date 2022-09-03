@@ -198,6 +198,27 @@ h1 {
   color: white;
 }
 
+.footer .container_SocialNetworks {
+  width: 100% !important;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 90px;
+}
+
+.footer .container_SocialNetworks div {
+  width: 250px;
+  border-top: 1px solid white;
+}
+
+.footer .container_SocialNetworks div h4 {
+  line-height: 30px;
+  margin: 0;
+  padding: 5px 0;
+  color: white;
+}
+
 .containerInfoFooter {
   width: 90%;
   display: flex;
