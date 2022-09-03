@@ -63,7 +63,7 @@ export default function Sidebar() {
           </div>
           <div className="links">
             <ul>
-              <li
+              {/* <li
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
               >
@@ -71,12 +71,12 @@ export default function Sidebar() {
                   <MdSpaceDashboard />
                   <span> Dashboard</span>
                 </a>
-              </li>
+              </li> */}
               <li
                 className={currentLink === 2 ? "active" : "none"}
                 onClick={() => setCurrentLink(2)}
               >
-                <a href="#">
+                <a href="/CreateProduct">
                   <RiDashboard2Fill />
                   <span>AGREGAR PRODUCTO</span>
                 </a>
@@ -152,7 +152,7 @@ export default function Sidebar() {
               className={currentLink === 3 ? "active" : "none"}
               onClick={() => setCurrentLink(3)}
             >
-              <a href="#">
+              <a href="/CreateProduct">
                 <FaAddressCard />
                 <span> EDITAR PRODUCTO</span>
               </a>
