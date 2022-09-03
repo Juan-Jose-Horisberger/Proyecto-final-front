@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home.jsx";
 import ProductDetail from "./Components/ProductDetail/ProductDetail.jsx";
+import EditProduct from "./Components/ProductEdit/ProductEdit.jsx";
 import FavoriteProduct from "./Components/FavoriteProduct/FavoriteProduct.jsx";
 import Cart from "./Components/Cart/Cart.jsx";
 import Login from "./Components/Login/Login.jsx";
@@ -41,6 +42,7 @@ function App() {
         <Route path="/Logout" element={<Logout />} />
         <Route path="/Register" element={<Register socket={socket} />} />
         <Route path="/CreateProduct" element={<FormProduct />} />
+        <Route path="/EditProduct/:id" element={<EditProduct />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Dashboard" element={<Dashboard socket={socket} />} />
         <Route path="/Checkout" element={<Checkout socket={socket} />} />
