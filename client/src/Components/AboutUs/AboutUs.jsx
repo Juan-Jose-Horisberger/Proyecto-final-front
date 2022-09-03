@@ -11,9 +11,11 @@ import {
   BsShieldCheck,
   BsCheckCircle,
   BsFillTelephoneFill,
+  BsArrowUp,
 } from "react-icons/bs";
 import { GiPadlock } from "react-icons/gi";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { AiOutlineInstagram } from "react-icons/ai"; //Instagram
 
 export default function About() {
   useEffect(() => {
@@ -266,12 +268,24 @@ export default function About() {
             />
           </div>
 
-          <div>
+          <div className={`${styles.Footer_div4}`}>
             <h4>Newsletter Semanal</h4>
             <button>Subscribite!</button>
+            <span
+              onClick={() =>
+                window.scrollTo({ behavior: "smooth", top: "0px" })
+              }
+            >
+              <BsArrowUp size="25px" color="white" />
+            </span>
           </div>
         </div>
-
+        <div>
+          <h4>REDES SOCIALES</h4>
+          <div>
+            <AiOutlineInstagram size="22px" color="white" />
+          </div>
+        </div>
         <div className={`${styles.containerInfoP}`}>
           <p>© GEAD.JM, 2022. Todos los derechos reservados</p>
         </div>
