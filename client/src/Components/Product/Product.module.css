@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 /*font-family: 'Questrial', sans-serif;*/
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap");
+/*font-family: 'Kanit', sans-serif;*/
+
+.containerLandingPage {
+  width: 90%;
+  color: azure;
+}
 
 .container {
   width: 31%;
@@ -29,6 +36,16 @@
 */
 .container_productInfo {
   position: relative;
+}
+
+.newProduct {
+  padding: 3px 15px;
+  top: 5%;
+  font-size: 11px;
+  font-family: "Kanit", sans-serif;
+  position: absolute;
+  background-color: red;
+  color: white;
 }
 
 .discountP {

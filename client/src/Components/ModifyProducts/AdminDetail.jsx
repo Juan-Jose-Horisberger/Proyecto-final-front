@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
-import styles from "./ProductDetail.module.css";
+import styles from "../ProductDetail/ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
 import {
   getProductDetail,
   filterByQuery,
@@ -11,13 +10,17 @@ import {
   deleteCartProduct,
   addReviewToProduct,
   getUserDetail,
+  deleteProduct,
 } from "../../Redux/Action/index.js";
 import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
-import stylesComponents from "./stylesComponents.css";
+import stylesComponents from "../ProductDetail/stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { TbTrashX } from "react-icons/tb";
+import { HiOutlinePencil } from "react-icons/hi";
+import Swal from "sweetalert2";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
@@ -50,7 +53,6 @@ export default function ProductDetail() {
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
-    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
@@ -141,6 +143,28 @@ export default function ProductDetail() {
     );
   };
 
+  const getDetail = () => {
+    dispatch(getProductDetail(id));
+  };
+
+  const handleDelete = () => {
+    Swal.fire({
+      icon: "warning",
+      background: "#000",
+      title: "¿Estás seguro de eliminar este producto?",
+      confirmButtonText: "Eliminar",
+      confirmButtonColor: "#A91111",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#282626",
+    }).then((res) => {
+      if (res.isConfirmed === true) {
+        console.log("asd");
+        dispatch(deleteProduct(id));
+      } else console.log(res);
+    });
+  };
+
   const handleInfo = (value) => {
     if (value === "cuotas") {
       Swal.fire({
@@ -196,12 +220,12 @@ export default function ProductDetail() {
           <div className={styles.overallContainer}>
             <div className={styles.container_1}>
               <h1>
-                <Link to="/">
-                  <span>Inicio</span>
+                <Link to="/Dashboard">
+                  <span>Dashboard</span>
                 </Link>
                 <span> / </span>
-                <Link to="">
-                  <span>{productDetail.categoryName}</span>
+                <Link to="/ModifyProducts">
+                  <span>Productos</span>
                 </Link>
                 <span> / </span>
                 <Link to="/">
@@ -257,6 +281,17 @@ export default function ProductDetail() {
                   <button onClick={handleOnCart}>AGREGAR AL CARRITO</button>
                 </div>
               )}
+
+              <div className={styles.divBtnAdminZarcos}>
+                <button onClick={handleDelete}>
+                  <TbTrashX size="40px" color="#8B8B8B" />
+                </button>
+                <Link to={`/EditProduct/${id}`}>
+                  <button onClick={getDetail}>
+                    <HiOutlinePencil size="40px" color="#8B8B8B" />
+                  </button>
+                </Link>
+              </div>
 
               <div>
                 <div className={`${styles.container_img1}`}>

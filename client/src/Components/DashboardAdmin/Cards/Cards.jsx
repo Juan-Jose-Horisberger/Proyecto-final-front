@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { BsFillCalendar2WeekFill } from "react-icons/bs";
 import { IoStatsChart } from "react-icons/io5";
 import { BiGroup } from "react-icons/bi";
@@ -8,28 +9,38 @@ import { cardStyles } from "../ReusableStyles/ReusableStyles";
 export default function Cards() {
   return (
     <Section>
-      <div className="analytic ">
+      {/* <div className="analytic ">
         <div className="content">
           <h6>COMENTARIOS</h6>
         </div>
         <div className="logo">
           <BsFillCalendar2WeekFill />
         </div>
-      </div>
-      <div className="analytic">
+      </div> */}
+      {/* <div className="analytic">
         <div className="logo">
           <IoStatsChart />
         </div>
         <div className="content">
           <h6>NOTIFICACIONES</h6>
         </div>
-      </div>
-      <div className="analytic">
-        <div className="logo">
-          <BiGroup />
+      </div> */}
+      <Link to="/AllUsers">
+        <div className="analytic">
+          <div className="logo">
+            <BiGroup />
+          </div>
+          <div className="content">
+            <h6>USUARIOS</h6>
+          </div>
         </div>
+      </Link>
+      <div className="analytic ">
         <div className="content">
-          <h6>USUARIOS</h6>
+          <h6>ACTIVITY</h6>
+        </div>
+        <div className="logo">
+          <FiActivity />
         </div>
       </div>
     </Section>

@@ -103,7 +103,7 @@ export default function SearchBar({ socket }) {
           className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}
         >
           <div className="container-fluid d-flex flex-wrap">
-            <Link to="/" className="navbar-brand d-flex col-2 me-0">
+            <Link to="/LandingPage" className="navbar-brand d-flex col-2 me-0">
               <h1 className="mb-0">GAED.JM</h1>
             </Link>
             <button

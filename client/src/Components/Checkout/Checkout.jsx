@@ -149,7 +149,8 @@ export default function Checkout({ socket }) {
       <div className={style.divCheckout}>
         <h2>Checkout</h2>
         <p>
-          <Link to="/">Inicio</Link>/Checkout
+          <Link to="/">Inicio</Link>
+          <Link to="/Cart">/Carrito</Link>/Checkout
         </p>
       </div>
 
@@ -368,34 +369,24 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {oneProductState.length ? (
-            <div className={style.divProduct}>
-              <img src={oneProductState[0].image} />
-              <p>{oneProductState[0].name}</p>
-              <p>${oneProductState[0].price}</p>
-            </div>
-          ) : (
-            productsToBuy.map((e) => {
-              return e[1].id ? (
-                <div key={e[1].id} className={style.divProduct}>
-                  <img src={e[1].image} alt="" />
-                  <p>{e[1].name}</p>
-                  <p>${e[1].price}</p>
-                </div>
-              ) : (
-                true
-              );
-            })
-          )}
+          {productsToBuy.map((e) => {
+            return e[1].id ? (
+              <div key={e[1].id} className={style.divProduct}>
+                <img src={e[1].image} alt="" />
+                <p>{e[1].name}</p>
+                <p>${e[1].price}</p>
+              </div>
+            ) : (
+              true
+            );
+          })}
 
           <p className={style.cuentita}>
-            {oneProductState.length
-              ? (subTotal = subTotal + oneProductState[0].price)
-              : productsToBuy.map((e) =>
-                  e[1].id
-                    ? (subTotal = subTotal + e[1].price)
-                    : (subTotal = subTotal)
-                )}
+            {productsToBuy.map((e) =>
+              e[1].id
+                ? (subTotal = subTotal + e[1].price)
+                : (subTotal = subTotal)
+            )}
           </p>
           <div className={style.divTotal}>
             <p>SUBTOTAL</p>

@@ -1,112 +1,89 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap%27");
 
-.container{
-    background-color: rgb(0, 0, 0);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 50px;
-    font-size: 1.1rem;
-    /* font-family: 'Questrial', sans-serif; */
+.container {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  font-size: 1.1rem;
+  font-family: "Questrial", sans-serif;
 }
 
 .divProduct {
-    padding: 10px 0 10px 10px;
-    border-top: 1px solid #dedee8;
-    width: 90%;
-    display: flex;
-    align-items: center;
-    font-family: 'Questrial', sans-serif;
-
+  padding: 10px 0 10px 10px;
+  border-top: 1px solid #dedee8;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  font-family: "Questrial", sans-serif;
 }
 
 .divBtnDelete {
-    background-color: rgb(0, 0, 0);
-    text-align: center;
-    margin-right: 10px;
+  background-color: rgb(0, 0, 0);
+  text-align: center;
+  margin-right: 10px;
+  font-family: "Questrial", sans-serif;
 }
 
 .btnDelete {
-    background-color: rgb(0, 0, 0);
-    color: #444445;
-    font-size: 2.1rem;
+  background-color: rgb(0, 0, 0);
+  color: #444445;
+  font-size: 2.1rem;
+  font-family: "Questrial", sans-serif;
 }
 
-.divBtnBuy {
-    /* border: 1px solid red; */
-    display: flex;
-    justify-content: flex-end;
-}
-
-.btnBuy{
-    font-weight: 500;
-    border-radius: 0;
-    background-color: #23232c;
-    color: #fff;
-    line-height: 60px;
-    cursor: pointer;
-    width: 150px;
-    font-family: 'Questrial', sans-serif !important;
-}
-
-.btnBuy:hover {
-    transition: 1s;
-    color: #fff;
-    background-color: #100f10;
-    cursor: pointer;
-    font-family: 'Questrial', sans-serif;
-    
-}
-
-.btnCheckout{
-    font-weight: 500;
-    border-radius: 0;
-    background-color: #23232c;
-    color: #fff;
-    line-height: 70px;
-    padding: 10px;
-    margin: 20px 0 20px 0;
-    cursor: pointer;
-    width: 100%;
-    font-family: 'Questrial', sans-serif !important;
+.btnCheckout {
+  font-weight: 500;
+  border-radius: 0;
+  background-color: #23232c;
+  color: #fff;
+  line-height: 70px;
+  padding: 10px;
+  margin: 20px 0 20px 0;
+  cursor: pointer;
+  width: 100%;
+  font-family: "Questrial", sans-serif !important;
 }
 
 .btnCheckout:hover {
-    transition: 1s;
-    color: #fff;
-    background-color: #100f10;
-    cursor: pointer;
-    font-family: 'Questrial', sans-serif;   
+  transition: 1s;
+  color: #fff;
+  background-color: #100f10;
+  cursor: pointer;
+  font-family: "Questrial", sans-serif;
 }
 
 .image {
-    width: 150px;
-    height: auto;
+  width: 150px;
+  height: auto;
 }
 
 .divName {
-    /* border: 2px solid rgb(242, 0, 0); */
-    margin: 20px 10px 20px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 500px;
+  /* border: 2px solid rgb(242, 0, 0); */
+  margin: 20px 10px 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  font-family: "Questrial", sans-serif;
 }
 
 .divPrice {
-    /* border: 2px solid rgb(242, 0, 0); */
-    margin: 10px;
-    width: 100px;
-    display: flex;
+  /* border: 2px solid rgb(242, 0, 0); */
+  margin: 10px;
+  width: 100px;
+  display: flex;
 }
 
 .divStock {
-    /* border: 2px solid rgb(242, 0, 0); */
-    margin: 10px;
-    width: 200px;
-    display: flex;
+  /* border: 2px solid rgb(242, 0, 0); */
+  margin: 10px;
+  width: 200px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .pStock {
-    color: rgb(45, 42, 42);
-    font-family: 'Questrial', sans-serif;
+  color: rgb(45, 42, 42);
+  font-family: "Questrial", sans-serif;
 }
