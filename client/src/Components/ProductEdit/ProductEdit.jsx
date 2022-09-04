@@ -168,7 +168,7 @@ export default function ProductEdit() {
     handleOffer,
     checkedInput,
     handleDiscount,
-  } = useForm(initialForm, validateForm);
+  } = useForm(initialForm, validateForm, id);
 
   const getDetail = (id) => {
     // dispatch(getProductDetail(id));
@@ -544,7 +544,7 @@ export default function ProductEdit() {
           )}
 
           <button onSubmit={handleOnSubmit} className={style.btnSubmit}>
-            Sumar al catalogo
+            Editar producto
           </button>
 
           {alert ? (
@@ -555,7 +555,7 @@ export default function ProductEdit() {
                   : style.container_AlertDanger
               } alert alert-danger alert-dismissible fade show`}
             >
-              Debes completar el formulario con la informacion{" "}
+              ¡Debes completar el formulario con la información{" "}
               <strong>correcta!</strong>
               <button
                 type="button"
@@ -575,7 +575,7 @@ export default function ProductEdit() {
               } alert alert-success alert-dismissible fade show`}
               role="alert"
             >
-              El producto se ha <strong>sumado al cataglogo</strong> con exito!
+              ¡El producto se ha <strong>editado</strong> con éxito!
               <button
                 type="button"
                 className="btn-close"

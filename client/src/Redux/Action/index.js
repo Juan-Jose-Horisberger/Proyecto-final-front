@@ -10,6 +10,8 @@ export const GET_CART_PRODUCT = "GET_CART_PRODUCT";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
 export const PRODUCT_TO_BUY = "BUY_PRODUCT";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const EDIT_PRODUCT = "EDIT_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
 export const SET_NOTIFICATIONS_TO_0 = "SET_NOTIFICATIONS_TO_0";
@@ -121,6 +123,26 @@ export const createProduct = (payload) => {
   };
 };
 
+export const EditProduct = (id, data) => {
+  return async function (dispatch) {
+    let editedProduct = await axios.put(`/products/change/${id}`, data);
+    return dispatch({
+      type: EDIT_PRODUCT,
+      // payload: editedProduct,
+    });
+  };
+};
+
+export const deleteProduct = (id) => {
+  return async function (dispatch) {
+    let editedProduct = await axios.delete(`/products/delete/${id}`);
+    return dispatch({
+      type: DELETE_PRODUCT,
+      // payload: editedProduct,
+    });
+  };
+};
+
 export const filterByQuery = (params) => {
   return async function (dispatch) {
     let filterProducts = await axios.get(`/products?${params}`);
@@ -191,16 +213,16 @@ export const addReviewToProduct = async (review) => {
     number: parseInt(review.number),
     comment: review.comment,
   };
-  console.log(reviewParse)
+  console.log(reviewParse);
   const response = await axios.put(
     "https://proyecto-final-01.herokuapp.com/scores/",
     reviewParse
   );
-    if(response.data.message){
-      alert(response.data.message)
-    }else{
-      alert(response.data)
-    }
+  if (response.data.message) {
+    alert(response.data.message);
+  } else {
+    alert(response.data);
+  }
 };
 
 export const getDetailNotification = (payload) => {
