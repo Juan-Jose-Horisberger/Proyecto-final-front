@@ -19,7 +19,15 @@ import {
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function Product({ id, name, price, image, offer, discount }) {
+export default function Product({
+  id,
+  name,
+  price,
+  image,
+  offer,
+  discount,
+  landingPage,
+}) {
   const dispatch = useDispatch();
   const productFav = useSelector((state) => state.productFav);
   const productCart = useSelector((state) => state.productCart);
@@ -105,73 +113,155 @@ export default function Product({ id, name, price, image, offer, discount }) {
   };
 
   return (
-    <div className={`${styles.container}`}>
-      <div className={`${styles.container_productInfo}`}>
-        {/* {console.log(Hovertarget + " Hovered")} */}
-        <Link
-          to={`/ProductDetail/${id}`}
-          ref={Hovertarget}
-          className={
-            Hovered || onHoverButton.current
-              ? (onHover.current = true)
-              : (onHover.current = false) /*Cambiamos a false para que no tire warning*/
-          }
-        >
-          <img src={image} alt="Imagen no encontrada" className={`img-fluid`} />
-          {offer && <p className={`${styles.discountP}`}>-{discount}</p>}
-        </Link>
-        {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
+    <>
+      {landingPage ? (
+        <div className={`${styles.containerLandingPage}`}>
+          <div className={`${styles.container_productInfo}`}>
+            {/* {console.log(Hovertarget + " Hovered")} */}
+            <Link
+              to={`/ProductDetail/${id}`}
+              ref={Hovertarget}
+              className={
+                Hovered || onHoverButton.current
+                  ? (onHover.current = true)
+                  : (onHover.current = false) /*Cambiamos a false para que no tire warning*/
+              }
+            >
+              <img
+                src={image}
+                alt="Imagen no encontrada"
+                className={`img-fluid`}
+              />
+              {landingPage && <p className={`${styles.newProduct}`}>NEW</p>}
+              {offer && <p className={`${styles.discountP}`}>-{discount}</p>}
+            </Link>
+            {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
 
-        <button
-          onClick={handleOnCart}
-          ref={HovertargetButton1}
-          className={`${
-            HoveredButton1
-              ? (onHoverButton1.current = true)
-              : (onHoverButton1.current = false)
-          }
+            <button
+              onClick={handleOnCart}
+              ref={HovertargetButton1}
+              className={`${
+                HoveredButton1
+                  ? (onHoverButton1.current = true)
+                  : (onHoverButton1.current = false)
+              }
             ${styles.button1} ${
-            (onHover.current || onHoverButton1.current) && styles.open
-          }`}
-        >
-          {validateCart(id) ? (
-            <img src={deleteCart} alt="image-not-found" />
-          ) : (
-            <img src={addCart} alt="image-not-found" />
-          )}
-        </button>
+                (onHover.current || onHoverButton1.current) && styles.open
+              }`}
+            >
+              {validateCart(id) ? (
+                <img src={deleteCart} alt="image-not-found" />
+              ) : (
+                <img src={addCart} alt="image-not-found" />
+              )}
+            </button>
 
-        <button
-          onClick={handleOnFav}
-          ref={HovertargetButton}
-          className={`${
-            HoveredButton
-              ? (onHoverButton.current = true)
-              : (onHoverButton.current = false)
-          } ${styles.button2} ${
-            (onHover.current || onHoverButton.current) && styles.open
-          } `}
-        >
-          {validateFav(id) ? (
-            <img src={deleteFav} alt="image-not-found" />
-          ) : (
-            <img src={addFav} alt="image-not-found" />
-          )}
-        </button>
-      </div>
-
-      <div className={`${styles.info} mt-2`}>
-        <div className="col-12">
-          <h3 className={`${styles.name_Product}`}>{name}</h3>
-        </div>
-        {offer ? (
-          priceWithDiscount(price, discount)
-        ) : (
-          <div>
-            <h2 className="mb-3 fs-5">${price}</h2>
+            <button
+              onClick={handleOnFav}
+              ref={HovertargetButton}
+              className={`${
+                HoveredButton
+                  ? (onHoverButton.current = true)
+                  : (onHoverButton.current = false)
+              } ${styles.button2} ${
+                (onHover.current || onHoverButton.current) && styles.open
+              } `}
+            >
+              {validateFav(id) ? (
+                <img src={deleteFav} alt="image-not-found" />
+              ) : (
+                <img src={addFav} alt="image-not-found" />
+              )}
+            </button>
           </div>
-        )}
-      </div>
-    </div>
+
+          <div className={`${styles.info} mt-2`}>
+            <div className="col-12">
+              <h3 className={`${styles.name_Product}`}>{name}</h3>
+            </div>
+            {offer ? (
+              priceWithDiscount(price, discount)
+            ) : (
+              <div>
+                <h2 className="mb-3 fs-5">${price}</h2>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className={`${styles.container}`}>
+          <div className={`${styles.container_productInfo}`}>
+            {/* {console.log(Hovertarget + " Hovered")} */}
+            <Link
+              to={`/ProductDetail/${id}`}
+              ref={Hovertarget}
+              className={
+                Hovered || onHoverButton.current
+                  ? (onHover.current = true)
+                  : (onHover.current = false) /*Cambiamos a false para que no tire warning*/
+              }
+            >
+              <img
+                src={image}
+                alt="Imagen no encontrada"
+                className={`img-fluid`}
+              />
+              {offer && <p className={`${styles.discountP}`}>-{discount}</p>}
+            </Link>
+            {/*Despues este div aparecera solo cuando se le pase el mouse por arriba de la img*/}
+
+            <button
+              onClick={handleOnCart}
+              ref={HovertargetButton1}
+              className={`${
+                HoveredButton1
+                  ? (onHoverButton1.current = true)
+                  : (onHoverButton1.current = false)
+              }
+            ${styles.button1} ${
+                (onHover.current || onHoverButton1.current) && styles.open
+              }`}
+            >
+              {validateCart(id) ? (
+                <img src={deleteCart} alt="image-not-found" />
+              ) : (
+                <img src={addCart} alt="image-not-found" />
+              )}
+            </button>
+
+            <button
+              onClick={handleOnFav}
+              ref={HovertargetButton}
+              className={`${
+                HoveredButton
+                  ? (onHoverButton.current = true)
+                  : (onHoverButton.current = false)
+              } ${styles.button2} ${
+                (onHover.current || onHoverButton.current) && styles.open
+              } `}
+            >
+              {validateFav(id) ? (
+                <img src={deleteFav} alt="image-not-found" />
+              ) : (
+                <img src={addFav} alt="image-not-found" />
+              )}
+            </button>
+          </div>
+
+          <div className={`${styles.info} mt-2`}>
+            <div className="col-12">
+              <h3 className={`${styles.name_Product}`}>{name}</h3>
+            </div>
+            {offer ? (
+              priceWithDiscount(price, discount)
+            ) : (
+              <div>
+                <h2 className="mb-3 fs-5">${price}</h2>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
