@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap");
+/*font-family: 'Kanit', sans-serif;*/
+
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+/*font-family: 'Questrial', sans-serif;*/
+
+.container_Carrousel {
+  margin-top: 74px;
+}
+
+.container_Image_Carrousel {
+  position: relative;
+}
+
+.containerInfoCarrousel {
+  width: 400px;
+  top: 30%;
+  left: 10%;
+  /* border: 1px solid red; */
+  position: absolute;
+}
+
+.containerInfoCarrousel h4 {
+  color: white;
+  font-size: 45px;
+  font-family: "Kanit", sans-serif;
+  user-select: none;
+}
+
+.containerInfoCarrousel p {
+  color: white;
+  letter-spacing: 1px;
+  font-family: "Questrial", sans-serif;
+  user-select: none;
+}

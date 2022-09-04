@@ -21,6 +21,7 @@ import About from "./Components/AboutUs/AboutUs";
 import Faqs from "./Components/Faqs/Faqs.jsx";
 import TermsAndConditions from "./Components/TermsAndConditions/TermsAndConditions.jsx";
 import Returns from "./Components/Returns/Returns.jsx";
+import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 // import Navbar from './Components/NavbarPrueba/NavBar.jsx';
 // import Card from './Components/CardPrueba/Card.jsx';
 // import "./app.css";
@@ -54,6 +55,7 @@ function App() {
         <Route path="/Faqs" element={<Faqs />} />
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         <Route path="/Returns" element={<Returns />} />
+        <Route path="/LandingPage" element={<LandingPage />} />
       </Routes>
     </div>
   );
