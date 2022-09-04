@@ -147,7 +147,7 @@ export default function ProductDetail() {
         showConfirmButton: false,
         showCloseButton: true,
         imageUrl: "https://i.ibb.co/Yj89rCZ/MP.png",
-        background: "#000",
+        background: "#111111",
         allowOutsideClick: false,
         allowEnterKey: false,
         allowEscapeKey: false,
@@ -163,7 +163,7 @@ export default function ProductDetail() {
 						width="90%"
 						height="450"
 					></iframe>`,
-        background: "#000",
+        background: "#111111",
         allowOutsideClick: false,
         allowEnterKey: false,
         allowEscapeKey: false,
