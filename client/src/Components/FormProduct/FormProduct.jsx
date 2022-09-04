@@ -182,7 +182,7 @@ export default function FormProduct() {
   return (
     <div className={style.containerPrincipal}>
       <p className="mt-3">
-        <Link to="/">Inicio</Link>/Crear Producto
+        <Link to="/Dashboard">Dashboard</Link>/Crear Producto
       </p>
 
       <div className={style.container}>

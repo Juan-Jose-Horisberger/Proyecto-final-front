@@ -149,7 +149,8 @@ export default function Checkout({ socket }) {
       <div className={style.divCheckout}>
         <h2>Checkout</h2>
         <p>
-          <Link to="/">Inicio</Link>/Checkout
+          <Link to="/">Inicio</Link>
+          <Link to="/Cart">/Carrito</Link>/Checkout
         </p>
       </div>
 

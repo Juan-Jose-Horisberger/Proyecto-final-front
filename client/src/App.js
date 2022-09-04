@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home.jsx";
 import ProductDetail from "./Components/ProductDetail/ProductDetail.jsx";
 import ModifyProducts from "./Components/ModifyProducts/ModifyProducts.jsx";
+import AdminDetail from "./Components/ModifyProducts/AdminDetail.jsx";
 import EditProduct from "./Components/ProductEdit/ProductEdit.jsx";
 import FavoriteProduct from "./Components/FavoriteProduct/FavoriteProduct.jsx";
 import Cart from "./Components/Cart/Cart.jsx";
@@ -45,10 +46,11 @@ function App() {
         <Route path="/Register" element={<Register socket={socket} />} />
         <Route path="/CreateProduct" element={<FormProduct />} />
         <Route path="/EditProduct/:id" element={<EditProduct />} />
-        <Route path="/Contact" element={<Contact />} />
+        <Route path="/AdminDetail/:id" element={<AdminDetail />} />
         <Route path="/ModifyProducts" element={<ModifyProducts />} />
         <Route path="/Dashboard" element={<Dashboard socket={socket} />} />
         <Route path="/Checkout" element={<Checkout socket={socket} />} />
+        <Route path="/Contact" element={<Contact />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Offers" element={<Offers />} />
         <Route path="/About" element={<About />} />
