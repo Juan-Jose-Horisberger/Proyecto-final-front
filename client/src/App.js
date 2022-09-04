@@ -11,6 +11,7 @@ import Login from "./Components/Login/Login.jsx";
 import Register from "./Components/Register/Register.jsx";
 import FormProduct from "./Components/FormProduct/FormProduct.jsx";
 import Contact from "./Components/Contact/Contact.jsx";
+import AllUsers from "./Components/DashboardAdmin/AllUsers/AllUsers.jsx";
 import Profile from "./Components/Profile/Profile.jsx";
 import Logout from "./Components/Logout/Logout";
 import Dashboard from "./Components/DashboardAdmin/Dashboard/Dashboard.jsx";
@@ -58,6 +59,7 @@ function App() {
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         <Route path="/Returns" element={<Returns />} />
         <Route path="/LandingPage" element={<LandingPage />} />
+        <Route path="/AllUsers" element={<AllUsers />} />
       </Routes>
     </div>
   );

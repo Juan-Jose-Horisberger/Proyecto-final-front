@@ -25,7 +25,7 @@ export default function Cards() {
           <h6>NOTIFICACIONES</h6>
         </div>
       </div> */}
-      <Link to="AllUsers">
+      <Link to="/AllUsers">
         <div className="analytic">
           <div className="logo">
             <BiGroup />
