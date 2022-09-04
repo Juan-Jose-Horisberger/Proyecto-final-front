@@ -80,17 +80,6 @@ export default function Cart() {
                   <p className={styles.pStock}>IN STOCK</p>
                 )}
               </div>
-
-              <div className={styles.divBtnbuy}>
-                <Link to="/Checkout">
-                  <button
-                    onClick={(ev) => handleBuy(e[1].id)}
-                    className={styles.btnBuy}
-                  >
-                    Comprar
-                  </button>
-                </Link>
-              </div>
             </div>
           ) : (
             true

@@ -9,6 +9,8 @@ import {
   DELETE_CART_PRODUCT,
   PRODUCT_TO_BUY,
   CREATE_PRODUCT,
+  EDIT_PRODUCT,
+  DELETE_PRODUCT,
   FILTER_BY_QUERY,
   FILTER_BY_PRICE,
   SET_NOTIFICATIONS_TO_0,
@@ -96,13 +98,13 @@ export default function rootReducer(state = initialState, { type, payload }) {
         productCart: deleteCartProduct,
       };
 
-    case PRODUCT_TO_BUY:
-      if (payload) {
-        cookies.set("oneProduct", [...state.productToBuy, payload], {
-          path: "/Checkout",
-        });
-        return { ...state, productToBuy: [...state.productToBuy, payload] };
-      }
+    // case PRODUCT_TO_BUY:
+    //   if (payload) {
+    //     cookies.set("oneProduct", [...state.productToBuy, payload], {
+    //       path: "/Checkout",
+    //     });
+    //     return { ...state, productToBuy: [...state.productToBuy, payload] };
+    //   }
 
     case CREATE_PRODUCT:
       // console.log(payload);
@@ -114,6 +116,16 @@ export default function rootReducer(state = initialState, { type, payload }) {
           counter: state.newNotification.counter + 1,
           newProducts: [...state.newNotification.newProducts, payload],
         },
+      };
+
+    case EDIT_PRODUCT:
+      return {
+        ...state,
+      };
+
+    case DELETE_PRODUCT:
+      return {
+        ...state,
       };
 
     case FILTER_BY_QUERY:

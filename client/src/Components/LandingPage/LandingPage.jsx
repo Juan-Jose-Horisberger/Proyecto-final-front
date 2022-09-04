@@ -10,17 +10,20 @@ import Carousel from "react-elastic-carousel";
 import stylesComponents from "./stylesComponents.css";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
+import imgProducts from "../../Imagenes/ImagenProducts1.png";
+import imgDress from "../../Imagenes/ImagenIndumentaria2.png";
+import imgFootwear from "../../Imagenes/ImagenCalzado1.png";
 
 export default function LandingPage() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const count = 10;
   const allProductsSort = allProducts.sort(function (a, b) {
-    if (a.id > b.id) {
-      return 1;
-    }
     if (a.id < b.id) {
       return -1;
+    }
+    if (a.id > b.id) {
+      return 1;
     }
 
     return 0;
@@ -122,13 +125,29 @@ export default function LandingPage() {
               return (
                 <Product
                   key={i}
-                  image={p.image}
+                  id={p.id}
                   name={p.name}
                   price={p.price}
+                  image={p.image}
+                  offer={p.offer}
+                  discount={p.discount}
+                  landingPage={true}
                 />
               );
             })}
           </Carousel>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <img src={imgProducts} alt="" className="img-fluid" />
+        </div>
+        <div>
+          <img src={imgDress} alt="" className="img-fluid" />
+        </div>
+        <div>
+          <img src={imgFootwear} alt="" className="img-fluid" />
         </div>
       </div>
     </div>

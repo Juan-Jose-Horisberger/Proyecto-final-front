@@ -10,6 +10,7 @@ import {
   deleteCartProduct,
   addReviewToProduct,
   getUserDetail,
+  deleteProduct,
 } from "../../Redux/Action/index.js";
 import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import SearchBar from "../SearchBar/SearchBar";
@@ -19,6 +20,7 @@ import stylesComponents from "../ProductDetail/stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { TbTrashX } from "react-icons/tb";
 import { HiOutlinePencil } from "react-icons/hi";
+import Swal from "sweetalert2";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
@@ -141,6 +143,28 @@ export default function ProductDetail() {
     );
   };
 
+  const getDetail = () => {
+    dispatch(getProductDetail(id));
+  };
+
+  const handleDelete = () => {
+    Swal.fire({
+      icon: "warning",
+      background: "#000",
+      title: "¿Estás seguro de eliminar este producto?",
+      confirmButtonText: "Eliminar",
+      confirmButtonColor: "#A91111",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#282626",
+    }).then((res) => {
+      if (res.isConfirmed === true) {
+        console.log("asd");
+        dispatch(deleteProduct(id));
+      } else console.log(res);
+    });
+  };
+
   return (
     <div className={styles.container}>
       {/* <SearchBar /> */}
@@ -212,11 +236,11 @@ export default function ProductDetail() {
               )}
 
               <div className={styles.divBtnAdminZarcos}>
-                <button>
+                <button onClick={handleDelete}>
                   <TbTrashX size="40px" color="#8B8B8B" />
                 </button>
                 <Link to={`/EditProduct/${id}`}>
-                  <button>
+                  <button onClick={getDetail}>
                     <HiOutlinePencil size="40px" color="#8B8B8B" />
                   </button>
                 </Link>
