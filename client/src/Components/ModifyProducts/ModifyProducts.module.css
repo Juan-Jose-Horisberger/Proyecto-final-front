@@ -6,6 +6,7 @@
   /* border: 1px solid red; */
   color: azure;
   font-size: 18px;
+  padding: 20px;
 }
 
 .container {
@@ -13,31 +14,17 @@
   display: flex;
   flex-wrap: wrap;
   /* border: 1px solid red; */
+  justify-content: space-around;
 }
 
-.containerCard {
-  margin: 20px;
+.cargando {
+  font-size: 50px;
+}
+
+.spinner {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  width: 29%;
-  border: 1px solid azure;
-}
-
-.containerCard img {
-  width: 100%;
-}
-
-.divBtn {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
   /* border: 1px solid red; */
-}
-
-.divBtn button {
-  background-color: rgb(40, 38, 38);
-  border-radius: 50px;
-  width: 20%;
-  height: 60px;
 }

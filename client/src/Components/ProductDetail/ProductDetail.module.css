@@ -530,3 +530,23 @@
   height: 20px;
   margin-right: 1rem;
 }
+
+.divBtnAdminZarcos {
+  display: flex;
+  justify-content: space-evenly;
+  /* border: 1px solid red; */
+  width: 70%;
+  height: 60px;
+}
+
+.divBtnAdminZarcos button {
+  background-color: #17171a;
+  border-radius: 100px;
+  width: 60px;
+  height: 60px;
+}
+
+.divBtnAdminZarcos button:hover {
+  background-color: #0b0b0c;
+  transition: 0.4s;
+}
