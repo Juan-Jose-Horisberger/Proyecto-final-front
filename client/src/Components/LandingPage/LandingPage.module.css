@@ -33,3 +33,62 @@
   font-family: "Questrial", sans-serif;
   user-select: none;
 }
+
+.containerInfoCarrousel2 {
+  width: 400px;
+  top: 30%;
+  left: 10%;
+  /* border: 1px solid red; */
+  position: absolute;
+}
+
+.containerInfoCarrousel2 h4 {
+  color: white;
+  font-size: 35px;
+  font-family: "Kanit", sans-serif;
+  user-select: none;
+}
+
+.containerInfoCarrousel2 p {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-family: "Questrial", sans-serif;
+  user-select: none;
+}
+
+.container_Carrousel {
+  margin-top: 120px;
+}
+
+/* .carts {
+  width: 500px;
+
+  margin: 0 10px;
+  font-family: "Questrial", sans-serif;
+}
+
+.carts:hover {
+  background-color: #23232c;
+}
+
+.carts img:hover {
+  cursor: pointer;
+}
+
+.carts p {
+  text-align: center;
+  color: white;
+}
+
+.carts p:nth-child(3) {
+  font-weight: bold;
+  font-family: "Questrial", sans-serif;
+} */
+
+.new_Products {
+  font-size: 35px;
+  letter-spacing: 1px;
+  text-align: center;
+  font-family: "Kanit", sans-serif;
+}

@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./LandingPage.module.css";
 import imgCarrousel1 from "../../Imagenes/ImagerCarrousel1.jpg";
 import imgCarrousel2 from "../../Imagenes/ImagenCarrousel2.jpg";
 import imagenCarrousel5 from "../../Imagenes/ImagenCarrousel5.jpg";
 import SearchBar from "../SearchBar/SearchBar";
+import { getAllProducts } from "../../Redux/Action";
+import { useDispatch, useSelector } from "react-redux";
+import Carousel from "react-elastic-carousel";
+import stylesComponents from "./stylesComponents.css";
+import { Link } from "react-router-dom";
+import Product from "../Product/Product";
 
 export default function LandingPage() {
+  const dispatch = useDispatch();
+  const allProducts = useSelector((state) => state.products);
+  const count = 10;
+  const allProductsSort = allProducts.sort(function (a, b) {
+    if (a.id > b.id) {
+      return 1;
+    }
+    if (a.id < b.id) {
+      return -1;
+    }
+
+    return 0;
+  });
+  const productsFiltered = allProductsSort.filter((e, i) => i <= count);
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
+
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 500, itemsToShow: 2 },
+    { width: 768, itemsToShow: 3 },
+    { width: 1200, itemsToShow: 4 },
+  ];
+
   return (
     <div>
       <SearchBar />
@@ -18,17 +50,19 @@ export default function LandingPage() {
       >
         <div className="carousel-inner">
           <div className="carousel-item">
-            <div>
+            <div className={`${styles.container_Image_Carrousel}`}>
               <img
                 src={imgCarrousel2}
                 className="d-block w-100"
                 alt="..."
               ></img>
             </div>
-            <div>
-              <p></p>
+            <div className={`${styles.containerInfoCarrousel2}`}>
+              <p>Conoce todos nuestras nuevos ingresos!</p>
+              <h4>NUEVOS PANTALONES NIKE ZERO GRAVITY </h4>
             </div>
           </div>
+
           <div className="carousel-item active">
             <div className={`${styles.container_Image_Carrousel}`}>
               <img
@@ -80,9 +114,22 @@ export default function LandingPage() {
         </button>
       </div>
 
-      <div style={{ border: "1px solid red" }}>
-        <h4>Nuevos productos</h4>
-        <p>Carrousel con carrito y fav cuando se haga el hover</p>
+      <div className={`${styles.container_Carrousel} col-12`}>
+        <h4 className={`${styles.new_Products}`}>NUEVOS PRODUCTOS</h4>
+        <div className={`d-flex flex-wrap justify-content-sm-evenly`}>
+          <Carousel breakPoints={breakPoints}>
+            {productsFiltered.map((p, i) => {
+              return (
+                <Product
+                  key={i}
+                  image={p.image}
+                  name={p.name}
+                  price={p.price}
+                />
+              );
+            })}
+          </Carousel>
+        </div>
       </div>
     </div>
   );
