@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import image from "../ProfileAdm/profile.jpeg";
+import { useDispatch, useSelector } from "react-redux";
+import image from "./profile.jpeg";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getUserDetail } from "../../../Redux/Action";
 import { cardStyles } from "../ReusableStyles/ReusableStyles";
 export default function ProfileAdm() {
-  return (
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const dispatch = useDispatch();
+  const userDetail = useSelector((state) => state.userDetail);
+
+  /* useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      dispatch(getUserDetail(user.email));
+    }
+  }, [user]); */
+  return isAuthenticated ? (
     <Section>
       <div className="image">
-        <img className="image" src={image} alt="" />
+        {console.log(user)}
+        {console.log(userDetail)}
+        <img className="image" src={user.picture} />
+        {/* <img src={userDetail.img} /> */}
       </div>
-      <div className="title">
-        <h2>PEDRITO</h2>
-      </div>
+      <div className="title">{/* <h2>{userDetail.username}</h2> */}</div>
       <div className="info">
         <div className="container">
           <h5>Administrador</h5>
         </div>
       </div>
     </Section>
+  ) : (
+    ""
   );
 }
 const Section = styled.section`

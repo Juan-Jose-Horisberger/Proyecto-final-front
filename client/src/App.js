@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home.jsx";
 import ProductDetail from "./Components/ProductDetail/ProductDetail.jsx";
@@ -20,12 +21,15 @@ import About from "./Components/AboutUs/AboutUs";
 import Faqs from "./Components/Faqs/Faqs.jsx";
 import TermsAndConditions from "./Components/TermsAndConditions/TermsAndConditions.jsx";
 import Returns from "./Components/Returns/Returns.jsx";
+
 // import Navbar from './Components/NavbarPrueba/NavBar.jsx';
 // import Card from './Components/CardPrueba/Card.jsx';
 // import "./app.css";
 
 function App() {
+  const dispatch = useDispatch();
   const [socket, setSocket] = useState(null);
+
   useEffect(() => {
     setSocket(io("http://localhost:5000")); //Inicializamos la conexion con el servidor socket.
   }, []);
@@ -38,7 +42,6 @@ function App() {
         <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Login" element={<Login />} />
-        <Route path="/Profile" element={<Profile />} />
         <Route path="/Logout" element={<Logout />} />
         <Route path="/Register" element={<Register socket={socket} />} />
         <Route path="/CreateProduct" element={<FormProduct />} />

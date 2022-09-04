@@ -32,20 +32,12 @@ export default function Cards() {
           <h6>USUARIOS</h6>
         </div>
       </div>
-      <div className="analytic ">
-        <div className="content">
-          <h6>ACTIVITY</h6>
-        </div>
-        <div className="logo">
-          <FiActivity />
-        </div>
-      </div>
     </Section>
   );
 }
 const Section = styled.section`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   .analytic {
     ${cardStyles};

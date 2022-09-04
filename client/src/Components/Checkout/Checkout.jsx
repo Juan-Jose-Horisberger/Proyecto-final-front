@@ -115,7 +115,7 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   const oneProductState = useSelector((state) => state.productToBuy);
   var cuki = cookies.getAll();
   var productsToBuy = Object.entries(cuki);

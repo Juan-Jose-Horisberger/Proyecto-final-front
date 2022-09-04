@@ -13,6 +13,7 @@ import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
+import Logout from "../../Logout/Logout.jsx";
 import scrollreveal from "scrollreveal";
 export default function Sidebar() {
   const dispatch = useDispatch();
@@ -92,7 +93,7 @@ export default function Sidebar() {
           </div>
           <div className="links">
             <ul>
-              {/* <li
+              <li
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
               >
@@ -100,8 +101,8 @@ export default function Sidebar() {
                   <MdSpaceDashboard />
                   <span> Dashboard</span>
                 </a>
-              </li> */}
-              <li
+              </li>
+              {/* <li
                 className={currentLink === 2 ? "active" : "none"}
                 onClick={() => setCurrentLink(2)}
               >
@@ -109,7 +110,7 @@ export default function Sidebar() {
                   <RiDashboard2Fill />
                   <span>AGREGAR PRODUCTO</span>
                 </a>
-              </li>
+              </li> */}
               <li
                 className={currentLink === 3 ? "active" : "none"}
                 onClick={() => setCurrentLink(3)}
@@ -120,7 +121,7 @@ export default function Sidebar() {
                     data-bs-target="#offcanvasRight"
                   >
                     <FaAddressCard />
-                    <span onClick={getProducts}>EDITAR PRODUCTO</span>
+                    <span onClick={getProducts}>PRODUCTOS</span>
                   </div>
                 </a>
               </li>
@@ -130,7 +131,12 @@ export default function Sidebar() {
                 id="offcanvasRight"
               >
                 <div className="offcanvas-header">
-                  <h5>Productos</h5>
+                  <h5>
+                    Productos
+                    <a href="/CreateProduct">
+                      <button onClick={() => setCurrentLink(3)}>+</button>
+                    </a>
+                  </h5>
                   <button
                     type="button"
                     className="btn-close text-reset"
@@ -181,7 +187,7 @@ export default function Sidebar() {
         <div className="logout">
           <a href="#">
             <FiLogOut />
-            <span className="logout">Cerrar sesion</span>
+            <Logout />
           </a>
         </div>
       </Section>

@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getUserDetail } from "../../../Redux/Action";
 import styled from "styled-components";
 import Cards from "../Cards/Cards";
 import Earnings from "../Earnings/Earnings";
@@ -10,6 +13,14 @@ import Sidebar from "../Sidebar/Sidebar";
 
 import scrollreveal from "scrollreveal";
 export default function Dashboard() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const dispatch = useDispatch();
+  const userDetail = useSelector((state) => state.userDetail);
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      dispatch(getUserDetail(user.email));
+    }
+  }, [user]);
   useEffect(() => {
     const sr = scrollreveal({
       origin: "bottom",
@@ -17,6 +28,7 @@ export default function Dashboard() {
       duration: 2000,
       reset: false,
     });
+
     sr.reveal(
       `
         nav,
@@ -29,23 +41,31 @@ export default function Dashboard() {
       }
     );
   }, []);
-  return (
-    <Section>
-      <Sidebar />
-      {/* <Navbar /> */}
-      <div className="grid">
-        <div className="row__one">
-          <Cards />
-          {/* <FAQ /> */}
+  if (isLoading || !userDetail) {
+    return <div>Loading...</div>;
+  } else if (!isAuthenticated) {
+    return <h1>no estas autenticado</h1>;
+  } else if (userDetail.admin === true) {
+    return (
+      <Section>
+        <Sidebar />
+        {/* <Navbar /> */}
+        <div className="grid">
+          <div className="row__two">
+            <ProfileAdm />
+            <Earnings />
+            <Transfers />
+          </div>
+          <div className="row__one">
+            <Cards />
+            {/* <FAQ /> */}
+          </div>
         </div>
-        <div className="row__two">
-          <Earnings />
-          <Transfers />
-          <ProfileAdm />
-        </div>
-      </div>
-    </Section>
-  );
+      </Section>
+    );
+  } else {
+    return <h1>no tienes permiso para acceder aqui</h1>;
+  }
 }
 
 const Section = styled.section`
