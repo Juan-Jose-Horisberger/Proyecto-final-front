@@ -3,6 +3,7 @@ import styles from "./ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   getProductDetail,
   filterByQuery,
@@ -140,6 +141,53 @@ export default function ProductDetail() {
     );
   };
 
+  const handleInfo = (value) => {
+    if (value === "cuotas") {
+      Swal.fire({
+        showConfirmButton: false,
+        showCloseButton: true,
+        imageUrl: "https://i.ibb.co/Yj89rCZ/MP.png",
+        background: "#111111",
+        allowOutsideClick: false,
+        allowEnterKey: false,
+        allowEscapeKey: false,
+      });
+    } else if (value === "sucursales") {
+      Swal.fire({
+        showConfirmButton: false,
+        showCloseButton: true,
+        width: "90%",
+        height: "90%",
+        html: `<iframe
+						src="https://www.google.com/maps/d/u/0/embed?mid=1bfViWcnhJT6Per1ePvfgeWT5oExoC4U&ehbc=2E312F"
+						width="90%"
+						height="450"
+					></iframe>`,
+        background: "#111111",
+        allowOutsideClick: false,
+        allowEnterKey: false,
+        allowEscapeKey: false,
+      });
+    } else if (value === "envios") {
+      Swal.fire({
+        showConfirmButton: false,
+        showCloseButton: true,
+        html:
+          `<img src="https://i.ibb.co/rsDHGDg/nike2.gif" />` +
+          `<h2 style="color: #b8b8b8;">ENVIOS A TODO EL PAIS</h2>` +
+          `<b style="color: #982334;">
+						Si vives en Buenos Aires su pedido se entregará en los próximos 4
+						días hábiles después de la compra. Sino tendrá una demora de hasta 7
+						días.
+					</b>`,
+        background: "#000",
+        allowOutsideClick: false,
+        allowEnterKey: false,
+        allowEscapeKey: false,
+      });
+    }
+  };
+
   return (
     <div className={styles.container}>
       {/* <SearchBar /> */}
@@ -211,47 +259,53 @@ export default function ProductDetail() {
               )}
 
               <div>
-                <div>
-                  <div className={`${styles.container_img1}`}>
-                    <img
-                      src="https://www.svgrepo.com/show/20854/credit-card.svg"
-                      width="27px"
-                      alt=""
-                    />
-                    <p>
-                      3 Cuotas sin interés <Link to="">ver más</Link>
-                    </p>
-                  </div>
-                  <div className={`${styles.container_img1}`}>
-                    <img
-                      src="https://www.svgrepo.com/show/9771/box.svg"
-                      width="27px"
-                      alt=""
-                    />
-                    <p>
-                      Cambios grátis en sucursales <Link to="">ver más</Link>
-                    </p>
-                  </div>
-                  <div className={`${styles.container_img1}`}>
-                    <img
-                      src="https://www.svgrepo.com/show/275832/handbag.svg"
-                      width="27px"
-                      alt=""
-                    />
-                    <p>
-                      Retire express en tiendas <Link to="">ver más</Link>
-                    </p>
-                  </div>
-                  <div className={`${styles.container_img1}`}>
-                    <img
-                      src="https://www.svgrepo.com/show/6989/truck.svg"
-                      width="27px"
-                      alt=""
-                    />
-                    <p>
-                      Envíos <Link to="">ver más</Link>
-                    </p>
-                  </div>
+                <div className={`${styles.container_img1}`}>
+                  <img
+                    src="https://www.svgrepo.com/show/20854/credit-card.svg"
+                    width="27px"
+                    alt=""
+                  />
+                  <p>
+                    Tarjetas de Crédito y Débito{" "}
+                    <button
+                      name="cuotas"
+                      onClick={(e) => handleInfo(e.target.name)}
+                    >
+                      Ver más...
+                    </button>
+                  </p>
+                </div>
+                <div className={`${styles.container_img1}`}>
+                  <img
+                    src="https://www.svgrepo.com/show/9771/box.svg"
+                    width="27px"
+                    alt=""
+                  />
+                  <p>
+                    Cambios grátis en sucursales{" "}
+                    <button
+                      name="sucursales"
+                      onClick={(e) => handleInfo(e.target.name)}
+                    >
+                      Ver más...
+                    </button>
+                  </p>
+                </div>
+                <div className={`${styles.container_img1}`}>
+                  <img
+                    src="https://www.svgrepo.com/show/6989/truck.svg"
+                    width="27px"
+                    alt=""
+                  />
+                  <p>
+                    Envíos{" "}
+                    <button
+                      name="envios"
+                      onClick={(e) => handleInfo(e.target.name)}
+                    >
+                      Ver más...
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>

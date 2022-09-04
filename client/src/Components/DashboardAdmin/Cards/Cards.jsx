@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { BsFillCalendar2WeekFill } from "react-icons/bs";
 import { IoStatsChart } from "react-icons/io5";
 import { BiGroup } from "react-icons/bi";
@@ -24,14 +25,16 @@ export default function Cards() {
           <h6>NOTIFICACIONES</h6>
         </div>
       </div> */}
-      <div className="analytic">
-        <div className="logo">
-          <BiGroup />
+      <Link to="/AllUsers">
+        <div className="analytic">
+          <div className="logo">
+            <BiGroup />
+          </div>
+          <div className="content">
+            <h6>USUARIOS</h6>
+          </div>
         </div>
-        <div className="content">
-          <h6>USUARIOS</h6>
-        </div>
-      </div>
+      </Link>
       <div className="analytic ">
         <div className="content">
           <h6>ACTIVITY</h6>

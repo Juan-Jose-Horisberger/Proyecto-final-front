@@ -135,7 +135,7 @@ export default function AdminProduct({
               (onHover.current || onHoverButton.current) && styles.open
             } `}
           >
-            <HiOutlinePencil size="40px" color="#8B8B8B" />
+            <HiOutlinePencil size="35px" color="#8B8B8B" />
           </button>
         </Link>
       </div>

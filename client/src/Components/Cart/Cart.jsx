@@ -36,7 +36,7 @@ export default function Cart() {
 
   return (
     <div className={styles.container} key="Asdasd">
-      <p className="mb-4">
+      <p style={{ fontSize: "23px" }} className="mb-4">
         <Link to="/">Inicio</Link>/Carrito
       </p>
 

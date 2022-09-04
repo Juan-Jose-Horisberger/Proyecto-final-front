@@ -44,7 +44,7 @@ export default function FavoriteProduct() {
     <div className={styles.container} key="Asdasd">
       {/* <SearchBar /> */}
 
-      <p className="mb-4">
+      <p style={{ fontSize: "23px" }} className="mb-4">
         <Link to="/">Inicio</Link>/Favoritos
       </p>
 
