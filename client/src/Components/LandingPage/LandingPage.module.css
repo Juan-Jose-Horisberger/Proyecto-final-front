@@ -4,6 +4,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 /*font-family: 'Questrial', sans-serif;*/
 
+.container {
+  background-color: #121212;
+}
+
 .container_Carrousel {
   margin-top: 74px;
 }
@@ -59,36 +63,212 @@
 
 .container_Carrousel {
   margin-top: 69px;
+  margin-bottom: 120px;
 }
-
-/* .carts {
-  width: 500px;
-
-  margin: 0 10px;
-  font-family: "Questrial", sans-serif;
-}
-
-.carts:hover {
-  background-color: #23232c;
-}
-
-.carts img:hover {
-  cursor: pointer;
-}
-
-.carts p {
-  text-align: center;
-  color: white;
-}
-
-.carts p:nth-child(3) {
-  font-weight: bold;
-  font-family: "Questrial", sans-serif;
-} */
 
 .new_Products {
   font-size: 35px;
   letter-spacing: 1px;
   text-align: center;
   font-family: "Kanit", sans-serif;
+}
+
+.container_Images {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  /* border: 1px solid red; */
+  margin-left: 40px;
+  margin-bottom: 150px;
+}
+
+.containerInfoImages {
+  width: 86%;
+  display: flex;
+  justify-content: center;
+}
+
+.container_Images .container_Products_img {
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.container_Dress_Footwear {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 9px;
+}
+
+/* .container_Dress_Footwear img {
+  height: 246px;
+} */
+
+.container_Dress_Footwear div:first-child {
+  width: 280px;
+  margin-bottom: 9px;
+  /* border: 1px solid red; */
+}
+
+.container_Dress_Footwear div:last-child {
+  width: 280px;
+  margin-bottom: 9px;
+  /* border: 1px solid red; */
+}
+
+.container_AboutUs {
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 150px;
+  font-family: "Questrial", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.container_AboutUs div {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.container_AboutUs div h4 {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Questrial", sans-serif;
+  color: white;
+}
+
+.container_AboutUs div p {
+  margin-bottom: 37px;
+  color: white;
+}
+
+.container_AboutUs a {
+  width: 180px;
+  padding: 5px 15px;
+  text-align: center;
+  display: block;
+  color: white;
+  font-size: 23px;
+  background-color: #23232c;
+  font-weight: bold;
+}
+
+.container_AboutUs a:hover {
+  background-color: transparent;
+}
+
+.container_AboutImages {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  /* border: 1px solid red; */
+}
+
+.container_AboutImages .container_Info_Images {
+  width: 81%;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+}
+
+.container_AboutImages .container_Info_Images div {
+  width: 350px;
+  /* border: 1px solid red; */
+}
+
+/*~~~~~~~~~~Footer~~~~~~~~~~*/
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #23232c;
+  color: white;
+}
+
+.footer .container_SocialNetworks {
+  width: 100% !important;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 90px;
+}
+
+.footer .container_SocialNetworks div {
+  width: 250px;
+  border-top: 1px solid white;
+}
+
+.footer .container_SocialNetworks div h4 {
+  line-height: 30px;
+  margin: 0;
+  padding: 5px 0;
+  color: white;
+}
+
+.containerInfoFooter {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 50px; */
+  margin-top: 20px;
+}
+
+.containerInfoFooter h4,
+.containerInfoFooter p {
+  color: white;
+  font-family: "Questrial", sans-serif;
+}
+
+.containerInfoFooter div {
+  width: 100%;
+  border-left: 1px solid white;
+  padding: 10px 10px 0px 15px;
+  /* border: 1px solid red; */
+}
+
+.footer .containerInfoP p {
+  padding: 10px 0;
+  margin: 0;
+}
+
+.footer .containerInfoP {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.Footer_div4 {
+  position: relative;
+}
+
+.Footer_div4 span {
+  position: absolute;
+  top: 45%;
+  right: 2%;
+}
+
+.Footer_div4 span:hover {
+  cursor: pointer;
+}
+
+.Footer_div4 button {
+  width: 120px;
+  padding: 5px;
+  font-family: "Questrial", sans-serif;
+  background-color: #121212;
+  color: white;
+}
+.Footer_div4 button:hover {
+  background-color: transparent;
+  transition: background-color 0.5s;
 }
