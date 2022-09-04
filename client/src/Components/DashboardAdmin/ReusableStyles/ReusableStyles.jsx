@@ -5,4 +5,5 @@ export const cardStyles = css`
   border-radius: 1rem;
   background-color: #212121;
   color: white;
+  user-select: none;
 `;
