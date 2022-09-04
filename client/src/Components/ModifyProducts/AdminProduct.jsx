@@ -6,7 +6,7 @@ import { TbTrashX } from "react-icons/tb";
 import { HiOutlinePencil } from "react-icons/hi";
 import Cookies from "universal-cookie";
 import useHover from "@react-hook/hover";
-import { getProductDetail } from "../../Redux/Action";
+import { getProductDetail, deleteProduct } from "../../Redux/Action";
 import { useState } from "react";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
@@ -71,7 +71,7 @@ export default function AdminProduct({
   const getDetail = () => {
     dispatch(getProductDetail(id));
   };
-  // dispatch(deleteProduct(id))
+
   const handleDelete = () => {
     Swal.fire({
       icon: "warning",
@@ -84,7 +84,8 @@ export default function AdminProduct({
       cancelButtonColor: "#282626",
     }).then((res) => {
       if (res.isConfirmed === true) {
-        console.log("asd");
+        dispatch(deleteProduct(id));
+        console.log(id);
       } else console.log(res);
     });
   };

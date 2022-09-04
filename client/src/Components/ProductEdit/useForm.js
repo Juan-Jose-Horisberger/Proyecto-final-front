@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createProduct } from "../../Redux/Action";
+import { createProduct, EditProduct } from "../../Redux/Action";
 
-export default function useForm(initialForm, validateForm) {
+export default function useForm(initialForm, validateForm, id) {
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
@@ -153,7 +153,7 @@ export default function useForm(initialForm, validateForm) {
     setErrors(errores);
 
     if (!Object.entries(errores).length) {
-      //   dispatch(EditProduct(id, form));
+      dispatch(EditProduct(id, form));
       setAlert(false);
       setForm(initialForm);
       setValidate({});
