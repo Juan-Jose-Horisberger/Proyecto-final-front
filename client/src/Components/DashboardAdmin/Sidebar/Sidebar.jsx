@@ -82,7 +82,6 @@ export default function Sidebar() {
                   <span>AGREGAR PRODUCTO</span>
                 </a>
               </li>{" "}
-              */}
               <li
                 className={currentLink === 3 ? "active" : "none"}
                 onClick={() => setCurrentLink(3)}

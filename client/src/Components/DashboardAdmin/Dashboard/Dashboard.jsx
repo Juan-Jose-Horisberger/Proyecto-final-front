@@ -41,31 +41,24 @@ export default function Dashboard() {
       }
     );
   }, []);
-  if (isLoading || !userDetail) {
-    return <div>Loading...</div>;
-  } else if (!isAuthenticated) {
-    return <h1>no estas autenticado</h1>;
-  } else if (userDetail.admin === true) {
-    return (
-      <Section>
-        <Sidebar />
-        {/* <Navbar /> */}
-        <div className="grid">
-          <div className="row__two">
-            <ProfileAdm />
-            <Earnings />
-            <Transfers />
-          </div>
-          <div className="row__one">
-            <Cards />
-            {/* <FAQ /> */}
-          </div>
+
+  return (
+    <Section>
+      <Sidebar />
+      {/* <Navbar /> */}
+      <div className="grid">
+        <div className="row__two">
+          <ProfileAdm />
+          <Earnings />
+          <Transfers />
         </div>
-      </Section>
-    );
-  } else {
-    return <h1>no tienes permiso para acceder aqui</h1>;
-  }
+        <div className="row__one">
+          <Cards />
+          {/* <FAQ /> */}
+        </div>
+      </div>
+    </Section>
+  );
 }
 
 const Section = styled.section`

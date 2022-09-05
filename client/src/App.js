@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import Home from "./Components/Home/Home.jsx";
 import ProductDetail from "./Components/ProductDetail/ProductDetail.jsx";
 import ModifyProducts from "./Components/ModifyProducts/ModifyProducts.jsx";
@@ -31,7 +32,9 @@ import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 
 function App() {
   const dispatch = useDispatch();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [socket, setSocket] = useState(null);
+  const userDetail = useSelector((state) => state.userDetail);
 
   useEffect(() => {
     setSocket(io("http://localhost:5000")); //Inicializamos la conexion con el servidor socket.
@@ -47,11 +50,56 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Logout" element={<Logout />} />
         <Route path="/Register" element={<Register socket={socket} />} />
-        <Route path="/CreateProduct" element={<FormProduct />} />
-        <Route path="/EditProduct/:id" element={<EditProduct />} />
-        <Route path="/AdminDetail/:id" element={<AdminDetail />} />
-        <Route path="/ModifyProducts" element={<ModifyProducts />} />
-        <Route path="/Dashboard" element={<Dashboard socket={socket} />} />
+        {isLoading || !userDetail ? (
+          ""
+        ) : !isAuthenticated ? (
+          ""
+        ) : userDetail.admin == false ? (
+          ""
+        ) : (
+          <Route path="/Dashboard" element={<Dashboard socket={socket} />} />
+        )}
+
+        {isLoading || !userDetail ? (
+          ""
+        ) : !isAuthenticated ? (
+          ""
+        ) : userDetail.admin == false ? (
+          ""
+        ) : (
+          <Route path="/CreateProduct" element={<FormProduct />} />
+        )}
+
+        {isLoading || !userDetail ? (
+          ""
+        ) : !isAuthenticated ? (
+          ""
+        ) : userDetail.admin == false ? (
+          ""
+        ) : (
+          <Route path="/EditProduct/:id" element={<EditProduct />} />
+        )}
+
+        {isLoading || !userDetail ? (
+          ""
+        ) : !isAuthenticated ? (
+          ""
+        ) : userDetail.admin == false ? (
+          ""
+        ) : (
+          <Route path="/AdminDetail/:id" element={<AdminDetail />} />
+        )}
+
+        {isLoading || !userDetail ? (
+          ""
+        ) : !isAuthenticated ? (
+          ""
+        ) : userDetail.admin == false ? (
+          ""
+        ) : (
+          <Route path="/ModifyProducts" element={<ModifyProducts />} />
+        )}
+
         <Route path="/Checkout" element={<Checkout socket={socket} />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Profile" element={<Profile />} />
