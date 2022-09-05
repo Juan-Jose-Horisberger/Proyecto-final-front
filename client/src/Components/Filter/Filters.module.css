@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+/*font-family: 'Questrial', sans-serif;*/
+
 /* .container{
     background-color: red; 
     border: 1px solid red;
@@ -16,6 +19,14 @@
   background-color: #121212;
   color: azure;
   margin-bottom: 18px;
+  border: 1px solid #383d42;
+  font-family: "Questrial", sans-serif;
+}
+.container_Filters .label_info {
+  width: 100%;
+  text-align: center;
+  font-family: "Questrial", sans-serif;
+  font-size: 17px;
 }
 
 .containerBtn {

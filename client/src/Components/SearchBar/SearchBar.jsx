@@ -13,6 +13,8 @@ import Campanita from "../../Imagenes/campanita.svg";
 import FavoritesIcon from "../../Imagenes/favorites.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
+import { GiMagnifyingGlass } from "react-icons/gi";
+// import { HiMagnifyingGlassPlus } from "react-icons/hi2";
 
 export default function SearchBar({ socket }) {
   const dispatch = useDispatch();
@@ -188,11 +190,7 @@ export default function SearchBar({ socket }) {
                     id="search-addon"
                   >
                     <i onClick={handleOnClick} className={`p-0`}>
-                      <img
-                        src="https://www.svgrepo.com/show/44820/magnifying-glass.svg"
-                        width="27px"
-                        alt=""
-                      />
+                      <GiMagnifyingGlass size="27px" color="grey" />
                     </i>
                   </span>
                 </div>
