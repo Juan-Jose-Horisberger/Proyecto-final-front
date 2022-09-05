@@ -18,6 +18,7 @@ import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
 import stylesComponents from "./stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import BuyProduct from "./MercadoLibre.jsx";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
@@ -191,6 +192,9 @@ export default function ProductDetail() {
   return (
     <div className={styles.container}>
       {/* <SearchBar /> */}
+      {/* ///////////////           user={userDetail}         COMPRAR PRODUCTO PRUEBA XD /////////////////////////// */}
+      <BuyProduct />
+      {/* ///////////////// */}
       {loaded ? (
         <div>
           <div className={styles.overallContainer}>
