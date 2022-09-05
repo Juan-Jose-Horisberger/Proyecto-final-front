@@ -115,7 +115,7 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated } = useAuth0();
   const oneProductState = useSelector((state) => state.productToBuy);
   var cuki = cookies.getAll();
   var productsToBuy = Object.entries(cuki);
@@ -156,14 +156,21 @@ export default function Checkout({ socket }) {
       </div>
 
       <div className={style.containerRegisterCupon}>
-        <div className={style.divRegisterCupon}>
-          <p>
-            ¿No tienes una cuenta?
-            <button className={style.btnRe} onClick={() => loginWithRedirect()}>
-              REGISTRATE
-            </button>
-          </p>
-        </div>
+        {!isAuthenticated ? (
+          <div className={style.divRegisterCupon}>
+            <p>
+              ¿No tienes una cuenta?
+              <button
+                className={style.btnRe}
+                onClick={() => loginWithRedirect()}
+              >
+                REGISTRATE
+              </button>
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className={style.divRegisterCupon}>
           <div

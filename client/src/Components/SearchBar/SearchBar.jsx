@@ -6,6 +6,7 @@ import {
   getProductByName,
   clearNotifications,
   getDetailNotification,
+  getUserDetail,
 } from "../../Redux/Action";
 import { Link } from "react-router-dom";
 import CartIcon from "../../Imagenes/cart.svg";
@@ -17,8 +18,7 @@ import { useEffect } from "react";
 export default function SearchBar({ socket }) {
   const dispatch = useDispatch();
   const [productName, setProductName] = useState("");
-  const { loginWithRedirect } = useAuth0();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [errorsExist, setErrorsExist] = useState(false);
   const infoProductDefailt = useSelector(
     (state) => state.productsNotifications
@@ -26,6 +26,13 @@ export default function SearchBar({ socket }) {
   const [getDetails, setGetDetails] = useState(false);
   const [getName, setGetName] = useState("");
   var infoNotifications = useSelector((state) => state.newNotification);
+  const userDetail = useSelector((state) => state.userDetail);
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      dispatch(getUserDetail(user.email));
+    }
+  }, [user]);
 
   function handleOnClick() {
     productName
@@ -238,7 +245,7 @@ export default function SearchBar({ socket }) {
                         style={{ cursor: "pointer" }}
                       />
                     ) : (
-                      <Link to="/profile">
+                      <Link to="/Profile">
                         <img
                           src={user.picture}
                           alt={user.name}
