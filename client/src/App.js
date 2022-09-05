@@ -27,6 +27,7 @@ import TermsAndConditions from "./Components/TermsAndConditions/TermsAndConditio
 import Returns from "./Components/Returns/Returns.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import UserDetail from "./Components/DashboardAdmin/UserDetail/UserDetail.jsx";
+import Ban from "./Components/Ban/Ban.jsx";
 // import Navbar from './Components/NavbarPrueba/NavBar.jsx';
 // import Card from './Components/CardPrueba/Card.jsx';
 // import "./app.css";
@@ -44,8 +45,43 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home socket={socket} boolean={boolean} />} />
-        <Route path="/ProductDetail/:id" element={<ProductDetail />} />
+        {isLoading || !userDetail ? (
+          <Route
+            path="/"
+            element={<Home socket={socket} boolean={boolean} />}
+          />
+        ) : !isAuthenticated ? (
+          <Route
+            path="/"
+            element={<Home socket={socket} boolean={boolean} />}
+          />
+        ) : userDetail.ban == true ? (
+          <Route path="/" element={<Ban />} />
+        ) : (
+          <Route
+            path="/"
+            element={<Home socket={socket} boolean={boolean} />}
+          />
+        )}
+        {isLoading || !userDetail ? (
+          <Route path="/Profile" element={<Profile />} />
+        ) : !isAuthenticated ? (
+          <Route path="/Profile" element={<Profile />} />
+        ) : userDetail.ban == true ? (
+          <Route path="/Profile" element={<Ban />} />
+        ) : (
+          <Route path="/Profile" element={<Profile />} />
+        )}
+        {isLoading || !userDetail ? (
+          <Route path="/ProductDetail/:id" element={<ProductDetail />} />
+        ) : !isAuthenticated ? (
+          <Route path="/ProductDetail/:id" element={<ProductDetail />} />
+        ) : userDetail.ban == true ? (
+          <Route path="/ProductDetail/:id" element={<Ban />} />
+        ) : (
+          <Route path="/ProductDetail/:id" element={<ProductDetail />} />
+        )}
+
         <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Login" element={<Login />} />
@@ -103,7 +139,7 @@ function App() {
 
         <Route path="/Checkout" element={<Checkout socket={socket} />} />
         <Route path="/Contact" element={<Contact />} />
-        <Route path="/Profile" element={<Profile />} />
+
         <Route path="/Offers" element={<Offers />} />
         <Route path="/About" element={<About />} />
         <Route path="/Faqs" element={<Faqs />} />
