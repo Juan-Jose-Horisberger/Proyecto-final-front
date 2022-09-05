@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../../Redux/Action";
+import { getUsers, banUser } from "../../../Redux/Action";
 import style from "./AllUsers.module.css";
 import { FaUserCircle } from "react-icons/fa";
 
@@ -13,6 +13,10 @@ export default function AllUsers() {
   useEffect(() => {
     dispatch(getUsers());
   }, []);
+
+  function Ban(id) {
+    dispatch(banUser(id));
+  }
 
   return (
     <div className={style.containerPrincipal}>
@@ -48,6 +52,14 @@ export default function AllUsers() {
                   <p>{e.age}</p>
                 </Link>
               </div>
+
+              <button
+                onClick={() => {
+                  Ban(e.id);
+                }}
+              >
+                ban
+              </button>
             </div>
           );
         })}
