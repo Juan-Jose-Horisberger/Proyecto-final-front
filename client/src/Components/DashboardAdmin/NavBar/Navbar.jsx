@@ -6,9 +6,6 @@ export default function Navbar() {
     <Nav>
       <div className="title">
         <h4>HOLA</h4>
-        <h1>
-          BIENVENIDO A<span>GAED.JM DASHBOARD</span>
-        </h1>
       </div>
       <div className="search">
         <BiSearch />

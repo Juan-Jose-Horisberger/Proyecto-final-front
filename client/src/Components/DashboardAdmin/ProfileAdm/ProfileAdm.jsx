@@ -18,8 +18,8 @@ export default function ProfileAdm() {
   return isAuthenticated ? (
     <Section>
       <div className="image">
-        {console.log(user)}
-        {console.log(userDetail)}
+        {/* {console.log(user)}
+        {console.log(userDetail)} */}
         <img className="image" src={user.picture} />
         {/* <img src={userDetail.img} /> */}
       </div>
@@ -39,10 +39,9 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
     img {
-      height: 10rem;
-      width: 10rem;
+      width: 5rem;
+      height: 5rem;
       object-fit: cover;
       border-radius: 20rem;
       transition: 0.5s ease-in-out;

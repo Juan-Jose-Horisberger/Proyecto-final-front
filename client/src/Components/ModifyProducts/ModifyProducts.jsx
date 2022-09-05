@@ -79,7 +79,6 @@ export default function ModifyProduct() {
         {/* <Filters /> */}
 
         <div className={styles.container}>
-          {console.log(loaded)}
           {loaded ? (
             <div className={`d-flex flex-wrap justify-content-sm-evenly`}>
               {currentItems.length ? (

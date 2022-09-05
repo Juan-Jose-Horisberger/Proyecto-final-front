@@ -8,7 +8,6 @@ import Earnings from "../Earnings/Earnings";
 import FAQ from "../FAQ/FAQ";
 import Navbar from "../NavBar/Navbar";
 import ProfileAdm from "../ProfileAdm/ProfileAdm";
-import Transfers from "../Transfers/Transfers";
 import Sidebar from "../Sidebar/Sidebar";
 import AdminProduct from "../../ModifyProducts/AdminProduct";
 import ModifyProduct from "../../ModifyProducts/ModifyProducts";
@@ -47,18 +46,13 @@ export default function Dashboard() {
   return (
     <Section>
       <Sidebar />
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="grid">
         <div className="row__two">
-          {/* <ProfileAdm />
+          <ProfileAdm />
           <Earnings />
-          <Transfers /> */}
 
           <ModifyProduct />
-        </div>
-        <div className="row__one">
-          {/* <Cards /> */}
-          {/* <FAQ /> */}
         </div>
       </div>
     </Section>

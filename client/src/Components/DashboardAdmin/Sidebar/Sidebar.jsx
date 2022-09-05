@@ -11,6 +11,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import Logout from "../../Logout/Logout.jsx";
 import scrollreveal from "scrollreveal";
+import { Link } from "react-router-dom";
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(0);
   const [navbarState, setNavbarState] = useState(false);
@@ -69,7 +70,7 @@ export default function Sidebar() {
                 onClick={() => setCurrentLink(1)}
               >
                 <a href="/">
-                  <MdSpaceDashboard />
+                  <MdSpaceDashboard size="20px" />
                   <span> INICIO</span>
                 </a>
               </li>
@@ -78,25 +79,33 @@ export default function Sidebar() {
                 onClick={() => setCurrentLink(2)}
               >
                 <a href="/CreateProduct">
-                  <RiDashboard2Fill />
-                  <span>AGREGAR PRODUCTO</span>
+                  <RiDashboard2Fill size="20px" />
+                  <span className="border border-danger">AGREGAR PRODUCTO</span>
                 </a>
               </li>{" "}
               <li
                 className={currentLink === 3 ? "active" : "none"}
                 onClick={() => setCurrentLink(3)}
               >
-                <a href="/ModifyProducts">
+                {/* <a href="/ModifyProducts">
                   <FaAddressCard />
                   <span> EDITAR PRODUCTO</span>
-                </a>
+                </a> */}
+                <Link to="/AllUsers">
+                  <div>
+                    <div className={`d-flex`}>
+                      <FaAddressCard size="20px" />
+                      <h6 className="ps-3 ">USUARIOS</h6>
+                    </div>
+                  </div>
+                </Link>
               </li>
               <li
                 className={currentLink === 4 ? "active" : "none"}
                 onClick={() => setCurrentLink(4)}
               >
                 <a href="#">
-                  <GiTwirlCenter />
+                  <GiTwirlCenter size="20px" />
                   <span>NOTIFICACIONES</span>
                 </a>
               </li>
@@ -105,7 +114,7 @@ export default function Sidebar() {
                 onClick={() => setCurrentLink(5)}
               >
                 <a href="#">
-                  <BsFillChatTextFill />
+                  <BsFillChatTextFill size="20px" />
                   <span>MI PERFIL</span>
                 </a>
               </li>
@@ -114,7 +123,7 @@ export default function Sidebar() {
                 onClick={() => setCurrentLink(6)}
               >
                 <a href="#">
-                  <IoSettings />
+                  <IoSettings size="20px" />
                   <span> Settings</span>
                 </a>
               </li>
@@ -136,7 +145,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(1)}
             >
               <a href="#">
-                <MdSpaceDashboard />
+                <MdSpaceDashboard size="20px" />
                 <span> Dashboard</span>
               </a>
             </li>
@@ -145,7 +154,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(2)}
             >
               <a href="/CreateProduct">
-                <RiDashboard2Fill />
+                <RiDashboard2Fill size="20px" />
                 <span> AGREGAR PRODUCTO</span>
               </a>
             </li>
@@ -154,7 +163,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(3)}
             >
               <a href="/EditProduct">
-                <FaAddressCard />
+                <FaAddressCard size="20px" />
                 <span> EDITAR PRODUCTO</span>
               </a>
             </li>
@@ -163,7 +172,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(4)}
             >
               <a href="#">
-                <GiTwirlCenter />
+                <GiTwirlCenter size="20px" />
                 <span> NOTIFICACIONES</span>
               </a>
             </li>
@@ -172,7 +181,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(5)}
             >
               <a href="#">
-                <BsFillChatTextFill />
+                <BsFillChatTextFill size="20px" />
                 <span> FAQs</span>
               </a>
             </li>
@@ -181,7 +190,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(6)}
             >
               <a href="#">
-                <IoSettings />
+                <IoSettings size="20px" />
                 <span> Settings</span>
               </a>
             </li>
@@ -192,7 +201,6 @@ export default function Sidebar() {
   );
 }
 const Section = styled.section`
-  margin-top: -35px;
   position: fixed;
   left: 0;
   background-color: #212121;
@@ -217,7 +225,6 @@ const Section = styled.section`
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
       svg {
         color: #ffc107;
         font-size: 2rem;
@@ -235,8 +242,10 @@ const Section = styled.section`
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        padding: 0;
+        padding-left: 0px;
         li {
-          padding: 0.6rem 1rem;
+          padding: 0.6rem 0;
           border-radius: 0.6rem;
           &:hover {
             background-color: #ffc107;
