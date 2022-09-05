@@ -35,8 +35,8 @@ function App() {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [socket, setSocket] = useState(null);
+  const [boolean, setBoolean] = useState(false);
   const userDetail = useSelector((state) => state.userDetail);
-
   useEffect(() => {
     setSocket(io("http://localhost:5000")); //Inicializamos la conexion con el servidor socket.
   }, []);
@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home socket={socket} />} />
+        <Route path="/" element={<Home socket={socket} boolean={boolean} />} />
         <Route path="/ProductDetail/:id" element={<ProductDetail />} />
         <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
         <Route path="/Cart" element={<Cart />} />
@@ -109,6 +109,10 @@ function App() {
         <Route path="/Faqs" element={<Faqs />} />
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         <Route path="/Returns" element={<Returns />} />
+        <Route
+          path="/LandingPage"
+          element={<LandingPage setBoolean={setBoolean} />}
+        />
         <Route path="/LandingPage" element={<LandingPage />} />
         <Route path="/AllUsers" element={<AllUsers />} />
         <Route path="/UserDetail/:email" element={<UserDetail />} />
