@@ -206,25 +206,6 @@ export const createUser = (payload) => {
   };
 };
 
-export const addReviewToProduct = async (review) => {
-  const reviewParse = {
-    email: review.email,
-    idProduct: review.idProduct,
-    number: parseInt(review.number),
-    comment: review.comment,
-  };
-  console.log(reviewParse);
-  const response = await axios.put(
-    "https://proyecto-final-01.herokuapp.com/scores/",
-    reviewParse
-  );
-  if (response.data.message) {
-    alert(response.data.message);
-  } else {
-    alert(response.data);
-  }
-};
-
 export const getDetailNotification = (payload) => {
   return {
     type: SET_DETAIL_NOTIFICATIONS,
