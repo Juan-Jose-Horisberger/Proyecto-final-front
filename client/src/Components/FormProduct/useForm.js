@@ -164,8 +164,6 @@ export default function useForm(initialForm, validateForm) {
       cookies.remove("brand");
       cookies.remove("price");
       cookies.remove("stock");
-      cookies.remove("sold");
-      cookies.remove("score");
       cookies.remove("genre");
 
       var options = document.querySelectorAll("#my_select");

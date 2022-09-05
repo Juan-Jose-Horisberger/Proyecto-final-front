@@ -191,3 +191,7 @@ button {
 .container_NotificationsRender p:nth-child(1) {
   margin: 0;
 }
+
+.imgProfile {
+  border-radius: 20px;
+}

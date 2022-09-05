@@ -100,16 +100,10 @@ export default function rootReducer(state = initialState, { type, payload }) {
         productCart: deleteCartProduct,
       };
 
-    // case PRODUCT_TO_BUY:
-    //   if (payload) {
-    //     cookies.set("oneProduct", [...state.productToBuy, payload], {
-    //       path: "/Checkout",
-    //     });
-    //     return { ...state, productToBuy: [...state.productToBuy, payload] };
-    //   }
-
     case CREATE_PRODUCT:
       // console.log(payload);
+      var expiryDate = new Date(Date.now() + 7 * 24 * 3600000);
+      cookies.set(payload.name, payload, { path: "/", expires: expiryDate });
       return {
         ...state,
         products: [...state.products, payload],
