@@ -16,9 +16,7 @@ export default function FormProduct() {
     price: cookies.get("price"),
     stock: cookies.get("stock"),
     image: "",
-    // sold: cookies.get("sold"),
     size: [],
-    // score: cookies.get("score"),
     genre: cookies.get("genre"),
     offer: undefined,
     discount: "",
@@ -94,18 +92,6 @@ export default function FormProduct() {
       }
     }
 
-    // if (nameInput.includes("sold")) {
-    //   if (form.sold < 0) {
-    //     errors.sold = "El vendido no puede ser menor a 0";
-    //     setValidate({ ...validate, sold: true });
-    //   } else if (form.sold === "") {
-    //     errors.sold = "La cantidad vendida es requerida";
-    //     setValidate({ ...validate, sold: true });
-    //   } else {
-    //     setValidate({ ...validate, sold: false });
-    //   }
-    // }
-
     if (nameInput.includes("size")) {
       if (form.size.length === 0) {
         errors.size = "Debes seleccionar minimo 1 talle";
@@ -120,21 +106,6 @@ export default function FormProduct() {
         setValidate({ ...validate, genre: false });
       }
     }
-
-    // if (nameInput.includes("score")) {
-    //   if (form.score > 5) {
-    //     errors.score = "La puntuacion excede el maximo permitido";
-    //     setValidate({ ...validate, score: true });
-    //   } else if (form.score < 0) {
-    //     errors.score = "La puntuacion excede el minimo permitido";
-    //     setValidate({ ...validate, score: true });
-    //   } else if (form.score === "") {
-    //     errors.score = "La puntuacion es requerida";
-    //     setValidate({ ...validate, score: true });
-    //   } else {
-    //     setValidate({ ...validate, score: false });
-    //   }
-    // }
 
     if (nameInput.includes("offer")) {
       setValidate({});
