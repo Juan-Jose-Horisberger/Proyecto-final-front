@@ -14,11 +14,11 @@ import {
   getUserDetail,
 } from "../../Redux/Action/index.js";
 import agregadoImage from "../../Imagenes/agregadoCart.svg";
-import SearchBar from "../SearchBar/SearchBar";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
 import stylesComponents from "./stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { IoAlert } from "react-icons/io5";
 import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
 import {
   BsShieldCheck,
@@ -436,7 +436,7 @@ export default function ProductDetail() {
                 className={styles.commentsText}
                 name="comment"
                 type="text"
-                placeholder="Dejanos un comentario junto a tu puntuacion del producto"
+                placeholder="Comenta"
                 onChange={(e) => onChangeReview(e)}
               ></textarea>
               <button
@@ -446,20 +446,23 @@ export default function ProductDetail() {
                 Comentar
               </button>
               <div className={styles.comments}>
-                {productDetail.review &&
-                  productDetail.review.map((e) => {
+                {productDetail.opinion &&
+                  productDetail.opinion.map((e) => {
                     return (
-                      <div className={styles.handleComment}>
-                        <img
-                          className={styles.imgUser}
-                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
-                          alt="not found"
-                        />
-                        <h1 className={styles.h1comment}>email: {e.email} </h1>
-                        <h1 className={styles.h1comment}>
-                          username: {e.username}:
-                        </h1>
-                        <h1 className={styles.h1comment}>{e.comment}</h1>
+                      <div className={styles.divComment}>
+                        <div className={styles.divImg}>
+                          <img
+                            className={styles.imgUser}
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                            alt="not found"
+                          />
+                          <p>Usuario: {e.username}</p>
+                          <IoAlert color="" />
+                        </div>
+                        <p>Puntaje: {e.number}</p>
+                        <div className={styles.divCommentUser}>
+                          <p>{e.comment}</p>
+                        </div>
                       </div>
                     );
                   })}
