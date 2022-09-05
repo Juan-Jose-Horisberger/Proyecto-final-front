@@ -14,7 +14,7 @@ import { RiArrowRightSLine } from "react-icons/ri";
 import { AiOutlineInstagram } from "react-icons/ai";
 import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
-require("dotenv").config();
+// require("dotenv").config();
 
 export default function Contact() {
   const form = useRef();

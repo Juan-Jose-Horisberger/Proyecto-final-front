@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import axios from "axios";
 import {
   getProductDetail,
   filterByQuery,
@@ -91,17 +92,54 @@ export default function ProductDetail() {
       [e.target.name]: e.target.value,
     });
   };
-  const addReview = () => {
+  const addReview = async () => {
     if (isAuthenticated && !isLoading) {
-      if (productDetail.review.length >= 2) {
-        return alert(
-          "nuestra base de datos no puede soportar mas de dos reviews por producto :("
-        );
+      if (review.comment.length <= 5) {
+        return Swal.fire({
+          title: "Debes ingresar un comentario mas largo",
+          icon: "warning",
+          background: "#111111",
+          confirmButtonColor: "#282626",
+          confirmButtonText: "Continuar",
+        });
+      }
+      const reviewParse = {
+        email: review.email,
+        idProduct: review.idProduct,
+        number: parseInt(review.number),
+        comment: review.comment,
+      };
+      const response = await axios.post(
+        "https://proyecto-final-01.herokuapp.com/reviews/create",
+        reviewParse
+      );
+      if (response.data.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Algo salio mal",
+          background: "#111111",
+          text: response.data.message,
+        });
       } else {
-        dispatch(addReviewToProduct(review));
+        Swal.fire({
+          position: "top-end",
+          background: "#111111",
+          icon: "success",
+          title: "Muchas gracias por comentar!",
+          text: response.data,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        dispatch(getProductDetail(reviewParse.idProduct));
       }
     } else {
-      return alert("deberías iniciar sesion");
+      return Swal.fire({
+        title: "Debes estar registrado para comentar!",
+        icon: "warning",
+        background: "#111111",
+        confirmButtonColor: "#282626",
+        confirmButtonText: "Continuar",
+      });
     }
   };
 
@@ -203,7 +241,7 @@ export default function ProductDetail() {
     <div className={styles.container}>
       {/* <SearchBar /> */}
       {/* ///////////////           user={userDetail}         COMPRAR PRODUCTO PRUEBA XD /////////////////////////// */}
-      <BuyProduct />
+      {/* <BuyProduct /> */}
       {/* ///////////////// */}
       {loaded ? (
         <div>
