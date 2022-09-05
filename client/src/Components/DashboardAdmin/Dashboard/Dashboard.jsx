@@ -10,6 +10,8 @@ import Navbar from "../NavBar/Navbar";
 import ProfileAdm from "../ProfileAdm/ProfileAdm";
 import Transfers from "../Transfers/Transfers";
 import Sidebar from "../Sidebar/Sidebar";
+import AdminProduct from "../../ModifyProducts/AdminProduct";
+import ModifyProduct from "../../ModifyProducts/ModifyProducts";
 
 import scrollreveal from "scrollreveal";
 export default function Dashboard() {
@@ -48,12 +50,14 @@ export default function Dashboard() {
       {/* <Navbar /> */}
       <div className="grid">
         <div className="row__two">
-          <ProfileAdm />
+          {/* <ProfileAdm />
           <Earnings />
-          <Transfers />
+          <Transfers /> */}
+
+          <ModifyProduct />
         </div>
         <div className="row__one">
-          <Cards />
+          {/* <Cards /> */}
           {/* <FAQ /> */}
         </div>
       </div>
@@ -63,27 +67,15 @@ export default function Dashboard() {
 
 const Section = styled.section`
   margin-left: 18vw;
-  padding: 2rem;
   height: 100%;
   background-color: black;
   .grid {
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 100%;
     gap: 1rem;
-    margin-top: 2rem;
-    .row__one {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      height: 50%;
-      gap: 1rem;
-    }
-    .row__two {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      height: 50%;
-    }
+    border: 1px solid blue;
   }
   @media screen and (min-width: 280px) and (max-width: 1080px) {
     margin-left: 0;

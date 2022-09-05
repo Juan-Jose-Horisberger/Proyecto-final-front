@@ -7,11 +7,11 @@
   color: azure;
   font-size: 18px;
   padding: 20px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .container {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   /* border: 1px solid red; */
@@ -33,4 +33,91 @@
 .container_SearchBar {
   width: 100%;
   border: 1px solid red;
+}
+
+/*estilos paginado*/
+
+a {
+  text-decoration: none !important;
+  color: gray;
+  user-select: none;
+}
+
+a:hover {
+  color: white;
+  transition: 0.5s ease-out;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 18px;
+  /* border: 1px solid red; */
+}
+
+.page_num {
+  padding: 3px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+}
+.active {
+  color: white;
+}
+
+.previous {
+  font-size: 30px;
+  display: none;
+}
+
+.previous.open {
+  display: block;
+}
+
+.next {
+  font-size: 30px;
+}
+
+.next.close {
+  display: none;
+}
+
+.container_loading {
+  height: 340px;
+  align-items: center;
+  margin-bottom: 175px;
+}
+
+.container_loading p {
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+  flex-direction: column !important;
+  color: white;
+}
+
+.notResult {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: red; */
+}
+
+.notResult p {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.notResult p:nth-child(2) {
+  text-decoration: underline;
+}
+
+.notResult p:nth-child(2):hover {
+  cursor: pointer;
 }
