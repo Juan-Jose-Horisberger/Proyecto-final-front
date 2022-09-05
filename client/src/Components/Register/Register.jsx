@@ -4,6 +4,44 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Register.module.css";
 
+function validate(input) {
+  let errors = {};
+  if (!input.username) {
+    errors.username = "Se requiere un nombre de usuario";
+  } else if (!input.username.match(/^[a-zA-Z_]+( [a-zA-Z_]+)*$/)) {
+    errors.username = "Solo se permiten letras y sin espacios al final!";
+  } else if (!input.name) {
+    errors.name = "Se requiere un nombre";
+  } else if (!input.name.match(/^[a-zA-Z_]+( [a-zA-Z_]+)*$/)) {
+    errors.name = "Solo se permiten letras y sin espacios al final!";
+  } else if (!input.surname) {
+    errors.surname = "Se requiere un apellido";
+  } else if (!input.surname.match(/^[a-zA-Z_]+( [a-zA-Z_]+)*$/)) {
+    errors.surname = "Solo se permiten letras y sin espacios al final!";
+  } else if (!input.age) {
+    errors.age = "Ingrese su fecha de nacimiento";
+  } else if (!input.location) {
+    errors.location = "Ingrese su localidad";
+  } else if (!input.postal) {
+    errors.postal = "Debes colocar tu codigo postal";
+  } else if (input.postal.length < 3) {
+    errors.postal = "Tu codigo postal tiene que tener al menos 3 caracteres";
+  } else if (!input.telephone) {
+    errors.telephone = "Debes colocar un telefono celular";
+  } else if (input.telephone.length < 10) {
+    errors.telephone =
+      "El telefeno celular tiene que tener al menos 10 caracteres";
+  } else if (
+    !input.telephone.match(
+      /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
+    )
+  ) {
+    errors.telephone = "Tu numero celular solo debe contener numeros";
+  }
+
+  return errors;
+}
+
 export default function Register() {
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -107,6 +145,9 @@ export default function Register() {
               name="username"
               onChange={(e) => handleChange(e)}
             />
+            {error.username && (
+              <p className={styles.error}> {error.username} </p>
+            )}
           </div>
 
           <div>
@@ -117,6 +158,7 @@ export default function Register() {
               name="name"
               onChange={(e) => handleChange(e)}
             />
+            {error.name && <p className={styles.error}> {error.name} </p>}
           </div>
 
           <div>
@@ -127,6 +169,7 @@ export default function Register() {
               name="surname"
               onChange={(e) => handleChange(e)}
             />
+            {error.surname && <p className={styles.error}> {error.surname} </p>}
           </div>
 
           <div class="form-group">
@@ -148,6 +191,7 @@ export default function Register() {
               name="age"
               onChange={(e) => handleChange(e)}
             />
+            {error.age && <p className={styles.error}> {error.age} </p>}
           </div>
 
           <div>
@@ -178,6 +222,9 @@ export default function Register() {
               name="location"
               onChange={(e) => handleChange(e)}
             />
+            {error.location && (
+              <p className={styles.error}> {error.location} </p>
+            )}
           </div>
           <div>
             <label>Codigo Postal</label> <br />
@@ -187,6 +234,7 @@ export default function Register() {
               name="postal"
               onChange={(e) => handleChange(e)}
             />
+            {error.postal && <p className={styles.error}> {error.postal} </p>}
           </div>
           <div>
             <label>Celular</label> <br />
@@ -196,6 +244,9 @@ export default function Register() {
               name="telephone"
               onChange={(e) => handleChange(e)}
             />
+            {error.telephone && (
+              <p className={styles.error}> {error.telephone} </p>
+            )}
           </div>
           <br />
           <div>

@@ -1,10 +1,9 @@
 .container {
-  display: flex;
-  flex-direction: column;
+  color: azure;
+  justify-content: center;
   align-items: center;
   background-color: black;
-  color: white;
-  margin-top: 30px;
+  font-size: 18px;
 }
 .error {
   color: red;
