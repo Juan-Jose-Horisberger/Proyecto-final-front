@@ -14,6 +14,7 @@ export default function useForm(initialForm, validateForm, socket, user) {
   const [oneProd, setOneProd] = useState(false);
   const [cupon, setCupon] = useState(["0", 0]);
   const [envio, setEnvio] = useState(["500", 0.5]);
+  const [pagar, setPagar] = useState(false);
 
   const cupones = ["SoyHenry", "Alejo"];
   const cookies = new Cookies();
@@ -54,6 +55,7 @@ export default function useForm(initialForm, validateForm, socket, user) {
     socket?.emit("newUser", posts[0].username, posts[0].id);
 
     if (!Object.entries(errores).length) {
+      setPagar(true);
       var options = document.querySelectorAll("#my_select");
       options[0].selectedIndex = 0;
 
@@ -64,13 +66,6 @@ export default function useForm(initialForm, validateForm, socket, user) {
         type: 1, // 1 === Compra realizada
       });
     }
-  };
-
-  const handleBuy = (id) => {
-    if (id) {
-      dispatch(getProductToBuy(id));
-      setOneProd(true);
-    } else setOneProd(false);
   };
 
   const handleCupon = (code) => {
@@ -104,44 +99,6 @@ export default function useForm(initialForm, validateForm, socket, user) {
     data && data.map((e) => cookies.remove(e[1].id));
   };
 
-  const pay = async (data) => {
-    try {
-      // let body;
-      // if (user) {
-      //   body = {
-      //     usuario: {
-      //       name: user.username || "alex",
-      //       surname: user.surname || "jonatan",
-      //       email: user.email,
-      //     },
-      //     data: data,
-      //   };
-      // }
-
-      const preference = axios
-        .post("https://proyecto-final-01.herokuapp.com/products/comprar/", data)
-        .then((order) => {
-          const script = document.createElement("script");
-          script.type = "text/javascript";
-          script.src =
-            "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-          script.setAttribute("data-preference-id", order.data);
-          console.log(order);
-          document.getElementById("page-content-btn").remove();
-          document.querySelector("#page-content").appendChild(script);
-        });
-      // document.querySelector("#page-content").innerHTML = "Realizar el pago";
-    } catch {
-      Swal.fire({
-        icon: "error",
-        title: "Algo salio mal",
-        background: "#000",
-        confirmButtonText: "Continuar",
-        confirmButtonColor: "#282626",
-      });
-    }
-  };
-
   return {
     form,
     setForm,
@@ -151,10 +108,10 @@ export default function useForm(initialForm, validateForm, socket, user) {
     setErrors,
     handleOnChange,
     handleSubmit,
-    handleBuy,
     handleRemoveCookies,
     handleCupon,
-    pay,
+    pagar,
+    setPagar,
     envio,
   };
 }

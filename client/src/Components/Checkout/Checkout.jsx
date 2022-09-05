@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm.js";
 import Cookies from "universal-cookie";
 import { sendInformation } from "../../Redux/Action/index.js";
-import BuyProduct from "../ProductDetail/MercadoLibre.jsx";
+import BuyProducts from "./MercadoLibreCheck.jsx";
 
 var cookies = new Cookies();
 const initialForm = {
@@ -131,7 +131,8 @@ export default function Checkout({ socket }) {
     handleCupon,
     cupon,
     oneProd,
-    pay,
+    pagar,
+    setPagar,
     envio,
   } = useForm(initialForm, validateForm, socket);
 
@@ -402,9 +403,11 @@ export default function Checkout({ socket }) {
           </div>
 
           <div id="page-content" className={style.divBtn}>
-            <button id="page-content-btn" onClick={() => pay(productsToBuy)}>
-              CONFIRMAR EL PEDIDO
-            </button>
+            {pagar ? (
+              <BuyProducts data={productsToBuy} />
+            ) : (
+              <button onClick={handleSubmit}>Confirmar Pedido</button>
+            )}
           </div>
         </div>
       </form>
