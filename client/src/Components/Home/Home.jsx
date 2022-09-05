@@ -12,7 +12,7 @@ import Pagination from "../Pagination/Pagination.jsx";
 import Filters from "../Filter/Filters.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function Home({ socket }) {
+export default function Home({ socket, boolean }) {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const allUsers = useSelector((state) => state.allUsers);
@@ -36,6 +36,10 @@ export default function Home({ socket }) {
 
   useEffect(() => {
     dispatch(getUsers());
+    if (boolean) {
+      setLoaded(true);
+      return;
+    }
     dispatch(getAllProducts()).then(
       (res) => typeof res === "object" && setLoaded(true)
     );

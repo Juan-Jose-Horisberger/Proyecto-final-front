@@ -158,7 +158,7 @@ export default function About() {
       <div className={`${styles.container_sales}`}>
         <div
           data-aos="fade-right"
-          data-aos-duration="3000"
+          data-aos-anchor-placement="center-center"
           className={`${styles.container_imageSales}`}
         >
           <img
@@ -169,7 +169,7 @@ export default function About() {
         </div>
         <div
           data-aos="zoom-out-left"
-          data-aos-duration="3000"
+          data-aos-anchor-placement="center-center"
           className={`${styles.container_infoSales}`}
         >
           <h4>SUMATE AL LAS PROXIMAS VENTAS</h4>

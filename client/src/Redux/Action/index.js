@@ -179,6 +179,11 @@ export function getUsers() {
     return dispatch({ type: GET_USERS, payload: allUsers.data });
   };
 }
+export function banUser(id) {
+  return async function call(dispatch) {
+    let allUsers = await axios.put(`/users/ban/${id}`);
+  };
+}
 
 export const getUserDetail = (email) => {
   return async function (dispatch) {

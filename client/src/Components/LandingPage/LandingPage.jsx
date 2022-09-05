@@ -4,11 +4,11 @@ import imgCarrousel1 from "../../Imagenes/ImagerCarrousel1.jpg";
 import imgCarrousel2 from "../../Imagenes/ImagenCarrousel2.jpg";
 import imagenCarrousel5 from "../../Imagenes/ImagenCarrousel5.jpg";
 import SearchBar from "../SearchBar/SearchBar";
-import { getAllProducts } from "../../Redux/Action";
+import { filterByQuery, getAllProducts } from "../../Redux/Action";
 import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-elastic-carousel";
 import stylesComponents from "./stylesComponents.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Product from "../Product/Product";
 import imgProducts from "../../Imagenes/ImagenProducts1.png";
 import imgDress from "../../Imagenes/ImagenIndumentaria2.png";
@@ -26,8 +26,9 @@ import { GiPadlock } from "react-icons/gi";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { AiOutlineInstagram } from "react-icons/ai";
 
-export default function LandingPage() {
+export default function LandingPage({ setBoolean }) {
   const dispatch = useDispatch();
+  const history = useNavigate();
   const allProducts = useSelector((state) => state.products);
   const count = 10;
   const allProductsSort = allProducts.sort(function (a, b) {
@@ -57,6 +58,13 @@ export default function LandingPage() {
     { width: 1200, itemsToShow: 4 },
   ];
 
+  function handleOnClick() {
+    dispatch(filterByQuery("category=calzado&")).then(
+      (res) => typeof res === "object" && history("/")
+    );
+    setBoolean(true);
+  }
+
   return (
     <div className={`${styles.container}`}>
       <SearchBar />
@@ -77,7 +85,7 @@ export default function LandingPage() {
               ></img>
             </div>
             <div className={`${styles.containerInfoCarrousel2}`}>
-              <p>Conoce todos nuestras nuevos ingresos!</p>
+              <p>Conoce todos nuestros nuevos ingresos!</p>
               <h4>NUEVOS PANTALONES NIKE ZERO GRAVITY </h4>
             </div>
           </div>
@@ -98,13 +106,13 @@ export default function LandingPage() {
               </p>
             </div>
           </div>
-          <div className="carousel-item">
+          {/* <div className="carousel-item">
             <img
               src={imagenCarrousel5}
               className="d-block w-100"
               alt="..."
             ></img>
-          </div>
+          </div> */}
         </div>
         <button
           className="carousel-control-prev"
@@ -164,19 +172,34 @@ export default function LandingPage() {
             //data-aos-anchor-placement="top-center"
           >
             <Link to="/">
-              <img src={imgProducts} alt="" className="img-fluid" />
+              <span className={`${styles.hover_In_Image}`}>
+                <img src={imgProducts} alt="" className="img-fluid" />
+              </span>
             </Link>
           </div>
           <div className={`${styles.container_Dress_Footwear}`}>
             <div data-aos="fade-up" data-aos-anchor-placement="center-center">
-              <img src={imgDress} alt="" className="img-fluid" />
+              <span
+                className={`${styles.hover_In_Image}`}
+                style={{ cursor: "pointer" }}
+              >
+                <img src={imgDress} alt="" className="img-fluid" />
+              </span>
             </div>
             <div
               data-aos="fade-left"
               data-aos-duration="2000"
               data-aos-anchor-placement="center-center"
             >
-              <img src={imgFootwear} alt="" className="img-fluid" />
+              <span className={`${styles.hover_In_Image}`}>
+                <img
+                  src={imgFootwear}
+                  alt=""
+                  className="img-fluid"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleOnClick()}
+                />
+              </span>
             </div>
           </div>
         </div>

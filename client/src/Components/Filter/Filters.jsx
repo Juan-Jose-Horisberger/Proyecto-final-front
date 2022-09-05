@@ -247,7 +247,7 @@ export default function Filters() {
             max="65.999"
           ></input>
 
-          <label className="form-label">${price}</label>
+          <label className={`${styles.label_info}`}>${price}</label>
         </div>
       </div>
 
@@ -383,7 +383,9 @@ export default function Filters() {
                 max="65.999"
               ></input>
 
-              <label className="form-label">${price}</label>
+              <label style={{ border: "1px solid red" }} className="form-label">
+                ${price}
+              </label>
             </div>
           </div>
         </ul>
