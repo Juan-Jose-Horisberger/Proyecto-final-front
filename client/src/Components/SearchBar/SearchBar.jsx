@@ -245,7 +245,7 @@ export default function SearchBar({ socket }) {
                         style={{ cursor: "pointer" }}
                       />
                     ) : (
-                      <Link to="/Profile">
+                      <Link to="/Dashboard">
                         <img
                           src={user.picture}
                           alt={user.name}
