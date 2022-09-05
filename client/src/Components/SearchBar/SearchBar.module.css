@@ -110,7 +110,7 @@ button {
 }
 
 .container_showNotifications {
-  z-index: 1000000000 !important;
+  /* z-index: 1000000000 !important; */
   width: 40%;
   background-color: black;
   color: white;
