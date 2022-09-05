@@ -264,6 +264,11 @@ container_2 .container_1 .container_Img {
   display: flex;
 }
 
+.container_img1 button {
+  background-color: black;
+  color: rgb(183, 184, 184);
+}
+
 .container_img1 p {
   padding: 0;
   padding-top: 15px;

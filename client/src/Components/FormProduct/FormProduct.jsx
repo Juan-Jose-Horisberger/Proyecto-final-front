@@ -4,6 +4,7 @@ import useForm from "./useForm";
 import infoJson from "../../info.json";
 import style from "./FormProduct.module.css";
 import Cookies from "universal-cookie";
+import SearchBar from "../SearchBar/SearchBar.jsx";
 
 export default function FormProduct() {
   var cookies = new Cookies();
@@ -181,6 +182,7 @@ export default function FormProduct() {
 
   return (
     <div className={style.containerPrincipal}>
+      <SearchBar />
       <p className="mt-3">
         <Link to="/Dashboard">Dashboard</Link>/Crear Producto
       </p>

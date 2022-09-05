@@ -34,6 +34,8 @@ const initialState = {
     newProducts: [],
   },
   productsNotifications: [],
+  allUsers: [],
+  userDetail: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {

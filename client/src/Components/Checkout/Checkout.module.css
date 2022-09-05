@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap%27");
+
 .containerPrincipal {
   color: azure;
   /* margin-top: 45px; */
@@ -6,6 +8,7 @@
   align-items: center;
   background-color: black;
   font-size: 18px;
+  font-family: "Questrial", sans-serif;
 }
 
 .divCheckout {
@@ -18,6 +21,7 @@
   height: 180px;
   width: 100%;
   background-color: rgb(39, 36, 36);
+  font-family: "Questrial", sans-serif;
 }
 
 .containerRegisterCupon {
@@ -28,6 +32,7 @@
   width: 80%;
   /* border: 1px solid red; */
   justify-content: space-between;
+  font-family: "Questrial", sans-serif;
 }
 
 .divRegisterCupon {
@@ -37,12 +42,14 @@
   text-align: center;
   font-size: 20px;
   margin-bottom: 30px;
+  font-family: "Questrial", sans-serif;
 }
 
 .btnRe {
   background-color: black;
   color: azure;
   font-weight: bold;
+  font-family: "Questrial", sans-serif;
 }
 
 .containerForm {
@@ -55,6 +62,7 @@
   width: 80%;
   border: 2px solid rgb(202, 192, 192);
   padding: 30px;
+  font-family: "Questrial", sans-serif;
 }
 
 .containerForm input {
@@ -63,6 +71,11 @@
   border: 1px solid black;
   border-bottom: 2px solid rgb(202, 192, 192);
   outline: none;
+  font-family: "Questrial", sans-serif;
+}
+
+p {
+  font-family: "Questrial", sans-serif;
 }
 
 .divNombreApellido {
@@ -73,6 +86,7 @@
   flex-wrap: wrap;
   /* border: 1px solid red; */
   justify-content: space-between;
+  font-family: "Questrial", sans-serif;
 }
 
 .divNombre {
@@ -252,6 +266,7 @@
   width: 85%;
   text-align: center;
   margin: 20px;
+  border-radius: 0;
 }
 
 .divBtn button {
@@ -259,6 +274,7 @@
   color: azure;
   padding: 20px;
   width: 100%;
+  border-radius: 0;
 }
 
 .divBtn button:hover {

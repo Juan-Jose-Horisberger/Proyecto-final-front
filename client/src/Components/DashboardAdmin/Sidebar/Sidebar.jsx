@@ -9,6 +9,7 @@ import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
+import Logout from "../../Logout/Logout.jsx";
 import scrollreveal from "scrollreveal";
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(0);
@@ -80,7 +81,7 @@ export default function Sidebar() {
                   <RiDashboard2Fill />
                   <span>AGREGAR PRODUCTO</span>
                 </a>
-              </li>
+              </li>{" "}
               <li
                 className={currentLink === 3 ? "active" : "none"}
                 onClick={() => setCurrentLink(3)}
@@ -90,7 +91,6 @@ export default function Sidebar() {
                   <span> EDITAR PRODUCTO</span>
                 </a>
               </li>
-
               <li
                 className={currentLink === 4 ? "active" : "none"}
                 onClick={() => setCurrentLink(4)}
@@ -124,7 +124,7 @@ export default function Sidebar() {
         <div className="logout">
           <a href="#">
             <FiLogOut />
-            <span className="logout">Cerrar sesion</span>
+            <Logout />
           </a>
         </div>
       </Section>
