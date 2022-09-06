@@ -192,7 +192,7 @@ export default function Sidebar() {
                           key={e[1].idProduct}
                           className={`${styles.container_NotificationsRender}`}
                         >
-                          <Link to={`/`}>
+                          <Link to={`/ProductDetail/${e[1].idProduct}`}>
                             <h4>Nuevo comentario</h4>
                             <div>
                               <p>Email: {e[1].email}</p>

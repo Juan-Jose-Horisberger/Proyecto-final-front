@@ -1,134 +1,293 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "./Register.module.css";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import style from './Register.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import useForm from './useForm.js';
+import Cookies from 'universal-cookie';
+
+var cookies = new Cookies();
+const initialForm = {
+	nameCompra: cookies.get('nameCompra'),
+	surnameCompra: cookies.get('surnameCompra'),
+	ageCompra: cookies.get('ageCompra'),
+	companyName: cookies.get('companyName'),
+	country: 'Argentina',
+	streetAddress: cookies.get('streetAddress'),
+	apartment: cookies.get('apartment'),
+	province: cookies.get('province'),
+	codePostal: cookies.get('codePostal'),
+	phoneNumber: cookies.get('phoneNumber'),
+	emailCompra: cookies.get('emailCompra'),
+	extraNotes: cookies.get('extraNotes'),
+	price: cookies.get('price')
+};
+
+const validateForm = (form, nameInput) => {
+	let errors = {};
+	let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+	let regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+	let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+	if (nameInput.includes('nameCompra')) {
+		if (!form.nameCompra) {
+			errors.name = 'Debes colocar tu nombre';
+		} else if (!regexName.test(form.nameCompra)) {
+			errors.name = 'Tu nombre solo debe contener letras y espacios.';
+		}
+	}
+
+	if (nameInput.includes('surnameCompra')) {
+		if (!form.surnameCompra) {
+			errors.surname = 'Debes colocar tu apellido';
+		} else if (!regexName.test(form.surnameCompra)) {
+			errors.surname = 'Tu apellido solo debe contener letras y espacios.';
+		}
+	}
+	if (nameInput.includes('ageCompra')) {
+		if (!form.ageCompra) {
+			errors.age = 'Debes colocar tu edad';
+		}
+	}
+	if (nameInput.includes('streetAddress')) {
+		if (!form.streetAddress) {
+			errors.streetAddress = 'Debes colocar tu direccion';
+		} else if (form.streetAddress.length < 5) {
+			errors.streetAddress =
+				'Tu direccion tiene que tener al menos 5 caracteres';
+		}
+	}
+
+	if (nameInput.includes('codePostal')) {
+		if (!form.codePostal) {
+			errors.codePostal = 'Debes colocar tu codigo postal';
+		} else if (form.codePostal.length < 3) {
+			errors.codePostal =
+				'Tu codigo postal tiene que tener al menos 3 caracteres';
+		}
+	}
+
+	if (nameInput.includes('phoneNumber')) {
+		if (!form.phoneNumber) {
+			errors.phoneNumber = 'Debes colocar un telefono celular';
+		} else if (form.phoneNumber.length < 10) {
+			errors.phoneNumber =
+				'El telefeno celular tiene que tener al menos 10 caracteres';
+		} else if (!regexPhone.test(form.phoneNumber)) {
+			errors.phoneNumber = 'Tu numero celular solo debe contener numeros';
+		}
+	}
+
+	if (nameInput.includes('emailCompra')) {
+		if (!form.emailCompra) {
+			errors.email = 'Debes colocar un email valido';
+		} else if (!regexEmail.test(form.emailCompra)) {
+			errors.email = 'El email no es valido';
+		}
+	}
+
+	return errors;
+};
 
 export default function Register() {
-  const dispatch = useDispatch();
-  const history = useNavigate();
+	const provincias = [
+		'Ciudad Autonoma De Buenos Aires',
+		'Buenos Aires',
+		'Catamarca',
+		'Chaco',
+		'Chubut',
+		'Cordoba',
+		'Corrientes',
+		'Entre Rios',
+		'Formosa',
+		'Jujuy',
+		'La Pampa',
+		'La Rioja',
+		'Mendoza',
+		'Misiones',
+		'Neuquén',
+		'Rio Negro',
+		'Salta',
+		'San Juan',
+		'San Luis',
+		'Santa Cruz',
+		'Santa Fe',
+		'Santiago del Estero',
+		'Tierra del Fuego',
+		'Tucumán'
+	];
+	const { loginWithRedirect, isAuthenticated } = useAuth0();
+	const dispatch = useDispatch();
 
-  const [error, setError] = useState({});
+	const { form, errors, handleOnChange, handleSubmit } = useForm(
+		initialForm,
+		validateForm
+	);
 
-  const [input, setInput] = useState({
-    direccion: "",
-    localidad: "",
-    date: "",
-    celular: "",
-  });
+	return (
+		<div className={style.containerPrincipal}>
+			<div className={style.divCheckout}>
+				<h2>Datos Personales</h2>
+				<p>
+					<Link to="/">Inicio</Link>
+					<Link to="/Profile">/Perfil</Link>/Datos Personales
+				</p>
+			</div>
+			<form onSubmit={handleSubmit}>
+				<div className={style.containerForm}>
+					<p>Nombre y apellido</p>
+					<div className={style.divNombreApellido}>
+						<div className={style.divNombre}>
+							<input
+								type="text"
+								placeholder="Nombre"
+								name="nameCompra"
+								onChange={handleOnChange}
+								value={form.nameCompra}
+							/>
+							{errors.name && <p className={style.error}>{errors.name}</p>}
+						</div>
+						<div className={style.divApellido}>
+							<input
+								type="text"
+								placeholder="Apellido"
+								name="surnameCompra"
+								onChange={handleOnChange}
+								value={form.surnameCompra}
+							/>
+							{errors.surname && (
+								<p className={style.error}>{errors.surname}</p>
+							)}
+						</div>
+					</div>
 
-  function handleChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  }
+					<p>Fecha de nacimiento</p>
+					<div className={style.divEdad}>
+						<input
+							type="date"
+							name="ageCompra"
+							onChange={handleOnChange}
+							value={form.ageCompra}
+						/>
+						{errors.age && <p className={style.error}> {errors.age} </p>}
+					</div>
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(input);
-    dispatch(input);
-    alert("Datos guardados");
-    setInput({
-      name: "",
-      lastName: "",
-      date: "",
-      celular: "",
-    });
-    history("/");
-  }
+					<p>Nombre de la empresa (opcional)</p>
+					<div className={style.divEmpresa}>
+						<input
+							type="text"
+							name="companyName"
+							onChange={handleOnChange}
+							value={form.companyName}
+						/>
+					</div>
 
-  return (
-    <div className={styles.container}>
-      <div className="d-flex justify-content-center">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <Link to="/Profile">
-            <button>Atras</button>
-          </Link>
+					<p>Pais / Region</p>
+					<div className={style.divPais}>
+						<b>Argentina</b>
+					</div>
 
-          <button>Modificar datos personales</button>
+					<p>Direccion de la calle</p>
+					<div className={style.divCalle}>
+						<input
+							type="text"
+							placeholder="Nombre de la calle y direccion de la casa"
+							name="streetAddress"
+							onChange={handleOnChange}
+							value={form.streetAddress}
+						/>
 
-          <div>
-            <label>Apodo</label> <br />
-            <input
-              type="text"
-              value={input.apodo}
-              name="apodo"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
+						{errors.streetAddress && (
+							<p className={style.error}>{errors.streetAddress}</p>
+						)}
+					</div>
+					<div className={style.divCalle}>
+						<input
+							type="text"
+							placeholder="Apartamento, piso, habitacion, etc (opcional)"
+							name="apartment"
+							onChange={handleOnChange}
+							value={form.apartment}
+						/>
+					</div>
 
-          <div>
-            <label>Nombre</label> <br />
-            <input
-              type="text"
-              value={input.name}
-              name="name"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
+					<p>Region / Provincia</p>
+					<div className={style.divProvincia}>
+						<select
+							name="province"
+							id="my_select"
+							onChange={handleOnChange}
+							value={form.province}
+						>
+							{provincias.length &&
+								provincias.map((e) => {
+									return (
+										<option key={e} value={e}>
+											{e}
+										</option>
+									);
+								})}
+						</select>
+					</div>
 
-          <div>
-            <label>Apellido</label> <br />
-            <input
-              type="text"
-              value={input.lastName}
-              name="lastName"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
+					<p>Codigo Postal</p>
+					<div className={style.divPostal}>
+						<input
+							type="text"
+							placeholder="Codigo Postal..."
+							name="codePostal"
+							onChange={handleOnChange}
+							value={form.codePostal}
+						/>
 
-          <div>
-            <label>Fecha de nacimiento</label> <br />
-            <input
-              type="date"
-              value={input.date}
-              name="date"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
+						{errors.codePostal && (
+							<p className={style.error}>{errors.codePostal}</p>
+						)}
+					</div>
 
-          <div>
-            <label>Direccion</label> <br />
-            <input
-              type="text"
-              value={input.direction}
-              name="direction"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            <label>Provincia</label> <br />
-            <input
-              type="text"
-              value={input.provincia}
-              name="provincia"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            <label>Codigo Postal</label> <br />
-            <input
-              type="number"
-              value={input.cp}
-              name="cp"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div>
-            <label>Celular</label> <br />
-            <input
-              type="number"
-              value={input.celular}
-              name="celular"
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <br />
+					<p>Teléfono</p>
+					<div className={style.divTelefono}>
+						<input
+							type="text"
+							placeholder="Teléfono..."
+							name="phoneNumber"
+							onChange={handleOnChange}
+							value={form.phoneNumber}
+						/>
 
-          <button>GUARDAR CAMBIOS</button>
-        </form>
-      </div>
-    </div>
-  );
+						{errors.phoneNumber && (
+							<p className={style.error}>{errors.phoneNumber}</p>
+						)}
+					</div>
+
+					<p>Direccion de correo electrónico</p>
+					<div className={style.divCorreo}>
+						<input
+							type="email"
+							placeholder="Direccion de correo electrónico..."
+							name="emailCompra"
+							onChange={handleOnChange}
+							value={form.emailCompra}
+						/>
+
+						{errors.email && <p className={style.error}>{errors.email}</p>}
+					</div>
+
+					<p>Notas del pedido (opcional)</p>
+					<div className={style.divNotas}>
+						<input
+							type="text"
+							placeholder="Notas sobre tu pedido que puedan facilitar la entrega, etc."
+							name="extraNotes"
+							onChange={handleOnChange}
+							value={form.extraNotes}
+						/>
+					</div>
+					<div id="page-content" className={style.divBtn}>
+						<button>Guardar Datos</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	);
 }
