@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { getProductToBuy } from "../../Redux/Action";
+import { getProductToBuy, updateUserDetail } from "../../Redux/Action";
 import Cookies from "universal-cookie";
 import Swal from "sweetalert2";
 import { posts } from "../../infoUser.js"; //User ficticio
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
-export default function useForm(initialForm, validateForm, socket, user) {
+export default function useForm(initialForm, validateForm, socket) {
   const dispatch = useDispatch();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [oneProd, setOneProd] = useState(false);
@@ -51,19 +53,37 @@ export default function useForm(initialForm, validateForm, socket, user) {
       "nameComprasurnameComprastreetAddresscodePostalphoneNumberemailCompra"
     );
     setErrors(errores);
-
-    socket?.emit("newUser", posts[0].username, posts[0].id);
+    // socket?.emit("newUser", posts[0].username, posts[0].id);
+    if (!isAuthenticated) {
+      Swal.fire({
+        icon: "warning",
+        title: "Debes iniciar sesión para comprar!",
+        background: "#111111",
+        confirmButtonText: "Continuar",
+        confirmButtonColor: "#282626",
+      });
+      return;
+    }
 
     if (!Object.entries(errores).length) {
       setPagar(true);
+      // dispatch(updateUserDetail());
       var options = document.querySelectorAll("#my_select");
       options[0].selectedIndex = 0;
 
-      socket?.emit("sendNotification", {
-        //Cuando no haya errores enviara una alerta de que se realizo la compra.
-        senderName: posts[0].username,
-        recipientId: posts[0].id,
-        type: 1, // 1 === Compra realizada
+      // socket?.emit("sendNotification", {
+      //   //Cuando no haya errores enviara una alerta de que se realizo la compra.
+      //   senderName: posts[0].username,
+      //   recipientId: posts[0].id,
+      //   type: 1, // 1 === Compra realizada
+      // });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Debes completar el formulario correctamente!",
+        background: "#111111",
+        confirmButtonText: "Continuar",
+        confirmButtonColor: "#282626",
       });
     }
   };
