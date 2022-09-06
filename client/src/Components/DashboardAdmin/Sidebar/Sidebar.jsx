@@ -175,12 +175,7 @@ export default function Sidebar() {
                 id="offcanvasRight"
               >
                 <div className="offcanvas-header">
-                  <h5>Notificacionesasadsd</h5>
-                  {notis ? (
-                    displayNotificationProducts()
-                  ) : (
-                    <p className="fs-4 text-center">No hay notificaciones</p>
-                  )}
+                  <h4>Notificaciones</h4>
                   <button
                     // onClick={() => setNotificationsTo0()}
                     type="button"
@@ -191,7 +186,27 @@ export default function Sidebar() {
                 </div>
                 <div className={`offcanvas-body`}>
                   {notis ? (
-                    displayNotificationProducts()
+                    notis.map((e) => {
+                      return e[1].idProduct ? (
+                        <div
+                          key={e[1].idProduct}
+                          className={`${styles.container_NotificationsRender}`}
+                        >
+                          <Link to={`/`}>
+                            <h4>Nuevo comentario</h4>
+                            <div>
+                              <p>Email: {e[1].email}</p>
+                            </div>
+                            <div>
+                              <p>Puntuacion: {e[1].number}</p>
+                              <p>Comentario: {e[1].comment}</p>
+                            </div>
+                          </Link>
+                        </div>
+                      ) : (
+                        true
+                      );
+                    })
                   ) : (
                     <p className="fs-4 text-center">No hay notificaciones</p>
                   )}
