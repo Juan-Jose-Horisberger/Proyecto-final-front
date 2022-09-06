@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Cookies from "universal-cookie";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
@@ -13,11 +14,20 @@ import Logout from "../../Logout/Logout.jsx";
 import scrollreveal from "scrollreveal";
 import { Link } from "react-router-dom";
 import Navbar from "../NavBar/Navbar.jsx";
+import Campanita from "../../../Imagenes/campanita.svg";
 import styles from "./Sidebar.module.css";
+import style from "../../SearchBar/SearchBar.module.css";
+import { useSelector } from "react-redux";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(0);
   const [navbarState, setNavbarState] = useState(false);
+  var cookies = new Cookies();
+  var cukis = cookies.getAll();
+  var notis = Object.entries(cukis);
+  // const newCommentNotification = useSelector(
+  //   (state) => state.newCommentNotification
+  // );
   const html = document.querySelector("html");
   html.addEventListener("click", () => setNavbarState(false));
 
@@ -48,8 +58,38 @@ export default function Sidebar() {
     );
   }, []);
 
+  const displayNotificationProducts = () => {
+    {
+      notis.map((e) => {
+        return e[1].idProduct ? (
+          <div
+            key={e[1].idProduct}
+            // className={`${styles.container_NotificationsRender}`}
+          >
+            {console.log(e[1].idProduct)}
+            {console.log(e[1].email)}
+
+            {/* <Link to={`/`}> */}
+            <h5>Nuevo comentario</h5>
+            <div>
+              <p>{e[1].email}</p>
+            </div>
+            <div>
+              <p>{e[1].number}</p>
+              <p>{e[1].comment}</p>
+            </div>
+            {/* </Link> */}
+          </div>
+        ) : (
+          true
+        );
+      });
+    }
+  };
+
   return (
     <>
+      {console.log(notis)}
       <Section>
         <div className="top">
           <div
@@ -114,11 +154,49 @@ export default function Sidebar() {
                 className={currentLink === 5 ? "active" : "none"}
                 onClick={() => setCurrentLink(5)}
               >
-                <a href="#">
-                  <GiTwirlCenter size="20px" />
-                  <span>NOTIFICACIONES</span>
-                </a>
+                <div
+                  className={`${style.container_notification} `}
+                  // onClick={() => getDetailsOnClick()}
+                >
+                  <div
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight"
+                  >
+                    <img src={Campanita} style={{ width: "24px" }} alt="" />
+                    {/* {infoNotifications.counter > 0 && (
+                      <div>{infoNotifications.counter}</div>
+                    )} */}
+                    <span style={{ color: "white" }}>NOTIFICACIONES</span>
+                  </div>
+                </div>
               </li>
+              <div
+                className={`offcanvas offcanvas-end ${style.container_showNotifications}`}
+                id="offcanvasRight"
+              >
+                <div className="offcanvas-header">
+                  <h5>Notificacionesasadsd</h5>
+                  {notis ? (
+                    displayNotificationProducts()
+                  ) : (
+                    <p className="fs-4 text-center">No hay notificaciones</p>
+                  )}
+                  <button
+                    // onClick={() => setNotificationsTo0()}
+                    type="button"
+                    className="btn-close text-reset"
+                    data-bs-dismiss="offcanvas"
+                    style={{ backgroundColor: "white" }}
+                  ></button>
+                </div>
+                <div className={`offcanvas-body`}>
+                  {notis ? (
+                    displayNotificationProducts()
+                  ) : (
+                    <p className="fs-4 text-center">No hay notificaciones</p>
+                  )}
+                </div>
+              </div>
               <li
                 className={currentLink === 6 ? "active" : "none"}
                 onClick={() => setCurrentLink(6)}

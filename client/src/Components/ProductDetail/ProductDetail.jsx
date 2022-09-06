@@ -12,13 +12,14 @@ import {
   deleteCartProduct,
   addReviewToProduct,
   getUserDetail,
+  newCommentNotification,
 } from "../../Redux/Action/index.js";
 import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
 import stylesComponents from "./stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import { IoAlert } from "react-icons/io5";
+import { TbTrashX } from "react-icons/tb";
 import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
 import {
   BsShieldCheck,
@@ -132,6 +133,8 @@ export default function ProductDetail() {
           timer: 1500,
         });
         dispatch(getProductDetail(reviewParse.idProduct));
+        dispatch(newCommentNotification(reviewParse));
+        cookies.set(user.email, reviewParse);
       }
     } else {
       return Swal.fire({
@@ -142,6 +145,34 @@ export default function ProductDetail() {
         confirmButtonText: "Continuar",
       });
     }
+  };
+
+  const DeleteComment = async (id, productId) => {
+    Swal.fire({
+      title: "Estás seguro?",
+      text: "Si borras el comentario se perderá para siempre!",
+      icon: "warning",
+      showCancelButton: true,
+      background: "#111111",
+      confirmButtonColor: "#B91A1A",
+      cancelButtonColor: "#282626",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete(
+          "https://proyecto-final-01.herokuapp.com/reviews/delete/" + id
+        );
+        dispatch(getProductDetail(productId));
+        Swal.fire({
+          icon: "success",
+          title: "Comentario eliminado",
+          background: "#111111",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
   };
 
   const handleOnCart = () => {
@@ -424,7 +455,6 @@ export default function ProductDetail() {
                 })}
               </Carousel>
             </div>
-
             <div className={styles.divComments}>
               <input
                 className={styles.commentsScore}
@@ -437,7 +467,7 @@ export default function ProductDetail() {
                 className={styles.commentsText}
                 name="comment"
                 type="text"
-                placeholder="Comenta"
+                placeholder="Dejanos un comentario junto a tu puntuacion del producto"
                 onChange={(e) => onChangeReview(e)}
               ></textarea>
               <button
@@ -446,27 +476,92 @@ export default function ProductDetail() {
               >
                 Comentar
               </button>
+
               <div className={styles.comments}>
-                {productDetail.opinion &&
-                  productDetail.opinion.map((e) => {
-                    return (
-                      <div className={styles.divComment}>
-                        <div className={styles.divImg}>
-                          <img
-                            className={styles.imgUser}
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
-                            alt="not found"
-                          />
-                          <p>Usuario: {e.username}</p>
-                          <IoAlert color="" />
+                {userDetail && userDetail.admin === true
+                  ? productDetail.reviews &&
+                    productDetail.reviews.map((e) => {
+                      let index = productDetail.opinion
+                        .map((e) => e.comment)
+                        .indexOf(e.data[0].comment);
+
+                      return (
+                        <div key={e.id} className={styles.divComment}>
+                          <div className={styles.divImg}>
+                            <img
+                              className={styles.imgUser}
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                              alt="not found"
+                            />
+                            <p>
+                              Usuario: {productDetail.opinion[index].username}
+                            </p>
+                            <div className={styles.divBtnDeleteComment}>
+                              <button
+                                onClick={() => DeleteComment(e.id, e.productId)}
+                                className={styles.btnDeleteComment}
+                              >
+                                <TbTrashX size="30px" color="#8F8F8F" />
+                              </button>
+                            </div>
+                          </div>
+                          <p className={styles.h1comment}>
+                            Puntuacion: {productDetail.opinion[index].number}
+                          </p>
+                          <div>
+                            <p className={styles.divCommentUser}>
+                              {productDetail.opinion[index].comment}
+                            </p>
+                          </div>
                         </div>
-                        <p>Puntaje: {e.number}</p>
-                        <div className={styles.divCommentUser}>
-                          <p>{e.comment}</p>
+                      );
+                    })
+                  : productDetail.reviews &&
+                    productDetail.reviews.map((e) => {
+                      let index = productDetail.opinion
+                        .map((e) => e.comment)
+                        .indexOf(e.data[0].comment);
+
+                      return (
+                        <div key={e.id} className={styles.divComment}>
+                          <div className={styles.divImg}>
+                            <img
+                              className={styles.imgUser}
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                              alt="not found"
+                            />
+                            <p>
+                              Usuario: {productDetail.opinion[index].username}:
+                            </p>
+                            <div className={styles.divBtnDeleteComment}>
+                              {isAuthenticated &&
+                              userDetail &&
+                              productDetail.opinion[index].email ==
+                                userDetail.email ? (
+                                <button
+                                  onClick={() =>
+                                    DeleteComment(e.id, e.productId)
+                                  }
+                                  className={styles.btnDeleteComment}
+                                >
+                                  <TbTrashX size="30px" />
+                                </button>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                          </div>
+                          <p>
+                            Puntuacion: {productDetail.opinion[index].number}:
+                          </p>
+                          <div>
+                            <p className={styles.divCommentUser}>
+                              {productDetail.opinion[index].comment}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
               </div>
             </div>
           </div>
