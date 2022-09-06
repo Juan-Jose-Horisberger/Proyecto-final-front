@@ -223,10 +223,10 @@ export default function Sidebar() {
                 className={currentLink === 6 ? "active" : "none"}
                 onClick={() => setCurrentLink(6)}
               >
-                <a href="#">
+                <Link to="/Profile">
                   <BsFillChatTextFill size="20px" />
                   <span>MI PERFIL</span>
-                </a>
+                </Link>
               </li>
               <li
                 className={currentLink === 7 ? "active" : "none"}

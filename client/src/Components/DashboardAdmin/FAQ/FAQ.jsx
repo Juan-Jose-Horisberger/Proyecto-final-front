@@ -19,7 +19,6 @@ const Section = styled.section`
   ${cardStyles};
   .title {
     h2 {
-      color: #ffc107;
       letter-spacing: 0.3rem;
     }
   }
