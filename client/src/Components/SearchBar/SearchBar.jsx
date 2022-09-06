@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import Cookies from "universal-cookie";
 import {
   getProductByName,
   clearNotifications,
@@ -22,6 +23,8 @@ export default function SearchBar({ socket }) {
   const [productName, setProductName] = useState("");
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [errorsExist, setErrorsExist] = useState(false);
+  var cookies = new Cookies();
+  const noti = cookies.get("noti");
   const infoProductDefailt = useSelector(
     (state) => state.productsNotifications
   );
@@ -243,7 +246,7 @@ export default function SearchBar({ socket }) {
                         style={{ cursor: "pointer" }}
                       />
                     ) : (
-                      <Link to="/Dashboard">
+                      <Link to={userDetail.admin ? "/Dashboard" : "/Profile"}>
                         <img
                           src={user.picture}
                           alt={user.name}
@@ -288,16 +291,13 @@ export default function SearchBar({ socket }) {
                       ></button>
                     </div>
                     <div className={`offcanvas-body`}>
-                      {infoNotifications.newProducts.length ? (
-                        infoNotifications.newProducts.map((p, i) =>
-                          displayNotificationProducts(p, i)
-                        )
+                      {noti ? (
+                        displayNotificationProducts(noti)
                       ) : (
                         <p className="fs-4 text-center">
                           No hay notificaciones
                         </p>
                       )}
-                      {/* {console.log(infoNotifications.newProducts)} */}
                     </div>
                   </div>
                 </div>

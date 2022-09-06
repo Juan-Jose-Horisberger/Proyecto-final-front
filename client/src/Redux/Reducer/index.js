@@ -19,6 +19,7 @@ import {
   GET_USER_DETAIL,
   CREATE_USER,
   SET_DETAIL_NOTIFICATIONS,
+  NEW_COMMENT_NOTIFICATION,
 } from "../Action";
 var cookies = new Cookies();
 const initialState = {
@@ -36,6 +37,7 @@ const initialState = {
   productsNotifications: [],
   allUsers: [],
   userDetail: [],
+  newCommentNotification: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -103,7 +105,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case CREATE_PRODUCT:
       // console.log(payload);
       var expiryDate = new Date(Date.now() + 7 * 24 * 3600000);
-      cookies.set(payload.name, payload, { path: "/", expires: expiryDate });
+      cookies.set("noti", payload, { path: "/", expires: expiryDate });
       return {
         ...state,
         products: [...state.products, payload],
@@ -189,6 +191,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         productsNotifications: productsFiltered,
+      };
+
+    case NEW_COMMENT_NOTIFICATION:
+      return {
+        ...state,
+        newCommentNotification: [...state.newCommentNotification, payload],
       };
 
     default:
