@@ -1,65 +1,156 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, banUser } from "../../../Redux/Action";
-import style from "./AllUsers.module.css";
-import { FaUserCircle } from "react-icons/fa";
+import {
+  getUsers,
+  banUser,
+  getUserNameInDashboard,
+} from "../../../Redux/Action";
+import styles from "./AllUsers.module.css";
+import { FaUserCircle, FaBan } from "react-icons/fa";
+import { BsFillHandThumbsUpFill } from "react-icons/bs";
+import { GiMagnifyingGlass } from "react-icons/gi";
+// const current = React.useRef(0);
 
 export default function AllUsers() {
   const AllUsers = useSelector((state) => state.allUsers);
   const dispatch = useDispatch();
+  const [baneado, setBaneado] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
+    if (AllUsers.length) {
+      return;
+    }
     dispatch(getUsers());
   }, []);
 
-  function Ban(id) {
-    dispatch(banUser(id));
+  function handleBan(id) {
+    dispatch(banUser(id)).then(
+      (res) => res === undefined && dispatch(getUsers())
+    );
+  }
+
+  function handleOnClick() {
+    if (userName) {
+      dispatch(getUserNameInDashboard(userName));
+      setUserName("");
+    }
   }
 
   return (
-    <div className={style.containerPrincipal}>
-      <h2>Usuarios</h2>
-      <div className={style.divData}>
-        <p className={style.pFoto}>Foto</p>
-        <p className={style.pResto}>Username</p>
-        <p className={style.pResto}>Email</p>
-        <p className={style.pResto}>Fecha Nacimiento</p>
+    <div className={styles.containerPrincipal}>
+      <div className="col-12">
+        <div
+          className={`d-flex border border-danger justify-content-between ${styles.container_searchbar}`}
+        >
+          <div className="ms-5 p-2 d-flex align-items-center">
+            <h6 className="fs-1">GAED.JM</h6>
+          </div>
+          <div className={`${styles.container_InputSearch}`}>
+            <div>
+              <input
+                type="search"
+                className="form-control rounded pe-0 me-0"
+                placeholder="Search user.."
+                aria-label="Search"
+                aria-describedby="search-addon"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+                style={{ color: "white" }}
+              />
+              <span
+                className={`input-group-text`}
+                style={{ cursor: "pointer" }}
+                id="search-addon"
+              >
+                <i onClick={handleOnClick} className={`p-0`}>
+                  <GiMagnifyingGlass size="27px" color="grey" />
+                </i>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-      {console.log(AllUsers)}
+      <div className={`my-3 ${styles.container_Inicio}`}>
+        <div>
+          <Link to="/Dashboard">
+            <span>Dashboard</span>
+          </Link>
+          <span> / </span>
+          <span>Usuarios</span>
+        </div>
+        {console.log("hola")}
+      </div>
+      {/* {console.log(AllUsers)} */}
       {AllUsers.length &&
         AllUsers.map((e, i) => {
           return (
-            <div key={i} className={style.containerUser}>
-              <div className={style.divImg}>
+            <div key={i} className={`container-fluid ${styles.containerUser}`}>
+              <div className={styles.divImg}>
+                <p className={styles.pFoto}>Foto</p>
                 <Link to={`/UserDetail/${e.email}`}>
-                  <img src={e.img ? e.img : <FaUserCircle />} alt="" />
+                  {typeof e.img === "string" ? (
+                    <img
+                      src={
+                        typeof e.img === "string"
+                          ? e.img
+                          : "https://cdn-icons-png.flaticon.com/128/4519/4519678.png"
+                      }
+                      className="img-fluid"
+                    />
+                  ) : (
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/128/4519/4519678.png"
+                      className="img-fluid"
+                    />
+                  )}
+                  {/* <FaUserCircle size="20px" /> */}
                 </Link>
               </div>
-              <div className={style.divName}>
+              <div className={styles.divName}>
+                <p className={styles.pResto}>Username</p>
                 <Link to={`/UserDetail/${e.email}`}>
                   <p>{e.username}</p>
                 </Link>
               </div>
-              <div className={style.divName}>
+              <div className={styles.divName}>
+                <p className={styles.pResto}>Email</p>
                 <Link to={`/UserDetail/${e.email}`}>
                   <p>{e.email}</p>
                 </Link>
               </div>
-              <div className={style.divName}>
+              <div className={styles.divName}>
+                <p className={styles.pResto}>Fecha Nacimiento</p>
                 <Link to={`/UserDetail/${e.email}`}>
                   <p>{e.age}</p>
                 </Link>
               </div>
 
-              <button
-                onClick={() => {
-                  Ban(e.id);
-                }}
-              >
-                ban
-              </button>
+              <div className={`${styles.container_Button}`}>
+                <button
+                  onClick={() => handleBan(e.id)}
+                  className={`${e.ban === true ? styles.unBan : styles.ban}`}
+                >
+                  <div className="d-flex">
+                    {e.ban === true ? (
+                      <div className={`${styles.unbanSpan}`}>UNBAN</div>
+                    ) : (
+                      <div className={`${styles.banSpan}`}>BAN</div>
+                    )}
+                    {e.ban === true ? (
+                      <div>
+                        <BsFillHandThumbsUpFill size="20px" />
+                      </div>
+                    ) : (
+                      <div>
+                        <FaBan size="20px" />
+                      </div>
+                    )}
+                  </div>
+                </button>
+              </div>
             </div>
           );
         })}

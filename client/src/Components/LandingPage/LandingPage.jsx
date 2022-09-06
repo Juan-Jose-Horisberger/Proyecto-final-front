@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./LandingPage.module.css";
 import imgCarrousel1 from "../../Imagenes/ImagerCarrousel1.jpg";
 import imgCarrousel2 from "../../Imagenes/ImagenCarrousel2.jpg";
@@ -43,6 +43,7 @@ export default function LandingPage({ setBoolean }) {
     return 0;
   });
   const productsFiltered = allProductsSort.filter((e, i) => i <= count);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -50,6 +51,7 @@ export default function LandingPage({ setBoolean }) {
 
   useEffect(() => {
     Aos.init({ duration: 2000 });
+    setLoaded(true);
   }, []);
 
   const breakPoints = [
@@ -109,77 +111,92 @@ export default function LandingPage({ setBoolean }) {
     <div className={`${styles.container}`}>
       <SearchBar />
 
-      <div
-        id="carouselExampleControls"
-        className={`carousel slide ${styles.container_Carrousel}`}
-        data-bs-ride="carousel"
-        // style={{ border: "1px solid red" }}
-      >
-        <div className="carousel-inner">
-          <div className="carousel-item">
-            <div className={`${styles.container_Image_Carrousel}`}>
-              <img
-                src={imgCarrousel2}
-                className="d-block w-100"
-                alt="..."
-              ></img>
+      {loaded ? (
+        <div
+          id="carouselExampleControls"
+          className={`carousel slide ${styles.container_Carrousel}`}
+          data-bs-ride="carousel"
+          // style={{ border: "1px solid red" }}
+        >
+          <div className="carousel-inner">
+            <div className="carousel-item">
+              <div className={`${styles.container_Image_Carrousel}`}>
+                <img
+                  src={imgCarrousel2}
+                  className="d-block w-100"
+                  alt="..."
+                ></img>
+              </div>
+              <div className={`${styles.containerInfoCarrousel2}`}>
+                <p>Conoce todos nuestros nuevos ingresos!</p>
+                <h4>NUEVOS PANTALONES NIKE ZERO GRAVITY </h4>
+              </div>
             </div>
-            <div className={`${styles.containerInfoCarrousel2}`}>
-              <p>Conoce todos nuestros nuevos ingresos!</p>
-              <h4>NUEVOS PANTALONES NIKE ZERO GRAVITY </h4>
-            </div>
-          </div>
 
-          <div className="carousel-item active">
-            <div className={`${styles.container_Image_Carrousel}`}>
-              <img
-                src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/esAR/Images/originals-ss22-parley-launch-hp-mh-large-GV7616-d_tcm216-854476.jpg"
-                className="d-block w-100"
-                alt="img"
-              ></img>
+            <div className="carousel-item active">
+              <div className={`${styles.container_Image_Carrousel}`}>
+                <img
+                  src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/esAR/Images/originals-ss22-parley-launch-hp-mh-large-GV7616-d_tcm216-854476.jpg"
+                  className="d-block w-100"
+                  alt="img"
+                ></img>
+              </div>
+              <div className={`${styles.containerInfoCarrousel}`}>
+                <h4>FORUM, CREADAS PARA EL MAÑANA.</h4>
+                <p>
+                  Conocé nuestra última colección de íconos, ahora hechos
+                  parcialmente con Parley Ocean Plastic.
+                </p>
+              </div>
             </div>
-            <div className={`${styles.containerInfoCarrousel}`}>
-              <h4>FORUM, CREADAS PARA EL MAÑANA.</h4>
-              <p>
-                Conocé nuestra última colección de íconos, ahora hechos
-                parcialmente con Parley Ocean Plastic.
-              </p>
-            </div>
-          </div>
-          {/* <div className="carousel-item">
+            {/* <div className="carousel-item">
             <img
               src={imagenCarrousel5}
               className="d-block w-100"
               alt="..."
             ></img>
           </div> */}
-        </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
+          </div>
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
 
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleControls"
-          data-bs-slide="next"
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+      ) : (
+        <div
+          className={`d-flex justify-content-center flex-column ${styles.container_loading}`}
         >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
+          <p>Cargando...</p>
+          <div
+            className={`spinner-border ${styles.loading}`}
+            style={{ width: "4rem", height: "4rem" }}
+            role="status"
+          >
+            <span className="visually-hidden"></span>
+          </div>
+        </div>
+      )}
 
       <div className={`${styles.container_Carrousel} col-12`}>
         <h4 className={`${styles.new_Products}`}>NUEVOS PRODUCTOS</h4>
