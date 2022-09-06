@@ -81,12 +81,124 @@ function App() {
         ) : (
           <Route path="/ProductDetail/:id" element={<ProductDetail />} />
         )}
+        {isLoading || !userDetail ? (
+          ""
+        ) : userDetail.ban === true ? (
+          <Route path="/Checkout" element={<Ban />} />
+        ) : (
+          <Route path="/Checkout" element={<Checkout socket={socket} />} />
+        )}
 
-        <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
-        <Route path="/Cart" element={<Cart />} />
-        <Route path="/Login" element={<Login />} />
+        {/* no funciona bien la autenticacion del /FavoriteProduc */}
+        {isLoading || !userDetail ? (
+          <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
+        ) : !isAuthenticated ? (
+          <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
+        ) : userDetail.ban == true ? (
+          <Route path="/FavoriteProduct" element={<Ban />} />
+        ) : (
+          <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
+        )}
+        {/* no funciona bien la autenticacion del /cart */}
+        {isLoading || !userDetail ? (
+          ""
+        ) : userDetail.ban == true ? (
+          <Route path="/Cart" element={<Ban />} />
+        ) : (
+          <Route path="/Cart" element={<Cart />} />
+        )}
+
+        {isLoading || !userDetail ? (
+          <Route path="/Login" element={<Login />} />
+        ) : !isAuthenticated ? (
+          <Route path="/Login" element={<Login />} />
+        ) : userDetail.ban == true ? (
+          <Route path="/Login" element={<Ban />} />
+        ) : (
+          <Route path="/Login" element={<Login />} />
+        )}
+        {/* no funciona bien la autenticacion del /Register */}
+        {isLoading || !userDetail ? (
+          ""
+        ) : userDetail.ban == true ? (
+          <Route path="/Register" element={<Ban />} />
+        ) : (
+          <Route path="/Register" element={<Register socket={socket} />} />
+        )}
+        {/* no funciona bien la autenticacion del /Offers */}
+        {isLoading || !userDetail ? (
+          ""
+        ) : userDetail.ban == true ? (
+          <Route path="/Offers" element={<Ban />} />
+        ) : (
+          <Route path="/Offers" element={<Offers />} />
+        )}
+        {/* no funciona bien la autenticacion del /About */}
+        {isLoading || !userDetail ? (
+          <Route path="/About" element={<About />} />
+        ) : !isAuthenticated ? (
+          <Route path="/About" element={<About />} />
+        ) : userDetail.ban == true ? (
+          <Route path="/About" element={<Ban />} />
+        ) : (
+          <Route path="/About" element={<About />} />
+        )}
+        {/* no funciona bien la autenticacion del /Faqs */}
+        {isLoading || !userDetail ? (
+          ""
+        ) : userDetail.ban == true ? (
+          <Route path="/Faqs" element={<Ban />} />
+        ) : (
+          <Route path="/Faqs" element={<Faqs />} />
+        )}
+        {isLoading || !userDetail ? (
+          ""
+        ) : userDetail.ban === true ? (
+          <Route path="/TermsAndConditions" element={<Ban />} />
+        ) : (
+          <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+        )}
+        {isLoading || !userDetail ? (
+          <Route path="/Returns" element={<Returns />} />
+        ) : !isAuthenticated ? (
+          <Route path="/Returns" element={<Returns />} />
+        ) : userDetail.ban == true ? (
+          <Route path="/Returns" element={<Ban />} />
+        ) : (
+          <Route path="/Returns" element={<Returns />} />
+        )}
+        {isLoading || !userDetail ? (
+          <Route
+            path="/LandingPage"
+            element={<LandingPage setBoolean={setBoolean} />}
+          />
+        ) : !isAuthenticated ? (
+          <Route
+            path="/LandingPage"
+            element={<LandingPage setBoolean={setBoolean} />}
+          />
+        ) : userDetail.ban == true ? (
+          <Route path="/LandingPage" element={<Ban />} />
+        ) : (
+          <Route
+            path="/LandingPage"
+            element={<LandingPage setBoolean={setBoolean} />}
+          />
+        )}
+        {isLoading || !userDetail ? (
+          <Route path="/LandingPage" element={<LandingPage />} />
+        ) : !isAuthenticated ? (
+          <Route path="/LandingPage" element={<LandingPage />} />
+        ) : userDetail.ban == true ? (
+          <Route path="/LandingPage" element={<Ban />} />
+        ) : (
+          <Route path="/LandingPage" element={<LandingPage />} />
+        )}
+
         <Route path="/Logout" element={<Logout />} />
-        <Route path="/Register" element={<Register socket={socket} />} />
+        <Route path="/Contact" element={<Contact />} />
+
+        {/* admin */}
         {isLoading || !userDetail ? (
           ""
         ) : !isAuthenticated ? (
@@ -97,15 +209,15 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard socket={socket} />} />
         )}
 
-        {/* {isLoading || !userDetail ? (
+        {isLoading || !userDetail ? (
           ""
         ) : !isAuthenticated ? (
           ""
         ) : userDetail.admin == false ? (
           ""
-        ) : ( */}
-        <Route path="/CreateProduct" element={<FormProduct />} />
-        {/* )} */}
+        ) : (
+          <Route path="/CreateProduct" element={<FormProduct />} />
+        )}
 
         {isLoading || !userDetail ? (
           ""
@@ -136,22 +248,24 @@ function App() {
         ) : (
           <Route path="/ModifyProducts" element={<ModifyProducts />} />
         )}
-
-        <Route path="/Checkout" element={<Checkout socket={socket} />} />
-        <Route path="/Contact" element={<Contact />} />
-
-        <Route path="/Offers" element={<Offers />} />
-        <Route path="/About" element={<About />} />
-        <Route path="/Faqs" element={<Faqs />} />
-        <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
-        <Route path="/Returns" element={<Returns />} />
-        <Route
-          path="/LandingPage"
-          element={<LandingPage setBoolean={setBoolean} />}
-        />
-        <Route path="/LandingPage" element={<LandingPage />} />
-        <Route path="/AllUsers" element={<AllUsers />} />
-        <Route path="/UserDetail/:email" element={<UserDetail />} />
+        {isLoading || !userDetail ? (
+          ""
+        ) : !isAuthenticated ? (
+          ""
+        ) : userDetail.admin == false ? (
+          ""
+        ) : (
+          <Route path="/AllUsers" element={<AllUsers />} />
+        )}
+        {isLoading || !userDetail ? (
+          ""
+        ) : !isAuthenticated ? (
+          ""
+        ) : userDetail.admin == false ? (
+          ""
+        ) : (
+          <Route path="/UserDetail/:email" element={<UserDetail />} />
+        )}
       </Routes>
     </div>
   );
