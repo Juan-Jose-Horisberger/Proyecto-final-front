@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import AdminProduct from "./AdminProduct.jsx";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../Redux/Action";
 import Filters from "../Filter/Filters";
-import SearchBar from "../SearchBar/SearchBar.jsx";
 import styles from "./ModifyProducts.module.css";
 import ReactPaginate from "react-paginate";
 
@@ -67,10 +65,9 @@ export default function ModifyProduct() {
 
   useEffect(() => {
     dispatch(getAllProducts()).then(
-      (res) => typeof res === "object" && setLoaded(true)
+      (res) => res.payload.length && setLoaded(true)
     );
   }, []);
-  // <SearchBar />;
 
   return (
     <div styles={{ backgroundColor: "black" }}>
@@ -93,9 +90,17 @@ export default function ModifyProduct() {
                   />
                 ))
               ) : (
-                <div className={`${styles.notResult}`}>
-                  <p role="status">NO HUBO RESULTADOS PARA TU BÚSQUEDA</p>
-                  <p onClick={() => window.location.reload(false)}>Reload</p>
+                <div
+                  className={`d-flex justify-content-center flex-column ${styles.container_loading}`}
+                >
+                  <p>Cargando...</p>
+                  <div
+                    className={`spinner-border ${styles.loading}`}
+                    style={{ width: "4rem", height: "4rem" }}
+                    role="status"
+                  >
+                    <span className="visually-hidden"></span>
+                  </div>
                 </div>
               )}
             </div>

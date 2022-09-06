@@ -43,7 +43,6 @@ const Nav = styled.nav`
     background-color: #212121;
     display: flex;
     align-items: center;
-    border-radius: 1rem;
     svg {
       color: white;
     }
