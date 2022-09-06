@@ -25,6 +25,7 @@ import {
 import { GiPadlock } from "react-icons/gi";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { AiOutlineInstagram } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 export default function LandingPage({ setBoolean }) {
   const dispatch = useDispatch();
@@ -63,6 +64,45 @@ export default function LandingPage({ setBoolean }) {
       (res) => typeof res === "object" && history("/")
     );
     setBoolean(true);
+  }
+
+  function handleCupon() {
+    Swal.fire({
+      title: "Suscribite al Newsletter!",
+      html: `
+        <form>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label d-flex text-start">Nombre</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Juan" autocomplete="off">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label d-flex text-start">Email</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" autocomplete="off">
+          </div>
+        </form>
+      `,
+      imageUrl:
+        "https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/esAR/Images/originals-ss22-parley-launch-hp-mh-large-GV7616-d_tcm216-854476.jpg",
+      imageWidth: 400,
+      imageHeight: "auto",
+      imageAlt: "Custom image",
+      inputAttributes: {
+        autocapitalize: "off",
+      },
+      showCancelButton: false,
+      confirmButtonText: "Enviar",
+      showLoaderOnConfirm: true,
+      confirmButtonColor: "#282626",
+
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: `El formulario se ha enviado correctamente.`,
+          confirmButtonColor: "#282626",
+        });
+      }
+    });
   }
 
   return (
@@ -328,7 +368,7 @@ export default function LandingPage({ setBoolean }) {
 
           <div className={`${styles.Footer_div4}`}>
             <h4>Newsletter Semanal</h4>
-            <button>Subscribite!</button>
+            <button onClick={() => handleCupon()}>Subscribite!</button>
             <span
               onClick={() =>
                 window.scrollTo({ behavior: "smooth", top: "0px" })
