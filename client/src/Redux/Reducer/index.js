@@ -19,7 +19,7 @@ import {
   GET_USER_DETAIL,
   CREATE_USER,
   SET_DETAIL_NOTIFICATIONS,
-  NEW_COMMENT_NOTIFICATION,
+  GET_USER_DASHBOARD,
 } from "../Action";
 var cookies = new Cookies();
 const initialState = {
@@ -37,7 +37,6 @@ const initialState = {
   productsNotifications: [],
   allUsers: [],
   userDetail: [],
-  newCommentNotification: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -192,11 +191,14 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         productsNotifications: productsFiltered,
       };
-
-    case NEW_COMMENT_NOTIFICATION:
+    case GET_USER_DASHBOARD:
+      const all_Users = state.allUsers;
+      const userDashboard = all_Users.filter((user) =>
+        user.username.toUpperCase().includes(payload.toUpperCase())
+      );
       return {
         ...state,
-        newCommentNotification: [...state.newCommentNotification, payload],
+        allUsers: userDashboard,
       };
 
     default:

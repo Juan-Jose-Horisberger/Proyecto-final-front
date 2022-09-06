@@ -22,7 +22,7 @@ export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const CREATE_USER = "CREATE_USER";
 export const SET_DETAIL_NOTIFICATIONS = "SET_DETAIL_NOTIFICATIONS";
 export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";
-export const NEW_COMMENT_NOTIFICATION = "NEW_COMMENT_NOTIFICATION";
+export const GET_USER_DASHBOARD = "GET_USER_DASHBOARD";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -226,9 +226,9 @@ export const updateUserDetail = (id, data) => {
   };
 };
 
-export const newCommentNotification = (payload) => {
+export const getUserNameInDashboard = (payload) => {
   return {
-    type: NEW_COMMENT_NOTIFICATION,
+    type: GET_USER_DASHBOARD,
     payload,
   };
 };
