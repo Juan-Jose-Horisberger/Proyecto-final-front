@@ -71,19 +71,19 @@ export default function SearchBar({ socket }) {
     // setGetDetails(true);
     console.log(infoProductDefailt.length);
     return (
-      <div key={i} className={`${styles.container_NotificationsRender}`}>
-        {infoProductDefailt.length && (
-          <Link to={`/ProductDetail/${infoProductDefailt[0].id}`}>
-            <h5>Nuevo producto</h5>
-            <div>
-              <img src={p.image} alt="img" className="img-fluid" />
-            </div>
-            <div>
-              <p>{p.name}</p>
-              <p>$ {p.price}</p>
-            </div>
-          </Link>
-        )}
+      <div key={noti.id} className={`${styles.container_NotificationsRender}`}>
+        {/* {infoProductDefailt.length && ( */}
+        <Link to={`/`}>
+          <h5>Nuevo producto</h5>
+          <div>
+            <img src={noti.image} alt="img" className="img-fluid" />
+          </div>
+          <div>
+            <p>{noti.name}</p>
+            <p>$ {noti.price}</p>
+          </div>
+        </Link>
+        {/* )} */}
       </div>
     );
   };

@@ -156,21 +156,14 @@ export default function Checkout({ socket }) {
       </div>
 
       <div className={style.containerRegisterCupon}>
-        {!isAuthenticated ? (
-          <div className={style.divRegisterCupon}>
-            <p>
-              ¿No tienes una cuenta?
-              <button
-                className={style.btnRe}
-                onClick={() => loginWithRedirect()}
-              >
-                REGISTRATE
-              </button>
-            </p>
-          </div>
-        ) : (
-          ""
-        )}
+        <div className={style.divRegisterCupon}>
+          <p>
+            ¿No tienes una cuenta?
+            <button className={style.btnRe} onClick={() => loginWithRedirect()}>
+              REGISTRATE
+            </button>
+          </p>
+        </div>
 
         <div className={style.divRegisterCupon}>
           <div
