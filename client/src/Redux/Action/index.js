@@ -22,6 +22,7 @@ export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const CREATE_USER = "CREATE_USER";
 export const SET_DETAIL_NOTIFICATIONS = "SET_DETAIL_NOTIFICATIONS";
 export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";
+export const NEW_COMMENT_NOTIFICATION = "NEW_COMMENT_NOTIFICATION";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -222,5 +223,12 @@ export const getDetailNotification = (payload) => {
 export const updateUserDetail = (id, data) => {
   return async function (dispatch) {
     let updateUser = await axios.put(`/users/update/${id}`, data);
+  };
+};
+
+export const newCommentNotification = (payload) => {
+  return {
+    type: NEW_COMMENT_NOTIFICATION,
+    payload,
   };
 };

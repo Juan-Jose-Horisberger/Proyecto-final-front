@@ -12,6 +12,7 @@ import {
   deleteCartProduct,
   addReviewToProduct,
   getUserDetail,
+  newCommentNotification,
 } from "../../Redux/Action/index.js";
 import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import Carousel from "react-elastic-carousel";
@@ -132,7 +133,8 @@ export default function ProductDetail() {
           timer: 1500,
         });
         dispatch(getProductDetail(reviewParse.idProduct));
-        cookies.set(user.email, reviewParse, { path: "/Dashboard" });
+        dispatch(newCommentNotification(reviewParse));
+        cookies.set(user.email, reviewParse);
       }
     } else {
       return Swal.fire({
