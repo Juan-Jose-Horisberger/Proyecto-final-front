@@ -65,6 +65,17 @@ export default function useForm(initialForm, validateForm, socket) {
       return;
     }
 
+    if (user.ban) {
+      Swal.fire({
+        icon: "warning",
+        title: "Baneado por boludo",
+        background: "#111111",
+        confirmButtonText: "Continuar",
+        confirmButtonColor: "#282626",
+      });
+      return;
+    }
+
     if (!Object.entries(errores).length) {
       setPagar(true);
       // dispatch(updateUserDetail());
