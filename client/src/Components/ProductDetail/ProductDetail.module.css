@@ -611,24 +611,60 @@ container_2 .container_1 .container_Img {
 }
 
 .comments {
-  background-color: rgb(65, 65, 65);
-}
-.handleComment {
-  color: #ffffff;
   display: flex;
-  margin-top: 1rem;
-  background-color: #100f10;
-  height: 2rem;
-  border-style: double;
-  border-color: #fff;
+  flex-direction: column;
+  width: 50%;
+  font-size: 18px;
+  background-color: black;
+  /* border: 1px solid red; */
+  height: auto;
 }
-.h1comment {
-  margin-right: 2rem;
-  font-size: 1rem;
+.divComment {
+  color: azure;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  border: 1px solid azure;
+  padding: 20px;
+  height: auto;
+  width: 100%;
 }
+
+.divImg {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.divImg p {
+  text-decoration: underline;
+  /* border: 1px solid red; */
+  margin: 0;
+}
+
 .imgUser {
-  height: 20px;
+  width: 50px;
+  /* height: 50px; */
+  border-radius: 100px;
   margin-right: 1rem;
+}
+
+.divCommentUser {
+  background-color: #100f10;
+  border: 1px solid rgb(16, 17, 17);
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 10px;
+  height: auto;
+}
+
+.divCommentUser p {
+  display: flex;
+  height: 500px;
+
+  width: 100%;
+  border: 1px solid rgb(0, 255, 255);
 }
 
 .divBtnAdminZarcos {

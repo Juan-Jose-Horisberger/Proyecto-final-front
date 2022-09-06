@@ -6,7 +6,7 @@ import style from "./Checkout.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm.js";
 import Cookies from "universal-cookie";
-import { sendInformation } from "../../Redux/Action/index.js";
+import { getUserDetail, sendInformation } from "../../Redux/Action/index.js";
 import BuyProducts from "./MercadoLibreCheck.jsx";
 
 var cookies = new Cookies();
@@ -115,8 +115,7 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
-  const oneProductState = useSelector((state) => state.productToBuy);
+  const { user, loginWithRedirect, isAuthenticated } = useAuth0();
   var cuki = cookies.getAll();
   var productsToBuy = Object.entries(cuki);
   var subTotal = 0;
@@ -136,14 +135,18 @@ export default function Checkout({ socket }) {
     envio,
   } = useForm(initialForm, validateForm, socket);
 
-  useEffect(() => {
-    //Esto iria en searchbar
-    // console.log(infoNotifications.newProducts.length)
+  // useEffect(() => {
+  //   //Esto iria en searchbar
+  //   // console.log(infoNotifications.newProducts.length)
 
-    socket?.on("getNotification", function (data) {
-      dispatch(sendInformation(data));
-    });
-  }, [socket]);
+  //   socket?.on("getNotification", function (data) {
+  //     dispatch(sendInformation(data));
+  //   });
+  // }, [socket]);
+
+  useEffect(() => {
+    isAuthenticated && dispatch(getUserDetail(user.email));
+  }, []);
 
   return (
     <div className={style.containerPrincipal}>
@@ -156,21 +159,14 @@ export default function Checkout({ socket }) {
       </div>
 
       <div className={style.containerRegisterCupon}>
-        {!isAuthenticated ? (
-          <div className={style.divRegisterCupon}>
-            <p>
-              ¿No tienes una cuenta?
-              <button
-                className={style.btnRe}
-                onClick={() => loginWithRedirect()}
-              >
-                REGISTRATE
-              </button>
-            </p>
-          </div>
-        ) : (
-          ""
-        )}
+        <div className={style.divRegisterCupon}>
+          <p>
+            ¿No tienes una cuenta?
+            <button className={style.btnRe} onClick={() => loginWithRedirect()}>
+              REGISTRATE
+            </button>
+          </p>
+        </div>
 
         <div className={style.divRegisterCupon}>
           <div

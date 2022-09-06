@@ -11,6 +11,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { VscChromeClose } from "react-icons/vsc";
 import Logout from "../../Logout/Logout.jsx";
 import scrollreveal from "scrollreveal";
+import { Link } from "react-router-dom";
+import Navbar from "../NavBar/Navbar.jsx";
+import styles from "./Sidebar.module.css";
+
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(0);
   const [navbarState, setNavbarState] = useState(false);
@@ -34,6 +38,7 @@ export default function Sidebar() {
       .links>ul>li:nth-of-type(4),
       .links>ul>li:nth-of-type(5),
       .links>ul>li:nth-of-type(6),
+      .links>ul>li:nth-of-type(7),
       .logout
       `,
       {
@@ -47,8 +52,11 @@ export default function Sidebar() {
     <>
       <Section>
         <div className="top">
-          <div className="brand">
+          <div
+            className={`brand d-flex flex-column mb-3 ${styles.container_Title}`}
+          >
             <span>GAED.JM</span>
+            <span className="fs-5">Admin</span>
           </div>
           <div className="toggle">
             {navbarState ? (
@@ -62,51 +70,53 @@ export default function Sidebar() {
               />
             )}
           </div>
+
           <div className="links">
             <ul>
               <li
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
               >
-                <a href="/">
-                  <MdSpaceDashboard />
-                  <span> INICIO</span>
-                </a>
+                <Navbar />
               </li>
               <li
                 className={currentLink === 2 ? "active" : "none"}
                 onClick={() => setCurrentLink(2)}
               >
-                <a href="/CreateProduct">
-                  <RiDashboard2Fill />
-                  <span>AGREGAR PRODUCTO</span>
+                <a href="/">
+                  <MdSpaceDashboard size="20px" />
+                  <span>INICIO</span>
                 </a>
-              </li>{" "}
+              </li>
               <li
                 className={currentLink === 3 ? "active" : "none"}
                 onClick={() => setCurrentLink(3)}
               >
-                <a href="/ModifyProducts">
-                  <FaAddressCard />
-                  <span> EDITAR PRODUCTO</span>
+                <a href="/CreateProduct">
+                  <RiDashboard2Fill size="20px" />
+                  <span>AGREGAR PRODUCTO</span>
                 </a>
-              </li>
+              </li>{" "}
               <li
                 className={currentLink === 4 ? "active" : "none"}
                 onClick={() => setCurrentLink(4)}
               >
-                <a href="#">
-                  <GiTwirlCenter />
-                  <span>NOTIFICACIONES</span>
-                </a>
+                <Link to="/AllUsers">
+                  <div>
+                    <div className={`d-flex`}>
+                      <FaAddressCard size="20px" />
+                      <h6 className="ps-3 ">USUARIOS</h6>
+                    </div>
+                  </div>
+                </Link>
               </li>
               <li
                 className={currentLink === 5 ? "active" : "none"}
                 onClick={() => setCurrentLink(5)}
               >
                 <a href="#">
-                  <BsFillChatTextFill />
-                  <span>MI PERFIL</span>
+                  <GiTwirlCenter size="20px" />
+                  <span>NOTIFICACIONES</span>
                 </a>
               </li>
               <li
@@ -114,18 +124,29 @@ export default function Sidebar() {
                 onClick={() => setCurrentLink(6)}
               >
                 <a href="#">
-                  <IoSettings />
-                  <span> Settings</span>
+                  <BsFillChatTextFill size="20px" />
+                  <span>MI PERFIL</span>
                 </a>
               </li>
+              <li
+                className={currentLink === 7 ? "active" : "none"}
+                onClick={() => setCurrentLink(7)}
+              >
+                <a href="#">
+                  <IoSettings size="20px" />
+                  <span>SETTINGS</span>
+                </a>
+              </li>
+              <div className="logout">
+                <a href="#">
+                  <span style={{ marginRight: "15px" }}>
+                    <FiLogOut size="20px" />
+                  </span>
+                  <Logout />
+                </a>
+              </div>
             </ul>
           </div>
-        </div>
-        <div className="logout">
-          <a href="#">
-            <FiLogOut />
-            <Logout />
-          </a>
         </div>
       </Section>
       <ResponsiveNav state={navbarState} className={navbarState ? "show" : ""}>
@@ -136,7 +157,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(1)}
             >
               <a href="#">
-                <MdSpaceDashboard />
+                <MdSpaceDashboard size="20px" />
                 <span> Dashboard</span>
               </a>
             </li>
@@ -145,7 +166,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(2)}
             >
               <a href="/CreateProduct">
-                <RiDashboard2Fill />
+                <RiDashboard2Fill size="20px" />
                 <span> AGREGAR PRODUCTO</span>
               </a>
             </li>
@@ -154,7 +175,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(3)}
             >
               <a href="/EditProduct">
-                <FaAddressCard />
+                <FaAddressCard size="20px" />
                 <span> EDITAR PRODUCTO</span>
               </a>
             </li>
@@ -163,7 +184,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(4)}
             >
               <a href="#">
-                <GiTwirlCenter />
+                <GiTwirlCenter size="20px" />
                 <span> NOTIFICACIONES</span>
               </a>
             </li>
@@ -172,7 +193,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(5)}
             >
               <a href="#">
-                <BsFillChatTextFill />
+                <BsFillChatTextFill size="20px" />
                 <span> FAQs</span>
               </a>
             </li>
@@ -181,7 +202,7 @@ export default function Sidebar() {
               onClick={() => setCurrentLink(6)}
             >
               <a href="#">
-                <IoSettings />
+                <IoSettings size="20px" />
                 <span> Settings</span>
               </a>
             </li>
@@ -192,23 +213,20 @@ export default function Sidebar() {
   );
 }
 const Section = styled.section`
-  margin-top: -35px;
-  position: fixed;
-  left: 0;
   background-color: #212121;
-  height: 100vh;
-  width: 18vw;
+  width: 20%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 0;
-  gap: 2rem;
+
   .top {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    padding-top: 10px;
     width: 100%;
+    margin-left: 3px;
     .toggle {
       display: none;
     }
@@ -217,7 +235,6 @@ const Section = styled.section`
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
       svg {
         color: #ffc107;
         font-size: 2rem;
@@ -235,11 +252,13 @@ const Section = styled.section`
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        padding: 0;
+        padding-left: 0px;
         li {
-          padding: 0.6rem 1rem;
+          padding: 0.6rem 0;
           border-radius: 0.6rem;
           &:hover {
-            background-color: #ffc107;
+            background-color: #121212;
             a {
               color: black;
             }
@@ -261,11 +280,9 @@ const Section = styled.section`
     }
   }
   .logout {
-    padding: 0.3rem 1rem;
+    padding: 0.3rem;
+    padding-left: 0px;
     border-radius: 0.6rem;
-    &:hover {
-      background-color: #da0037;
-    }
     a {
       text-decoration: none;
       display: flex;

@@ -38,9 +38,9 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [boolean, setBoolean] = useState(false);
   const userDetail = useSelector((state) => state.userDetail);
-  useEffect(() => {
-    setSocket(io("http://localhost:5000")); //Inicializamos la conexion con el servidor socket.
-  }, []);
+  // useEffect(() => {
+  //   setSocket(io("http://localhost:5000")); //Inicializamos la conexion con el servidor socket.
+  // }, []);
 
   return (
     <div className="App">
