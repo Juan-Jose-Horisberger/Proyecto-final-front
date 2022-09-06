@@ -1,5 +1,4 @@
 import React from "react";
-import Cookies from "universal-cookie";
 import styles from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -20,8 +19,6 @@ import { GiMagnifyingGlass } from "react-icons/gi";
 
 export default function SearchBar({ socket }) {
   const dispatch = useDispatch();
-  var cookies = new Cookies();
-  const noti = cookies.get("noti");
   const [productName, setProductName] = useState("");
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [errorsExist, setErrorsExist] = useState(false);
@@ -67,27 +64,33 @@ export default function SearchBar({ socket }) {
     }
   };
 
-  const displayNotificationProducts = (noti) => {
+  const displayNotificationProducts = (p, i) => {
     if (!getName) {
-      setGetName(noti.name);
+      setGetName(p.name);
     }
+    // setGetDetails(true);
+    console.log(infoProductDefailt.length);
     return (
-      <div key={noti.id} className={`${styles.container_NotificationsRender}`}>
-        {/* {infoProductDefailt.length && ( */}
-        {/* <Link to={`/ProductDetail/${noti.id}`}> */}
-        <h5>Nuevo producto</h5>
-        <div>
-          <img src={noti.image} alt="img" className="img-fluid" />
-        </div>
-        <div>
-          <p>{noti.name}</p>
-          <p>$ {noti.price}</p>
-        </div>
-        {/* </Link> */}
-        {/* )} */}
+      <div key={i} className={`${styles.container_NotificationsRender}`}>
+        {infoProductDefailt.length && (
+          <Link to={`/ProductDetail/${infoProductDefailt[0].id}`}>
+            <h5>Nuevo producto</h5>
+            <div>
+              <img src={p.image} alt="img" className="img-fluid" />
+            </div>
+            <div>
+              <p>{p.name}</p>
+              <p>$ {p.price}</p>
+            </div>
+          </Link>
+        )}
       </div>
     );
   };
+
+  // function bringInformation() {
+  //    dispatch(getProductByName(getName))
+  // }
 
   function validateErrors(e) {
     e.preventDefault();
@@ -96,7 +99,7 @@ export default function SearchBar({ socket }) {
 
   return (
     <div className={`${styles.container} container-fluid p-0 m-0`}>
-      {console.log(noti)}
+      {/* {console.log(purchaseNotifications)} */}
       <div>
         <nav
           className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}
@@ -240,7 +243,7 @@ export default function SearchBar({ socket }) {
                         style={{ cursor: "pointer" }}
                       />
                     ) : (
-                      <Link to={userDetail.admin ? "/Dashboard" : "/Profile"}>
+                      <Link to="/Dashboard">
                         <img
                           src={user.picture}
                           alt={user.name}
@@ -285,17 +288,10 @@ export default function SearchBar({ socket }) {
                       ></button>
                     </div>
                     <div className={`offcanvas-body`}>
-                      {/* {infoNotifications.newProducts.length ? (
+                      {infoNotifications.newProducts.length ? (
                         infoNotifications.newProducts.map((p, i) =>
                           displayNotificationProducts(p, i)
                         )
-                      ) : (
-                        <p className="fs-4 text-center">
-                          No hay notificaciones
-                        </p>
-                      )} */}
-                      {noti ? (
-                        displayNotificationProducts(noti)
                       ) : (
                         <p className="fs-4 text-center">
                           No hay notificaciones

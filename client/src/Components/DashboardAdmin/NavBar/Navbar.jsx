@@ -1,53 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
+import { getProductByName } from "../../../Redux/Action";
+import { useDispatch } from "react-redux";
+import { GiMagnifyingGlass } from "react-icons/gi";
 export default function Navbar() {
+  const [productName, setProductName] = useState("");
+  const [errorsExist, setErrorsExist] = useState(false);
+  const dispatch = useDispatch();
+
+  function handleOnClick() {
+    productName
+      ? dispatch(getProductByName(productName))
+      : setErrorsExist(true);
+    setProductName("");
+  }
+
   return (
     <Nav>
-      <div className="title">
-        <h4>HOLA</h4>
-      </div>
       <div className="search">
-        <BiSearch />
-        <input type="text" placeholder="Search" />
+        <input
+          type="text"
+          placeholder="Search"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+          style={{ outline: "none" }}
+        />
+        <span onClick={handleOnClick}>
+          <GiMagnifyingGlass size="27px" color="grey" />
+        </span>
       </div>
     </Nav>
   );
 }
 const Nav = styled.nav`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   color: white;
-  .title {
-    h1 {
-      span {
-        margin-left: 0.5rem;
-        color: #ffc107;
-        letter-spacing: 0.2rem;
-      }
-    }
-  }
+
   .search {
     background-color: #212121;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 8rem 1rem 1rem;
     border-radius: 1rem;
     svg {
       color: #ffc107;
     }
     input {
-      background-color: transparent;
+      width: 146px !important;
+      background-color: #272a2c;
       border: none;
       color: #ffc107;
-      letter-spacing: 0.3rem;
-      &:focus {
-        outline: none;
-      }
+      padding: 10px;
+      letter-spacing: 1px;
       &::placeholder {
         color: #ffc107;
       }
+    }
+    span {
+      cursor: pointer;
+      padding: 9px;
+      background-color: #121212;
     }
   }
   @media screen and (min-width: 280px) and (max-width: 1080px) {

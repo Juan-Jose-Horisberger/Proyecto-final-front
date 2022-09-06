@@ -12,6 +12,7 @@ import { VscChromeClose } from "react-icons/vsc";
 import Logout from "../../Logout/Logout.jsx";
 import scrollreveal from "scrollreveal";
 import { Link } from "react-router-dom";
+import Navbar from "../NavBar/Navbar.jsx";
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(0);
   const [navbarState, setNavbarState] = useState(false);
@@ -63,11 +64,18 @@ export default function Sidebar() {
               />
             )}
           </div>
+
           <div className="links">
             <ul>
               <li
                 className={currentLink === 1 ? "active" : "none"}
                 onClick={() => setCurrentLink(1)}
+              >
+                <Navbar />
+              </li>
+              <li
+                className={currentLink === 2 ? "active" : "none"}
+                onClick={() => setCurrentLink(2)}
               >
                 <a href="/">
                   <MdSpaceDashboard size="20px" />
@@ -75,22 +83,18 @@ export default function Sidebar() {
                 </a>
               </li>
               <li
-                className={currentLink === 2 ? "active" : "none"}
-                onClick={() => setCurrentLink(2)}
-              >
-                <a href="/CreateProduct">
-                  <RiDashboard2Fill size="20px" />
-                  <span className="border border-danger">AGREGAR PRODUCTO</span>
-                </a>
-              </li>{" "}
-              <li
                 className={currentLink === 3 ? "active" : "none"}
                 onClick={() => setCurrentLink(3)}
               >
-                {/* <a href="/ModifyProducts">
-                  <FaAddressCard />
-                  <span> EDITAR PRODUCTO</span>
-                </a> */}
+                <a href="/CreateProduct">
+                  <RiDashboard2Fill size="20px" />
+                  <span>AGREGAR PRODUCTO</span>
+                </a>
+              </li>{" "}
+              <li
+                className={currentLink === 4 ? "active" : "none"}
+                onClick={() => setCurrentLink(4)}
+              >
                 <Link to="/AllUsers">
                   <div>
                     <div className={`d-flex`}>
@@ -101,8 +105,8 @@ export default function Sidebar() {
                 </Link>
               </li>
               <li
-                className={currentLink === 4 ? "active" : "none"}
-                onClick={() => setCurrentLink(4)}
+                className={currentLink === 5 ? "active" : "none"}
+                onClick={() => setCurrentLink(5)}
               >
                 <a href="#">
                   <GiTwirlCenter size="20px" />
@@ -110,8 +114,8 @@ export default function Sidebar() {
                 </a>
               </li>
               <li
-                className={currentLink === 5 ? "active" : "none"}
-                onClick={() => setCurrentLink(5)}
+                className={currentLink === 6 ? "active" : "none"}
+                onClick={() => setCurrentLink(6)}
               >
                 <a href="#">
                   <BsFillChatTextFill size="20px" />
@@ -119,8 +123,8 @@ export default function Sidebar() {
                 </a>
               </li>
               <li
-                className={currentLink === 6 ? "active" : "none"}
-                onClick={() => setCurrentLink(6)}
+                className={currentLink === 7 ? "active" : "none"}
+                onClick={() => setCurrentLink(7)}
               >
                 <a href="#">
                   <IoSettings size="20px" />
@@ -129,12 +133,15 @@ export default function Sidebar() {
               </li>
             </ul>
           </div>
-        </div>
-        <div className="logout">
-          <a href="#">
-            <FiLogOut />
-            <Logout />
-          </a>
+
+          <div className="logout">
+            <a href="#">
+              <span style={{ marginRight: "15px" }}>
+                <FiLogOut size="20px" />
+              </span>
+              <Logout />
+            </a>
+          </div>
         </div>
       </Section>
       <ResponsiveNav state={navbarState} className={navbarState ? "show" : ""}>
@@ -201,22 +208,20 @@ export default function Sidebar() {
   );
 }
 const Section = styled.section`
-  position: fixed;
-  left: 0;
   background-color: #212121;
-  height: 100vh;
-  width: 18vw;
+  width: 20%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 0;
-  gap: 2rem;
+
   .top {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    padding-top: 50px;
     width: 100%;
+    margin-left: 3px;
     .toggle {
       display: none;
     }
@@ -270,11 +275,9 @@ const Section = styled.section`
     }
   }
   .logout {
-    padding: 0.3rem 1rem;
+    padding: 0.3rem;
+    padding-left: 40px;
     border-radius: 0.6rem;
-    &:hover {
-      background-color: #da0037;
-    }
     a {
       text-decoration: none;
       display: flex;

@@ -46,25 +46,23 @@ export default function Dashboard() {
   return (
     <Section>
       <Sidebar />
-      <Navbar />
       <div className="grid">
-        <div className="row__two">
-          <ProfileAdm />
-          <Earnings />
+        <ProfileAdm />
+        {/* <Earnings /> */}
 
-          <ModifyProduct />
-        </div>
+        <ModifyProduct />
       </div>
     </Section>
   );
 }
 
 const Section = styled.section`
-  margin-left: 18vw;
+  width: 100%;
   height: 100%;
   background-color: black;
+  display: flex;
   .grid {
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -73,11 +71,9 @@ const Section = styled.section`
   }
   @media screen and (min-width: 280px) and (max-width: 1080px) {
     margin-left: 0;
+    flex-direction: column;
     .grid {
-      .row__one,
-      .row__two {
-        grid-template-columns: 1fr;
-      }
+      width: 100%;
     }
   }
 `;

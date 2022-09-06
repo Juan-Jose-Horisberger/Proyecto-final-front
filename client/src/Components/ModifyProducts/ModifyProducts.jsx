@@ -74,7 +74,6 @@ export default function ModifyProduct() {
 
   return (
     <div styles={{ backgroundColor: "black" }}>
-      {/* <SearchBar />; */}
       <div className={styles.containerPrincipal}>
         {/* <Filters /> */}
 
