@@ -134,7 +134,7 @@ export default function ProductDetail() {
         });
         dispatch(getProductDetail(reviewParse.idProduct));
         dispatch(newCommentNotification(reviewParse));
-        cookies.set(user.email, reviewParse);
+        cookies.set(reviewParse.idProduct, reviewParse);
       }
     } else {
       return Swal.fire({
