@@ -21,7 +21,7 @@ export default function useForm(initialForm, validateForm, socket) {
 
   const cupones = ["SoyHenry", "Alejo"];
   const cookies = new Cookies();
-  var expiryDate = new Date(Date.now() + 60 * 24 * 3600000);
+  var expiryDate = new Date(Date.now() + 100 * 24 * 3600000);
 
   const handleOnChange = (e) => {
     cookies.set(e.target.name, e.target.value, {

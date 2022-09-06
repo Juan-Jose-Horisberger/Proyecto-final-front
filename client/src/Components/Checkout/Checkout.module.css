@@ -97,6 +97,16 @@ p {
   /* border: 1px solid red; */
 }
 
+.divEdad {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .divApellido {
   display: flex;
   flex-direction: column;

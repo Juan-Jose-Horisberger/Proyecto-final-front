@@ -36,7 +36,7 @@ export default function Profile() {
     return (
       isAuthenticated && (
         <div className={styles.container}>
-          <Logout />
+          {/* <Logout /> */}
           <div className={styles.container_Info}>
             <p>
               <Link to="/">Inicio</Link>/Mi Perfil
@@ -52,7 +52,7 @@ export default function Profile() {
             <div>
               <h2>{userDetail.name}</h2>
             </div>
-            <h6>{userDetail.username}</h6>
+            <h6>Nombre de Usuario: {userDetail.username}</h6>
             <h6>Email: {user.email}</h6>
             <Link to="/Register">
               <img
@@ -63,6 +63,8 @@ export default function Profile() {
               <h4>Mis Datos</h4>
               <h6>Gestiona tus datos personales</h6>
             </Link>
+
+            <Logout />
           </div>
         </div>
       )
