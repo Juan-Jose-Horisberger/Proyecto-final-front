@@ -75,7 +75,7 @@ export default function ModifyProduct() {
   return (
     <div styles={{ backgroundColor: "black" }}>
       <div className={styles.containerPrincipal}>
-        {/* <Filters /> */}
+        <Filters modifiyProducts={true} />
 
         <div className={styles.container}>
           {loaded ? (

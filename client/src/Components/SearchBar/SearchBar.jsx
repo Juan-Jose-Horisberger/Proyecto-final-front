@@ -64,9 +64,9 @@ export default function SearchBar({ socket }) {
     }
   };
 
-  const displayNotificationProducts = (p, i) => {
+  const displayNotificationProducts = (noti) => {
     if (!getName) {
-      setGetName(p.name);
+      setGetName(noti.name);
     }
     // setGetDetails(true);
     console.log(infoProductDefailt.length);

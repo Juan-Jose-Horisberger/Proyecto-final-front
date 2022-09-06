@@ -12,7 +12,6 @@
 
 .container {
   width: 20%;
-  /* border: 1px solid red; */
 }
 
 .container select {
@@ -22,6 +21,7 @@
   border: 1px solid #383d42;
   font-family: "Questrial", sans-serif;
 }
+
 .container_Filters .label_info {
   width: 100%;
   text-align: center;
@@ -54,6 +54,21 @@
   width: 40px;
   cursor: pointer;
   display: none;
+}
+
+.container_ModifyProducts {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  padding-top: 0;
+  padding-right: 25px;
+  background-color: black !important;
+}
+
+.containerFilters_ModifyProducts {
+  cursor: pointer;
+  display: flex;
 }
 
 .container_FiltersTrue {

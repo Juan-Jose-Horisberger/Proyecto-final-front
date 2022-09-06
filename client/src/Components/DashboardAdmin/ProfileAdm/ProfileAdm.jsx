@@ -39,6 +39,7 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-button: 10px !important;
     img {
       width: 5rem;
       height: 5rem;

@@ -45,22 +45,23 @@ const Nav = styled.nav`
     align-items: center;
     border-radius: 1rem;
     svg {
-      color: #ffc107;
+      color: white;
     }
     input {
       width: 146px !important;
       background-color: #272a2c;
       border: none;
-      color: #ffc107;
+      color: white;
       padding: 10px;
       letter-spacing: 1px;
       &::placeholder {
-        color: #ffc107;
+        color: white;
       }
     }
     span {
       cursor: pointer;
       padding: 9px;
+      border-radius: 2px;
       background-color: #121212;
     }
   }

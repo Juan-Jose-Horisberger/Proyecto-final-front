@@ -13,6 +13,8 @@ import Logout from "../../Logout/Logout.jsx";
 import scrollreveal from "scrollreveal";
 import { Link } from "react-router-dom";
 import Navbar from "../NavBar/Navbar.jsx";
+import styles from "./Sidebar.module.css";
+
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(0);
   const [navbarState, setNavbarState] = useState(false);
@@ -36,6 +38,7 @@ export default function Sidebar() {
       .links>ul>li:nth-of-type(4),
       .links>ul>li:nth-of-type(5),
       .links>ul>li:nth-of-type(6),
+      .links>ul>li:nth-of-type(7),
       .logout
       `,
       {
@@ -49,8 +52,11 @@ export default function Sidebar() {
     <>
       <Section>
         <div className="top">
-          <div className="brand">
+          <div
+            className={`brand d-flex flex-column mb-3 ${styles.container_Title}`}
+          >
             <span>GAED.JM</span>
+            <span className="fs-5">Admin</span>
           </div>
           <div className="toggle">
             {navbarState ? (
@@ -79,7 +85,7 @@ export default function Sidebar() {
               >
                 <a href="/">
                   <MdSpaceDashboard size="20px" />
-                  <span> INICIO</span>
+                  <span>INICIO</span>
                 </a>
               </li>
               <li
@@ -128,19 +134,18 @@ export default function Sidebar() {
               >
                 <a href="#">
                   <IoSettings size="20px" />
-                  <span> Settings</span>
+                  <span>SETTINGS</span>
                 </a>
               </li>
+              <div className="logout">
+                <a href="#">
+                  <span style={{ marginRight: "15px" }}>
+                    <FiLogOut size="20px" />
+                  </span>
+                  <Logout />
+                </a>
+              </div>
             </ul>
-          </div>
-
-          <div className="logout">
-            <a href="#">
-              <span style={{ marginRight: "15px" }}>
-                <FiLogOut size="20px" />
-              </span>
-              <Logout />
-            </a>
           </div>
         </div>
       </Section>
@@ -219,7 +224,7 @@ const Section = styled.section`
   .top {
     display: flex;
     flex-direction: column;
-    padding-top: 50px;
+    padding-top: 10px;
     width: 100%;
     margin-left: 3px;
     .toggle {
@@ -253,7 +258,7 @@ const Section = styled.section`
           padding: 0.6rem 0;
           border-radius: 0.6rem;
           &:hover {
-            background-color: #ffc107;
+            background-color: #121212;
             a {
               color: black;
             }
@@ -276,7 +281,7 @@ const Section = styled.section`
   }
   .logout {
     padding: 0.3rem;
-    padding-left: 40px;
+    padding-left: 0px;
     border-radius: 0.6rem;
     a {
       text-decoration: none;

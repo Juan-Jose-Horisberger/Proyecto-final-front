@@ -48,8 +48,6 @@ export default function Dashboard() {
       <Sidebar />
       <div className="grid">
         <ProfileAdm />
-        {/* <Earnings /> */}
-
         <ModifyProduct />
       </div>
     </Section>
@@ -67,7 +65,7 @@ const Section = styled.section`
     flex-direction: column;
     height: 100%;
     gap: 1rem;
-    border: 1px solid blue;
+    border: 1px solid white;
   }
   @media screen and (min-width: 280px) and (max-width: 1080px) {
     margin-left: 0;
