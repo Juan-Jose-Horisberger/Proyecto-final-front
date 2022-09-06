@@ -20,9 +20,6 @@ export default function AllUsers() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (AllUsers.length) {
-      return;
-    }
     dispatch(getUsers()).then(
       (res) => typeof res === "object" && setLoaded(true)
     );
@@ -175,7 +172,9 @@ export default function AllUsers() {
             })
           ) : (
             <div className={`${styles.notResult}`}>
-              <p role="status">NO HAY USUARIOS REGISTRADOS</p>
+              <p role="status" className="fs-1" style={{ fontWeight: "bold" }}>
+                NO HAY USUARIOS REGISTRADOS
+              </p>
             </div>
           )}
         </>

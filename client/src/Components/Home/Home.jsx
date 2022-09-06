@@ -11,6 +11,7 @@ import SearchBar from "../SearchBar/SearchBar.jsx";
 import Pagination from "../Pagination/Pagination.jsx";
 import Filters from "../Filter/Filters.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
+import Footer from "../Footer/Footer";
 
 export default function Home({ socket, boolean }) {
   const dispatch = useDispatch();
@@ -62,6 +63,8 @@ export default function Home({ socket, boolean }) {
       <Filters />
 
       <Pagination allProducts={allProducts} loaded={loaded} />
+
+      <Footer />
     </div>
   );
 }

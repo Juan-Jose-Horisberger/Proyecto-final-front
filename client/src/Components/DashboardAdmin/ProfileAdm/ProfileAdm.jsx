@@ -57,7 +57,6 @@ const Section = styled.section`
     text-align: center;
     h2,
     h5 {
-      color: #ffc107;
      
       letter-spacing: 0.3rem;
     }

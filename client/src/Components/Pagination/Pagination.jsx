@@ -57,7 +57,7 @@ export default function Pagination({ allProducts, loaded }) {
   }, [itemOffset]);
 
   return (
-    <div className={`${styles.container_Cards} col-12 col-lg-9`}>
+    <div className={`${styles.container_Cards} col-12 col-lg-9 mb-5`}>
       {loaded ? (
         <div className={`d-flex flex-wrap justify-content-sm-evenly`}>
           {currentItems.length ? (

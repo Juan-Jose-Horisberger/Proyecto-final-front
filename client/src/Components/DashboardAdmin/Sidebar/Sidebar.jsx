@@ -5,7 +5,7 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
 import { GiTwirlCenter } from "react-icons/gi";
-import { BsFillChatTextFill } from "react-icons/bs";
+import { BsFillBellFill, BsFillChatTextFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -145,7 +145,7 @@ export default function Sidebar() {
                   <div>
                     <div className={`d-flex`}>
                       <FaAddressCard size="20px" />
-                      <h6 className="ps-3 ">USUARIOS</h6>
+                      <h6 className="ps-3">USUARIOS</h6>
                     </div>
                   </div>
                 </Link>
@@ -162,11 +162,18 @@ export default function Sidebar() {
                     data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight"
                   >
-                    <img src={Campanita} style={{ width: "24px" }} alt="" />
+                    <div className="d-flex">
+                      <BsFillBellFill size="20px" />
+                      <span
+                        className="ps-3"
+                        style={{ color: "white", cursor: "pointer" }}
+                      >
+                        NOTIFICACIONES
+                      </span>
+                    </div>
                     {/* {infoNotifications.counter > 0 && (
                       <div>{infoNotifications.counter}</div>
                     )} */}
-                    <span style={{ color: "white" }}>NOTIFICACIONES</span>
                   </div>
                 </div>
               </li>
@@ -216,10 +223,10 @@ export default function Sidebar() {
                 className={currentLink === 6 ? "active" : "none"}
                 onClick={() => setCurrentLink(6)}
               >
-                <a href="#">
+                <Link to="/Profile">
                   <BsFillChatTextFill size="20px" />
                   <span>MI PERFIL</span>
-                </a>
+                </Link>
               </li>
               <li
                 className={currentLink === 7 ? "active" : "none"}
@@ -329,12 +336,10 @@ const Section = styled.section`
       justify-content: center;
       align-items: center;
       svg {
-        color: #ffc107;
         font-size: 2rem;
       }
       span {
         font-size: 2rem;
-        color: #ffc107;
       }
     }
     .links {
@@ -364,7 +369,6 @@ const Section = styled.section`
           }
         }
         .active {
-          background-color: #ffc107;
           a {
             color: black;
           }
@@ -438,7 +442,6 @@ const ResponsiveNav = styled.div`
         padding: 0.6rem 1rem;
         border-radius: 0.6rem;
         &:hover {
-          background-color: #ffc107;
           a {
             color: black;
           }
@@ -451,7 +454,6 @@ const ResponsiveNav = styled.div`
         }
       }
       .active {
-        background-color: #ffc107;
         a {
           color: black;
         }
