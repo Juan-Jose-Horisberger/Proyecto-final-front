@@ -1,67 +1,60 @@
-import { Server } from "socket.io";
+// import { Server } from "socket.io";
 
-const io = new Server({
-    cors: {
-        origin: "http://localhost:3000" //Solo admite este direccion
-    }
-});
+// const io = new Server({
+//     cors: {
+//         origin: "http://localhost:3000" //Solo admite este direccion
+//     }
+// });
 
-let onlineUsers = []; //Si ya tenemos nuestro usuario agregado en este array, no lo agregamos de nuevo
+// let onlineUsers = []; //Si ya tenemos nuestro usuario agregado en este array, no lo agregamos de nuevo
 
-//Se ve que el ID que se agrega por default de socket, le cambio el nombre a socketId aca
-const addNewUser = (username, usernameid, socketId) => {
-    const id = parseInt(usernameid);
-    console.log(username, usernameid, socketId)
-    !onlineUsers.some((user) => user.username === username) &&
-        onlineUsers.push({ username, id, socketId });
-};
+// //Se ve que el ID que se agrega por default de socket, le cambio el nombre a socketId aca
+// const addNewUser = (username, usernameid, socketId) => {
+//     const id = parseInt(usernameid);
+//     console.log(username, usernameid, socketId)
+//     !onlineUsers.some((user) => user.username === username) &&
+//         onlineUsers.push({ username, id, socketId });
+// };
 
+// //Cada ves que salgamos de nuestra aplicacion eliminamos nuestro user
+// const removeUser = (socketId) => {
+//     onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId)
+// }
 
-//Cada ves que salgamos de nuestra aplicacion eliminamos nuestro user
-const removeUser = (socketId) => {
-    onlineUsers = onlineUsers.filter((user) => user.socketId !== socketId)
-}
+// const getUser = (usernameid) => { //Tomamos un usuario en concreto.
+//     return onlineUsers.find((user) => user.id === usernameid);
+// };
 
-const getUser = (usernameid) => { //Tomamos un usuario en concreto.
-    return onlineUsers.find((user) => user.id === usernameid); 
-};
+// io.on("connection", (socket) => {
+//     io.emit("firstEvent", "Hola esto es una prueba!") //Enviamos un evento a cada user, (podemos hacer aca, lo de notifcaciones de new product)
+//     // io.emit("newProducts", "¡Se agregaron nuevos productos!")
+//     socket.on("newUser", (username, usernameid) => { //Guardamos el user cuando se loggue en la pagina.
+//         addNewUser(username, usernameid, socket.id);
+//     })
 
-io.on("connection", (socket) => {
-    io.emit("firstEvent", "Hola esto es una prueba!") //Enviamos un evento a cada user, (podemos hacer aca, lo de notifcaciones de new product)
-    // io.emit("newProducts", "¡Se agregaron nuevos productos!")
-    socket.on("newUser", (username, usernameid) => { //Guardamos el user cuando se loggue en la pagina.
-        addNewUser(username, usernameid, socket.id);
-    })
+//     socket.on("sendNotification", ({ senderName, recipientId, type }) => {
+//         const receiver = getUser(recipientId);
+//         // console.log(receiver)
+//         // console.log(onlineUsers)
+//         // console.log(receiver.socketId);
+//         console.log(senderName, recipientId)
 
-    socket.on("sendNotification", ({ senderName, recipientId, type }) => {
-        const receiver = getUser(recipientId);
-        // console.log(receiver)
-        // console.log(onlineUsers)
-        // console.log(receiver.socketId);
-        console.log(senderName, recipientId)
+//         io.to(receiver.socketId).emit("getNotification", {
+//             senderName,
+//             type,
+//             recipientId
+//         });
+//     });
 
-        io.to(receiver.socketId).emit("getNotification", {
-            senderName,
-            type,
-            recipientId
-        });
-    });
+//     io.emit("newProducts", "¡Se agregaron nuevos productos!")
 
-    io.emit("newProducts", "¡Se agregaron nuevos productos!")
-    
-    socket.on("disconnect", () => {//Cada vez que el usuario se desconecte
+//     socket.on("disconnect", () => {//Cada vez que el usuario se desconecte
 
-        removeUser(socket.id) //No es un evento no estamos tomando nada del lado del cliente, solo elimina el usuario de el array cuando este se desconecte
-    })
-});
+//         removeUser(socket.id) //No es un evento no estamos tomando nada del lado del cliente, solo elimina el usuario de el array cuando este se desconecte
+//     })
+// });
 
-io.listen(5000); //Servidor socket en el puerto 5000
-
-
-
-
-
-
+// io.listen(5000); //Servidor socket en el puerto 5000
 
 /*
 import { Server } from "socket.io";

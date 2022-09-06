@@ -10,7 +10,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function useForm(initialForm, validateForm, socket) {
   const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
+  const userDetail = useSelector((state) => state.userDetail);
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
   const [oneProd, setOneProd] = useState(false);
@@ -47,6 +48,7 @@ export default function useForm(initialForm, validateForm, socket) {
   };
 
   const handleSubmit = (ev) => {
+    console.log(userDetail);
     ev.preventDefault();
     const errores = validateForm(
       form,
@@ -65,7 +67,7 @@ export default function useForm(initialForm, validateForm, socket) {
       return;
     }
 
-    if (user.ban) {
+    if (userDetail.ban) {
       Swal.fire({
         icon: "warning",
         title: "Baneado por boludo",
