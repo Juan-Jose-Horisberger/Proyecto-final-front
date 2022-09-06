@@ -43,7 +43,7 @@ export default function AllUsers() {
     <div className={styles.containerPrincipal}>
       <div className="col-12">
         <div
-          className={`d-flex border border-danger justify-content-between ${styles.container_searchbar}`}
+          className={`d-flex justify-content-between ${styles.container_searchbar}`}
         >
           <div className="ms-5 p-2 d-flex align-items-center">
             <h6 className="fs-1">GAED.JM</h6>
