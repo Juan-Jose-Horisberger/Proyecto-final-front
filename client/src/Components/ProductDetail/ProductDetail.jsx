@@ -119,6 +119,7 @@ export default function ProductDetail() {
           title: "Algo salio mal",
           background: "#111111",
           text: response.data.message,
+          confirmButtonColor: "#282626",
         });
       } else {
         Swal.fire({

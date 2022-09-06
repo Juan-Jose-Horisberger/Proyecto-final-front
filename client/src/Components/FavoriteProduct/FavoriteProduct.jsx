@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import {
   getFavoriteProduct,
   deleteFavProduct,
@@ -96,6 +97,7 @@ export default function FavoriteProduct() {
                     className={styles.btnCart}
                   >
                     Añadido al Carrito
+                    <img src={agregadoImage} className={styles.tilde} alt="" />
                   </button>
                 </div>
               ) : (

@@ -74,16 +74,16 @@ export default function SearchBar({ socket }) {
     return (
       <div key={noti.id} className={`${styles.container_NotificationsRender}`}>
         {/* {infoProductDefailt.length && ( */}
-        {/* <Link to={`/ProductDetail/${noti.id}`}> */}
-        <h5>Nuevo producto</h5>
-        <div>
-          <img src={noti.image} alt="img" className="img-fluid" />
-        </div>
-        <div>
-          <p>{noti.name}</p>
-          <p>$ {noti.price}</p>
-        </div>
-        {/* </Link> */}
+        <Link to={`/`}>
+          <h5>Nuevo producto</h5>
+          <div>
+            <img src={noti.image} alt="img" className="img-fluid" />
+          </div>
+          <div>
+            <p>{noti.name}</p>
+            <p>$ {noti.price}</p>
+          </div>
+        </Link>
         {/* )} */}
       </div>
     );
