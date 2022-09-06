@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./Pagination.module.css";
 import Product from "../Product/Product.jsx";
 import ReactPaginate from "react-paginate";
@@ -9,6 +9,7 @@ export default function Pagination({ allProducts, loaded }) {
   const [pageCount, setPageCount] = useState(0); //recuento de paginas
   const [itemOffset, setItemOffset] = useState(0); //Indice del primer elemento de la pagina actual (creo que deberia ser 1)
   const itemsPerPage = 9; //Elementos por pagina
+  const renderOnce = useRef(0);
   const allProductsSort = allProducts.sort(function (a, b) {
     if (a.id > b.id) {
       return 1;
@@ -22,7 +23,7 @@ export default function Pagination({ allProducts, loaded }) {
 
   //Mostrar flecha previos y next
   const [toShowPrevious, setToShowPrevious] = useState(false);
-  const [toShowNext, setToShowNext] = useState(true);
+  const [toShowNext, setToShowNext] = useState(false);
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage; //Indice del ultimo elemento de la pagina actual
@@ -34,18 +35,29 @@ export default function Pagination({ allProducts, loaded }) {
     //Esta funcion cambiamos el indice del primer elemento en la pagina actual
     const newOffset = (event.selected * itemsPerPage) % allProductsSort.length;
     setItemOffset(newOffset);
+
     pageCount - 1 === event.selected
       ? setToShowNext(false)
       : setToShowNext(true);
   };
 
   useEffect(() => {
+    const num = Math.ceil(allProductsSort.length / itemsPerPage);
+    num === 1 && setToShowNext(false);
+  }, [pageCount]);
+
+  useEffect(() => {
+    if (renderOnce.current === 0) {
+      setToShowNext(true);
+      renderOnce.current = renderOnce.current + 1;
+      return;
+    }
     itemOffset !== 0 ? setToShowPrevious(true) : setToShowPrevious(false);
     window.scrollTo({ behavior: "smooth", top: "0px" });
   }, [itemOffset]);
 
   return (
-    <div className={`${styles.container_Cards} col-12 col-lg-9`}>
+    <div className={`${styles.container_Cards} col-12 col-lg-9 mb-5`}>
       {loaded ? (
         <div className={`d-flex flex-wrap justify-content-sm-evenly`}>
           {currentItems.length ? (
@@ -56,6 +68,8 @@ export default function Pagination({ allProducts, loaded }) {
                 name={p.name}
                 price={p.price}
                 image={p.image}
+                offer={p.offer}
+                discount={p.discount}
               />
             ))
           ) : (

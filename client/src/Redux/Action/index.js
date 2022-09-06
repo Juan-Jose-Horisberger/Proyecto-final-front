@@ -8,8 +8,10 @@ export const GET_FAVORITE_PRODUCT = "GET_FAVORITE_PRODUCT";
 export const DELETE_FAV_PRODUCT = "DELETE_FAV_PRODUCT";
 export const GET_CART_PRODUCT = "GET_CART_PRODUCT";
 export const DELETE_CART_PRODUCT = "DELETE_CART_PRODUCT";
-export const BUY_PRODUCT = "BUY_PRODUCT";
+export const PRODUCT_TO_BUY = "BUY_PRODUCT";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
+export const EDIT_PRODUCT = "EDIT_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
 export const FILTER_BY_QUERY = "FILTER_BY_QUERY";
 export const SET_NOTIFICATIONS_TO_0 = "SET_NOTIFICATIONS_TO_0";
@@ -19,6 +21,8 @@ export const GET_USERS = "GET_USERS";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
 export const CREATE_USER = "CREATE_USER";
 export const SET_DETAIL_NOTIFICATIONS = "SET_DETAIL_NOTIFICATIONS";
+export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";
+export const GET_USER_DASHBOARD = "GET_USER_DASHBOARD";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -97,14 +101,17 @@ export const deleteCartProduct = (id) => {
 
 export const getProductToBuy = (id) => {
   if (id) {
-    return {
-      type: BUY_PRODUCT,
-      payload: id,
+    return async function (dispatch) {
+      let productToBuy = await axios.get(`/products/${id}`);
+      // console.log(productToBuy.data);
+      return dispatch({
+        type: PRODUCT_TO_BUY,
+        payload: productToBuy.data,
+      });
     };
   }
-
   return {
-    type: BUY_PRODUCT,
+    type: PRODUCT_TO_BUY,
   };
 };
 
@@ -114,6 +121,26 @@ export const createProduct = (payload) => {
     return dispatch({
       type: CREATE_PRODUCT,
       payload,
+    });
+  };
+};
+
+export const EditProduct = (id, data) => {
+  return async function (dispatch) {
+    let editedProduct = await axios.put(`/products/change/${id}`, data);
+    return dispatch({
+      type: EDIT_PRODUCT,
+      // payload: editedProduct,
+    });
+  };
+};
+
+export const deleteProduct = (id) => {
+  return async function (dispatch) {
+    let editedProduct = await axios.delete(`/products/delete/${id}`);
+    return dispatch({
+      type: DELETE_PRODUCT,
+      // payload: editedProduct,
     });
   };
 };
@@ -154,6 +181,11 @@ export function getUsers() {
     return dispatch({ type: GET_USERS, payload: allUsers.data });
   };
 }
+export function banUser(id) {
+  return async function call(dispatch) {
+    let allUsers = await axios.put(`/users/ban/${id}`);
+  };
+}
 
 export const getUserDetail = (email) => {
   return async function (dispatch) {
@@ -173,7 +205,7 @@ export const createUser = (payload) => {
 
   return async function (dispatch) {
     let NewUser = await axios.post(
-      `https://pf-back-franco.herokuapp.com/users/post`,
+      `https://proyecto-final-01.herokuapp.com/users/post`,
       // 'http://localhost:3001/users/post',
       user
     );
@@ -181,28 +213,22 @@ export const createUser = (payload) => {
   };
 };
 
-export const addReviewToProduct = async (review) => {
-  const reviewParse = {
-    email: review.email,
-    idProduct: review.idProduct,
-    number: parseInt(review.number),
-    comment: review.comment,
-  };
-
-  const response = await axios.put(
-    "https://proyecto-final-01.herokuapp.com/scores/",
-    review
-  );
-  if (!response.status !== 200) {
-    return alert("comentario agregado");
-  } else {
-    return alert("ya haz comentado este producto");
-  }
-};
-
 export const getDetailNotification = (payload) => {
   return {
     type: SET_DETAIL_NOTIFICATIONS,
+    payload,
+  };
+};
+
+export const updateUserDetail = (id, data) => {
+  return async function (dispatch) {
+    let updateUser = await axios.put(`/users/update/${id}`, data);
+  };
+};
+
+export const getUserNameInDashboard = (payload) => {
+  return {
+    type: GET_USER_DASHBOARD,
     payload,
   };
 };

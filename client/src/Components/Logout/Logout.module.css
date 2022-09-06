@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+/*font-family: 'Questrial', sans-serif;*/
+
+.button {
+  font-family: "Questrial", sans-serif;
+  width: 150px;
+  padding: 5px;
+}
+
+.button:hover {
+  background-color: transparent;
+}

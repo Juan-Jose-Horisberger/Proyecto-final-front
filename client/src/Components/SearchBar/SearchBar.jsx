@@ -2,29 +2,42 @@ import React from "react";
 import styles from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import Cookies from "universal-cookie";
 import {
   getProductByName,
   clearNotifications,
   getDetailNotification,
+  getUserDetail,
 } from "../../Redux/Action";
 import { Link } from "react-router-dom";
 import CartIcon from "../../Imagenes/cart.svg";
+import Campanita from "../../Imagenes/campanita.svg";
 import FavoritesIcon from "../../Imagenes/favorites.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
+import { GiMagnifyingGlass } from "react-icons/gi";
+// import { HiMagnifyingGlassPlus } from "react-icons/hi2";
 
 export default function SearchBar({ socket }) {
   const dispatch = useDispatch();
   const [productName, setProductName] = useState("");
-  const { loginWithRedirect } = useAuth0();
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [errorsExist, setErrorsExist] = useState(false);
+  var cookies = new Cookies();
+  const noti = cookies.get("noti");
   const infoProductDefailt = useSelector(
     (state) => state.productsNotifications
   );
   const [getDetails, setGetDetails] = useState(false);
   const [getName, setGetName] = useState("");
   var infoNotifications = useSelector((state) => state.newNotification);
+  const userDetail = useSelector((state) => state.userDetail);
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      dispatch(getUserDetail(user.email));
+    }
+  }, [user]);
 
   function handleOnClick() {
     productName
@@ -54,26 +67,26 @@ export default function SearchBar({ socket }) {
     }
   };
 
-  const displayNotificationProducts = (p, i) => {
+  const displayNotificationProducts = (noti) => {
     if (!getName) {
-      setGetName(p.name);
+      setGetName(noti.name);
     }
     // setGetDetails(true);
     console.log(infoProductDefailt.length);
     return (
-      <div key={i} className={`${styles.container_NotificationsRender}`}>
-        {infoProductDefailt.length && (
-          <Link to={`/ProductDetail/${infoProductDefailt[0].id}`}>
-            <h5>Nuevo producto</h5>
-            <div>
-              <img src={p.image} alt="img" className="img-fluid" />
-            </div>
-            <div>
-              <p>{p.name}</p>
-              <p>$ {p.price}</p>
-            </div>
-          </Link>
-        )}
+      <div key={noti.id} className={`${styles.container_NotificationsRender}`}>
+        {/* {infoProductDefailt.length && ( */}
+        <Link to={`/`}>
+          <h5>Nuevo producto</h5>
+          <div>
+            <img src={noti.image} alt="img" className="img-fluid" />
+          </div>
+          <div>
+            <p>{noti.name}</p>
+            <p>$ {noti.price}</p>
+          </div>
+        </Link>
+        {/* )} */}
       </div>
     );
   };
@@ -95,7 +108,7 @@ export default function SearchBar({ socket }) {
           className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}
         >
           <div className="container-fluid d-flex flex-wrap">
-            <Link to="/" className="navbar-brand d-flex col-2 me-0">
+            <Link to="/LandingPage" className="navbar-brand d-flex col-2 me-0">
               <h1 className="mb-0">GAED.JM</h1>
             </Link>
             <button
@@ -140,7 +153,7 @@ export default function SearchBar({ socket }) {
                     </p>
                   </Link>
                   <Link
-                    to="/Contact"
+                    to="/About"
                     className="nav-item mx-3 mx-lg-2"
                     style={{ textDecoration: "none" }}
                   >
@@ -187,11 +200,7 @@ export default function SearchBar({ socket }) {
                     id="search-addon"
                   >
                     <i onClick={handleOnClick} className={`p-0`}>
-                      <img
-                        src="https://www.svgrepo.com/show/44820/magnifying-glass.svg"
-                        width="27px"
-                        alt=""
-                      />
+                      <GiMagnifyingGlass size="27px" color="grey" />
                     </i>
                   </span>
                 </div>
@@ -237,7 +246,7 @@ export default function SearchBar({ socket }) {
                         style={{ cursor: "pointer" }}
                       />
                     ) : (
-                      <Link to="/profile">
+                      <Link to={userDetail.admin ? "/Dashboard" : "/Profile"}>
                         <img
                           src={user.picture}
                           alt={user.name}
@@ -247,17 +256,6 @@ export default function SearchBar({ socket }) {
                       </Link>
                     )}
                   </div>
-
-                  <Link
-                    to="/CreateProduct"
-                    className="nav-item mx-3 mx-lg-2"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <img
-                      src="https://www.svgrepo.com/show/422474/cloud-computing-data-2.svg"
-                      alt=""
-                    />
-                  </Link>
 
                   <div
                     className={`${styles.container_notification} `}
@@ -272,11 +270,7 @@ export default function SearchBar({ socket }) {
                       data-bs-toggle="offcanvas"
                       data-bs-target="#offcanvasRight"
                     >
-                      <img
-                        src="https://www.svgrepo.com/show/281772/alarm-bell.svg"
-                        style={{ width: "27px" }}
-                        alt=""
-                      />
+                      <img src={Campanita} style={{ width: "24px" }} alt="" />
                       {infoNotifications.counter > 0 && (
                         <div>{infoNotifications.counter}</div>
                       )}
@@ -297,16 +291,13 @@ export default function SearchBar({ socket }) {
                       ></button>
                     </div>
                     <div className={`offcanvas-body`}>
-                      {infoNotifications.newProducts.length ? (
-                        infoNotifications.newProducts.map((p, i) =>
-                          displayNotificationProducts(p, i)
-                        )
+                      {noti ? (
+                        displayNotificationProducts(noti)
                       ) : (
                         <p className="fs-4 text-center">
                           No hay notificaciones
                         </p>
                       )}
-                      {/* {console.log(infoNotifications.newProducts)} */}
                     </div>
                   </div>
                 </div>

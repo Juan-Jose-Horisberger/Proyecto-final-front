@@ -4,7 +4,8 @@ import { validate } from "./validate.js";
 import SearchBar from "../SearchBar/SearchBar";
 import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
-require("dotenv").config();
+import Footer from "../Footer/Footer";
+// require("dotenv").config();
 
 export default function Contact() {
   const form = useRef();
@@ -457,6 +458,8 @@ export default function Contact() {
           </form>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

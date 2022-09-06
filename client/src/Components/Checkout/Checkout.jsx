@@ -6,22 +6,25 @@ import style from "./Checkout.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm.js";
 import Cookies from "universal-cookie";
-import { sendInformation } from "../../Redux/Action/index.js";
+import { getUserDetail, sendInformation } from "../../Redux/Action/index.js";
+import BuyProducts from "./MercadoLibreCheck.jsx";
 
 var cookies = new Cookies();
 const initialForm = {
-  name: cookies.get("name"),
-  surname: cookies.get("surname"),
+  nameCompra: cookies.get("nameCompra"),
+  surnameCompra: cookies.get("surnameCompra"),
   companyName: cookies.get("companyName"),
-  country: cookies.get("country"),
+  ageCompra: cookies.get("ageCompra"),
+  country: "Argentina",
   streetAddress: cookies.get("streetAddress"),
   apartment: cookies.get("apartment"),
   province: cookies.get("province"),
   codePostal: cookies.get("codePostal"),
   phoneNumber: cookies.get("phoneNumber"),
-  email: cookies.get("email"),
+  emailCompra: cookies.get("emailCompra"),
   extraNotes: cookies.get("extraNotes"),
   price: cookies.get("price"),
+  cupon: "",
 };
 
 const validateForm = (form, nameInput) => {
@@ -30,19 +33,25 @@ const validateForm = (form, nameInput) => {
   let regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
   let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
-  if (nameInput.includes("name")) {
-    if (!form.name) {
+  if (nameInput.includes("nameCompra")) {
+    if (!form.nameCompra) {
       errors.name = "Debes colocar tu nombre";
-    } else if (!regexName.test(form.name)) {
+    } else if (!regexName.test(form.nameCompra)) {
       errors.name = "Tu nombre solo debe contener letras y espacios.";
     }
   }
 
-  if (nameInput.includes("surname")) {
-    if (!form.surname) {
+  if (nameInput.includes("surnameCompra")) {
+    if (!form.surnameCompra) {
       errors.surname = "Debes colocar tu apellido";
-    } else if (!regexName.test(form.surname)) {
+    } else if (!regexName.test(form.surnameCompra)) {
       errors.surname = "Tu apellido solo debe contener letras y espacios.";
+    }
+  }
+
+  if (nameInput.includes("ageCompra")) {
+    if (!form.ageCompra) {
+      errors.age = "Debes colocar tu edad";
     }
   }
 
@@ -75,10 +84,10 @@ const validateForm = (form, nameInput) => {
     }
   }
 
-  if (nameInput.includes("email")) {
-    if (!form.email) {
+  if (nameInput.includes("emailCompra")) {
+    if (!form.emailCompra) {
       errors.email = "Debes colocar un email valido";
-    } else if (!regexEmail.test(form.email)) {
+    } else if (!regexEmail.test(form.emailCompra)) {
       errors.email = "El email no es valido";
     }
   }
@@ -113,33 +122,46 @@ export default function Checkout({ socket }) {
     "Tierra del Fuego",
     "Tucumán",
   ];
-  const { form, errors, handleOnChange, handleSubmit, handleRemoveCookies } =
-    useForm(initialForm, validateForm, socket);
-  const { loginWithRedirect } = useAuth0();
+  const { user, loginWithRedirect, isAuthenticated } = useAuth0();
   var cuki = cookies.getAll();
-  var productIndividual = useSelector((state) => state.productsToBuy);
   var productsToBuy = Object.entries(cuki);
   var subTotal = 0;
   const dispatch = useDispatch();
   const infoNotifications = useSelector((state) => state.newNotification);
+  const {
+    form,
+    errors,
+    handleOnChange,
+    handleSubmit,
+    handleRemoveCookies,
+    handleCupon,
+    cupon,
+    oneProd,
+    pagar,
+    setPagar,
+    envio,
+  } = useForm(initialForm, validateForm, socket);
+
+  // useEffect(() => {
+  //   //Esto iria en searchbar
+  //   // console.log(infoNotifications.newProducts.length)
+
+  //   socket?.on("getNotification", function (data) {
+  //     dispatch(sendInformation(data));
+  //   });
+  // }, [socket]);
 
   useEffect(() => {
-    //Esto iria en searchbar
-    // console.log(infoNotifications.newProducts.length)
-
-    socket?.on("getNotification", function (data) {
-      dispatch(sendInformation(data));
-    });
-  }, [socket]);
+    isAuthenticated && dispatch(getUserDetail(user.email));
+  }, []);
 
   return (
     <div className={style.containerPrincipal}>
-      {/* <SearchBar /> */}
-
       <div className={style.divCheckout}>
         <h2>Checkout</h2>
         <p>
-          <Link to="/">Inicio</Link>/Checkout
+          <Link to="/">Inicio</Link>
+          <Link to="/Cart">/Carrito</Link>/Checkout
         </p>
       </div>
 
@@ -147,13 +169,58 @@ export default function Checkout({ socket }) {
         <div className={style.divRegisterCupon}>
           <p>
             ¿No tienes una cuenta?
-            <button onClick={() => loginWithRedirect()}>REGISTRATE</button>
+            <button className={style.btnRe} onClick={() => loginWithRedirect()}>
+              REGISTRATE
+            </button>
           </p>
         </div>
 
         <div className={style.divRegisterCupon}>
+          <div
+            className="modal"
+            id="exampleModal"
+            tabIndex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                <div className={style.divPopOut}>
+                  <div className="modal-body">
+                    <input
+                      type="text"
+                      id="inputCupon"
+                      className={style.inputPopOut}
+                      onChange={handleOnChange}
+                      name="cupon"
+                      value={form.cupon}
+                    />
+                  </div>
+                  <div className={`${style.footerPopOut} modal-footer`}>
+                    <button
+                      onClick={(e) =>
+                        handleCupon(document.getElementById("inputCupon"))
+                      }
+                      className={style.btnPopOut}
+                      data-bs-dismiss="modal"
+                    >
+                      Ingresar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <p>
-            ¿Tienes un cupón?<button>INGRESA TU CODIGO</button>
+            ¿Tienes un cupón?
+            <button
+              className={style.btnRe}
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              INGRESA TU CODIGO
+            </button>
           </p>
         </div>
 
@@ -164,24 +231,39 @@ export default function Checkout({ socket }) {
         <div className={style.containerForm}>
           <p>Nombre y apellido</p>
           <div className={style.divNombreApellido}>
-            <input
-              type="text"
-              placeholder="Nombre"
-              name="name"
-              onChange={handleOnChange}
-              value={cookies.get("name")}
-            />
+            <div className={style.divNombre}>
+              <input
+                type="text"
+                placeholder="Nombre"
+                name="nameCompra"
+                onChange={handleOnChange}
+                value={form.nameCompra}
+              />
+              {errors.name && <p className={style.error}>{errors.name}</p>}
+            </div>
+            <div className={style.divApellido}>
+              <input
+                type="text"
+                placeholder="Apellido"
+                name="surnameCompra"
+                onChange={handleOnChange}
+                value={form.surnameCompra}
+              />
+              {errors.surname && (
+                <p className={style.error}>{errors.surname}</p>
+              )}
+            </div>
+          </div>
 
+          <p>Fecha de nacimiento</p>
+          <div className={style.divEdad}>
             <input
-              type="text"
-              placeholder="Apellido"
-              name="surname"
+              type="date"
+              name="ageCompra"
               onChange={handleOnChange}
-              value={cookies.get("surname")}
+              value={form.ageCompra}
             />
-
-            {errors.name && <p className={style.error}>{errors.name}</p>}
-            {errors.surname && <p className={style.error}>{errors.surname}</p>}
+            {errors.age && <p className={style.error}> {errors.age} </p>}
           </div>
 
           <p>Nombre de la empresa (opcional)</p>
@@ -190,7 +272,7 @@ export default function Checkout({ socket }) {
               type="text"
               name="companyName"
               onChange={handleOnChange}
-              value={cookies.get("companyName")}
+              value={form.companyName}
             />
           </div>
 
@@ -206,7 +288,7 @@ export default function Checkout({ socket }) {
               placeholder="Nombre de la calle y direccion de la casa"
               name="streetAddress"
               onChange={handleOnChange}
-              value={cookies.get("streetAddress")}
+              value={form.streetAddress}
             />
 
             {errors.streetAddress && (
@@ -219,7 +301,7 @@ export default function Checkout({ socket }) {
               placeholder="Apartamento, piso, habitacion, etc (opcional)"
               name="apartment"
               onChange={handleOnChange}
-              value={cookies.get("apartment")}
+              value={form.apartment}
             />
           </div>
 
@@ -229,11 +311,8 @@ export default function Checkout({ socket }) {
               name="province"
               id="my_select"
               onChange={handleOnChange}
-              value={cookies.get("province")}
+              value={form.province}
             >
-              <option style={{ display: "none" }}>
-                Selecciona tu Region / Provincia
-              </option>
               {provincias.length &&
                 provincias.map((e) => {
                   return (
@@ -252,7 +331,7 @@ export default function Checkout({ socket }) {
               placeholder="Codigo Postal..."
               name="codePostal"
               onChange={handleOnChange}
-              value={cookies.get("codePostal")}
+              value={form.codePostal}
             />
 
             {errors.codePostal && (
@@ -267,7 +346,7 @@ export default function Checkout({ socket }) {
               placeholder="Teléfono..."
               name="phoneNumber"
               onChange={handleOnChange}
-              value={cookies.get("phoneNumber")}
+              value={form.phoneNumber}
             />
 
             {errors.phoneNumber && (
@@ -280,9 +359,9 @@ export default function Checkout({ socket }) {
             <input
               type="email"
               placeholder="Direccion de correo electrónico..."
-              name="email"
+              name="emailCompra"
               onChange={handleOnChange}
-              value={cookies.get("email")}
+              value={form.emailCompra}
             />
 
             {errors.email && <p className={style.error}>{errors.email}</p>}
@@ -295,7 +374,7 @@ export default function Checkout({ socket }) {
               placeholder="Notas sobre tu pedido que puedan facilitar la entrega, etc."
               name="extraNotes"
               onChange={handleOnChange}
-              value={cookies.get("extraNotes")}
+              value={form.extraNotes}
             />
           </div>
         </div>
@@ -305,56 +384,51 @@ export default function Checkout({ socket }) {
         </div>
 
         <div className={style.containerPedido}>
-          {console.log(productIndividual)}
-          {productIndividual
-            ? productIndividual.map((e) => {
-                return e.id ? (
-                  <div key={e.id} className={style.divProduct}>
-                    <img src={e.image} alt="" />
-                    <p>{e.name}</p>
-                    <p>${e.price}</p>
-                  </div>
-                ) : (
-                  true
-                );
-              })
-            : productsToBuy.map((e) => {
-                return e[1].id ? (
-                  <div key={e[1].id} className={style.divProduct}>
-                    <img src={e[1].image} alt="" />
-                    <p>{e[1].name}</p>
-                    <p>${e[1].price}</p>
-                  </div>
-                ) : (
-                  true
-                );
-              })}
+          {productsToBuy.map((e) => {
+            return e[1].id ? (
+              <div key={e[1].id} className={style.divProduct}>
+                <img src={e[1].image} alt="" />
+                <p>{e[1].name}</p>
+                <p>${e[1].price}</p>
+              </div>
+            ) : (
+              true
+            );
+          })}
 
           <p className={style.cuentita}>
-            {productsToBuy.map((e) => (subTotal = subTotal + e[1].price))}
+            {productsToBuy.map((e) =>
+              e[1].id
+                ? (subTotal = subTotal + e[1].price)
+                : (subTotal = subTotal)
+            )}
           </p>
           <div className={style.divTotal}>
             <p>SUBTOTAL</p>
-            <p>${subTotal}</p>
+            <p>${(subTotal + "").slice(0, 6)}</p>
           </div>
 
           <div className={style.divTotal}>
             <p>ENVIO</p>
-            <p>CABA $500</p>
+            <p>${envio[0]}</p>
+          </div>
+
+          <div className={style.divTotal}>
+            <p>DESCUENTO</p>
+            <p>${cupon[0]}</p>
           </div>
 
           <div className={style.divTotal}>
             <p>TOTAL</p>
-            <p>${subTotal + 0.5}</p>
+            <p>${(subTotal - cupon[1] + envio[1] + "").slice(0, 6)}</p>
           </div>
 
-          <div className={style.divBtn}>
-            <button
-              onClick={() => handleRemoveCookies(productsToBuy)}
-              type="submit"
-            >
-              REALIZAR EL PEDIDO
-            </button>
+          <div id="page-content" className={style.divBtn}>
+            {pagar ? (
+              <BuyProducts data={productsToBuy} />
+            ) : (
+              <button onClick={handleSubmit}>Confirmar Pedido</button>
+            )}
           </div>
         </div>
       </form>

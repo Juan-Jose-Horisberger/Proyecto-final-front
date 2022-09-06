@@ -4,11 +4,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetail } from "../../Redux/Action";
 import Login from "../Login/Login.jsx";
 import Logout from "../Logout/Logout.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
 
 export default function Profile() {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const navigate = useNavigate();
+  /* navigate('/home') */
 
   const dispatch = useDispatch();
   const userDetail = useSelector((state) => state.userDetail);
@@ -27,10 +29,14 @@ export default function Profile() {
     return <div>Loading...</div>;
   } else if (!isAuthenticated) {
     return <Login />;
+  } else if (userDetail.admin === true) {
+    navigate("/Dashboard");
+    window.location.reload();
   } else {
     return (
       isAuthenticated && (
         <div className={styles.container}>
+          {/* <Logout /> */}
           <div className={styles.container_Info}>
             <p>
               <Link to="/">Inicio</Link>/Mi Perfil
@@ -38,7 +44,7 @@ export default function Profile() {
             <h3>Mi Perfil</h3>
             <div>
               <img
-                src={user.img}
+                src={userDetail.img}
                 onError={handleOnError}
                 // alt={user.name}
               />
@@ -46,11 +52,19 @@ export default function Profile() {
             <div>
               <h2>{userDetail.name}</h2>
             </div>
-            <h6>{userDetail.username}</h6>
+            <h6>Nombre de Usuario: {userDetail.username}</h6>
             <h6>Email: {user.email}</h6>
-            <div>
-              <Logout />
-            </div>
+            <Link to="/Register">
+              <img
+                src="https://www.svgrepo.com/show/421823/user-people-man.svg"
+                alt="img-icon"
+                style={{ cursor: "pointer" }}
+              />
+              <h4>Mis Datos</h4>
+              <h6>Gestiona tus datos personales</h6>
+            </Link>
+
+            <Logout />
           </div>
         </div>
       )

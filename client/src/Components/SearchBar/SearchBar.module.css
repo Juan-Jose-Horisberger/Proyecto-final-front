@@ -3,7 +3,8 @@
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
+  overflow-y: scroll !important;
 }
 
 .container {
@@ -109,6 +110,14 @@ button {
 }
 
 .container_showNotifications {
+  /* z-index: 1000000000 !important; */
+  width: 40%;
+  background-color: black;
+  color: white;
+}
+
+.container_showNotificationsDashboard {
+  z-index: 1000000000 !important;
   width: 40%;
   background-color: black;
   color: white;
@@ -132,6 +141,7 @@ button {
   left: 0;
   transform: translateX(-200%);
   transition: transform 0.4s, opacity 0.5s ease-out;
+  z-index: 999;
 }
 
 .container_Alert.open {
@@ -139,9 +149,10 @@ button {
 }
 
 .container_NotificationsRender {
+  padding-bottom: 7px;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid #2e3235;
+  border-bottom: 1px solid azure;
 }
 
 .container_NotificationsRender:hover {
@@ -179,4 +190,8 @@ button {
 
 .container_NotificationsRender p:nth-child(1) {
   margin: 0;
+}
+
+.imgProfile {
+  border-radius: 20px;
 }

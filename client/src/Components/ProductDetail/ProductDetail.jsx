@@ -1,23 +1,40 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import axios from "axios";
 import {
   getProductDetail,
   filterByQuery,
   getCartProduct,
   deleteCartProduct,
   addReviewToProduct,
+  getUserDetail,
 } from "../../Redux/Action/index.js";
-import SearchBar from "../SearchBar/SearchBar";
+import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
 import stylesComponents from "./stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { TbTrashX } from "react-icons/tb";
+import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
+import {
+  BsShieldCheck,
+  BsCheckCircle,
+  BsFillTelephoneFill,
+  BsArrowUp,
+} from "react-icons/bs";
+import { GiPadlock } from "react-icons/gi";
+import { RiArrowRightSLine } from "react-icons/ri";
+import { AiOutlineInstagram } from "react-icons/ai";
+import BuyProduct from "./MercadoLibre.jsx";
+import Footer from "../Footer/Footer";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const { id } = useParams();
   const dispatch = useDispatch();
   const productDetail = useSelector((state) => state.productDetail);
@@ -26,7 +43,15 @@ export default function ProductDetail() {
   const cookies = new Cookies();
   const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const grandTotalRef = useRef("");
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      dispatch(getUserDetail(user.email));
+    }
+  }, [user]);
+
+  const userDetail = useSelector((state) => state.userDetail);
 
   useEffect(() => {
     dispatch(getProductDetail(id)).then((res) => res && setLoaded(true));
@@ -38,6 +63,7 @@ export default function ProductDetail() {
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
+    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
@@ -62,12 +88,91 @@ export default function ProductDetail() {
     e.preventDefault();
     setReview({
       ...review,
+      email: userDetail.email,
       idProduct: productDetail.id,
       [e.target.name]: e.target.value,
     });
   };
-  const addReview = () => {
-    dispatch(addReviewToProduct(review));
+  const addReview = async () => {
+    if (isAuthenticated && !isLoading) {
+      if (review.comment.length <= 5) {
+        return Swal.fire({
+          title: "Debes ingresar un comentario mas largo",
+          icon: "warning",
+          background: "#111111",
+          confirmButtonColor: "#282626",
+          confirmButtonText: "Continuar",
+        });
+      }
+      const reviewParse = {
+        email: review.email,
+        idProduct: review.idProduct,
+        number: parseInt(review.number),
+        comment: review.comment,
+      };
+      const response = await axios.post(
+        "https://proyecto-final-01.herokuapp.com/reviews/create",
+        reviewParse
+      );
+      if (response.data.message) {
+        Swal.fire({
+          icon: "error",
+          title: "Algo salio mal",
+          background: "#111111",
+          text: response.data.message,
+          confirmButtonColor: "#282626",
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          background: "#111111",
+          icon: "success",
+          title: "Muchas gracias por comentar!",
+          text: response.data,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        dispatch(getProductDetail(reviewParse.idProduct));
+        cookies.set(user.email, reviewParse);
+        cookies.set(reviewParse.idProduct, reviewParse);
+      }
+    } else {
+      return Swal.fire({
+        title: "Debes estar registrado para comentar!",
+        icon: "warning",
+        background: "#111111",
+        confirmButtonColor: "#282626",
+        confirmButtonText: "Continuar",
+      });
+    }
+  };
+
+  const DeleteComment = async (id, productId) => {
+    Swal.fire({
+      title: "Estás seguro?",
+      text: "Si borras el comentario se perderá para siempre!",
+      icon: "warning",
+      showCancelButton: true,
+      background: "#111111",
+      confirmButtonColor: "#B91A1A",
+      cancelButtonColor: "#282626",
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await axios.delete(
+          "https://proyecto-final-01.herokuapp.com/reviews/delete/" + id
+        );
+        dispatch(getProductDetail(productId));
+        Swal.fire({
+          icon: "success",
+          title: "Comentario eliminado",
+          background: "#111111",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
   };
 
   const handleOnCart = () => {
@@ -89,9 +194,87 @@ export default function ProductDetail() {
     return false;
   };
 
+  const priceWithDiscount = (price, discount) => {
+    let discountNumber;
+    if (discount) {
+      if (discount === "10%") {
+        discountNumber = 0.1;
+      } else if (discount === "20%") {
+        discountNumber = 0.2;
+      } else if (discount === "30%") {
+        discountNumber = 0.3;
+      } else if (discount === "40%") {
+        discountNumber = 0.4;
+      } else {
+        discountNumber = 0.5;
+      }
+    }
+    const discountLogic = price * discountNumber; //Calculamos descuento
+    // console.log(discountNumber);
+
+    const grandTotal = price - discountLogic; //El total con descuento.
+    grandTotalRef.current = grandTotal;
+    return (
+      <div className={`${styles.container_price}`}>
+        <p>${productDetail.price}</p>
+        <h2>${grandTotal}</h2>
+      </div>
+    );
+  };
+
+  const handleInfo = (value) => {
+    if (value === "cuotas") {
+      Swal.fire({
+        showConfirmButton: false,
+        showCloseButton: true,
+        imageUrl: "https://i.ibb.co/Yj89rCZ/MP.png",
+        background: "#111111",
+        allowOutsideClick: false,
+        allowEnterKey: false,
+        allowEscapeKey: false,
+      });
+    } else if (value === "sucursales") {
+      Swal.fire({
+        showConfirmButton: false,
+        showCloseButton: true,
+        width: "90%",
+        height: "90%",
+        html: `<iframe
+						src="https://www.google.com/maps/d/u/0/embed?mid=1bfViWcnhJT6Per1ePvfgeWT5oExoC4U&ehbc=2E312F"
+						width="90%"
+						height="450"
+					></iframe>`,
+        background: "#111111",
+        allowOutsideClick: false,
+        allowEnterKey: false,
+        allowEscapeKey: false,
+      });
+    } else if (value === "envios") {
+      Swal.fire({
+        showConfirmButton: false,
+        showCloseButton: true,
+        html:
+          `<img src="https://i.ibb.co/rsDHGDg/nike2.gif" />` +
+          `<h2 style="color: #b8b8b8;">ENVIOS A TODO EL PAIS</h2>` +
+          `<b style="color: #982334;">
+						Si vives en Buenos Aires su pedido se entregará en los próximos 4
+						días hábiles después de la compra. Sino tendrá una demora de hasta 7
+						días.
+					</b>`,
+        background: "#000",
+        allowOutsideClick: false,
+        allowEnterKey: false,
+        allowEscapeKey: false,
+      });
+    }
+  };
+
   return (
     <div className={styles.container}>
       {/* <SearchBar /> */}
+      {/* ///////////////           user={userDetail}         COMPRAR PRODUCTO PRUEBA XD /////////////////////////// */}
+      {/* <BuyProduct /> */}
+      {/* ///////////////// */}
       {loaded ? (
         <div>
           <div className={styles.overallContainer}>
@@ -110,21 +293,34 @@ export default function ProductDetail() {
                 </Link>
                 <span className={`${styles.span_3}`}>{productDetail.name}</span>
               </h1>
-              <div>
+              <div className={`${styles.container_Img}`}>
                 <img
                   src={productDetail.image}
                   alt="imagen"
                   className="img-fluid"
                 />
+                {productDetail.offer && <p>-{productDetail.discount}</p>}
               </div>
             </div>
+
             <div className={styles.container_2}>
               {/* <img src="" alt="" />img de marca */}
               <h1>{productDetail.name}</h1>
-              <h2>$ {productDetail.price}</h2>
+              {productDetail.offer ? (
+                priceWithDiscount(productDetail.price, productDetail.discount)
+              ) : (
+                <div>
+                  <h2 className="mb-3" style={{ color: "white" }}>
+                    ${productDetail.price}
+                  </h2>
+                </div>
+              )}
+
               <p>
                 3 Cuotas sin interés de{" "}
-                {(productDetail.price / 3 + "").slice(0, 5)}
+                {productDetail.offer
+                  ? (grandTotalRef.current / 3 + "").slice(0, 5)
+                  : (productDetail.price / 3 + "").slice(0, 5)}
               </p>
               <div className={`${styles.size_Container}`}>
                 <h3>SELECCIONE TALLE: </h3>
@@ -138,7 +334,10 @@ export default function ProductDetail() {
 
               {validateCart(id) ? (
                 <div className={`${styles.container_button}`}>
-                  <button onClick={handleOnCart}>AGREGADO AL CARRITO</button>
+                  <button onClick={handleOnCart}>
+                    AGREGADO AL CARRITO
+                    <img src={agregadoImage} className={styles.tilde} alt="" />
+                  </button>
                 </div>
               ) : (
                 <div className={`${styles.container_button}`}>
@@ -147,47 +346,53 @@ export default function ProductDetail() {
               )}
 
               <div>
-                <div>
-                  <div className={`${styles.container_img1}`}>
-                    <img
-                      src="https://www.svgrepo.com/show/20854/credit-card.svg"
-                      width="27px"
-                      alt=""
-                    />
-                    <p>
-                      3 Cuotas sin interés <Link to="">ver más</Link>
-                    </p>
-                  </div>
-                  <div className={`${styles.container_img1}`}>
-                    <img
-                      src="https://www.svgrepo.com/show/9771/box.svg"
-                      width="27px"
-                      alt=""
-                    />
-                    <p>
-                      Cambios grátis en sucursales <Link to="">ver más</Link>
-                    </p>
-                  </div>
-                  <div className={`${styles.container_img1}`}>
-                    <img
-                      src="https://www.svgrepo.com/show/275832/handbag.svg"
-                      width="27px"
-                      alt=""
-                    />
-                    <p>
-                      Retire express en tiendas <Link to="">ver más</Link>
-                    </p>
-                  </div>
-                  <div className={`${styles.container_img1}`}>
-                    <img
-                      src="https://www.svgrepo.com/show/6989/truck.svg"
-                      width="27px"
-                      alt=""
-                    />
-                    <p>
-                      Envíos <Link to="">ver más</Link>
-                    </p>
-                  </div>
+                <div className={`${styles.container_img1}`}>
+                  <img
+                    src="https://www.svgrepo.com/show/20854/credit-card.svg"
+                    width="27px"
+                    alt=""
+                  />
+                  <p>
+                    Tarjetas de Crédito y Débito{" "}
+                    <button
+                      name="cuotas"
+                      onClick={(e) => handleInfo(e.target.name)}
+                    >
+                      Ver más...
+                    </button>
+                  </p>
+                </div>
+                <div className={`${styles.container_img1}`}>
+                  <img
+                    src="https://www.svgrepo.com/show/9771/box.svg"
+                    width="27px"
+                    alt=""
+                  />
+                  <p>
+                    Cambios grátis en sucursales{" "}
+                    <button
+                      name="sucursales"
+                      onClick={(e) => handleInfo(e.target.name)}
+                    >
+                      Ver más...
+                    </button>
+                  </p>
+                </div>
+                <div className={`${styles.container_img1}`}>
+                  <img
+                    src="https://www.svgrepo.com/show/6989/truck.svg"
+                    width="27px"
+                    alt=""
+                  />
+                  <p>
+                    Envíos{" "}
+                    <button
+                      name="envios"
+                      onClick={(e) => handleInfo(e.target.name)}
+                    >
+                      Ver más...
+                    </button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -230,25 +435,138 @@ export default function ProductDetail() {
                 {products.map((p, i) => {
                   return (
                     <div key={i} className={`${styles.carts}`}>
-                      <img
-                        onClick={() => handleOnClick(p.id)}
-                        src={p.image}
-                        alt="img"
-                        width="300px"
-                        className="img-fluid"
-                      />
-                      <p>{p.name}</p>
-                      <p>$ {p.price}</p>
-                      <p>
-                        <b>3</b> Cuotas sin interés de{" "}
-                        <b>${(p.price / 3 + "").slice(0, 5)}</b>
-                      </p>
+                      <Link to={`/ProductDetail/${p.id}`}>
+                        <img
+                          onClick={() => handleOnClick(p.id)}
+                          src={p.image}
+                          alt="img"
+                          width="300px"
+                          className="img-fluid"
+                        />
+                        <p>{p.name}</p>
+                        <p>$ {p.price}</p>
+                        <p>
+                          <b>3</b> Cuotas sin interés de{" "}
+                          <b>${(p.price / 3 + "").slice(0, 5)}</b>
+                        </p>
+                      </Link>
                     </div>
                   );
                 })}
               </Carousel>
             </div>
+            <div className={styles.divComments}>
+              <input
+                className={styles.commentsScore}
+                name="number"
+                type="number"
+                placeholder="⭐ score "
+                onChange={(e) => onChangeReview(e)}
+              />
+              <textarea
+                className={styles.commentsText}
+                name="comment"
+                type="text"
+                placeholder="Dejanos un comentario junto a tu puntuacion del producto"
+                onChange={(e) => onChangeReview(e)}
+              ></textarea>
+              <button
+                className={styles.commentsBtn}
+                onClick={() => addReview()}
+              >
+                Comentar
+              </button>
+
+              <div className={styles.comments}>
+                {userDetail && userDetail.admin === true
+                  ? productDetail.reviews &&
+                    productDetail.reviews.map((e) => {
+                      let index = productDetail.opinion
+                        .map((e) => e.comment)
+                        .indexOf(e.data[0].comment);
+
+                      return (
+                        <div key={e.id} className={styles.divComment}>
+                          <div className={styles.divImg}>
+                            <img
+                              className={styles.imgUser}
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                              alt="not found"
+                            />
+                            <p>
+                              Usuario: {productDetail.opinion[index].username}
+                            </p>
+                            <div className={styles.divBtnDeleteComment}>
+                              <button
+                                onClick={() => DeleteComment(e.id, e.productId)}
+                                className={styles.btnDeleteComment}
+                              >
+                                <TbTrashX size="30px" color="#8F8F8F" />
+                              </button>
+                            </div>
+                          </div>
+                          <p className={styles.h1comment}>
+                            Puntuacion: {productDetail.opinion[index].number}
+                          </p>
+                          <div>
+                            <p className={styles.divCommentUser}>
+                              {productDetail.opinion[index].comment}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })
+                  : productDetail.reviews &&
+                    productDetail.reviews.map((e) => {
+                      let index = productDetail.opinion
+                        .map((e) => e.comment)
+                        .indexOf(e.data[0].comment);
+
+                      return (
+                        <div key={e.id} className={styles.divComment}>
+                          <div className={styles.divImg}>
+                            <img
+                              className={styles.imgUser}
+                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtgHA0ssBCQvOPwPj8afbl6XkiZ2NM_miC3g&usqp=CAU"
+                              alt="not found"
+                            />
+                            <p>
+                              Usuario: {productDetail.opinion[index].username}:
+                            </p>
+                            <div className={styles.divBtnDeleteComment}>
+                              {isAuthenticated &&
+                              userDetail &&
+                              productDetail.opinion[index].email ==
+                                userDetail.email ? (
+                                <button
+                                  onClick={() =>
+                                    DeleteComment(e.id, e.productId)
+                                  }
+                                  className={styles.btnDeleteComment}
+                                >
+                                  <TbTrashX size="30px" />
+                                </button>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                          </div>
+                          <p>
+                            Puntuacion: {productDetail.opinion[index].number}:
+                          </p>
+                          <div>
+                            <p className={styles.divCommentUser}>
+                              {productDetail.opinion[index].comment}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+              </div>
+            </div>
           </div>
+
+          <Footer />
         </div>
       ) : (
         <div
@@ -264,26 +582,6 @@ export default function ProductDetail() {
           </div>
         </div>
       )}
-
-      <div className={styles.divComments}>
-        <input
-          className={styles.commentsScore}
-          name="number"
-          type="number"
-          placeholder="⭐ score "
-          onChange={(e) => onChangeReview(e)}
-        />
-        <textarea
-          className={styles.commentsText}
-          name="comment"
-          type="text"
-          placeholder="Dejanos un comentario junto a tu puntuacion del producto"
-          onChange={(e) => onChangeReview(e)}
-        ></textarea>
-        <button className={styles.commentsBtn} onClick={() => addReview()}>
-          Comentar
-        </button>
-      </div>
     </div>
   );
 }
