@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetail } from "../../Redux/Action";
-import Login from "../Login/Login.jsx";
 import Logout from "../Logout/Logout.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Profile.module.css";
 
 export default function Profile() {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
   /* navigate('/home') */
 
@@ -28,7 +27,7 @@ export default function Profile() {
   if (isLoading || !userDetail) {
     return <div>Loading...</div>;
   } else if (!isAuthenticated) {
-    return <Login />;
+    return loginWithRedirect();
   } else if (userDetail.admin === true) {
     navigate("/Dashboard");
     window.location.reload();

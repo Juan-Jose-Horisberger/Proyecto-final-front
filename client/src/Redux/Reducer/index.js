@@ -20,6 +20,7 @@ import {
   CREATE_USER,
   SET_DETAIL_NOTIFICATIONS,
   GET_USER_DASHBOARD,
+  GET_ALL_COMMENTS,
 } from "../Action";
 var cookies = new Cookies();
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
   productsNotifications: [],
   allUsers: [],
   userDetail: [],
+  allComments: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -201,6 +203,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         allUsers: userDashboard,
+      };
+
+    case GET_ALL_COMMENTS:
+      return {
+        ...state,
+        allComments: payload,
       };
 
     default:
