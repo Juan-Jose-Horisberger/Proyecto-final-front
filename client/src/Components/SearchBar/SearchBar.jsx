@@ -250,6 +250,7 @@ export default function SearchBar({ socket }) {
                         <img
                           src={user.picture}
                           alt={user.name}
+                          referrerPolicy="no-referrer"
                           style={{ width: "30px" }}
                           className={styles.imgProfile}
                         />

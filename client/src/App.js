@@ -239,7 +239,7 @@ function App() {
           <Route path="/AdminDetail/:id" element={<AdminDetail />} />
         )}
 
-        {isLoading || !userDetail ? (
+        {/* {isLoading || !userDetail ? (
           ""
         ) : !isAuthenticated ? (
           ""
@@ -247,7 +247,7 @@ function App() {
           ""
         ) : (
           <Route path="/ModifyProducts" element={<ModifyProducts />} />
-        )}
+        )} */}
         {isLoading || !userDetail ? (
           ""
         ) : !isAuthenticated ? (

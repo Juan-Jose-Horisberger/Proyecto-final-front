@@ -95,6 +95,15 @@ export default function ProductDetail() {
   };
   const addReview = async () => {
     if (isAuthenticated && !isLoading) {
+      if (review.number <= 0 || review.number > 5) {
+        return Swal.fire({
+          title: "Ingresa una puntuación entre 1 y 5",
+          icon: "warning",
+          background: "#111111",
+          confirmButtonColor: "#282626",
+          confirmButtonText: "Continuar",
+        });
+      }
       if (review.comment.length <= 5) {
         return Swal.fire({
           title: "Debes ingresar un comentario mas largo",
@@ -133,7 +142,6 @@ export default function ProductDetail() {
           timer: 1500,
         });
         dispatch(getProductDetail(reviewParse.idProduct));
-        cookies.set(user.email, reviewParse);
         cookies.set(reviewParse.idProduct, reviewParse);
       }
     } else {
@@ -146,7 +154,6 @@ export default function ProductDetail() {
       });
     }
   };
-
   const DeleteComment = async (id, productId) => {
     Swal.fire({
       title: "Estás seguro?",
@@ -402,7 +409,7 @@ export default function ProductDetail() {
                 <h3>DESCRIPCIÓN</h3>
                 <h5>{productDetail.name}</h5>
                 <p className={`${styles.qualification}`}>
-                  Calificacion: {productDetail.score}
+                  Calificación: {productDetail.average}
                 </p>
                 <p className={`${styles.available}`}>
                   Disponible: {productDetail.stock}
