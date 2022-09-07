@@ -7,9 +7,11 @@ export default function Pagination({ allProducts, loaded }) {
   // Comenzamos con una lista vacía de elementos.
   const [currentItems, setCurrentItems] = useState([]); //Los elementos que se mostraran en la pag actual
   const [pageCount, setPageCount] = useState(0); //recuento de paginas
-  const [itemOffset, setItemOffset] = useState(0); //Indice del primer elemento de la pagina actual (creo que deberia ser 1)
+  const [itemOffset, setItemOffset] = useState(3); //Indice del primer elemento de la pagina actual (creo que deberia ser 1)
   const itemsPerPage = 9; //Elementos por pagina
   const renderOnce = useRef(0);
+  const [renderPageOnce, setRenderPageOnce] = useState(false);
+  const setPageCountOne = 0;
   const allProductsSort = allProducts.sort(function (a, b) {
     if (a.id > b.id) {
       return 1;
@@ -26,7 +28,9 @@ export default function Pagination({ allProducts, loaded }) {
   const [toShowNext, setToShowNext] = useState(false);
 
   useEffect(() => {
+    // console.log(itemOffset);
     const endOffset = itemOffset + itemsPerPage; //Indice del ultimo elemento de la pagina actual
+    console.log(allProductsSort);
     setCurrentItems(allProductsSort.slice(itemOffset, endOffset)); //Tomamos una parte del array
     setPageCount(Math.ceil(allProductsSort.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, allProductsSort]);
@@ -42,8 +46,11 @@ export default function Pagination({ allProducts, loaded }) {
   };
 
   useEffect(() => {
+    // console.log("hola pageCount");
     const num = Math.ceil(allProductsSort.length / itemsPerPage);
-    num === 1 && setToShowNext(false);
+    setCurrentItems(allProductsSort.slice(0, 9));
+    num !== 34 ? setRenderPageOnce(true) : setRenderPageOnce(false);
+    num !== 34 && num === 1 && setToShowNext(false);
   }, [pageCount]);
 
   useEffect(() => {
@@ -52,6 +59,9 @@ export default function Pagination({ allProducts, loaded }) {
       renderOnce.current = renderOnce.current + 1;
       return;
     }
+    // console.log(Math.ceil(allProductsSort.length / itemsPerPage));
+    console.log(toShowPrevious);
+
     itemOffset !== 0 ? setToShowPrevious(true) : setToShowPrevious(false);
     window.scrollTo({ behavior: "smooth", top: "0px" });
   }, [itemOffset]);
@@ -103,10 +113,11 @@ export default function Pagination({ allProducts, loaded }) {
           pageCount={pageCount} //Mostramos los numeros de pag
           previousLabel="⇽" //Etiqueta previous
           renderOnZeroPageCount={null}
+          forcePage={0}
           containerClassName={`${styles.pagination}`} //Decimes que el contenedor tendra como clase pagination
           pageLinkClassName={`${styles.page_num}`} //Cada elemento por pagina tendra el nombre de clase page-num
           previousClassName={`${styles.previous} ${
-            toShowPrevious && styles.open
+            toShowPrevious ? styles.open : styles.previous
           }`} //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
           nextClassName={`${styles.next} ${!toShowNext && styles.close}`} //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
           activeLinkClassName={`${styles.active}`}
