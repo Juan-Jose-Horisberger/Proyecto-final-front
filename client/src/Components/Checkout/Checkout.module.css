@@ -107,6 +107,10 @@ p {
   flex-wrap: wrap;
 }
 
+.divEdad input {
+  width: 30%;
+}
+
 .divApellido {
   display: flex;
   flex-direction: column;

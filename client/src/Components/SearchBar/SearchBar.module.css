@@ -123,6 +123,16 @@ button {
   color: white;
 }
 
+.container_showProfileUser {
+  z-index: 1000000000 !important;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 30%;
+  background-color: black;
+  color: white;
+}
+
 .notifications {
   width: 100%;
   height: 85px;
@@ -193,5 +203,23 @@ button {
 }
 
 .imgProfile {
-  border-radius: 20px;
+  border-radius: 200px;
+}
+
+.imgProfileUser {
+  border-radius: 200px;
+  margin-bottom: 15px;
+}
+
+.btnCloseCanvas {
+  background-color: rgb(130, 13, 13) !important;
+  color: azure !important;
+}
+
+.btnLogoutUserProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 150px;
+  /* border: 1px solid red; */
 }
