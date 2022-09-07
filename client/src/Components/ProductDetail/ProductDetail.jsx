@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styles from "./ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import {
@@ -34,6 +34,7 @@ import Footer from "../Footer/Footer";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
+  const history = useNavigate();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -276,6 +277,11 @@ export default function ProductDetail() {
     }
   };
 
+  // const handleFilterDetail = (data) => {
+  //   console.log(data);
+  //   dispatch(filterByQuery(`category=${data}&`)).then((res) => history("/"));
+  // };
+
   return (
     <div className={styles.container}>
       {/* <SearchBar /> */}
@@ -291,9 +297,13 @@ export default function ProductDetail() {
                   <span>Inicio</span>
                 </Link>
                 <span> / </span>
-                <Link to="">
-                  <span>{productDetail.categoryName}</span>
-                </Link>
+                {/* <Link to="/">
+                <span
+                  onClick={() => handleFilterDetail(productDetail.categoryName)}
+                >
+                  {productDetail.categoryName}
+                </span>
+                </Link> */}
                 <span> / </span>
                 <Link to="/">
                   <span></span>
@@ -476,6 +486,7 @@ export default function ProductDetail() {
                 type="text"
                 placeholder="Dejanos un comentario junto a tu puntuacion del producto"
                 onChange={(e) => onChangeReview(e)}
+                style={{ resize: "none" }}
               ></textarea>
               <button
                 className={styles.commentsBtn}
