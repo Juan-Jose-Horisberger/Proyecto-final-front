@@ -301,26 +301,6 @@ export default function FormProduct() {
               />
               {errors.stock && <p className={style.error}>{errors.stock}</p>}
             </div>
-            {/* 
-            <div className={style.divStockPriceSold}>
-              <label htmlFor="sold">Vendidos</label>
-              <input
-                type="number"
-                className={`form-control ${
-                  validate.sold
-                    ? "is-invalid"
-                    : validate.sold !== false
-                    ? cookies.get("name")
-                    : "is-valid"
-                }`}
-                name="sold"
-                id="sold"
-                min="0"
-                placeholder="0"
-                value={cookies.get("sold")}
-                onChange={handleOnChange}
-              />
-            </div> */}
           </div>
 
           <div className="w-75 mx-auto">
@@ -388,30 +368,6 @@ export default function FormProduct() {
 
             {errors.genre && <p className={style.error}>{errors.genre}</p>}
           </div>
-
-          {/* <div className={style.divScore}>
-            <label htmlFor="score">Calificacion</label>
-            <input
-              type="number"
-              className={`form-control ${
-                validate.score
-                  ? `is-invalid`
-                  : validate.score !== false
-                  ? cookies.get("name")
-                  : "is-valid"
-              }`}
-              name="score"
-              min="0"
-              max="5"
-              step="0.1"
-              id="score"
-              placeholder="0.0"
-              value={cookies.get("score")}
-              onChange={handleOnChange}
-            />
-
-            {errors.score && <p className={style.error}>{errors.score}</p>}
-          </div> */}
 
           <div>
             <label className="form-check-label">En oferta</label>

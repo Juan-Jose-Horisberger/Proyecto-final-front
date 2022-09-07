@@ -123,8 +123,8 @@ export default function Product({
               ref={Hovertarget}
               className={
                 Hovered || onHoverButton.current
-                  ? (onHover.current = true)
-                  : (onHover.current = false) /*Cambiamos a false para que no tire warning*/
+                  ? (onHover.current = 1)
+                  : (onHover.current = 0) /*Cambiamos a 0 para que no tire warning*/
               }
             >
               <img
@@ -142,8 +142,8 @@ export default function Product({
               ref={HovertargetButton1}
               className={`${
                 HoveredButton1
-                  ? (onHoverButton1.current = true)
-                  : (onHoverButton1.current = false)
+                  ? (onHoverButton1.current = 1)
+                  : (onHoverButton1.current = 0)
               }
             ${styles.button1} ${
                 (onHover.current || onHoverButton1.current) && styles.open
@@ -161,8 +161,8 @@ export default function Product({
               ref={HovertargetButton}
               className={`${
                 HoveredButton
-                  ? (onHoverButton.current = true)
-                  : (onHoverButton.current = false)
+                  ? (onHoverButton.current = 1)
+                  : (onHoverButton.current = 0)
               } ${styles.button2} ${
                 (onHover.current || onHoverButton.current) && styles.open
               } `}
@@ -197,8 +197,8 @@ export default function Product({
               ref={Hovertarget}
               className={
                 Hovered || onHoverButton.current
-                  ? (onHover.current = true)
-                  : (onHover.current = false) /*Cambiamos a false para que no tire warning*/
+                  ? (onHover.current = 1)
+                  : (onHover.current = 0) /*Cambiamos a 0 para que no tire warning*/
               }
             >
               <img
@@ -215,8 +215,8 @@ export default function Product({
               ref={HovertargetButton1}
               className={`${
                 HoveredButton1
-                  ? (onHoverButton1.current = true)
-                  : (onHoverButton1.current = false)
+                  ? (onHoverButton1.current = 1)
+                  : (onHoverButton1.current = 0)
               }
             ${styles.button1} ${
                 (onHover.current || onHoverButton1.current) && styles.open
@@ -234,8 +234,8 @@ export default function Product({
               ref={HovertargetButton}
               className={`${
                 HoveredButton
-                  ? (onHoverButton.current = true)
-                  : (onHoverButton.current = false)
+                  ? (onHoverButton.current = 1)
+                  : (onHoverButton.current = 0)
               } ${styles.button2} ${
                 (onHover.current || onHoverButton.current) && styles.open
               } `}
