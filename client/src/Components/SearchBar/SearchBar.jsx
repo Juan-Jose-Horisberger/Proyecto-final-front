@@ -16,6 +16,7 @@ import FavoritesIcon from "../../Imagenes/favorites.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { GiMagnifyingGlass } from "react-icons/gi";
+import Logout from "../Logout/Logout.jsx";
 // import { HiMagnifyingGlassPlus } from "react-icons/hi2";
 
 export default function SearchBar({ socket }) {
@@ -245,8 +246,8 @@ export default function SearchBar({ socket }) {
                         alt="img-icon"
                         style={{ cursor: "pointer" }}
                       />
-                    ) : (
-                      <Link to={userDetail.admin ? "/Dashboard" : "/Profile"}>
+                    ) : userDetail.admin ? (
+                      <Link to={"/Dashboard"}>
                         <img
                           src={user.picture}
                           alt={user.name}
@@ -255,8 +256,67 @@ export default function SearchBar({ socket }) {
                           className={styles.imgProfile}
                         />
                       </Link>
+                    ) : (
+                      <div>
+                        <div className={`${styles.container_notification} `}>
+                          <div
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight"
+                          >
+                            <img
+                              src={user.picture}
+                              style={{ width: "30px", marginRight: "17px" }}
+                              alt=""
+                              className={styles.imgProfile}
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className={`offcanvas offcanvas-end ${styles.container_showProfileUser}`}
+                          id="offcanvasRight"
+                        >
+                          <div className="offcanvas-header">
+                            <h4>Mi Perfil</h4>
+                            <button
+                              type="button"
+                              className={`${styles.btnCloseCanvas} btn-close`}
+                              data-bs-dismiss="offcanvas"
+                            ></button>
+                          </div>
+                          <div className={`offcanvas-body`}>
+                            <img
+                              src={user.picture}
+                              style={{ width: "40%" }}
+                              alt=""
+                              className={styles.imgProfileUser}
+                            />
+                            <h5>UserName</h5>
+                            <p>{user.nickname}</p>
+                            <h5>Email</h5>
+                            <p>{user.email}</p>
+                            {console.log(user)}
+                            <Link to="/Register">
+                              <img
+                                src="https://www.svgrepo.com/show/421823/user-people-man.svg"
+                                alt="img-icon"
+                                style={{ cursor: "pointer" }}
+                              />
+                              <h4>Mis Datos</h4>
+                              <h6>Gestiona tus datos personales</h6>
+                            </Link>
+
+                            <div className={styles.btnLogoutUserProfile}>
+                              <Logout />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     )}
                   </div>
+
+                  {/*  */}
+                  {/* OFF CANVAS DE LA CAMPANITA*/}
+                  {/*  */}
 
                   <div
                     className={`${styles.container_notification} `}
