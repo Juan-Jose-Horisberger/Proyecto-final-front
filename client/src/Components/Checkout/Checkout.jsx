@@ -14,6 +14,7 @@ const initialForm = {
   nameCompra: cookies.get("nameCompra"),
   surnameCompra: cookies.get("surnameCompra"),
   companyName: cookies.get("companyName"),
+  ageCompra: cookies.get("ageCompra"),
   country: "Argentina",
   streetAddress: cookies.get("streetAddress"),
   apartment: cookies.get("apartment"),
@@ -45,6 +46,12 @@ const validateForm = (form, nameInput) => {
       errors.surname = "Debes colocar tu apellido";
     } else if (!regexName.test(form.surnameCompra)) {
       errors.surname = "Tu apellido solo debe contener letras y espacios.";
+    }
+  }
+
+  if (nameInput.includes("ageCompra")) {
+    if (!form.ageCompra) {
+      errors.age = "Debes colocar tu edad";
     }
   }
 
@@ -246,6 +253,17 @@ export default function Checkout({ socket }) {
                 <p className={style.error}>{errors.surname}</p>
               )}
             </div>
+          </div>
+
+          <p>Fecha de nacimiento</p>
+          <div className={style.divEdad}>
+            <input
+              type="date"
+              name="ageCompra"
+              onChange={handleOnChange}
+              value={form.ageCompra}
+            />
+            {errors.age && <p className={style.error}> {errors.age} </p>}
           </div>
 
           <p>Nombre de la empresa (opcional)</p>

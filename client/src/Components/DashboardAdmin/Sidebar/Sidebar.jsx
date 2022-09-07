@@ -9,25 +9,25 @@ import { BsFillBellFill, BsFillChatTextFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { BiCommentDetail } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
 import Logout from "../../Logout/Logout.jsx";
 import scrollreveal from "scrollreveal";
 import { Link } from "react-router-dom";
 import Navbar from "../NavBar/Navbar.jsx";
-import Campanita from "../../../Imagenes/campanita.svg";
 import styles from "./Sidebar.module.css";
 import style from "../../SearchBar/SearchBar.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllComments } from "../../../Redux/Action/index.js";
 
 export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(0);
   const [navbarState, setNavbarState] = useState(false);
+  const dispatch = useDispatch();
   var cookies = new Cookies();
   var cukis = cookies.getAll();
   var notis = Object.entries(cukis);
-  // const newCommentNotification = useSelector(
-  //   (state) => state.newCommentNotification
-  // );
+  const allComments = useSelector((state) => state.allComments);
   const html = document.querySelector("html");
   html.addEventListener("click", () => setNavbarState(false));
 
@@ -58,45 +58,22 @@ export default function Sidebar() {
     );
   }, []);
 
-  const displayNotificationProducts = () => {
-    {
-      notis.map((e) => {
-        return e[1].idProduct ? (
-          <div
-            key={e[1].idProduct}
-            // className={`${styles.container_NotificationsRender}`}
-          >
-            {console.log(e[1].idProduct)}
-            {console.log(e[1].email)}
-
-            {/* <Link to={`/`}> */}
-            <h5>Nuevo comentario</h5>
-            <div>
-              <p>{e[1].email}</p>
-            </div>
-            <div>
-              <p>{e[1].number}</p>
-              <p>{e[1].comment}</p>
-            </div>
-            {/* </Link> */}
-          </div>
-        ) : (
-          true
-        );
-      });
-    }
-  };
+  useEffect(() => {
+    dispatch(getAllComments());
+  }, []);
 
   return (
     <>
-      {console.log(notis)}
+      {console.log(allComments)}
       <Section>
         <div className="top">
           <div
             className={`brand d-flex flex-column mb-3 ${styles.container_Title}`}
           >
-            <span>GAED.JM</span>
-            <span className="fs-5">Admin</span>
+            <Link to="/">
+              <span>GAED.JM</span>
+              <span className="fs-5">Admin</span>
+            </Link>
           </div>
           <div className="toggle">
             {navbarState ? (
@@ -163,12 +140,12 @@ export default function Sidebar() {
                     data-bs-target="#offcanvasRight"
                   >
                     <div className="d-flex">
-                      <BsFillBellFill size="20px" />
+                      <BiCommentDetail size="20px" color="white" />
                       <span
                         className="ps-3"
                         style={{ color: "white", cursor: "pointer" }}
                       >
-                        NOTIFICACIONES
+                        COMENTARIOS
                       </span>
                     </div>
                     {/* {infoNotifications.counter > 0 && (
@@ -182,7 +159,7 @@ export default function Sidebar() {
                 id="offcanvasRight"
               >
                 <div className="offcanvas-header">
-                  <h4>Notificaciones</h4>
+                  <h4>Comentarios</h4>
                   <button
                     // onClick={() => setNotificationsTo0()}
                     type="button"
@@ -192,21 +169,23 @@ export default function Sidebar() {
                   ></button>
                 </div>
                 <div className={`offcanvas-body`}>
-                  {notis ? (
-                    notis.map((e) => {
-                      return e[1].idProduct ? (
+                  {allComments.length ? (
+                    allComments.map((e, i) => {
+                      return e.productId ? (
                         <div
-                          key={e[1].idProduct}
+                          key={i}
                           className={`${styles.container_NotificationsRender}`}
                         >
-                          <Link to={`/`}>
-                            <h4>Nuevo comentario</h4>
-                            <div>
-                              <p>Email: {e[1].email}</p>
-                            </div>
-                            <div>
-                              <p>Puntuacion: {e[1].number}</p>
-                              <p>Comentario: {e[1].comment}</p>
+                          <Link to={`/ProductDetail/${e.productId}`}>
+                            {/* <h4>Nuevo comentario</h4> */}
+
+                            <div className={styles.divComment}>
+                              <p>Usuario:</p>
+                              <p>{e.username}</p>
+                              {/* <p>Comentario</p> */}
+                              <div className={styles.comment}>
+                                <p>{e.comment}</p>
+                              </div>
                             </div>
                           </Link>
                         </div>
@@ -219,7 +198,7 @@ export default function Sidebar() {
                   )}
                 </div>
               </div>
-              <li
+              {/* <li
                 className={currentLink === 6 ? "active" : "none"}
                 onClick={() => setCurrentLink(6)}
               >
@@ -227,8 +206,8 @@ export default function Sidebar() {
                   <BsFillChatTextFill size="20px" />
                   <span>MI PERFIL</span>
                 </Link>
-              </li>
-              <li
+              </li> */}
+              {/* <li
                 className={currentLink === 7 ? "active" : "none"}
                 onClick={() => setCurrentLink(7)}
               >
@@ -236,7 +215,7 @@ export default function Sidebar() {
                   <IoSettings size="20px" />
                   <span>SETTINGS</span>
                 </a>
-              </li>
+              </li> */}
               <div className="logout">
                 <a href="#">
                   <span style={{ marginRight: "15px" }}>
@@ -353,12 +332,12 @@ const Section = styled.section`
         padding: 0;
         padding-left: 0px;
         li {
-          padding: 0.6rem 0;
+          padding: 0.7rem 0.3rem;
           border-radius: 0.6rem;
           &:hover {
             background-color: #121212;
             a {
-              color: black;
+              color: azure;
             }
           }
           a {

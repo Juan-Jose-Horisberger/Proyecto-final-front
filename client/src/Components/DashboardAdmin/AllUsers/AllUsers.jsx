@@ -104,22 +104,11 @@ export default function AllUsers() {
                   <div className={styles.divImg}>
                     <p className={styles.pFoto}>Foto</p>
                     <Link to={`/UserDetail/${e.email}`}>
-                      {typeof e.img === "string" ? (
-                        <img
-                          src={
-                            typeof e.img === "string"
-                              ? e.img
-                              : "https://cdn-icons-png.flaticon.com/128/4519/4519678.png"
-                          }
-                          className="img-fluid"
-                        />
-                      ) : (
-                        <img
-                          src="https://cdn-icons-png.flaticon.com/128/4519/4519678.png"
-                          className="img-fluid"
-                        />
-                      )}
-                      {/* <FaUserCircle size="20px" /> */}
+                      <img
+                        src={e.img}
+                        referrerPolicy="no-referrer"
+                        className="img-fluid"
+                      />
                     </Link>
                   </div>
                   <div className={styles.divName}>

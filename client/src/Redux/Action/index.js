@@ -23,6 +23,7 @@ export const CREATE_USER = "CREATE_USER";
 export const SET_DETAIL_NOTIFICATIONS = "SET_DETAIL_NOTIFICATIONS";
 export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";
 export const GET_USER_DASHBOARD = "GET_USER_DASHBOARD";
+export const GET_ALL_COMMENTS = "GET_ALL_COMMENTS";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -140,7 +141,7 @@ export const deleteProduct = (id) => {
     let editedProduct = await axios.delete(`/products/delete/${id}`);
     return dispatch({
       type: DELETE_PRODUCT,
-      // payload: editedProduct,
+      payload: id,
     });
   };
 };
@@ -230,5 +231,16 @@ export const getUserNameInDashboard = (payload) => {
   return {
     type: GET_USER_DASHBOARD,
     payload,
+  };
+};
+
+export const getAllComments = () => {
+  return async function (dispatch) {
+    let allComments = await axios.get("/reviews");
+    console.log(allComments.data);
+    return dispatch({
+      type: GET_ALL_COMMENTS,
+      payload: allComments.data,
+    });
   };
 };

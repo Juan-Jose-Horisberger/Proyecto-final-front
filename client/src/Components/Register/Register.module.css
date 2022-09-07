@@ -1,8 +1,333 @@
-.container {
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap%27");
+
+.containerPrincipal {
+  color: azure;
+  /* margin-top: 45px; */
+  justify-content: center;
+  /* border: 1px solid red; */
+  align-items: center;
+  background-color: black;
+  font-size: 18px;
+  font-family: "Questrial", sans-serif;
+}
+
+.divCheckout {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  justify-content: center;
+  font-size: 20px;
+  text-align: center;
+  height: 180px;
+  width: 100%;
+  background-color: rgb(39, 36, 36);
+  font-family: "Questrial", sans-serif;
+}
+
+.containerRegisterCupon {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-top: 20px;
+  width: 80%;
+  /* border: 1px solid red; */
+  justify-content: space-between;
+  font-family: "Questrial", sans-serif;
+}
+
+.divRegisterCupon {
+  border: 2px solid rgb(48, 48, 50);
+  width: 45%;
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 30px;
+  font-family: "Questrial", sans-serif;
+}
+
+.btnRe {
+  background-color: black;
+  color: azure;
+  font-weight: bold;
+  font-family: "Questrial", sans-serif;
+}
+
+.containerForm {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 80%;
+  border: 2px solid rgb(202, 192, 192);
+  padding: 30px;
+  font-family: "Questrial", sans-serif;
+}
+
+.containerForm input {
+  background-color: black;
+  color: azure;
+  border: 1px solid black;
+  border-bottom: 2px solid rgb(202, 192, 192);
+  outline: none;
+  font-family: "Questrial", sans-serif;
+}
+
+p {
+  font-family: "Questrial", sans-serif;
+}
+
+.divNombreApellido {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+  justify-content: space-between;
+  font-family: "Questrial", sans-serif;
+}
+
+.divNombre {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 45%;
+  /* border: 1px solid red; */
+}
+
+.divApellido {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 45%;
+  /* border: 1px solid red; */
+}
+
+.divEdad {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.divEdad input {
+  width: 30%;
+}
+.divEmpresa {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divEmpresa input {
+  width: 100%;
+}
+
+.divPais {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divPais b {
+  border-bottom: 2px solid rgb(202, 192, 192);
+  width: 23%;
+}
+
+.divCalle {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divCalle input {
+  width: 100%;
+}
+
+.divProvincia {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divProvincia select {
+  background-color: black;
+  color: azure;
+  border: 1px solid black;
+  border-bottom: 2px solid rgb(202, 192, 192);
+  width: 100%;
+}
+
+.divPostal {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divPostal input {
+  width: 25%;
+}
+
+.divTelefono {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divTelefono input {
+  width: 25%;
+}
+
+.divCorreo {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divCorreo input {
+  width: 100%;
+}
+
+.divNotas {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divNotas input {
+  width: 100%;
+}
+
+.containerPedido {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
+  flex-wrap: wrap;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 80%;
+  border: 2px solid rgb(202, 192, 192);
+  padding: 10px 30px 30px 30px;
+}
+
+.divProduct {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 2px solid rgb(202, 192, 192);
+  width: 85%;
+}
+
+.divProduct img {
+  width: 100px;
+  margin: 10px;
+}
+
+.cuentita {
+  display: none;
+}
+
+.divTotal {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px solid rgb(202, 192, 192);
+  width: 85%;
+  height: 70px;
+  /* border: 1px solid red; */
+}
+
+.divBtn {
+  /* border: 1px solid red; */
+  width: 85%;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 0;
+}
+
+.divBtn button {
+  background-color: rgb(39, 38, 38);
   color: azure;
-  margin-top: 30px;
+  padding: 20px;
+  width: 100%;
+  border-radius: 0;
+}
+
+.divBtn button:hover {
+  background-color: rgb(17, 16, 16);
+  transition: 0.4s;
+}
+
+.error {
+  color: red;
+}
+
+.divPopOut {
+  background-color: rgb(20, 19, 19);
+}
+
+.inputPopOut {
+  background-color: rgb(20, 19, 19);
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid azure;
+  color: azure;
+  outline: none;
+}
+
+.btnPopOut {
+  margin: 0px 10px 10px 10px;
+  background-color: rgb(39, 38, 38);
+  color: azure;
+  font-weight: bold;
+  padding: 20px;
+  width: 100%;
+}
+
+.btnPopOut:hover {
+  background-color: rgb(17, 16, 16);
+  transition: 0.4s;
+}
+
+.footerPopOut {
+  border: none;
 }
