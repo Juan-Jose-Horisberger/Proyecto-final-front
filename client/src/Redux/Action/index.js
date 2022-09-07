@@ -149,6 +149,7 @@ export const deleteProduct = (id) => {
 export const filterByQuery = (params) => {
   return async function (dispatch) {
     let filterProducts = await axios.get(`/products?${params}`);
+    console.log(params);
     return dispatch({
       type: FILTER_BY_QUERY,
       payload: filterProducts.data,
