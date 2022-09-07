@@ -140,7 +140,7 @@ export const deleteProduct = (id) => {
     let editedProduct = await axios.delete(`/products/delete/${id}`);
     return dispatch({
       type: DELETE_PRODUCT,
-      // payload: editedProduct,
+      payload: id,
     });
   };
 };

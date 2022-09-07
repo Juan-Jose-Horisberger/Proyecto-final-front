@@ -123,6 +123,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case DELETE_PRODUCT:
       return {
         ...state,
+        products: state.products.filter((e) => e.id !== payload),
+        allProducts: state.allProducts.filter((e) => e.id !== payload),
       };
 
     case FILTER_BY_QUERY:
