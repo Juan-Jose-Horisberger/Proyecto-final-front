@@ -13,7 +13,7 @@ import Filters from "../Filter/Filters.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import Footer from "../Footer/Footer";
 
-export default function Home({ socket, boolean }) {
+export default function Home({ socket, boolean, booleanSearchBar }) {
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const allUsers = useSelector((state) => state.allUsers);
@@ -38,6 +38,10 @@ export default function Home({ socket, boolean }) {
   useEffect(() => {
     dispatch(getUsers());
     if (boolean) {
+      setLoaded(true);
+      return;
+    }
+    if (booleanSearchBar) {
       setLoaded(true);
       return;
     }

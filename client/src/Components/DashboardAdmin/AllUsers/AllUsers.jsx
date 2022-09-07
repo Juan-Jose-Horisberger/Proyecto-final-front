@@ -89,10 +89,9 @@ export default function AllUsers() {
             style={{ cursor: "pointer" }}
           />
         </div>
-        {console.log("hola")}
       </div>
       {/* {console.log(AllUsers)} */}
-      {console.log(loaded)}
+
       {loaded ? (
         <>
           {AllUsers.length ? (

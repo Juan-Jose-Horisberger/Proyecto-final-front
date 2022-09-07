@@ -9,16 +9,15 @@ import {
   getDetailNotification,
   getUserDetail,
 } from "../../Redux/Action";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartIcon from "../../Imagenes/cart.svg";
 import Campanita from "../../Imagenes/campanita.svg";
 import FavoritesIcon from "../../Imagenes/favorites.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { GiMagnifyingGlass } from "react-icons/gi";
-// import { HiMagnifyingGlassPlus } from "react-icons/hi2";
 
-export default function SearchBar({ socket }) {
+export default function SearchBar({ socket, setBooleanSearchBar }) {
   const dispatch = useDispatch();
   const [productName, setProductName] = useState("");
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
@@ -32,6 +31,7 @@ export default function SearchBar({ socket }) {
   const [getName, setGetName] = useState("");
   var infoNotifications = useSelector((state) => state.newNotification);
   const userDetail = useSelector((state) => state.userDetail);
+  const history = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
@@ -41,9 +41,14 @@ export default function SearchBar({ socket }) {
 
   function handleOnClick() {
     productName
-      ? dispatch(getProductByName(productName))
+      ? dispatch(getProductByName(productName)).then((res) =>
+          res.payload.length ? history("/") : history("/")
+        )
       : setErrorsExist(true);
     setProductName("");
+    if (typeof setBooleanSearchBar === "function") {
+      setBooleanSearchBar(true);
+    }
   }
 
   function setNotificationsTo0() {
@@ -325,7 +330,7 @@ export default function SearchBar({ socket }) {
             <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
           </svg>
           <div className={`${styles.alertMsj}`}>
-            Por favor complete el correspondientes
+            Por favor complete el campo correspondientes
           </div>
           <button
             type="button"

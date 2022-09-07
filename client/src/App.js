@@ -37,6 +37,7 @@ function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [socket, setSocket] = useState(null);
   const [boolean, setBoolean] = useState(false);
+  const [booleanSearchBar, setBooleanSearchBar] = useState(false);
   const userDetail = useSelector((state) => state.userDetail);
   // useEffect(() => {
   //   setSocket(io("http://localhost:5000")); //Inicializamos la conexion con el servidor socket.
@@ -48,19 +49,37 @@ function App() {
         {isLoading || !userDetail ? (
           <Route
             path="/"
-            element={<Home socket={socket} boolean={boolean} />}
+            element={
+              <Home
+                socket={socket}
+                boolean={boolean}
+                booleanSearchBar={booleanSearchBar}
+              />
+            }
           />
         ) : !isAuthenticated ? (
           <Route
             path="/"
-            element={<Home socket={socket} boolean={boolean} />}
+            element={
+              <Home
+                socket={socket}
+                boolean={boolean}
+                booleanSearchBar={booleanSearchBar}
+              />
+            }
           />
         ) : userDetail.ban == true ? (
           <Route path="/" element={<Ban />} />
         ) : (
           <Route
             path="/"
-            element={<Home socket={socket} boolean={boolean} />}
+            element={
+              <Home
+                socket={socket}
+                boolean={boolean}
+                booleanSearchBar={booleanSearchBar}
+              />
+            }
           />
         )}
         {isLoading || !userDetail ? (
@@ -170,19 +189,34 @@ function App() {
         {isLoading || !userDetail ? (
           <Route
             path="/LandingPage"
-            element={<LandingPage setBoolean={setBoolean} />}
+            element={
+              <LandingPage
+                setBoolean={setBoolean}
+                setBooleanSearchBar={setBooleanSearchBar}
+              />
+            }
           />
         ) : !isAuthenticated ? (
           <Route
             path="/LandingPage"
-            element={<LandingPage setBoolean={setBoolean} />}
+            element={
+              <LandingPage
+                setBoolean={setBoolean}
+                setBooleanSearchBar={setBooleanSearchBar}
+              />
+            }
           />
         ) : userDetail.ban == true ? (
           <Route path="/LandingPage" element={<Ban />} />
         ) : (
           <Route
             path="/LandingPage"
-            element={<LandingPage setBoolean={setBoolean} />}
+            element={
+              <LandingPage
+                setBoolean={setBoolean}
+                setBooleanSearchBar={setBooleanSearchBar}
+              />
+            }
           />
         )}
         {isLoading || !userDetail ? (
