@@ -103,7 +103,7 @@ export default function Filters({ modifiyProducts }) {
     }
   };
 
-  const handleRange = (e) => {
+  const handleRange = async (e) => {
     dispatch(filterByPrice(e.target.value));
     setPrice(e.target.value);
   };
@@ -117,9 +117,6 @@ export default function Filters({ modifiyProducts }) {
     for (var i = 0, l = options.length; i < l; i++) {
       options[i].selectedIndex = 0;
     }
-
-    var options2 = document.querySelectorAll("#my_select1");
-    options2.selectedIndex = 0;
   };
 
   return (
@@ -160,7 +157,7 @@ export default function Filters({ modifiyProducts }) {
                     <option value="campera">Camperas</option>
                     <option value="buzo">Buzos</option>
                     <option value="pantalon">Pantalones</option>
-                    <option value="calzado">Zapatillas</option>
+                    <option value="calzado">Calzado</option>
                   </select>
                 </div>
                 <div>
@@ -289,7 +286,7 @@ export default function Filters({ modifiyProducts }) {
               <h4>Categoria</h4>
               <select
                 onChange={validate}
-                id="my_select1"
+                id="my_select"
                 name="category"
                 className="form-select"
                 aria-label="Default select example"
@@ -438,7 +435,7 @@ export default function Filters({ modifiyProducts }) {
                     <option value="campera">Camperas</option>
                     <option value="buzo">Buzos</option>
                     <option value="pantalon">Pantalones</option>
-                    <option value="calzado">Zapatillas</option>
+                    <option value="calzado">Calzado</option>
                   </select>
                 </div>
                 <div>
