@@ -46,17 +46,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        {isLoading || !userDetail ? (
-          <Route
-            path="/"
-            element={
-              <Home
-                socket={socket}
-                boolean={boolean}
-                booleanSearchBar={booleanSearchBar}
-              />
-            }
-          />
+        {userDetail.ban == true ? (
+          <Route path="/" element={<Ban />} />
         ) : !isAuthenticated ? (
           <Route
             path="/"
@@ -68,8 +59,17 @@ function App() {
               />
             }
           />
-        ) : userDetail.ban == true ? (
-          <Route path="/" element={<Ban />} />
+        ) : isLoading || !userDetail ? (
+          <Route
+            path="/"
+            element={
+              <Home
+                socket={socket}
+                boolean={boolean}
+                booleanSearchBar={booleanSearchBar}
+              />
+            }
+          />
         ) : (
           <Route
             path="/"
