@@ -296,7 +296,7 @@ export default function ProductDetail() {
                 <Link to="/">
                   <span>Inicio</span>
                 </Link>
-                <span> / </span>
+                {/* <span> / </span> */}
                 {/* <Link to="/">
                 <span
                   onClick={() => handleFilterDetail(productDetail.categoryName)}
@@ -308,7 +308,10 @@ export default function ProductDetail() {
                 <Link to="/">
                   <span></span>
                 </Link>
-                <span className={`${styles.span_3}`}>{productDetail.name}</span>
+                <span className={`${styles.span_3}`}>
+                  {" "}
+                  {productDetail.name}
+                </span>
               </h1>
               <div className={`${styles.container_Img}`}>
                 <img
