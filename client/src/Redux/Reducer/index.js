@@ -20,6 +20,7 @@ import {
   CREATE_USER,
   SET_DETAIL_NOTIFICATIONS,
   GET_USER_DASHBOARD,
+  GET_ALL_COMMENTS,
 } from "../Action";
 var cookies = new Cookies();
 const initialState = {
@@ -37,6 +38,7 @@ const initialState = {
   productsNotifications: [],
   allUsers: [],
   userDetail: [],
+  allComments: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -105,6 +107,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       // console.log(payload);
       var expiryDate = new Date(Date.now() + 7 * 24 * 3600000);
       cookies.set("noti", payload, { path: "/", expires: expiryDate });
+      cookies.set("counterNoti", 1);
       return {
         ...state,
         products: [...state.products, payload],
@@ -123,6 +126,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case DELETE_PRODUCT:
       return {
         ...state,
+        products: state.products.filter((e) => e.id !== payload),
+        allProducts: state.allProducts.filter((e) => e.id !== payload),
       };
 
     case FILTER_BY_QUERY:
@@ -199,6 +204,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         allUsers: userDashboard,
+      };
+
+    case GET_ALL_COMMENTS:
+      return {
+        ...state,
+        allComments: payload,
       };
 
     default:

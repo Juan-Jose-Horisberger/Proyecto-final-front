@@ -213,7 +213,7 @@ export default function ProductEdit() {
     <div className={style.containerPrincipal}>
       <p className="mt-3">
         <Link to="/Dashboard">Dashboard</Link>
-        <Link to="/ModifyProducts">/Productos</Link> /EditarProducto
+        /EditarProducto
       </p>
 
       <div className={style.container}>

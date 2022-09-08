@@ -4,9 +4,12 @@
 .button {
   font-family: "Questrial", sans-serif;
   width: 150px;
-  padding: 5px;
+  padding: 10px;
+  background-color: #23232c;
+  color: azure;
 }
 
 .button:hover {
   background-color: transparent;
+  color: azure;
 }

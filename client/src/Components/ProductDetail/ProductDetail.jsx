@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styles from "./ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import {
@@ -34,6 +34,7 @@ import Footer from "../Footer/Footer";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
+  const history = useNavigate();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -95,6 +96,15 @@ export default function ProductDetail() {
   };
   const addReview = async () => {
     if (isAuthenticated && !isLoading) {
+      if (review.number <= 0 || review.number > 5) {
+        return Swal.fire({
+          title: "Ingresa una puntuación entre 1 y 5",
+          icon: "warning",
+          background: "#111111",
+          confirmButtonColor: "#282626",
+          confirmButtonText: "Continuar",
+        });
+      }
       if (review.comment.length <= 5) {
         return Swal.fire({
           title: "Debes ingresar un comentario mas largo",
@@ -133,7 +143,6 @@ export default function ProductDetail() {
           timer: 1500,
         });
         dispatch(getProductDetail(reviewParse.idProduct));
-        cookies.set(user.email, reviewParse);
         cookies.set(reviewParse.idProduct, reviewParse);
       }
     } else {
@@ -146,7 +155,6 @@ export default function ProductDetail() {
       });
     }
   };
-
   const DeleteComment = async (id, productId) => {
     Swal.fire({
       title: "Estás seguro?",
@@ -269,6 +277,11 @@ export default function ProductDetail() {
     }
   };
 
+  // const handleFilterDetail = (data) => {
+  //   console.log(data);
+  //   dispatch(filterByQuery(`category=${data}&`)).then((res) => history("/"));
+  // };
+
   return (
     <div className={styles.container}>
       {/* <SearchBar /> */}
@@ -284,9 +297,13 @@ export default function ProductDetail() {
                   <span>Inicio</span>
                 </Link>
                 <span> / </span>
-                <Link to="">
-                  <span>{productDetail.categoryName}</span>
-                </Link>
+                {/* <Link to="/">
+                <span
+                  onClick={() => handleFilterDetail(productDetail.categoryName)}
+                >
+                  {productDetail.categoryName}
+                </span>
+                </Link> */}
                 <span> / </span>
                 <Link to="/">
                   <span></span>
@@ -402,7 +419,7 @@ export default function ProductDetail() {
                 <h3>DESCRIPCIÓN</h3>
                 <h5>{productDetail.name}</h5>
                 <p className={`${styles.qualification}`}>
-                  Calificacion: {productDetail.score}
+                  Calificación: {productDetail.average}
                 </p>
                 <p className={`${styles.available}`}>
                   Disponible: {productDetail.stock}
@@ -469,6 +486,7 @@ export default function ProductDetail() {
                 type="text"
                 placeholder="Dejanos un comentario junto a tu puntuacion del producto"
                 onChange={(e) => onChangeReview(e)}
+                style={{ resize: "none" }}
               ></textarea>
               <button
                 className={styles.commentsBtn}

@@ -35,10 +35,12 @@ export default function Filters({ modifiyProducts }) {
             for (var i = 0, l = options2.length; i < l; i++) {
               options2[i].selectedIndex = 0;
             }
+            return;
           } else {
             dispatch(filterByQuery(result));
             setParams(result);
             setTalle("calzado");
+            return;
           }
         }
 
@@ -56,16 +58,18 @@ export default function Filters({ modifiyProducts }) {
             for (var i = 0, l = options2.length; i < l; i++) {
               options2[i].selectedIndex = 0;
             }
+            return;
           } else {
             dispatch(filterByQuery(result));
             setParams(result);
             setTalle("indumentaria");
+            return;
           }
         }
       }
 
       if (e.target.name === "brand") {
-        const regex = /Nike|Puma|Adidas/i;
+        const regex = /nike|puma|adidas/i;
         const result = params.replace(regex, e.target.value);
         dispatch(filterByQuery(result));
         setParams(result);
@@ -98,12 +102,13 @@ export default function Filters({ modifiyProducts }) {
         e.target.name + "=" + e.target.value + "&"
       );
       dispatch(filterByQuery(actualFilter));
+      console.log(e.target.value);
       setParams(actualFilter);
       if (e.target.value === "calzado") setTalle("calzado");
     }
   };
 
-  const handleRange = (e) => {
+  const handleRange = async (e) => {
     dispatch(filterByPrice(e.target.value));
     setPrice(e.target.value);
   };
@@ -117,9 +122,6 @@ export default function Filters({ modifiyProducts }) {
     for (var i = 0, l = options.length; i < l; i++) {
       options[i].selectedIndex = 0;
     }
-
-    var options2 = document.querySelectorAll("#my_select1");
-    options2.selectedIndex = 0;
   };
 
   return (
@@ -153,14 +155,18 @@ export default function Filters({ modifiyProducts }) {
                     className="form-select"
                     aria-label="Default select example"
                   >
-                    <option style={{ display: "none" }} defaultValue="selected">
+                    <option
+                      style={{ display: "none" }}
+                      value=""
+                      defaultValue="selected"
+                    >
                       Selecciona una categoria
                     </option>
                     <option value="camiseta">Remeras</option>
                     <option value="campera">Camperas</option>
                     <option value="buzo">Buzos</option>
                     <option value="pantalon">Pantalones</option>
-                    <option value="calzado">Zapatillas</option>
+                    <option value="calzado">Calzado</option>
                   </select>
                 </div>
                 <div>
@@ -191,9 +197,9 @@ export default function Filters({ modifiyProducts }) {
                     <option style={{ display: "none" }} defaultValue="selected">
                       Selecciona una marca
                     </option>
-                    <option value="Adidas">Adidas</option>
-                    <option value="Nike">Nike</option>
-                    <option value="Puma">Puma</option>
+                    <option value="adidas">Adidas</option>
+                    <option value="nike">Nike</option>
+                    <option value="puma">Puma</option>
                   </select>
                 </div>
 
@@ -289,12 +295,16 @@ export default function Filters({ modifiyProducts }) {
               <h4>Categoria</h4>
               <select
                 onChange={validate}
-                id="my_select1"
+                id="my_select"
                 name="category"
                 className="form-select"
                 aria-label="Default select example"
               >
-                <option style={{ display: "none" }} defaultValue="selected">
+                <option
+                  style={{ display: "none" }}
+                  value=""
+                  defaultValue="selected"
+                >
                   Selecciona una categoria
                 </option>
                 <option value="camiseta">Remeras</option>
@@ -332,9 +342,9 @@ export default function Filters({ modifiyProducts }) {
                 <option style={{ display: "none" }} defaultValue="selected">
                   Selecciona una marca
                 </option>
-                <option value="Adidas">Adidas</option>
-                <option value="Nike">Nike</option>
-                <option value="Puma">Puma</option>
+                <option value="adidas">Adidas</option>
+                <option value="nike">Nike</option>
+                <option value="puma">Puma</option>
               </select>
             </div>
 
@@ -412,7 +422,7 @@ export default function Filters({ modifiyProducts }) {
               </div>
               <p className={`m-0 ps-2 ${styles.pInFilters}`}>Filters</p>
             </div>
-            <ul className="dropdown-menu">
+            <ul className="dropdown-menu bg-dark">
               <div className={`${styles.container_FiltersTrue}`}>
                 <div className={styles.containerBtn}>
                   <h3>Filtros</h3>
@@ -438,7 +448,7 @@ export default function Filters({ modifiyProducts }) {
                     <option value="campera">Camperas</option>
                     <option value="buzo">Buzos</option>
                     <option value="pantalon">Pantalones</option>
-                    <option value="calzado">Zapatillas</option>
+                    <option value="calzado">Calzado</option>
                   </select>
                 </div>
                 <div>
@@ -469,9 +479,9 @@ export default function Filters({ modifiyProducts }) {
                     <option style={{ display: "none" }} defaultValue="selected">
                       Selecciona una marca
                     </option>
-                    <option value="Adidas">Adidas</option>
-                    <option value="Nike">Nike</option>
-                    <option value="Puma">Puma</option>
+                    <option value="adidas">Adidas</option>
+                    <option value="nike">Nike</option>
+                    <option value="puma">Puma</option>
                   </select>
                 </div>
 
@@ -541,12 +551,7 @@ export default function Filters({ modifiyProducts }) {
                     max="65.999"
                   ></input>
 
-                  <label
-                    style={{ border: "1px solid red" }}
-                    className="form-label"
-                  >
-                    ${price}
-                  </label>
+                  <label className="form-label">${price}</label>
                 </div>
               </div>
             </ul>

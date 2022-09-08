@@ -17,7 +17,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import Footer from "../Footer/Footer";
 
-export default function LandingPage({ setBoolean }) {
+export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
   const dispatch = useDispatch();
   const history = useNavigate();
   const allProducts = useSelector((state) => state.products);
@@ -60,7 +60,7 @@ export default function LandingPage({ setBoolean }) {
 
   return (
     <div className={`${styles.container}`}>
-      <SearchBar />
+      <SearchBar setBooleanSearchBar={setBooleanSearchBar} />
 
       {loaded ? (
         <div
@@ -233,7 +233,7 @@ export default function LandingPage({ setBoolean }) {
         <div className={`${styles.container_Info_Images}`}>
           <div
             data-aos="fade-up"
-            data-aos-anchor-placement="bottom-center"
+            data-aos-anchor-placement="bottom-bottom"
             data-aos-duration="500"
           >
             <img
@@ -244,7 +244,7 @@ export default function LandingPage({ setBoolean }) {
           </div>
           <div
             data-aos="fade-up"
-            data-aos-anchor-placement="bottom-center"
+            data-aos-anchor-placement="bottom-bottom"
             data-aos-duration="1000"
           >
             <img
@@ -255,7 +255,7 @@ export default function LandingPage({ setBoolean }) {
           </div>
           <div
             data-aos="fade-up"
-            data-aos-anchor-placement="bottom-center"
+            data-aos-anchor-placement="bottom-bottom"
             data-aos-duration="2000"
           >
             <img
