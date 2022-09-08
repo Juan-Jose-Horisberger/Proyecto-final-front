@@ -9,7 +9,7 @@ import AdminDetail from "./Components/ModifyProducts/AdminDetail.jsx";
 import EditProduct from "./Components/ProductEdit/ProductEdit.jsx";
 import FavoriteProduct from "./Components/FavoriteProduct/FavoriteProduct.jsx";
 import Cart from "./Components/Cart/Cart.jsx";
-import Login from "./Components/Login/Login.jsx";
+// import Login from "./Components/Login/Login.jsx";
 import Register from "./Components/Register/Register.jsx";
 import FormProduct from "./Components/FormProduct/FormProduct.jsx";
 import Contact from "./Components/Contact/Contact.jsx";
@@ -127,7 +127,7 @@ function App() {
           <Route path="/Cart" element={<Cart />} />
         )}
 
-        {isLoading || !userDetail ? (
+        {/* {isLoading || !userDetail ? (
           <Route path="/Login" element={<Login />} />
         ) : !isAuthenticated ? (
           <Route path="/Login" element={<Login />} />
@@ -135,7 +135,7 @@ function App() {
           <Route path="/Login" element={<Ban />} />
         ) : (
           <Route path="/Login" element={<Login />} />
-        )}
+        )} */}
         {/* no funciona bien la autenticacion del /Register */}
         {isLoading || !userDetail ? (
           ""
