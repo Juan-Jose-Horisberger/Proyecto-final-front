@@ -9,8 +9,6 @@ import {
   deleteCartProduct,
 } from "../../Redux/Action";
 import styles from "./FavoriteProduct.module.css";
-import SearchBar from "../SearchBar/SearchBar.jsx";
-import unaX from "../../Imagenes/unaX.svg";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useState } from "react";
@@ -54,8 +52,6 @@ export default function FavoriteProduct() {
 
   return (
     <div className={styles.container} key="Asdasd">
-      {/* <SearchBar /> */}
-
       <p style={{ fontSize: "23px" }} className="mb-4">
         <Link to="/">Inicio</Link>/Favoritos
       </p>
