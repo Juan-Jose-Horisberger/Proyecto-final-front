@@ -336,7 +336,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
 
                     <div
                       data-bs-toggle="offcanvas"
-                      data-bs-target="#offcanvasRight"
+                      data-bs-target="#offcanvasRight1"
                     >
                       <img src={Campanita} style={{ width: "24px" }} alt="" />
                       {isAuthenticated && !isLoading ? (
@@ -352,7 +352,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                   </div>
                   <div
                     className={`offcanvas offcanvas-end ${styles.container_showNotifications}`}
-                    id="offcanvasRight"
+                    id="offcanvasRight1"
                   >
                     <div className="offcanvas-header">
                       <h5>Notificaciones</h5>
