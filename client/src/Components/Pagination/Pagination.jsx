@@ -30,7 +30,7 @@ export default function Pagination({ allProducts, loaded }) {
   useEffect(() => {
     // console.log(itemOffset);
     const endOffset = itemOffset + itemsPerPage; //Indice del ultimo elemento de la pagina actual
-    console.log(allProductsSort);
+    // console.log(allProductsSort);
     setCurrentItems(allProductsSort.slice(itemOffset, endOffset)); //Tomamos una parte del array
     setPageCount(Math.ceil(allProductsSort.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, allProductsSort]);
