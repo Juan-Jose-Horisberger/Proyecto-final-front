@@ -243,15 +243,15 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard socket={socket} />} />
         )}
 
-        {isLoading || !userDetail ? (
+        {/* {isLoading || !userDetail ? (
           ""
         ) : !isAuthenticated ? (
           ""
         ) : userDetail.admin == false ? (
           ""
-        ) : (
-          <Route path="/CreateProduct" element={<FormProduct />} />
-        )}
+        ) : ( */}
+        <Route path="/CreateProduct" element={<FormProduct />} />
+        {/* )} */}
 
         {isLoading || !userDetail ? (
           ""

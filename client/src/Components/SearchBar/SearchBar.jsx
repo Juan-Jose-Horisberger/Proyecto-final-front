@@ -25,6 +25,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [errorsExist, setErrorsExist] = useState(false);
   var cookies = new Cookies();
+  const counterNoti = cookies.get("counterNoti");
   const noti = cookies.get("noti");
   const infoProductDefailt = useSelector(
     (state) => state.productsNotifications
@@ -54,7 +55,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
   }
 
   function setNotificationsTo0() {
-    dispatch(clearNotifications());
+    cookies.set("counterNoti", 0);
   }
 
   function getDetailsOnClick() {
@@ -326,7 +327,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
 
                   <div
                     className={`${styles.container_notification} `}
-                    onClick={() => getDetailsOnClick()}
+                    onClick={() => setNotificationsTo0()}
                   >
                     {/* <Link to="">
                                  <img src="https://www.svgrepo.com/show/281772/alarm-bell.svg" style={{ width: "27px" }} alt="" />
@@ -338,8 +339,14 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                       data-bs-target="#offcanvasRight"
                     >
                       <img src={Campanita} style={{ width: "24px" }} alt="" />
-                      {infoNotifications.counter > 0 && (
-                        <div>{infoNotifications.counter}</div>
+                      {isAuthenticated && !isLoading ? (
+                        counterNoti ? (
+                          <div>{counterNoti}</div>
+                        ) : (
+                          <div>0</div>
+                        )
+                      ) : (
+                        true
                       )}
                     </div>
                   </div>
@@ -350,7 +357,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                     <div className="offcanvas-header">
                       <h5>Notificaciones</h5>
                       <button
-                        onClick={() => setNotificationsTo0()}
+                        // onClick={() => setNotificationsTo0()}
                         type="button"
                         className="btn-close text-reset"
                         data-bs-dismiss="offcanvas"

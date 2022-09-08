@@ -51,6 +51,8 @@
 }
 
 .containerFilters_992px {
+  background-color: black !important;
+
   width: 40px;
   cursor: pointer;
   display: none;
@@ -72,6 +74,8 @@
 }
 
 .container_FiltersTrue {
+  background-color: black !important;
+  color: azure;
   width: 100%;
   padding: 10px 20px;
 }
