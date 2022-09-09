@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Contact.module.css";
 import { validate } from "./validate.js";
 import SearchBar from "../SearchBar/SearchBar";
@@ -199,6 +199,10 @@ export default function Contact() {
     e.preventDefault();
     setSubmittedFormTrue(true);
   }
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
 
   return (
     <div className={`container-fluid p-0 ${styles.container}`}>

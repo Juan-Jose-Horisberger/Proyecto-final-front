@@ -17,6 +17,25 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import Footer from "../Footer/Footer";
 
+function matchMediaQuery(breakPoints2, setBreakPointsState) {
+  console.log(Object.keys(breakPoints2)); //3:52
+
+  for (var key of Object.keys(breakPoints2)) {
+    console.log(key, "--->", breakPoints2[key]);
+    if (window.matchMedia(`${breakPoints2[key]}`).matches) {
+      setBreakPointsState(key);
+    }
+  }
+}
+
+export function breackPointObserver(breakPoints2, setBreakPointsState) {
+  matchMediaQuery(breakPoints2, setBreakPointsState);
+
+  window.addEventListener("resize", () => {
+    matchMediaQuery(breakPoints2, setBreakPointsState);
+  });
+}
+
 export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -34,15 +53,27 @@ export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
   });
   const productsFiltered = allProductsSort.filter((e, i) => i <= count);
   const [loaded, setLoaded] = useState(false);
+  const [breakPointsState, setBreakPointsState] = useState("");
 
   useEffect(() => {
     dispatch(getAllProducts());
+    window.scroll(0, 0);
   }, []);
 
   useEffect(() => {
     Aos.init({ duration: 2000 });
     setLoaded(true);
   }, []);
+
+  const breakPoints2 = {
+    mobile: "(min-width: 100px) and (max-width: 576px)",
+    tablet: "(min-width: 600px) and (max-width: 768px)",
+    laptop: "(min-width: 700px) and (max-width: 1024px)",
+  };
+
+  useEffect(() => {
+    breackPointObserver(breakPoints2, setBreakPointsState);
+  }, [breakPointsState]);
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -70,7 +101,7 @@ export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
           // style={{ border: "1px solid red" }}
         >
           <div className="carousel-inner">
-            <div className="carousel-item">
+            <div className={`carousel-item ${styles.container_carrousel1}`}>
               <div className={`${styles.container_Image_Carrousel}`}>
                 <img
                   src={imgCarrousel2}
@@ -84,7 +115,9 @@ export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
               </div>
             </div>
 
-            <div className="carousel-item active">
+            <div
+              className={`carousel-item active ${styles.container_carrousel2}`}
+            >
               <div className={`${styles.container_Image_Carrousel}`}>
                 <img
                   src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/if_w_gt_1920,w_1920/esAR/Images/originals-ss22-parley-launch-hp-mh-large-GV7616-d_tcm216-854476.jpg"
@@ -173,51 +206,91 @@ export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
 
       <div className={`${styles.container_Images}`}>
         <div className={`${styles.containerInfoImages}`}>
-          <div
-            data-aos="fade-up-right"
-            data-aos-anchor-placement="center-center"
-            className={`${styles.container_Products_img}`}
-            //data-aos-anchor-placement="top-center"
-          >
-            <Link to="/">
-              <span className={`${styles.hover_In_Image}`}>
-                <img src={imgProducts} alt="" className="img-fluid" />
-              </span>
-            </Link>
-          </div>
-          <div className={`${styles.container_Dress_Footwear}`}>
-            <div data-aos="fade-up" data-aos-anchor-placement="center-center">
-              <span
-                className={`${styles.hover_In_Image}`}
-                style={{ cursor: "pointer" }}
-              >
-                <img src={imgDress} alt="" className="img-fluid" />
-              </span>
+          {breakPointsState === "mobile" ? (
+            <div className={`${styles.container_Products_img}`}>
+              <Link to="/">
+                <span className={`${styles.hover_In_Image}`}>
+                  <img src={imgProducts} alt="" className="img-fluid" />
+                </span>
+              </Link>
             </div>
+          ) : (
             <div
-              data-aos="fade-left"
-              data-aos-duration="2000"
+              data-aos="fade-up-right"
               data-aos-anchor-placement="center-center"
+              // data-aos-anchor-placement="top-center"
+              className={`${styles.container_Products_img}`}
             >
-              <span className={`${styles.hover_In_Image}`}>
-                <img
-                  src={imgFootwear}
-                  alt=""
-                  className="img-fluid"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleOnClick()}
-                />
-              </span>
+              <Link to="/">
+                <span className={`${styles.hover_In_Image}`}>
+                  <img src={imgProducts} alt="" className="img-fluid" />
+                </span>
+              </Link>
             </div>
+          )}
+
+          <div className={`${styles.container_Dress_Footwear}`}>
+            {breakPointsState === "mobile" ? (
+              <div>
+                <span
+                  className={`${styles.hover_In_Image}`}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src={imgDress} alt="" className="img-fluid" />
+                </span>
+              </div>
+            ) : (
+              <div data-aos="fade-up" data-aos-anchor-placement="center-center">
+                <span
+                  className={`${styles.hover_In_Image}`}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src={imgDress} alt="" className="img-fluid" />
+                </span>
+              </div>
+            )}
+            {breakPointsState === "mobile" ? (
+              <div>
+                <span className={`${styles.hover_In_Image}`}>
+                  <img
+                    src={imgFootwear}
+                    alt=""
+                    className="img-fluid"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleOnClick()}
+                  />
+                </span>
+              </div>
+            ) : (
+              <div
+                data-aos="fade-left"
+                data-aos-duration="2000"
+                data-aos-anchor-placement="center-center"
+              >
+                <span className={`${styles.hover_In_Image}`}>
+                  <img
+                    src={imgFootwear}
+                    alt=""
+                    className="img-fluid"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleOnClick()}
+                  />
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
       <div className={`${styles.container_AboutUs}`}>
         <div>
-          <h4 data-aos="fade-up" data-aos-anchor-placement="center-center">
-            ¿Que es GAED.JM?
-          </h4>
+          {breakPointsState === "mobile" ? (
+            <h4>¿Que es GAED.JM?</h4>
+          ) : (
+            <h4 data-aos="fade-up" data-aos-anchor-placement="center-center">
+              ¿Que es GAED.JM?
+            </h4>
+          )}
           <p>
             Somos la primer tienda de consignación HYPE en la Argentina. Que
             vino a revolucionar la industria de los sneakers, traemos la
@@ -231,39 +304,71 @@ export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
 
       <div className={`${styles.container_AboutImages}`}>
         <div className={`${styles.container_Info_Images}`}>
-          <div
-            data-aos="fade-up"
-            data-aos-anchor-placement="bottom-bottom"
-            data-aos-duration="500"
-          >
-            <img
-              src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-1.jpg"
-              alt=""
-              className="img-fluid"
-            />
-          </div>
-          <div
-            data-aos="fade-up"
-            data-aos-anchor-placement="bottom-bottom"
-            data-aos-duration="1000"
-          >
-            <img
-              src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-2.jpg"
-              alt=""
-              className="img-fluid"
-            />
-          </div>
-          <div
-            data-aos="fade-up"
-            data-aos-anchor-placement="bottom-bottom"
-            data-aos-duration="2000"
-          >
-            <img
-              src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-3.jpg"
-              alt=""
-              className="img-fluid"
-            />
-          </div>
+          {breakPointsState === "mobile" ? (
+            <div>
+              <img
+                src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-1.jpg"
+                alt=""
+                className="img-fluid"
+              />
+            </div>
+          ) : (
+            <div
+              data-aos="fade-up"
+              data-aos-anchor-placement="bottom-bottom"
+              data-aos-duration="500"
+            >
+              <img
+                src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-1.jpg"
+                alt=""
+                className="img-fluid"
+              />
+            </div>
+          )}
+
+          {breakPointsState === "mobile" ? (
+            <div>
+              <img
+                src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-2.jpg"
+                alt=""
+                className="img-fluid"
+              />
+            </div>
+          ) : (
+            <div
+              data-aos="fade-up"
+              data-aos-anchor-placement="bottom-bottom"
+              data-aos-duration="1000"
+            >
+              <img
+                src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-2.jpg"
+                alt=""
+                className="img-fluid"
+              />
+            </div>
+          )}
+
+          {breakPointsState === "mobile" ? (
+            <div>
+              <img
+                src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-3.jpg"
+                alt=""
+                className="img-fluid"
+              />
+            </div>
+          ) : (
+            <div
+              data-aos="fade-up"
+              data-aos-anchor-placement="bottom-bottom"
+              data-aos-duration="2000"
+            >
+              <img
+                src="https://drops-ba.com/wp-content/uploads/2021/07/Crew-3.jpg"
+                alt=""
+                className="img-fluid"
+              />
+            </div>
+          )}
         </div>
       </div>
 

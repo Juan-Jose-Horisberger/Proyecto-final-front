@@ -111,7 +111,7 @@ export default function Offers() {
         </div>
       </div>
       <div>
-        <div className={`${styles.container_Inicio}`}>
+        <div className={`mt-1 ${styles.container_Inicio}`}>
           <Link to="/">
             <span>Inicio</span>
           </Link>

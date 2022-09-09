@@ -114,6 +114,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
       <div>
         <nav
           className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}
+          // style={{ border: "1px solid red" }}
         >
           <div className="container-fluid d-flex flex-wrap">
             <Link to="/LandingPage" className="navbar-brand d-flex col-2 me-0">
@@ -138,6 +139,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
             </button>
 
             <div
+              // style={{ border: "1px solid red" }}
               className={`col-10 collapse navbar-collapse row`}
               id="navbarSupportedContent"
             >
@@ -146,7 +148,6 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
 
                 <div
                   className={`d-flex justify-content-around align-items-center ${styles.container_Info_Navbar}`}
-                  style={{ border: "1px solid red" }}
                 >
                   <Link
                     to="/Offers"
@@ -379,6 +380,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
             </div>
           </div>
         </nav>
+
         <div
           className={`
             alert alert-danger alert-dismissible fade show d-flex 
