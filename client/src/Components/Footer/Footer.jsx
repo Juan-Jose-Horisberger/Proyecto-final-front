@@ -57,7 +57,7 @@ export default function Footer() {
     <>
       <footer className={`${styles.footer}`}>
         <div className={`${styles.containerInfoFooter}`}>
-          <div>
+          <div className={`${styles.containerDiv1}`}>
             <h4>Soporte</h4>
             <Link to="/Faqs">
               <p>
@@ -96,7 +96,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div>
+          <div className={`${styles.containerDiv2}`}>
             <h4>¿Por qué Gaed.jm?</h4>
             <p>
               <BsCheckCircle size="20px" color="white" /> Variedad de productos
@@ -113,12 +113,12 @@ export default function Footer() {
             </p>
           </div>
 
-          <div>
+          <div className={`${styles.containerDiv3}`}>
             <h4>Metodos de pago</h4>
             <img
               src="https://drops-ba.com/wp-content/uploads/2021/11/Visa-Mastercard-American-Express-Naranja-Tarjeta-Shopping-Nativa-Cencosud-Cabal-Argencard-Diners-Cordobesa-CMR-Cordial.png"
               alt=""
-              className="img-fluid"
+              className="img-fluid pb-2"
             />
           </div>
 
@@ -134,21 +134,12 @@ export default function Footer() {
             </span>
           </div>
         </div>
+
         <div className={`${styles.container_SocialNetworks}`}>
-          <div
-            className={`d-flex justify-content-center flex-wrap`}
-            //  style={{ border: "1px solid red" }}
-          >
-            <h4
-              className="col-12 text-center"
-              // style={{ border: "1px solid red" }}
-            >
-              REDES SOCIALES
-            </h4>
-            <div
-              className="col-10 d-flex justify-content-around pt-2"
-              // style={{ border: "1px solid red" }}
-            >
+          <div className={`d-flex justify-content-center flex-wrap`}>
+            <h4 className="col-12 text-center">REDES SOCIALES</h4>
+
+            <div className="col-10 d-flex justify-content-around pt-2">
               <span style={{ cursor: "pointer" }}>
                 <AiOutlineInstagram size="22px" color="white" />
               </span>
@@ -161,7 +152,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className={`${styles.containerInfoP}`}>
+        <div className={`ms-3 ms-sm-0 ${styles.containerInfoP}`}>
           <p>© GEAD.JM, 2022. Todos los derechos reservados</p>
         </div>
       </footer>

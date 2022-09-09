@@ -34,7 +34,7 @@
   width: 90%;
   display: flex;
   justify-content: center;
-  /* margin: 0 50px; */
+  /* border: 1px solid red; */
   margin-top: 20px;
 }
 
@@ -93,4 +93,86 @@
 .hover_In_Image img:hover {
   opacity: 0.7;
   transition: opacity 0.5;
+}
+
+@media screen and (min-width: 150px) and (max-width: 576px) {
+  .containerInfoFooter {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .containerInfoFooter div {
+    border: none;
+    border-bottom: 1px solid white;
+  }
+
+  .containerInfoFooter .containerDiv1,
+  .containerDiv2,
+  .containerDiv3,
+  .Footer_div4 {
+    width: 95% !important;
+    margin-bottom: 30px;
+  }
+
+  .Footer_div4 button {
+    margin-bottom: 15px;
+  }
+  .footer .container_SocialNetworks {
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .containerInfoFooter {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .containerInfoFooter .containerDiv1,
+  .containerDiv2,
+  .containerDiv3,
+  .Footer_div4 {
+    width: 50% !important;
+  }
+  .footer .container_SocialNetworks {
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .footer .container_SocialNetworks div {
+    margin: 20px 0px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .containerInfoFooter {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .containerInfoFooter .containerDiv1,
+  .containerDiv2,
+  .containerDiv3,
+  .Footer_div4 {
+    width: 50% !important;
+  }
+  .footer .container_SocialNetworks {
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .footer .container_SocialNetworks div {
+    border: 1px solid blue;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
 }

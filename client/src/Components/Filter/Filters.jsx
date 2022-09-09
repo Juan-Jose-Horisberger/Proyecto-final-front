@@ -269,12 +269,7 @@ export default function Filters({ modifiyProducts }) {
                     max="65.999"
                   ></input>
 
-                  <label
-                    style={{ border: "1px solid red" }}
-                    className="form-label"
-                  >
-                    ${price}
-                  </label>
+                  <label className="form-label">${price}</label>
                 </div>
               </div>
             </ul>

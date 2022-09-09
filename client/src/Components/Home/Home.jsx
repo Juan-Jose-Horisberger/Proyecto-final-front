@@ -48,6 +48,7 @@ export default function Home({ socket, boolean, booleanSearchBar }) {
     dispatch(getAllProducts()).then(
       (res) => typeof res === "object" && setLoaded(true)
     );
+    window.scroll(0, 0);
   }, []);
 
   useEffect(() => {
