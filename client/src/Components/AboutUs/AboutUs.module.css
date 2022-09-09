@@ -27,7 +27,7 @@ h1 {
 
 .container_Inicio {
   margin-left: 17px;
-  margin-top: 17px;
+  padding-top: 17px;
 }
 
 .container_Inicio span {
@@ -44,6 +44,13 @@ h1 {
   font-weight: bold;
 }
 
+.containerInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
 .container_image {
   display: flex;
   justify-content: flex-end;
@@ -55,7 +62,8 @@ h1 {
 }
 
 .container_image div {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
 }
 
 .container_title {
@@ -89,17 +97,19 @@ h1 {
 
 .container_sales {
   width: 100%;
-  /* border: 1px solid red; */
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-top: 0;
   margin-bottom: 180px;
+  padding: 50px;
 }
 
 .container_sales .container_imageSales {
-  width: 45%;
-  /* transform: translateX(-120%); */
+  max-width: 600px;
+  width: 100%;
+  margin-left: 30px;
   transition: transform 0.4s, opacity 0.5s ease-out;
+  margin-right: 30px;
 }
 
 .container_sales .container_imageSales.open {
@@ -107,8 +117,8 @@ h1 {
 }
 
 .container_sales .container_infoSales {
-  width: 40%;
-  margin-top: 50px;
+  width: 45%;
+  padding-top: 50px;
 }
 
 .container_sales .container_infoSales h4 {
@@ -185,4 +195,147 @@ h1 {
   font-weight: 600;
   letter-spacing: 1px;
   text-align: center;
+}
+
+@media screen and (min-width: 150px) and (max-width: 576px) {
+  .containerInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container_sales {
+    padding: 20px;
+  }
+
+  .containerInfo .container_Info {
+    width: 100%;
+  }
+  .containerInfo .container_image {
+    width: 100%;
+    justify-content: center;
+    display: none;
+  }
+
+  .container_title {
+    margin-top: 50px;
+    margin-bottom: 0px;
+  }
+
+  .container_sales {
+    flex-direction: column-reverse;
+  }
+
+  .container_sales .container_infoSales {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .container_sales .container_infoSales h4 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .container_sales .container_infoSales p {
+    font-size: 17px;
+  }
+
+  .container_sales {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .container_Img div:first-child {
+    flex-direction: column-reverse;
+    padding: 10px;
+  }
+  .container_Img div div {
+    width: 100%;
+    position: unset;
+  }
+  .container_Img div div p {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .containerInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerInfo .container_Info {
+    width: 100%;
+  }
+  .containerInfo .container_image {
+    width: 100%;
+    justify-content: center;
+    display: none;
+  }
+
+  .container_sales {
+    flex-direction: column-reverse;
+  }
+
+  .container_sales .container_infoSales {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .container_sales .container_infoSales h4 {
+    text-align: center;
+  }
+
+  .container_sales {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .containerInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerInfo .container_Info {
+    width: 100%;
+  }
+  .containerInfo .container_image {
+    width: 100%;
+    justify-content: center;
+    display: none;
+  }
+
+  .container_sales {
+    flex-direction: column-reverse;
+  }
+
+  .container_sales .container_infoSales {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .container_sales .container_infoSales h4 {
+    text-align: center;
+  }
+
+  .container_sales {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
 }

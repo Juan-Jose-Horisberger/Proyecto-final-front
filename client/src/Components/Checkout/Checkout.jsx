@@ -387,9 +387,13 @@ export default function Checkout({ socket }) {
           {productsToBuy.map((e) => {
             return e[1].id ? (
               <div key={e[1].id} className={style.divProduct}>
-                <img src={e[1].image} alt="" />
-                <p>{e[1].name}</p>
-                <p>${e[1].price}</p>
+                <div>
+                  <img src={e[1].image} alt="" className="img-fluid" />
+                </div>
+                <div>
+                  <p>{e[1].name}</p>
+                  <p>${e[1].price}</p>
+                </div>
               </div>
             ) : (
               true
@@ -403,6 +407,7 @@ export default function Checkout({ socket }) {
                 : (subTotal = subTotal)
             )}
           </p>
+
           <div className={style.divTotal}>
             <p>SUBTOTAL</p>
             <p>${(subTotal + "").slice(0, 6)}</p>

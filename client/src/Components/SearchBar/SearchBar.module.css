@@ -55,7 +55,6 @@ button {
 
 .container_Info_Navbar {
   width: 50%;
-  border: none !important;
 }
 
 .container_Searchbar {
@@ -222,4 +221,54 @@ button {
   justify-content: flex-end;
   height: 150px;
   /* border: 1px solid red; */
+}
+
+@media screen and (min-width: 150px) and (max-width: 576px) {
+  .container_Info_Navbar {
+    width: 100%;
+    margin-top: 15px;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .container_Searchbar {
+    width: 95% !important;
+    margin: 15px 0;
+  }
+  .container_favAndCart {
+    width: 30%;
+  }
+  .container_favAndCart div {
+    padding: 0 10px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .container_Info_Navbar {
+    width: 100%;
+    margin-top: 15px;
+  }
+  .container_Searchbar {
+    width: 80% !important;
+    margin: 15px 0;
+  }
+  .container_favAndCart {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .container_Info_Navbar {
+    width: 100%;
+    margin-top: 15px;
+  }
+  .container_Searchbar {
+    width: 80% !important;
+    margin: 15px 0;
+  }
+  .container_favAndCart {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
 }

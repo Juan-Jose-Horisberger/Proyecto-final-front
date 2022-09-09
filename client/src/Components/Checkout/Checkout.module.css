@@ -30,9 +30,12 @@
   margin: auto;
   margin-top: 20px;
   width: 80%;
-  /* border: 1px solid red; */
   justify-content: space-between;
   font-family: "Questrial", sans-serif;
+}
+
+.containerRegisterCupon h3 {
+  margin: 0;
 }
 
 .divRegisterCupon {
@@ -43,6 +46,10 @@
   font-size: 20px;
   margin-bottom: 30px;
   font-family: "Questrial", sans-serif;
+}
+
+.divRegisterCupon p {
+  margin: 0;
 }
 
 .btnRe {
@@ -79,28 +86,42 @@ p {
 }
 
 .divNombreApellido {
-  width: 80%;
-  margin: auto;
+  width: 100%;
   margin-bottom: 40px;
   display: flex;
   flex-wrap: wrap;
-  /* border: 1px solid red; */
   justify-content: space-between;
   font-family: "Questrial", sans-serif;
 }
 
 .divNombre {
+  width: 45%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 45%;
   /* border: 1px solid red; */
 }
 
-.divEdad {
+.divNombre input {
+  width: 100%;
+}
+
+.divApellido {
+  width: 45%;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}
+
+.divApellido input {
+  width: 100%;
+}
+
+.divEdad {
   width: 80%;
+  display: flex;
+  flex-direction: column;
   margin: auto;
   margin-bottom: 40px;
   display: flex;
@@ -108,15 +129,7 @@ p {
 }
 
 .divEdad input {
-  width: 30%;
-}
-
-.divApellido {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 45%;
-  /* border: 1px solid red; */
+  width: 100%;
 }
 
 .divEmpresa {
@@ -143,7 +156,7 @@ p {
 
 .divPais b {
   border-bottom: 2px solid rgb(202, 192, 192);
-  width: 23%;
+  width: 100%;
 }
 
 .divCalle {
@@ -188,7 +201,7 @@ p {
 }
 
 .divPostal input {
-  width: 25%;
+  width: 100%;
 }
 
 .divTelefono {
@@ -203,7 +216,7 @@ p {
 }
 
 .divTelefono input {
-  width: 25%;
+  width: 100%;
 }
 
 .divCorreo {
@@ -254,9 +267,15 @@ p {
   width: 85%;
 }
 
-.divProduct img {
-  width: 100px;
-  margin: 10px;
+.divProduct div:first-child {
+  width: 20%;
+}
+
+.divProduct div:last-child {
+  width: 70%;
+  display: flex;
+  margin-left: 50px;
+  justify-content: space-between;
 }
 
 .cuentita {
@@ -329,4 +348,77 @@ p {
 
 .footerPopOut {
   border: none;
+}
+
+@media screen and (min-width: 150px) and (max-width: 576px) {
+  .containerRegisterCupon {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .containerRegisterCupon div {
+    width: 100%;
+  }
+
+  .containerForm {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .containerPedido {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .containerRegisterCupon h3 {
+    text-align: center;
+  }
+
+  .divProduct {
+    justify-content: center;
+  }
+  .divProduct div:first-child {
+    max-width: 160px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .divProduct div:last-child {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .divProduct {
+    justify-content: center;
+  }
+  .divProduct div:first-child {
+    max-width: 160px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .divProduct div:last-child {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .divProduct {
+    justify-content: center;
+  }
+  .divProduct div:first-child {
+    max-width: 160px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .divProduct div:last-child {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
 }
