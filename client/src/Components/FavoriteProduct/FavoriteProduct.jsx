@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import {
   getFavoriteProduct,
   deleteFavProduct,
@@ -8,15 +9,19 @@ import {
   deleteCartProduct,
 } from "../../Redux/Action";
 import styles from "./FavoriteProduct.module.css";
-import SearchBar from "../SearchBar/SearchBar.jsx";
-import unaX from "../../Imagenes/unaX.svg";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
+import { useState } from "react";
 
 export default function FavoriteProduct() {
   const productFav = useSelector((state) => state.productFav);
   const cookies = new Cookies();
   const dispatch = useDispatch();
+  const [botonValidate, setBotonValidate] = useState(true);
+
+  useEffect(() => {
+    validateCart();
+  }, []);
 
   const handleDelete = (id) => {
     dispatch(deleteFavProduct(id));
@@ -28,23 +33,26 @@ export default function FavoriteProduct() {
     if (findProduct) {
       dispatch(deleteCartProduct(id));
       cookies.remove(id);
+      setBotonValidate(false);
     } else {
       dispatch(getCartProduct(id));
+      setBotonValidate(true);
     }
   };
 
   const validateCart = (id) => {
     const findProductCart = cookies.get(id);
 
-    if (findProductCart) return true;
-
-    return false;
+    if (findProductCart) {
+      setBotonValidate(true);
+    } else {
+      setBotonValidate(false);
+    }
   };
+
   return (
     <div className={styles.container} key="Asdasd">
-      {/* <SearchBar /> */}
-
-      <p className="mb-4">
+      <p style={{ fontSize: "23px" }} className="mb-4">
         <Link to="/">Inicio</Link>/Favoritos
       </p>
 
@@ -89,25 +97,25 @@ export default function FavoriteProduct() {
                 )}
               </div>
 
-              {validateCart(e.id) ? (
-                <div className={styles.divBtnCart}>
-                  <button
-                    onClick={(ev) => handleOnCart(e.id)}
-                    className={styles.btnCart}
-                  >
-                    Añadido al Carrito
-                  </button>
-                </div>
-              ) : (
-                <div className={styles.divBtnCart}>
-                  <button
-                    onClick={(ev) => handleOnCart(e.id)}
-                    className={styles.btnCart}
-                  >
-                    Añadir al Carrito
-                  </button>
-                </div>
-              )}
+              <div className={styles.divBtnCart}>
+                <button
+                  onClick={(ev) => handleOnCart(e.id)}
+                  className={styles.btnCart}
+                >
+                  {botonValidate ? (
+                    <div>
+                      Añadido al Carrito
+                      <img
+                        src={agregadoImage}
+                        className={styles.tilde}
+                        alt=""
+                      />
+                    </div>
+                  ) : (
+                    <div>Añadir al Carrito</div>
+                  )}
+                </button>
+              </div>
             </div>
           );
         })

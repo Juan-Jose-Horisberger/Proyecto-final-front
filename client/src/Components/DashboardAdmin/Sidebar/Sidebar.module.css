@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+/*font-family: 'Questrial', sans-serif;*/
+
+span {
+  font-family: "Questrial", sans-serif;
+}
+
+.container_Title {
+  margin-top: 18px;
+}
+
+.container_Title span {
+  color: white !important;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_Title span:first-child {
+  line-height: 25px;
+  font-weight: bold;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_NotificationsRender {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: azure;
+  border-bottom: 1px solid azure;
+  margin: 15px 0 15px 0;
+  width: 100%;
+  font-size: 20px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_NotificationsRender p {
+  font-family: "Questrial", sans-serif;
+}
+
+.divComment {
+  font-family: "Questrial", sans-serif;
+}
+
+.comment {
+  font-family: "Questrial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a19;
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}

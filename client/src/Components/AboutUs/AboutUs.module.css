@@ -1,0 +1,341 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+/*font-family: 'Questrial', sans-serif;*/
+
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  background-color: #121212;
+}
+
+.container h1 {
+  color: white;
+}
+
+h1 {
+  font-family: "Questrial", sans-serif;
+}
+
+.p1 {
+  font-family: "Questrial", sans-serif;
+}
+
+.p2 {
+  font-family: "Questrial", sans-serif;
+}
+
+.container_Inicio {
+  margin-left: 17px;
+  padding-top: 17px;
+}
+
+.container_Inicio span {
+  font-size: 20px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_Inicio div span:nth-child(2) {
+  color: white;
+}
+
+.container_Inicio div span:nth-child(3) {
+  color: white;
+  font-weight: bold;
+}
+
+.containerInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.container_image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container_Info {
+  width: 400px;
+  border: 5px solid #e2dedb;
+}
+
+.container_image div {
+  max-width: 400px;
+  width: 100%;
+}
+
+.container_title {
+  margin-bottom: 180px;
+  margin-top: 130px;
+  color: white;
+}
+
+.container_title h3 {
+  margin: 0;
+  font-family: "Questrial", sans-serif;
+  font-weight: bold;
+  color: white;
+}
+
+.carts {
+  width: 290px;
+  height: 362px;
+  /* border: 1px solid red !important; */
+  margin: 0 10px;
+  padding: 0;
+  font-family: "Questrial", sans-serif;
+}
+
+.carts2 {
+  width: 290px;
+  height: 362px;
+  margin: 0 10px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_sales {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 180px;
+  padding: 50px;
+}
+
+.container_sales .container_imageSales {
+  max-width: 600px;
+  width: 100%;
+  margin-left: 30px;
+  transition: transform 0.4s, opacity 0.5s ease-out;
+  margin-right: 30px;
+}
+
+.container_sales .container_imageSales.open {
+  transform: translateX(-0);
+}
+
+.container_sales .container_infoSales {
+  width: 45%;
+  padding-top: 50px;
+}
+
+.container_sales .container_infoSales h4 {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Questrial", sans-serif;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.container_sales .container_infoSales p {
+  font-size: 23px;
+  color: white;
+  margin-bottom: 25px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_sales .container_infoSales a {
+  width: 100px;
+  padding: 7px;
+  display: block;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  background-color: #23232c;
+  letter-spacing: 1px;
+  font-family: "Questrial", sans-serif;
+}
+
+.container_sales .container_infoSales a:hover {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.container_Img {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 40px;
+}
+
+.container_Img div {
+  width: auto;
+  position: relative;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container_Img div div {
+  width: 500px;
+  top: 30%;
+  position: absolute;
+  /* border: 1px solid red; */
+}
+
+.container_Img div div p:first-child {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.container_Img div div img {
+  margin-bottom: 15px;
+}
+
+.container_Img div div p:last-child {
+  width: 70%;
+  /* border: 1px solid red; */
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+@media screen and (min-width: 150px) and (max-width: 576px) {
+  .containerInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container_sales {
+    padding: 20px;
+  }
+
+  .containerInfo .container_Info {
+    width: 100%;
+  }
+  .containerInfo .container_image {
+    width: 100%;
+    justify-content: center;
+    display: none;
+  }
+
+  .container_title {
+    margin-top: 50px;
+    margin-bottom: 0px;
+  }
+
+  .container_sales {
+    flex-direction: column-reverse;
+  }
+
+  .container_sales .container_infoSales {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .container_sales .container_infoSales h4 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .container_sales .container_infoSales p {
+    font-size: 17px;
+  }
+
+  .container_sales {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .container_Img div:first-child {
+    flex-direction: column-reverse;
+    padding: 10px;
+  }
+  .container_Img div div {
+    width: 100%;
+    position: unset;
+  }
+  .container_Img div div p {
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .containerInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerInfo .container_Info {
+    width: 100%;
+  }
+  .containerInfo .container_image {
+    width: 100%;
+    justify-content: center;
+    display: none;
+  }
+
+  .container_sales {
+    flex-direction: column-reverse;
+  }
+
+  .container_sales .container_infoSales {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .container_sales .container_infoSales h4 {
+    text-align: center;
+  }
+
+  .container_sales {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .containerInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerInfo .container_Info {
+    width: 100%;
+  }
+  .containerInfo .container_image {
+    width: 100%;
+    justify-content: center;
+    display: none;
+  }
+
+  .container_sales {
+    flex-direction: column-reverse;
+  }
+
+  .container_sales .container_infoSales {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .container_sales .container_infoSales h4 {
+    text-align: center;
+  }
+
+  .container_sales {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+}

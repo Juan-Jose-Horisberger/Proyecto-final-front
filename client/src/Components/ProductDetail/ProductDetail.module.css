@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   margin-top: 45px;
+  margin-bottom: 100px;
   flex-wrap: wrap;
   background-color: black;
 }
@@ -28,6 +29,20 @@
 
 .container_1 h1 .span_3 {
   font-weight: bold;
+}
+container_2 .container_1 .container_Img {
+  /* border: 1px solid red; */
+  position: relative;
+}
+
+.container_1 .container_Img p {
+  top: 3%;
+  padding: 0 10px;
+  font-size: 20px;
+  background-color: #100f10;
+  color: white;
+  position: absolute;
+  /* border: 1px solid red; */
 }
 
 .container_2 {
@@ -73,14 +88,29 @@
   font-size: 35px;
 }
 
-.container_2 h2 {
-  /* width: 100%; */
-  font-size: 30px;
+.container_2 .container_price {
+  width: 100%;
+  display: flex;
+  /* border: 1px solid red; */
   margin-bottom: 5px;
+}
+
+.container_2 .container_price p {
+  font-size: 22px;
+  margin-bottom: 0px;
   font-family: "Questrial", sans-serif;
-  font-weight: bold;
-  /* border: 1px solid black; */
+  text-decoration: line-through 2px;
   color: white !important;
+  line-height: 45px;
+  margin-right: 18px;
+}
+
+.container_2 .container_price h2 {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  /* border: 1px solid red; */
+  margin: 0;
 }
 
 .container_button {
@@ -92,13 +122,20 @@
 }
 
 .container_button button {
+  display: flex;
+  justify-content: center;
   width: 70%;
-  padding: 8px;
+  padding: 10px;
   background-color: #23232c;
   border-radius: 3px;
   font-family: "Questrial", sans-serif;
   font-weight: 600;
   color: white;
+}
+
+.tilde {
+  margin: 0 0 0 10px;
+  width: 20px;
 }
 
 .container_button button:hover {
@@ -112,12 +149,10 @@
   display: flex;
   flex-direction: column;
   margin-top: 30px;
-  border: 1px solid black;
 }
 
 .container_3 div {
   width: 450px;
-  border: 1px solid black;
   /* background-color: black; */
 }
 
@@ -229,6 +264,11 @@
   display: flex;
 }
 
+.container_img1 button {
+  background-color: black;
+  color: rgb(183, 184, 184);
+}
+
 .container_img1 p {
   padding: 0;
   padding-top: 15px;
@@ -300,6 +340,11 @@
   padding: 0;
   flex-direction: column !important;
   color: white;
+}
+
+.hover_In_Image img:hover {
+  opacity: 0.7;
+  transition: opacity 0.5;
 }
 
 @media screen and (min-width: 100px) and (max-width: 576px) {
@@ -471,4 +516,105 @@
   background-color: #100f10;
   cursor: pointer;
   font-family: "Questrial", sans-serif;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  font-size: 18px;
+  background-color: black;
+  /* border: 1px solid red; */
+  height: auto;
+}
+.divComment {
+  color: azure;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  border: 1px solid azure;
+  padding: 20px;
+  height: auto;
+  width: 100%;
+}
+
+.divImg {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.divImg p {
+  text-decoration: underline;
+  /* border: 1px solid red; */
+  margin: 0;
+}
+
+.divBtnDeleteComment {
+  display: flex;
+  justify-content: flex-end;
+  /* border: 1px solid red; */
+  font-family: "Questrial", sans-serif !important;
+  width: 50%;
+}
+
+.btnDeleteComment {
+  background-color: black;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid red;
+  font-family: "Questrial", sans-serif !important;
+}
+
+.btnDeleteComment:hover {
+  transition: 0.4s;
+  color: #fff;
+  background-color: black;
+  cursor: pointer;
+  font-family: "Questrial", sans-serif;
+}
+
+.imgUser {
+  width: 50px;
+  /* height: 50px; */
+  border-radius: 100px;
+  margin-right: 1rem;
+}
+
+.divCommentUser {
+  background-color: #100f10;
+  border: 1px solid rgb(16, 17, 17);
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 10px;
+  height: auto;
+}
+
+.divCommentUser p {
+  display: flex;
+  height: 500px;
+
+  width: 100%;
+  border: 1px solid rgb(0, 255, 255);
+}
+
+.divBtnAdminZarcos {
+  display: flex;
+  justify-content: space-evenly;
+  /* border: 1px solid red; */
+  width: 70%;
+  height: 60px;
+}
+
+.divBtnAdminZarcos button {
+  background-color: #17171a;
+  border-radius: 100px;
+  width: 60px;
+  height: 60px;
+}
+
+.divBtnAdminZarcos button:hover {
+  background-color: #0b0b0c;
+  transition: 0.4s;
 }

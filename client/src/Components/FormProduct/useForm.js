@@ -9,6 +9,7 @@ export default function useForm(initialForm, validateForm) {
   const [errors, setErrors] = useState({});
   const [validate, setValidate] = useState({});
   const [alert, setAlert] = useState();
+  const [checkedInput, setCheckedInput] = useState(false);
   var cookies = new Cookies();
   var expiryDate = new Date(Date.now() + 60 * 24 * 3600000);
 
@@ -120,14 +121,29 @@ export default function useForm(initialForm, validateForm) {
         ...form,
         offer: true,
       });
+      setCheckedInput(true);
     } else {
       setForm({
         ...form,
         offer: false,
+        discount: "",
       });
+      setCheckedInput(false);
     }
   };
 
+  const handleDiscount = (e) => {
+    if (e.target.checked) {
+      setForm({ ...form, discount: e.target.value });
+    }
+    const errores = validateForm(
+      { ...form, [e.target.name]: e.target.value },
+      e.target.name,
+      setValidate,
+      setErrors
+    );
+    setErrors(errores);
+  };
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const errores = validateForm(
@@ -148,8 +164,6 @@ export default function useForm(initialForm, validateForm) {
       cookies.remove("brand");
       cookies.remove("price");
       cookies.remove("stock");
-      cookies.remove("sold");
-      cookies.remove("score");
       cookies.remove("genre");
 
       var options = document.querySelectorAll("#my_select");
@@ -174,5 +188,7 @@ export default function useForm(initialForm, validateForm) {
     setAlert,
     handleOffer,
     uploadImage,
+    checkedInput,
+    handleDiscount,
   };
 }

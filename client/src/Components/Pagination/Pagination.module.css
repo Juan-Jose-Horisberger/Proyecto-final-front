@@ -1,86 +1,181 @@
-a{
-    text-decoration: none !important;
-    color: gray;
-    user-select: none;
+a {
+  text-decoration: none !important;
+  color: gray;
+  user-select: none;
 }
 
-a:hover{
-    color: white;
-    transition: 0.5s ease-out;
+a:hover {
+  color: white;
+  transition: 0.5s ease-out;
 }
 
-
-.pagination{
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    font-size: 18px;
-    /* border: 1px solid red; */
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 18px;
+  /* border: 1px solid red; */
 }
 
-.page_num{
-    padding: 3px 10px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-weight: 400;
+.page_num {
+  padding: 3px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
 }
-.active{
-    color: white;
-}
-
-.previous{
-    font-size: 30px;
-    display: none;
+.active {
+  color: white;
 }
 
-.previous.open{
-    display: block;
+.previous {
+  font-size: 30px;
+  display: none;
 }
 
-.next{
-    font-size: 30px;
+.previous.open {
+  display: block;
 }
 
-.next.close{
-    display: none;
+.next {
+  font-size: 30px;
 }
 
-.container_loading{
-    height: 340px;
-    align-items: center;
-    margin-bottom: 175px;
+.next.close {
+  display: none;
 }
 
-.container_loading p{
-    font-size: 40px;
-    margin: 0;
-    padding: 0;
-    flex-direction: column !important;
-    color: white;
+.container_loading {
+  height: 340px;
+  align-items: center;
+  margin-bottom: 175px;
 }
 
-.notResult{
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    /* background-color: red; */
+.container_loading p {
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+  flex-direction: column !important;
+  color: white;
 }
 
-.notResult p{
-    font-size: 30px;
-    font-weight: bold;
+.notResult {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* background-color: red; */
 }
 
-.notResult p:nth-child(2){
-    text-decoration: underline;
+.notResult p {
+  font-size: 30px;
+  font-weight: bold;
 }
 
-.notResult p:nth-child(2):hover{
-    cursor: pointer;
+.notResult p:nth-child(2) {
+  text-decoration: underline;
 }
 
+.notResult p:nth-child(2):hover {
+  cursor: pointer;
+}
+
+/*~~~~~~~~~~Footer~~~~~~~~~~*/
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #23232c;
+  color: white;
+}
+
+.footer .container_SocialNetworks {
+  width: 100% !important;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 90px;
+}
+
+.footer .container_SocialNetworks div {
+  width: 250px;
+  border-top: 1px solid white;
+}
+
+.footer .container_SocialNetworks div h4 {
+  line-height: 30px;
+  margin: 0;
+  padding: 5px 0;
+  color: white;
+}
+
+.containerInfoFooter {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 50px; */
+  margin-top: 20px;
+}
+
+.containerInfoFooter h4,
+.containerInfoFooter p {
+  color: white;
+  font-family: "Questrial", sans-serif;
+}
+
+.containerInfoFooter div {
+  width: 100%;
+  border-left: 1px solid white;
+  padding: 10px 10px 0px 15px;
+  /* border: 1px solid red; */
+}
+
+.footer .containerInfoP p {
+  padding: 10px 0;
+  margin: 0;
+}
+
+.footer .containerInfoP {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.Footer_div4 {
+  position: relative;
+}
+
+.Footer_div4 span {
+  position: absolute;
+  top: 45%;
+  right: 2%;
+}
+
+.Footer_div4 span:hover {
+  cursor: pointer;
+}
+
+.Footer_div4 button {
+  width: 120px;
+  padding: 5px;
+  font-family: "Questrial", sans-serif;
+  background-color: #121212;
+  color: white;
+}
+.Footer_div4 button:hover {
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+
+.hover_In_Image img:hover {
+  opacity: 0.7;
+  transition: opacity 0.5;
+}

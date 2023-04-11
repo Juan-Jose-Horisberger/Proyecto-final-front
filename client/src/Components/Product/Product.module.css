@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+/*font-family: 'Questrial', sans-serif;*/
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap");
+/*font-family: 'Kanit', sans-serif;*/
+
+.containerLandingPage {
+  width: 90%;
+  color: azure;
+}
+
 .container {
   width: 31%;
   /* border: 1px solid red; */
@@ -28,6 +38,26 @@
   position: relative;
 }
 
+.newProduct {
+  padding: 3px 15px;
+  top: 5%;
+  font-size: 11px;
+  font-family: "Kanit", sans-serif;
+  position: absolute;
+  background-color: red;
+  color: white;
+}
+
+.discountP {
+  top: 3%;
+  padding: 0 10px;
+  font-size: 15px;
+  margin: 0;
+  background-color: #100f10;
+  color: white;
+  position: absolute;
+}
+
 .container_productInfo .button1 {
   width: 50px;
   height: 50px;
@@ -56,7 +86,7 @@
 }
 
 .container_productInfo .button1 img {
-  width: 60px !important;
+  width: 30px !important;
 }
 
 .container_productInfo .button2 {
@@ -87,13 +117,58 @@
 }
 
 .container_productInfo .button2 img {
-  width: 40px !important;
+  width: 34px !important;
 }
 
-/* .info {
-  background-color: red;
-  z-index: 15;
-} */
+.info {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.info h1 {
+  font-family: "Questrial", sans-serif;
+  color: white !important;
+  font-size: 35px;
+}
+
+.info .container_price {
+  width: 100%;
+  display: flex;
+  /* border: 1px solid red; */
+}
+
+.container_price {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid red; */
+  margin: 0;
+}
+
+.info .container_price p {
+  font-size: 17px;
+  margin-bottom: 0px;
+  font-family: "Questrial", sans-serif;
+  text-decoration: line-through 2px;
+  color: white !important;
+  line-height: 28px;
+  margin-right: 10px;
+  font-family: "Questrial", sans-serif;
+}
+
+.info .container_price h2 {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "Questrial", sans-serif;
+  margin: 0;
+}
+
+.info .price_Product {
+  font-size: 10px;
+}
 
 .container_link {
   width: 20%;

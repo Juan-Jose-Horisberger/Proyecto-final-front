@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Contact.module.css";
 import { validate } from "./validate.js";
 import SearchBar from "../SearchBar/SearchBar";
 import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
-require("dotenv").config();
+import Footer from "../Footer/Footer";
+// require("dotenv").config();
 
 export default function Contact() {
   const form = useRef();
@@ -199,6 +200,10 @@ export default function Contact() {
     setSubmittedFormTrue(true);
   }
 
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <div className={`container-fluid p-0 ${styles.container}`}>
       {/* <SearchBar /> */}
@@ -273,6 +278,7 @@ export default function Contact() {
                   placeholder="Nombre *"
                   name="user_name"
                   value={input.user_name}
+                  style={{ color: "azure" }}
                   autoComplete="off"
                   onChange={(e) => handleOnChange(e)}
                 />
@@ -297,6 +303,7 @@ export default function Contact() {
                   placeholder="Email *"
                   name="user_email"
                   value={input.user_email}
+                  style={{ color: "azure" }}
                   autoComplete="off"
                   onChange={(e) => handleOnChange(e)}
                 />
@@ -321,6 +328,7 @@ export default function Contact() {
                   placeholder="Asunto *"
                   name="user_affair"
                   value={input.user_affair}
+                  style={{ color: "azure" }}
                   autoComplete="off"
                   onChange={(e) => handleOnChange(e)}
                 />
@@ -350,7 +358,7 @@ export default function Contact() {
                   placeholder="Mensaje *"
                   value={input.user_message}
                   onChange={(e) => handleOnChange(e)}
-                  style={{ resize: "none" }}
+                  style={{ resize: "none", color: "azure" }}
                 ></textarea>
                 <p className="invalid-feedback mb-0">{error.user_message}</p>
               </div>
@@ -457,6 +465,8 @@ export default function Contact() {
           </form>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }

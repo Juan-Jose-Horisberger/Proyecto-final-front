@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap");
+/*font-family: 'Kanit', sans-serif;*/
+
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+/*font-family: 'Questrial', sans-serif;*/
+
+.container {
+  background-color: #121212;
+}
+
+.container_Carrousel {
+  margin-top: 74px;
+}
+
+.container_Image_Carrousel {
+  position: relative;
+}
+
+.containerInfoCarrousel {
+  width: 400px;
+  top: 30%;
+  left: 10%;
+  /* border: 1px solid red; */
+  position: absolute;
+}
+
+.containerInfoCarrousel h4 {
+  color: white;
+  font-size: 45px;
+  font-family: "Kanit", sans-serif;
+  user-select: none;
+}
+
+.containerInfoCarrousel p {
+  color: white;
+  letter-spacing: 1px;
+  font-family: "Questrial", sans-serif;
+  user-select: none;
+}
+
+.containerInfoCarrousel2 {
+  width: 400px;
+  top: 30%;
+  left: 10%;
+  /* border: 1px solid red; */
+  position: absolute;
+}
+
+.containerInfoCarrousel2 h4 {
+  color: white;
+  font-size: 35px;
+  font-family: "Kanit", sans-serif;
+  user-select: none;
+}
+
+.containerInfoCarrousel2 p {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-family: "Questrial", sans-serif;
+  user-select: none;
+}
+
+.container_Carrousel {
+  margin-top: 69px;
+  margin-bottom: 120px;
+}
+
+.new_Products {
+  font-size: 35px;
+  letter-spacing: 1px;
+  text-align: center;
+  font-family: "Kanit", sans-serif;
+  color: white;
+}
+
+.container_Images {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid red; */
+  /* margin-left: 40px; */
+  margin-bottom: 150px;
+}
+
+.containerInfoImages {
+  min-width: 65%;
+  display: flex;
+}
+
+.container_Images .container_Products_img {
+  width: 200%;
+}
+
+.container_Images .container_Products_img a {
+  width: 573px;
+  display: flex;
+}
+
+.container_Dress_Footwear {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 9px;
+}
+
+.container_Dress_Footwear div:first-child {
+  width: 280px;
+  margin-bottom: 9px;
+}
+
+.container_Dress_Footwear div:last-child {
+  width: 280px;
+  margin-bottom: 9px;
+}
+
+.container_AboutUs {
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 150px;
+  font-family: "Questrial", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.container_AboutUs div {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.container_AboutUs div h4 {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Questrial", sans-serif;
+  color: white;
+}
+
+.container_AboutUs div p {
+  margin-bottom: 37px;
+  color: white;
+}
+
+.container_AboutUs a {
+  width: 180px;
+  padding: 5px 15px;
+  text-align: center;
+  display: block;
+  color: white;
+  font-size: 23px;
+  background-color: #23232c;
+  font-weight: bold;
+}
+
+.container_AboutUs a:hover {
+  background-color: transparent;
+}
+
+.container_AboutImages {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.container_AboutImages .container_Info_Images {
+  width: 81%;
+  display: flex;
+}
+
+.container_AboutImages .container_Info_Images div {
+  width: 350px;
+  margin: 0 10px;
+}
+
+.container_loading {
+  height: 540px;
+  align-items: center;
+  margin-bottom: 175px;
+}
+
+.container_loading p {
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+  flex-direction: column !important;
+  color: white;
+}
+
+.hover_In_Image:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+@media screen and (min-width: 150px) and (max-width: 576px) {
+  .containerInfoCarrousel,
+  .containerInfoCarrousel2 {
+    display: none;
+  }
+  .container_Carrousel {
+    margin-bottom: 0;
+    margin-top: 30px;
+  }
+  .container_Carrousel h4 {
+    font-size: 25px;
+  }
+
+  .containerInfoImages {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container_Images .container_Products_img {
+    width: auto;
+    margin: 40px 0;
+    padding: 0 8px;
+  }
+
+  .container_Images .container_Products_img a {
+    max-width: 285px;
+    width: 100%;
+  }
+
+  .container_Dress_Footwear {
+    padding: 0 10px;
+  }
+
+  .container_Dress_Footwear div:first-child {
+    width: 99%;
+    margin-bottom: 9px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .container_Dress_Footwear div:last-child {
+    width: 99%;
+    margin-bottom: 9px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container_AboutUs div {
+    width: 100%;
+    text-align: start;
+  }
+
+  .container_AboutUs div p {
+    padding-left: 15px;
+  }
+
+  .container_AboutImages .container_Info_Images {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container_AboutImages .container_Info_Images div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .containerInfoCarrousel,
+  .containerInfoCarrousel2 {
+    display: none;
+  }
+
+  .container_Images .container_Products_img a {
+    width: 100%;
+  }
+  .container_Dress_Footwear div:first-child {
+    width: 97%;
+    margin-bottom: 9px;
+  }
+
+  .container_Dress_Footwear div:last-child {
+    width: 97%;
+    margin-bottom: 9px;
+  }
+
+  .container_AboutUs div {
+    width: 100%;
+    text-align: center;
+  }
+
+  .container_AboutImages .container_Info_Images {
+    width: 100%;
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .containerInfoCarrousel,
+  .containerInfoCarrousel2 {
+    display: none;
+  }
+
+  .container_Images .container_Products_img a {
+    width: 100%;
+  }
+  .container_Dress_Footwear div:first-child {
+    width: 97%;
+    margin-bottom: 9px;
+  }
+
+  .container_Dress_Footwear div:last-child {
+    width: 97%;
+    margin-bottom: 9px;
+  }
+
+  .container_AboutImages .container_Info_Images {
+    width: 100%;
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+}

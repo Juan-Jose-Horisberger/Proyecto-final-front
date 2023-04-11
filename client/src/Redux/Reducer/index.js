@@ -7,8 +7,10 @@ import {
   DELETE_FAV_PRODUCT,
   GET_CART_PRODUCT,
   DELETE_CART_PRODUCT,
-  BUY_PRODUCT,
+  PRODUCT_TO_BUY,
   CREATE_PRODUCT,
+  EDIT_PRODUCT,
+  DELETE_PRODUCT,
   FILTER_BY_QUERY,
   FILTER_BY_PRICE,
   SET_NOTIFICATIONS_TO_0,
@@ -17,6 +19,8 @@ import {
   GET_USER_DETAIL,
   CREATE_USER,
   SET_DETAIL_NOTIFICATIONS,
+  GET_USER_DASHBOARD,
+  GET_ALL_COMMENTS,
 } from "../Action";
 var cookies = new Cookies();
 const initialState = {
@@ -25,13 +29,16 @@ const initialState = {
   productDetail: {},
   productFav: [],
   productCart: [],
+  productToBuy: [],
   newNotification: {
     counter: 0,
     purchaseNotification: [],
     newProducts: [],
   },
-  productsToBuy: [],
   productsNotifications: [],
+  allUsers: [],
+  userDetail: [],
+  allComments: [],
 };
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -96,23 +103,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         productCart: deleteCartProduct,
       };
 
-    case BUY_PRODUCT:
-      if (payload) {
-        const productsBuy = cookies.get(payload);
-        console.log(productsBuy);
-        return {
-          ...state,
-          productsToBuy: [productsBuy],
-        };
-      } else {
-        return {
-          ...state,
-          productsToBuy: false,
-        };
-      }
-
     case CREATE_PRODUCT:
       // console.log(payload);
+      var expiryDate = new Date(Date.now() + 7 * 24 * 3600000);
+      cookies.set("noti", payload, { path: "/", expires: expiryDate });
+      cookies.set("counterNoti", 1);
       return {
         ...state,
         products: [...state.products, payload],
@@ -121,6 +116,18 @@ export default function rootReducer(state = initialState, { type, payload }) {
           counter: state.newNotification.counter + 1,
           newProducts: [...state.newNotification.newProducts, payload],
         },
+      };
+
+    case EDIT_PRODUCT:
+      return {
+        ...state,
+      };
+
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        products: state.products.filter((e) => e.id !== payload),
+        allProducts: state.allProducts.filter((e) => e.id !== payload),
       };
 
     case FILTER_BY_QUERY:
@@ -188,6 +195,21 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         productsNotifications: productsFiltered,
+      };
+    case GET_USER_DASHBOARD:
+      const all_Users = state.allUsers;
+      const userDashboard = all_Users.filter((user) =>
+        user.username.toUpperCase().includes(payload.toUpperCase())
+      );
+      return {
+        ...state,
+        allUsers: userDashboard,
+      };
+
+    case GET_ALL_COMMENTS:
+      return {
+        ...state,
+        allComments: payload,
       };
 
     default:

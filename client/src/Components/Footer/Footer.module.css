@@ -1,0 +1,178 @@
+/*~~~~~~~~~~Footer~~~~~~~~~~*/
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #23232c;
+  color: white;
+}
+
+.footer .container_SocialNetworks {
+  width: 100% !important;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 90px;
+}
+
+.footer .container_SocialNetworks div {
+  width: 250px;
+  border-top: 1px solid white;
+}
+
+.footer .container_SocialNetworks div h4 {
+  line-height: 30px;
+  margin: 0;
+  padding: 5px 0;
+  color: white;
+}
+
+.containerInfoFooter {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid red; */
+  margin-top: 20px;
+}
+
+.containerInfoFooter h4,
+.containerInfoFooter p {
+  color: white;
+  font-family: "Questrial", sans-serif;
+}
+
+.containerInfoFooter div {
+  width: 100%;
+  border-left: 1px solid white;
+  padding: 10px 10px 0px 15px;
+  /* border: 1px solid red; */
+}
+
+.footer .containerInfoP p {
+  padding: 10px 0;
+  margin: 0;
+}
+
+.footer .containerInfoP {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.Footer_div4 {
+  position: relative;
+}
+
+.Footer_div4 span {
+  position: absolute;
+  top: 45%;
+  right: 2%;
+}
+
+.Footer_div4 span:hover {
+  cursor: pointer;
+}
+
+.Footer_div4 button {
+  width: 120px;
+  padding: 5px;
+  font-family: "Questrial", sans-serif;
+  background-color: #121212;
+  color: white;
+}
+.Footer_div4 button:hover {
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+
+.hover_In_Image img:hover {
+  opacity: 0.7;
+  transition: opacity 0.5;
+}
+
+@media screen and (min-width: 150px) and (max-width: 576px) {
+  .containerInfoFooter {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .containerInfoFooter div {
+    border: none;
+    border-bottom: 1px solid white;
+  }
+
+  .containerInfoFooter .containerDiv1,
+  .containerDiv2,
+  .containerDiv3,
+  .Footer_div4 {
+    width: 95% !important;
+    margin-bottom: 30px;
+  }
+
+  .Footer_div4 button {
+    margin-bottom: 15px;
+  }
+  .footer .container_SocialNetworks {
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .containerInfoFooter {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .containerInfoFooter .containerDiv1,
+  .containerDiv2,
+  .containerDiv3,
+  .Footer_div4 {
+    width: 50% !important;
+  }
+  .footer .container_SocialNetworks {
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .footer .container_SocialNetworks div {
+    margin: 20px 0px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .containerInfoFooter {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .containerInfoFooter .containerDiv1,
+  .containerDiv2,
+  .containerDiv3,
+  .Footer_div4 {
+    width: 50% !important;
+  }
+  .footer .container_SocialNetworks {
+    width: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .footer .container_SocialNetworks div {
+    border: 1px solid blue;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+}
