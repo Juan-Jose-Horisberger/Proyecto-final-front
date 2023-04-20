@@ -254,13 +254,14 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                       <img
                         src="https://www.svgrepo.com/show/421823/user-people-man.svg"
                         alt="img-icon"
+                        style={{  width: "30px" }}
                       />
                     ) : !isAuthenticated ? (
                       <img
                         onClick={() => loginWithRedirect()}
                         src="https://www.svgrepo.com/show/421823/user-people-man.svg"
                         alt="img-icon"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer", width: "30px" }}
                       />
                     ) : userDetail.admin ? (
                       <Link to={"/Dashboard"}>
