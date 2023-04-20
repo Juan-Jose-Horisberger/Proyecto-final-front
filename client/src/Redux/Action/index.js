@@ -207,7 +207,7 @@ export const createUser = (payload) => {
 
   return async function (dispatch) {
     let NewUser = await axios.post(
-      `https://proyecto-final-01.herokuapp.com/users/post`,
+      `users/post`,
       // 'http://localhost:3001/users/post',
       user
     );

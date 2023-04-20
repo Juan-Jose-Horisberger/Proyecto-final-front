@@ -1,3 +1,4 @@
+
 import React from "react";
 import styles from "./SearchBar.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -58,22 +59,23 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
     cookies.set("counterNoti", 0);
   }
 
-  function getDetailsOnClick() {
-    if (getName.length) {
-      dispatch(getDetailNotification(getName));
-    }
-  }
+	function getDetailsOnClick() {
+		if (getName.length) {
+			dispatch(getDetailNotification(getName));
+		}
+	}
 
-  const displayNotification = ({ senderName, type }, i) => {
-    if (type === 1) {
-      //compra
-      return (
-        <div key={i} className={`${styles.notifications}`}>
-          <span>{`Muchas gracias ${senderName} por haber realizado una compra`}</span>
-        </div>
-      );
-    }
-  };
+	const displayNotification = ({ senderName, type }, i) => {
+		if (type === 1) {
+			//compra
+			return (
+				<div key={i} className={`${styles.notifications}`}>
+					<span>{`Muchas gracias ${senderName} por haber realizado una compra`}</span>
+				</div>
+			);
+		}
+	};
+
 
   const displayNotificationProducts = (noti) => {
     if (!getName) {
@@ -99,14 +101,16 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
     );
   };
 
-  // function bringInformation() {
-  //    dispatch(getProductByName(getName))
-  // }
 
-  function validateErrors(e) {
-    e.preventDefault();
-    setErrorsExist(false);
-  }
+	// function bringInformation() {
+	//    dispatch(getProductByName(getName))
+	// }
+
+	function validateErrors(e) {
+		e.preventDefault();
+		setErrorsExist(false);
+	}
+
 
   return (
     <div className={`${styles.container} container-fluid p-0 m-0`}>
@@ -189,20 +193,22 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                   </Link>
                 </div>
 
-                <div
-                  className={`input-group rounded d-flex align-items-center ${styles.container_Searchbar}`}
-                  style={{ width: "250px" }}
-                >
-                  <input
-                    type="search"
-                    className="form-control rounded pe-0 me-0"
-                    placeholder="Search"
-                    aria-label="Search"
-                    aria-describedby="search-addon"
-                    value={productName}
-                    onChange={(e) => setProductName(e.target.value)}
-                    style={{ color: "white" }}
-                  />
+
+								<div
+									className={`input-group rounded d-flex align-items-center ${styles.container_Searchbar}`}
+									style={{ width: '250px' }}
+								>
+									<input
+										type="search"
+										className="form-control rounded pe-0 me-0"
+										placeholder="Search"
+										aria-label="Search"
+										aria-describedby="search-addon"
+										value={productName}
+										onChange={(e) => setProductName(e.target.value)}
+										style={{ color: 'white' }}
+									/>
+
 
                   <span
                     className={`input-group-text border-0 ${styles.button_Search}`}
@@ -214,45 +220,48 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                   </span>
                 </div>
 
-                <div
-                  className={`d-flex justify-content-center align-items-center flex-nowrap ${styles.container_favAndCart}`}
-                >
-                  <div className="col">
-                    <Link to="/Cart">
-                      <img
-                        src={CartIcon}
-                        alt="img-icon"
-                        style={{ width: "30px" }}
-                      />
-                    </Link>
-                  </div>
 
-                  <div className={`col`}>
-                    <Link to="/FavoriteProduct">
-                      <img
-                        src={FavoritesIcon}
-                        alt="img-icon"
-                        style={{ width: "27px" }}
-                      />
-                    </Link>
-                  </div>
+								<div
+									className={`d-flex justify-content-center align-items-center flex-nowrap ${styles.container_favAndCart}`}
+								>
+									<div className="col">
+										<Link to="/Cart">
+											<img
+												src={CartIcon}
+												alt="img-icon"
+												style={{ width: '30px' }}
+											/>
+										</Link>
+									</div>
 
-                  {/* <div className='col'>
+									<div className={`col`}>
+										<Link to="/FavoriteProduct">
+											<img
+												src={FavoritesIcon}
+												alt="img-icon"
+												style={{ width: '27px' }}
+											/>
+										</Link>
+									</div>
+
+									{/* <div className='col'>
                     <img onClick={() => loginWithRedirect()} src="https://www.svgrepo.com/show/421823/user-people-man.svg" alt="img-icon" />
                   </div> */}
+
 
                   <div className="col">
                     {isLoading ? (
                       <img
                         src="https://www.svgrepo.com/show/421823/user-people-man.svg"
                         alt="img-icon"
+                        style={{  width: "30px" }}
                       />
                     ) : !isAuthenticated ? (
                       <img
                         onClick={() => loginWithRedirect()}
                         src="https://www.svgrepo.com/show/421823/user-people-man.svg"
                         alt="img-icon"
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer", width: "30px" }}
                       />
                     ) : userDetail.admin ? (
                       <Link to={"/Dashboard"}>
@@ -334,6 +343,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                                  <img src="https://www.svgrepo.com/show/281772/alarm-bell.svg" style={{ width: "27px" }} alt="" />
                                  <div>{countNotifications}</div>
                               </Link> */}
+
 
                     <div
                       data-bs-toggle="offcanvas"
