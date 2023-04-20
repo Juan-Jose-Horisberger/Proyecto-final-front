@@ -28,11 +28,13 @@ import Returns from "./Components/Returns/Returns.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
 import UserDetail from "./Components/DashboardAdmin/UserDetail/UserDetail.jsx";
 import Ban from "./Components/Ban/Ban.jsx";
+
 // import Navbar from './Components/NavbarPrueba/NavBar.jsx';
 // import Card from './Components/CardPrueba/Card.jsx';
 // import "./app.css";
 
 function App() {
+
   const dispatch = useDispatch();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [socket, setSocket] = useState(null);
