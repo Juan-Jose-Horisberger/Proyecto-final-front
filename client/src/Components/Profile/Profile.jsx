@@ -54,11 +54,6 @@ export default function Profile() {
             <h6>Nombre de Usuario: {userDetail.username}</h6>
             <h6>Email: {user.email}</h6>
             <Link to="/Register">
-              <img
-                src="https://www.svgrepo.com/show/421823/user-people-man.svg"
-                alt="img-icon"
-                style={{ cursor: "pointer" }}
-              />
               <h4>Mis Datos</h4>
               <h6>Gestiona tus datos personales</h6>
             </Link>

@@ -244,10 +244,6 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
 										</Link>
 									</div>
 
-									{/* <div className='col'>
-                    <img onClick={() => loginWithRedirect()} src="https://www.svgrepo.com/show/421823/user-people-man.svg" alt="img-icon" />
-                  </div> */}
-
 
                   <div className="col">
                     {isLoading ? (
@@ -313,11 +309,6 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                             <p>{user.email}</p>
                             {console.log(user)}
                             <Link to="/Register">
-                              <img
-                                src="https://www.svgrepo.com/show/421823/user-people-man.svg"
-                                alt="img-icon"
-                                style={{ cursor: "pointer" }}
-                              />
                               <h4>Mis Datos</h4>
                               <h6>Gestiona tus datos personales</h6>
                             </Link>
