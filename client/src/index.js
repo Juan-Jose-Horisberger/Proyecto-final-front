@@ -12,8 +12,8 @@ axios.defaults.baseURL = process.env.REACT_APP_API || "https://proyecto-final-ba
 ReactDOM.render(
   <>
     <Auth0Provider
-      domain="dev-uf2dd5td.us.auth0.com"
-      clientId="WPq9OSqZeazngvwi08b1OmFOkR902CxI"
+      domain="dev-7wyvhal6g1pfgma4.us.auth0.com"
+      clientId="R5iqnqWIaQUIrCprPhqhG3jA277WGYfh"
       redirectUri={window.location.origin}
     >
       <Provider store={store}>
