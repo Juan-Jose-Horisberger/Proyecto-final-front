@@ -101,7 +101,7 @@ export default function ProductDetail() {
         comment: review.comment,
       };
       const response = await axios.post(
-        "https://proyecto-final-01.herokuapp.com/reviews/create",
+        "https://proyecto-final-back-ymep.onrender.com/reviews/create",
         reviewParse
       );
       if (response.data.message) {
