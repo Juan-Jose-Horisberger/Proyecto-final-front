@@ -70,7 +70,7 @@ export default function useForm(initialForm, validateForm, socket) {
     if (userDetail.ban) {
       Swal.fire({
         icon: "warning",
-        title: "Baneado por boludo",
+        title: "Baneado",
         background: "#111111",
         confirmButtonText: "Continuar",
         confirmButtonColor: "#282626",

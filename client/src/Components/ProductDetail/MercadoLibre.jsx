@@ -18,7 +18,7 @@ export default function BuyProduct({user}) {
 
   useEffect(() => {
     // luego de montarse el componente, le pedimos al backend el preferenceId
-    axios.post('https://proyecto-final-01.herokuapp.com/products/comprar/'+id, usuario).then((order) => {
+    axios.post('https://proyecto-final-back-ymep.onrender.com/products/comprar/'+id, usuario).then((order) => {
       setPreferenceId(order.data);
     });
   }, [id]);
