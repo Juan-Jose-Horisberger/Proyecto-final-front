@@ -90,7 +90,6 @@ export default function AllUsers() {
           />
         </div>
       </div>
-      {/* {console.log(AllUsers)} */}
 
       {loaded ? (
         <>

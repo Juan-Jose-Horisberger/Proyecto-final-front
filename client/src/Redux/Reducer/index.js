@@ -107,7 +107,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
 
     case CREATE_PRODUCT:
-      // console.log(payload);
       var expiryDate = new Date(Date.now() + 7 * 24 * 3600000);
       cookies.set("noti", payload, { path: "/", expires: expiryDate });
       cookies.set("counterNoti", 1);
@@ -156,7 +155,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
 
     case SET_NOTIFICATIONS:
-      console.log(payload);
       return {
         ...state,
         newNotification: {

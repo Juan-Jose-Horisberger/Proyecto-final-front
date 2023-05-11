@@ -106,7 +106,6 @@ export const getProductToBuy = (id) => {
   if (id) {
     return async function (dispatch) {
       let productToBuy = await axios.get(`/products/${id}`);
-      // console.log(productToBuy.data);
       return dispatch({
         type: PRODUCT_TO_BUY,
         payload: productToBuy.data,
@@ -151,7 +150,6 @@ export const deleteProduct = (id) => {
 export const filterByQuery = (params) => {
   return async function (dispatch) {
     let filterProducts = await axios.get(`/products?${params}`);
-    console.log(params);
     return dispatch({
       type: FILTER_BY_QUERY,
       payload: filterProducts.data,
@@ -250,7 +248,6 @@ export const getUserNameInDashboard = (payload) => {
 export const getAllComments = () => {
   return async function (dispatch) {
     let allComments = await axios.get("/reviews");
-    console.log(allComments.data);
     return dispatch({
       type: GET_ALL_COMMENTS,
       payload: allComments.data,

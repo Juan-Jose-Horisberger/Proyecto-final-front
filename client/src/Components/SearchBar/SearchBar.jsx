@@ -81,8 +81,6 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
     if (!getName) {
       setGetName(noti.name);
     }
-    // setGetDetails(true);
-    console.log(infoProductDefailt.length);
     return (
       <div key={noti.id} className={`${styles.container_NotificationsRender}`}>
         {/* {infoProductDefailt.length && ( */}
@@ -114,7 +112,6 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
 
   return (
     <div className={`${styles.container} container-fluid p-0 m-0`}>
-      {/* {console.log(purchaseNotifications)} */}
       <div>
         <nav
           className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}
@@ -307,7 +304,6 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                             <p>{user.nickname}</p>
                             <h5>Email</h5>
                             <p>{user.email}</p>
-                            {console.log(user)}
                             <Link to="/Register">
                               <h4>Mis Datos</h4>
                               <h6>Gestiona tus datos personales</h6>

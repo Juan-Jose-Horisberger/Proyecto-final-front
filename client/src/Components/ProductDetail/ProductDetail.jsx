@@ -64,7 +64,6 @@ export default function ProductDetail() {
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
-    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
@@ -218,7 +217,6 @@ export default function ProductDetail() {
       }
     }
     const discountLogic = price * discountNumber; //Calculamos descuento
-    // console.log(discountNumber);
 
     const grandTotal = price - discountLogic; //El total con descuento.
     grandTotalRef.current = grandTotal;
@@ -277,17 +275,9 @@ export default function ProductDetail() {
     }
   };
 
-  // const handleFilterDetail = (data) => {
-  //   console.log(data);
-  //   dispatch(filterByQuery(`category=${data}&`)).then((res) => history("/"));
-  // };
 
   return (
     <div className={styles.container}>
-      {/* <SearchBar /> */}
-      {/* ///////////////           user={userDetail}         COMPRAR PRODUCTO PRUEBA XD /////////////////////////// */}
-      {/* <BuyProduct /> */}
-      {/* ///////////////// */}
       {loaded ? (
         <div>
           <div className={styles.overallContainer}>

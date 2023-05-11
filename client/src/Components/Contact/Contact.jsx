@@ -91,7 +91,6 @@ export default function Contact() {
     ) {
       setErrorsExist(true);
       setNotError(false);
-      console.log("entro al if");
     }
     if (
       !input.user_name.length ||
@@ -101,7 +100,6 @@ export default function Contact() {
     ) {
       setErrorsExist(true);
       setNotError(false);
-      console.log("entro al else if");
     } else {
       if (
         error.user_name ||
@@ -114,7 +112,6 @@ export default function Contact() {
       } else {
         setErrorsExist(false);
         setNotError(true);
-        console.log("entro al else");
       }
     }
   }
@@ -363,13 +360,6 @@ export default function Contact() {
                 <p className="invalid-feedback mb-0">{error.user_message}</p>
               </div>
               <div className={`${styles.container_button}`}>
-                {/* {console.log(errorsExist)} */}
-                {console.log(
-                  input.user_name,
-                  input.user_email,
-                  input.user_affair,
-                  input.user_message
-                )}
                 {(errorsExist &&
                   (error.user_name ||
                     error.user_email ||
@@ -396,7 +386,6 @@ export default function Contact() {
                   </button>
                 )}
               </div>
-              {/* {console.log(notError)} {(errorsExist && notError === false) ? styles.open : styles.container_Alert}*/}
               <div
                 className={`
                                 alert alert-danger alert-dismissible fade show d-flex 

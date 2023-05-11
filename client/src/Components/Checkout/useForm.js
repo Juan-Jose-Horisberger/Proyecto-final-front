@@ -48,7 +48,6 @@ export default function useForm(initialForm, validateForm, socket) {
   };
 
   const handleSubmit = (ev) => {
-    console.log(userDetail);
     ev.preventDefault();
     const errores = validateForm(
       form,

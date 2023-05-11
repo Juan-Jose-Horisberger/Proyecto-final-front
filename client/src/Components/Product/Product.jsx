@@ -100,7 +100,6 @@ export default function Product({
       }
     }
     const discountLogic = price * discountNumber; //Calculamos descuento
-    // console.log(discountNumber);
 
     const grandTotal = price - discountLogic; //El total con descuento.
     grandTotalRef.current = grandTotal;
@@ -117,7 +116,6 @@ export default function Product({
       {landingPage ? (
         <div className={`${styles.containerLandingPage}`}>
           <div className={`${styles.container_productInfo}`}>
-            {/* {console.log(Hovertarget + " Hovered")} */}
             <Link
               to={`/ProductDetail/${id}`}
               ref={Hovertarget}
@@ -191,7 +189,6 @@ export default function Product({
       ) : (
         <div className={`${styles.container}`}>
           <div className={`${styles.container_productInfo}`}>
-            {/* {console.log(Hovertarget + " Hovered")} */}
             <Link
               to={`/ProductDetail/${id}`}
               ref={Hovertarget}

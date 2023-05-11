@@ -11,7 +11,6 @@
 // //Se ve que el ID que se agrega por default de socket, le cambio el nombre a socketId aca
 // const addNewUser = (username, usernameid, socketId) => {
 //     const id = parseInt(usernameid);
-//     console.log(username, usernameid, socketId)
 //     !onlineUsers.some((user) => user.username === username) &&
 //         onlineUsers.push({ username, id, socketId });
 // };
@@ -34,10 +33,6 @@
 
 //     socket.on("sendNotification", ({ senderName, recipientId, type }) => {
 //         const receiver = getUser(recipientId);
-//         // console.log(receiver)
-//         // console.log(onlineUsers)
-//         // console.log(receiver.socketId);
-//         console.log(senderName, recipientId)
 
 //         io.to(receiver.socketId).emit("getNotification", {
 //             senderName,
@@ -69,7 +64,6 @@ let onlineUsers = [];
 
 const addNewUser = (username, usernameid, socketId) => {
     const id = parseInt(usernameid);
-    console.log(username, usernameid, socketId)
     !onlineUsers.some((user) => user.username === username) &&
     onlineUsers.push({ username, id, socketId });
 };
@@ -89,8 +83,6 @@ io.on("connection", (socket) => {
 
     socket.on("sendNotification", ({ senderName, recipientId, type }) => {
         const receiver = getUser(recipientId);
-        // console.log(receiver)
-        // console.log(onlineUsers)
         io.to(receiver.socketId).emit("getNotification", {
             senderName,
             type,

@@ -64,7 +64,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {console.log(allComments)}
       <Section>
         <div className="top">
           <div

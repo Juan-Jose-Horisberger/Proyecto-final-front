@@ -12,7 +12,6 @@ export default function BuyProduct({user}) {
           email: user.email,
         };
     }
-    console.log(usuario,"hola")
   const { id } = useParams(); // id de producto
   const [preferenceId, setPreferenceId] = useState(null);
 
@@ -22,7 +21,6 @@ export default function BuyProduct({user}) {
       setPreferenceId(order.data);
     });
   }, [id]);
-  console.log(preferenceId)
   useEffect(() => {
     if (preferenceId) {
       // con el preferenceId en mano, inyectamos el script de mercadoPago

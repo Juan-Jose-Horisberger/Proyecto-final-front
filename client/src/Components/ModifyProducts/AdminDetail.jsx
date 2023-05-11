@@ -169,7 +169,6 @@ export default function ProductDetail() {
       }
     }
     const discountLogic = price * discountNumber; //Calculamos descuento
-    // console.log(discountNumber);
 
     const grandTotal = price - discountLogic; //El total con descuento.
     grandTotalRef.current = grandTotal;
@@ -197,7 +196,6 @@ export default function ProductDetail() {
       cancelButtonColor: "#282626",
     }).then((res) => {
       if (res.isConfirmed === true) {
-        console.log("asd");
         dispatch(deleteProduct(id));
       } else console.log(res);
     });

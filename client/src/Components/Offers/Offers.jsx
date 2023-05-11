@@ -40,7 +40,6 @@ export default function Offers() {
           res.payload.filter((e) => e.offer)
         )
     );
-    // console.log(discounts);
   }, []);
 
   useEffect(() => {
@@ -49,7 +48,6 @@ export default function Offers() {
       return;
     }
     setLoaded(true);
-    console.log(sales);
     if (typeof conteinerCards === "object") {
       window.scrollTo({
         top: 525,
@@ -74,7 +72,6 @@ export default function Offers() {
       }
     }
     const discountLogic = price * discountNumber; //Calculamos descuento
-    console.log(discountNumber);
 
     const grandTotal = price - discountLogic; //El total con descuento.
     return (
@@ -141,7 +138,6 @@ export default function Offers() {
         </div>
       ) : (
         <div ref={conteinerCards}>
-          {/* {console.log(console.log(showDiscounts))} */}
           {loaded ? (
             <div className={`${styles.container_infoProducts}`}>
               {sales.length ? (
@@ -150,7 +146,6 @@ export default function Offers() {
                     <div>
                       <img src={p.image} alt="image" className="img-fluid" />
                     </div>
-                    {/* {console.log(renderOnce2.current)} */}
                     <div>
                       <p className="mt-3">{p.name}</p>
                       {renderOnce2.current === 0 &&

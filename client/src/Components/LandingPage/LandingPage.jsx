@@ -18,10 +18,7 @@ import "aos/dist/aos.css";
 import Footer from "../Footer/Footer";
 
 function matchMediaQuery(breakPoints2, setBreakPointsState) {
-  console.log(Object.keys(breakPoints2)); //3:52
-
   for (var key of Object.keys(breakPoints2)) {
-    console.log(key, "--->", breakPoints2[key]);
     if (window.matchMedia(`${breakPoints2[key]}`).matches) {
       setBreakPointsState(key);
     }
