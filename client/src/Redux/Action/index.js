@@ -19,6 +19,8 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
 export const GET_USERS = "GET_USERS";
 export const GET_USER_DETAIL = "GET_USER_DETAIL";
+export const GET_CLIENT_DETAIL = "GET_CLIENT_DETAIL";
+export const CLEAR_CLIENT_DETAIL = "CLEAR_USER_DETAIL";
 export const CREATE_USER = "CREATE_USER";
 export const SET_DETAIL_NOTIFICATIONS = "SET_DETAIL_NOTIFICATIONS";
 export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";
@@ -196,6 +198,17 @@ export const getUserDetail = (email) => {
   };
 };
 
+export const getClientDetail = (email) => {
+  return async function (dispatch) {
+    let userDetail = await axios.get(`/users/${email}`);
+    return dispatch({ type: GET_CLIENT_DETAIL, payload: userDetail.data });
+  };
+};
+
+export const clearClientDetail = () => {
+  return {type: CLEAR_CLIENT_DETAIL}
+}
+
 export const createUser = (payload) => {
   const user = {
     given_name: payload.given_name,
@@ -207,8 +220,7 @@ export const createUser = (payload) => {
 
   return async function (dispatch) {
     let NewUser = await axios.post(
-      `users/post`,
-      // 'http://localhost:3001/users/post',
+      `/users/post`,
       user
     );
     return dispatch({ type: CREATE_USER, payload: NewUser.data });

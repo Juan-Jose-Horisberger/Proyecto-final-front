@@ -303,7 +303,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                               alt=""
                               className={styles.imgProfileUser}
                             />
-                            <h5>UserName</h5>
+                            <h5>Username</h5>
                             <p>{user.nickname}</p>
                             <h5>Email</h5>
                             <p>{user.email}</p>
