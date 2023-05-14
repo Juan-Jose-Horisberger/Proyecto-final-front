@@ -7,7 +7,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Auth0Provider } from "@auth0/auth0-react";
 import axios from "axios";
-axios.defaults.baseURL = process.env.REACT_APP_API || "https://proyecto-final-back-ymep.onrender.com";
+axios.defaults.baseURL = process.env.REACT_APP_API || "https://proyecto-final-back-ifyd.onrender.com";
 
 ReactDOM.render(
   <>
