@@ -31,7 +31,6 @@
   font-weight: bold;
 }
 container_2 .container_1 .container_Img {
-  /* border: 1px solid red; */
   position: relative;
 }
 
@@ -42,7 +41,6 @@ container_2 .container_1 .container_Img {
   background-color: #100f10;
   color: white;
   position: absolute;
-  /* border: 1px solid red; */
 }
 
 .container_2 {
@@ -78,8 +76,7 @@ container_2 .container_1 .container_Img {
 
 .size_Container div p:hover {
   cursor: pointer;
-  background-color: black;
-  /* border: 1px solid red; */
+  background-color: black; 
 }
 
 .container_2 h1 {
@@ -91,7 +88,6 @@ container_2 .container_1 .container_Img {
 .container_2 .container_price {
   width: 100%;
   display: flex;
-  /* border: 1px solid red; */
   margin-bottom: 5px;
 }
 
@@ -109,7 +105,6 @@ container_2 .container_1 .container_Img {
   color: white;
   font-weight: bold;
   font-size: 30px;
-  /* border: 1px solid red; */
   margin: 0;
 }
 
@@ -444,7 +439,6 @@ container_2 .container_1 .container_Img {
 
   .size_Container div {
     width: auto;
-    /* border: 1px solid red; */
     display: flex;
     justify-content: center;
   }
@@ -469,10 +463,8 @@ container_2 .container_1 .container_Img {
   flex-direction: column;
   background-color: black;
   color: azure;
-  /* border: 1px solid red; */
   padding: 20px;
   margin-top: 40px;
-  /* align-items: center; */
 }
 
 .commentsScore {
@@ -506,7 +498,6 @@ container_2 .container_1 .container_Img {
   line-height: 60px;
   cursor: pointer;
   width: 50%;
-  /* margin: auto; */
   font-family: "Questrial", sans-serif !important;
 }
 
@@ -524,7 +515,6 @@ container_2 .container_1 .container_Img {
   width: 50%;
   font-size: 18px;
   background-color: black;
-  /* border: 1px solid red; */
   height: auto;
 }
 .divComment {
@@ -541,19 +531,16 @@ container_2 .container_1 .container_Img {
 .divImg {
   display: flex;
   align-items: center;
-  /* border: 1px solid red; */
 }
 
 .divImg p {
   text-decoration: underline;
-  /* border: 1px solid red; */
   margin: 0;
 }
 
 .divBtnDeleteComment {
   display: flex;
   justify-content: flex-end;
-  /* border: 1px solid red; */
   font-family: "Questrial", sans-serif !important;
   width: 50%;
 }
@@ -562,7 +549,6 @@ container_2 .container_1 .container_Img {
   background-color: black;
   color: #fff;
   cursor: pointer;
-  border: 1px solid red;
   font-family: "Questrial", sans-serif !important;
 }
 
@@ -602,7 +588,6 @@ container_2 .container_1 .container_Img {
 .divBtnAdminZarcos {
   display: flex;
   justify-content: space-evenly;
-  /* border: 1px solid red; */
   width: 70%;
   height: 60px;
 }

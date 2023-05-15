@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getClientDetail, clearClientDetail } from "../../../Redux/Action";
 import style from "./ClientDetail.module.css";
 
@@ -22,13 +22,30 @@ export default function ClientDetail() {
     {clientDetail.id ? (
       <>
       <div className={style.containerPrincipal}>
-      <div className={style.divUser}>
+        <div className={`${style.containerInicio}`}>
         <div>
+          <Link to="/Dashboard">
+            <span>Dashboard</span>
+          </Link>
+          <span> / </span>
+          <Link to="/AllUsers">
+            <span>Usuarios</span>
+          </Link>
+          <span> / </span>
+          <span>{clientDetail.username}</span>
+        </div>
+      </div>
+      <div className={style.divUser}>
+        <div className={style.divImg}>
           <img src={clientDetail.img} alt="" />
         </div>
-        <div className={style.divNameSurname}>
-          <p>Nombre: {clientDetail.name}</p>
+        <div>
+          <div>
+          <p>Nombre: {clientDetail.name}</p> 
+          </div>
+          <div>
           <p>Apellido: {clientDetail.surname}</p>
+          </div>
         </div>
         <div>
           <p>Username: {clientDetail.username}</p>

@@ -81,7 +81,6 @@ button {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  /* border: 1px solid red; */
   position: relative;
   padding: 5px;
 }
@@ -166,19 +165,16 @@ button {
 
 .container_NotificationsRender:hover {
   cursor: pointer;
-
   box-shadow: 0 0 5px 5px#23232C;
 }
 
 .container_NotificationsRender div:nth-child(2) {
   width: 100px;
-  /* border: 1px solid red; */
   margin-right: 5px;
 }
 
 .container_NotificationsRender div:nth-child(3) {
   width: 255px;
-  /* border: 1px solid red; */
   align-self: center;
 }
 
@@ -189,8 +185,7 @@ button {
 }
 
 .container_NotificationsRender a h5 {
-  width: 100%;
-  /* border: 1px solid red; */
+  width: 100%; 
   text-align: center;
   font-weight: bold;
   padding: 0;
@@ -220,7 +215,6 @@ button {
   flex-direction: column;
   justify-content: flex-end;
   height: 150px;
-  /* border: 1px solid red; */
 }
 
 @media screen and (min-width: 150px) and (max-width: 576px) {

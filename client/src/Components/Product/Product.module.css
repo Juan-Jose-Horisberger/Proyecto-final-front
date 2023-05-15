@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
-/*font-family: 'Questrial', sans-serif;*/
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@600&display=swap");
-/*font-family: 'Kanit', sans-serif;*/
+
 
 .containerLandingPage {
   width: 90%;
@@ -10,8 +9,6 @@
 
 .container {
   width: 31%;
-  /* border: 1px solid red; */
-  /* margin: 10px; */
   color: azure;
 }
 
@@ -24,16 +21,6 @@
   font-size: 15px;
 }
 
-/*
-.divButtons {
-  /* align-items: center;
-    text-align: center; 
-  display: flex;
-  justify-content: space-evenly;
-  border: 1px solid red;
-  /* position: absolute; 
-}
-*/
 .container_productInfo {
   position: relative;
 }
@@ -121,7 +108,6 @@
 }
 
 .info {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -136,14 +122,12 @@
 .info .container_price {
   width: 100%;
   display: flex;
-  /* border: 1px solid red; */
 }
 
 .container_price {
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
   margin: 0;
 }
 

@@ -6,12 +6,27 @@
   color: azure;
 }
 
+.containerInicio {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  padding-left: 17px;
+  padding-top: 17px;
+  align-items: center;
+  font-family: "Questrial", sans-serif;
+}
+
+.containerInicio span:nth-child(5) {
+  color: white;
+  font-weight: bold;
+}
+
 .divUser {
-  border: 1px solid red;
   margin-top: 30px;
 }
 
-.divNameSurname {
-  display: flex;
-  justify-content: center;
+.divImg img{
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
