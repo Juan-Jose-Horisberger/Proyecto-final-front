@@ -22,7 +22,7 @@ export default function ClientDetail() {
     {clientDetail.id ? (
       <>
       <div className={style.containerPrincipal}>
-        <div className={`${style.containerInicio}`}>
+        <div className={style.containerInicio}>
         <div>
           <Link to="/Dashboard">
             <span>Dashboard</span>
