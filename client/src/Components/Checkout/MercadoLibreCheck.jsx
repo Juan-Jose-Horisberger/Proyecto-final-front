@@ -8,7 +8,7 @@ export default function BuyProducts({ data }) {
   useEffect(() => {
     // luego de montarse el componente, le pedimos al backend el preferenceId
     axios
-      .post("https://proyecto-final-back-ifyd.onrender.com/products/comprar", data)
+      .post("/products/comprar", data)
       .then((order) => {
         setPreferenceId(order.data);
       });
