@@ -12,8 +12,8 @@ axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 ReactDOM.render(
   <>
     <Auth0Provider
-      domain="dev-7wyvhal6g1pfgma4.us.auth0.com"
-      clientId="R5iqnqWIaQUIrCprPhqhG3jA277WGYfh"
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH0_CLIENTID}
       redirectUri={window.location.origin}
     >
       <Provider store={store}>
