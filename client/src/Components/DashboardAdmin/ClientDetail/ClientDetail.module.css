@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+
 .containerPrincipal {
   display: flex;
   flex-direction: column;
@@ -29,4 +31,19 @@
 .divImg img{
   border-radius: 50%;
   margin-bottom: 10px;
+}
+
+.container_loading {
+  color: white;
+  background-color: black;
+  height: 340px;
+  align-items: center;
+  margin-bottom: 175px;
+}
+
+.container_loading p {
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+  flex-direction: column !important;
 }

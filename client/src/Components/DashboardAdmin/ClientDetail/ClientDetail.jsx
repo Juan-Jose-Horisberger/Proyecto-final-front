@@ -56,7 +56,20 @@ export default function ClientDetail() {
       </div>
     </div>
       </>
-    ) : (<h1>CARGANDO</h1>) }
+    ) : (
+      <div
+        className={`d-flex justify-content-center flex-column ${style.container_loading}`}
+      >
+        <p>Cargando...</p>
+        <div
+          className={`spinner-border ${style.loading}`}
+          style={{ width: "4rem", height: "4rem" }}
+          role="status"
+        >
+          <span className="visually-hidden"></span>
+        </div>
+      </div>
+        ) }
      </>
   );
 }
