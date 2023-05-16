@@ -72,10 +72,6 @@ button {
   padding: 0 10px;
 }
 
-/* .container_notification {
-  background-color: red;
-} */
-
 .container_favAndCart .container_notification div {
   width: 100%;
   display: flex;
@@ -108,7 +104,6 @@ button {
 }
 
 .container_showNotifications {
-  /* z-index: 1000000000 !important; */
   width: 40%;
   background-color: black;
   color: white;

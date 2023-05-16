@@ -6,7 +6,6 @@
 /*font-family: 'Readex Pro', sans-serif;*/
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 
-/*font-family: 'Questrial', sans-serif;*/
 html {
   background-color: black;
 }
@@ -16,7 +15,6 @@ input {
 }
 
 .container_Info {
-  /* margin-top: 74px; */
   margin-top: 0px;
   margin-bottom: 100px !important;
 }
@@ -88,9 +86,6 @@ p {
 }
 
 .container_infoAndForm {
-  /* width: 100%;
-  min-width: 600px;
-  height: auto; */
   width: 783px;
   height: auto;
   margin-top: 15px;
@@ -124,7 +119,6 @@ p {
   left: 0;
   transform: translateX(-200%);
   transition: transform 0.4s, opacity 0.5s ease-out;
-  /* display: none !important; */
 }
 
 .container_AlertSuccess.open {

@@ -35,7 +35,6 @@ export default function Profile() {
     return (
       isAuthenticated && (
         <div className={styles.container}>
-          {/* <Logout /> */}
           <div className={styles.container_Info}>
             <p>
               <Link to="/">Inicio</Link>/Mi Perfil

@@ -83,11 +83,6 @@
   display: none !important;
 }
 
-/* .container_icon{
-    position: absolute;
-    right: 0;
-} */
-
 @media screen and (min-width: 100px) and (max-width: 576px) {
   .container {
     padding-right: 50px !important;

@@ -12,7 +12,6 @@ button.rec.rec-arrow:hover {
 }
 
 button.rec-dot {
-    /* background-color: rgb(235, 16, 16); */
     background-color: black;
     box-shadow: 0 0 1px 3px #23232C;
 }

@@ -279,7 +279,6 @@ export default function ProductDetail() {
               </div>
             </div>
             <div className={styles.container_2}>
-              {/* <img src="" alt="" />img de marca */}
               <h1>{productDetail.name}</h1>
               {productDetail.offer ? (
                 priceWithDiscount(productDetail.price, productDetail.discount)
