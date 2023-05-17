@@ -1,10 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
-/*font-family: 'Questrial', sans-serif;*/
-
-/* .container{
-    background-color: red; 
-    border: 1px solid red;
-} */
 
 .container_Cards {
   box-sizing: border-box;
@@ -30,7 +24,6 @@
 }
 
 .containerBtn {
-  /* border: 1px solid red; */
   display: flex;
 }
 
@@ -89,11 +82,6 @@
 .dropdown-toggle {
   display: none !important;
 }
-
-/* .container_icon{
-    position: absolute;
-    right: 0;
-} */
 
 @media screen and (min-width: 100px) and (max-width: 576px) {
   .container {

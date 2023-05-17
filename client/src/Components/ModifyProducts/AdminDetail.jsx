@@ -101,7 +101,7 @@ export default function ProductDetail() {
         comment: review.comment,
       };
       const response = await axios.post(
-        "https://proyecto-final-back-ymep.onrender.com/reviews/create",
+        "/reviews/create",
         reviewParse
       );
       if (response.data.message) {
@@ -169,7 +169,6 @@ export default function ProductDetail() {
       }
     }
     const discountLogic = price * discountNumber; //Calculamos descuento
-    // console.log(discountNumber);
 
     const grandTotal = price - discountLogic; //El total con descuento.
     grandTotalRef.current = grandTotal;
@@ -197,7 +196,6 @@ export default function ProductDetail() {
       cancelButtonColor: "#282626",
     }).then((res) => {
       if (res.isConfirmed === true) {
-        console.log("asd");
         dispatch(deleteProduct(id));
       } else console.log(res);
     });
@@ -281,7 +279,6 @@ export default function ProductDetail() {
               </div>
             </div>
             <div className={styles.container_2}>
-              {/* <img src="" alt="" />img de marca */}
               <h1>{productDetail.name}</h1>
               {productDetail.offer ? (
                 priceWithDiscount(productDetail.price, productDetail.discount)

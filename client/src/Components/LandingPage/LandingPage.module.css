@@ -20,7 +20,6 @@
   width: 400px;
   top: 30%;
   left: 10%;
-  /* border: 1px solid red; */
   position: absolute;
 }
 
@@ -42,7 +41,6 @@
   width: 400px;
   top: 30%;
   left: 10%;
-  /* border: 1px solid red; */
   position: absolute;
 }
 
@@ -78,8 +76,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  /* border: 1px solid red; */
-  /* margin-left: 40px; */
   margin-bottom: 150px;
 }
 

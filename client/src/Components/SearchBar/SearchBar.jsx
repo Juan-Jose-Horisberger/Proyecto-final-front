@@ -81,11 +81,8 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
     if (!getName) {
       setGetName(noti.name);
     }
-    // setGetDetails(true);
-    console.log(infoProductDefailt.length);
     return (
       <div key={noti.id} className={`${styles.container_NotificationsRender}`}>
-        {/* {infoProductDefailt.length && ( */}
         <Link to={`/`}>
           <h5>Nuevo producto</h5>
           <div>
@@ -96,7 +93,6 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
             <p>$ {noti.price}</p>
           </div>
         </Link>
-        {/* )} */}
       </div>
     );
   };
@@ -114,7 +110,6 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
 
   return (
     <div className={`${styles.container} container-fluid p-0 m-0`}>
-      {/* {console.log(purchaseNotifications)} */}
       <div>
         <nav
           className={`navbar navbar-expand-lg navbar-light bg-light ${styles.container_NavBar}`}
@@ -143,12 +138,10 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
             </button>
 
             <div
-              // style={{ border: "1px solid red" }}
               className={`col-10 collapse navbar-collapse row`}
               id="navbarSupportedContent"
             >
               <ul className="d-flex justify-content-around flex-wrap m-0 p-0">
-                {/* <h1></h1> navbar-nav col-12 col-lg-8 d-flex justify-content-sm-start justify-content-around */}
 
                 <div
                   className={`d-flex justify-content-around align-items-center ${styles.container_Info_Navbar}`}
@@ -303,11 +296,10 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                               alt=""
                               className={styles.imgProfileUser}
                             />
-                            <h5>UserName</h5>
+                            <h5>Username</h5>
                             <p>{user.nickname}</p>
                             <h5>Email</h5>
                             <p>{user.email}</p>
-                            {console.log(user)}
                             <Link to="/Register">
                               <h4>Mis Datos</h4>
                               <h6>Gestiona tus datos personales</h6>

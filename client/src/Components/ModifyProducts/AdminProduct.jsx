@@ -56,7 +56,6 @@ export default function AdminProduct({
       }
     }
     const discountLogic = price * discountNumber; //Calculamos descuento
-    // console.log(discountNumber);
 
     const grandTotal = price - discountLogic; //El total con descuento.
     grandTotalRef.current = grandTotal;
@@ -85,7 +84,6 @@ export default function AdminProduct({
     }).then((res) => {
       if (res.isConfirmed === true) {
         dispatch(deleteProduct(id));
-        console.log(id);
       } else console.log(res);
     });
   };
@@ -93,7 +91,6 @@ export default function AdminProduct({
   return (
     <div className={`${styles.container}`}>
       <div className={`${styles.container_productInfo}`}>
-        {/* {console.log(Hovertarget + " Hovered")} */}
         <Link
           to={`/AdminDetail/${id}`}
           ref={Hovertarget}

@@ -17,6 +17,8 @@ import {
   SET_NOTIFICATIONS,
   GET_USERS,
   GET_USER_DETAIL,
+  GET_CLIENT_DETAIL, 
+  CLEAR_CLIENT_DETAIL,
   CREATE_USER,
   SET_DETAIL_NOTIFICATIONS,
   GET_USER_DASHBOARD,
@@ -38,6 +40,7 @@ const initialState = {
   productsNotifications: [],
   allUsers: [],
   userDetail: [],
+  clientDetail: [],
   allComments: [],
 };
 
@@ -104,7 +107,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
 
     case CREATE_PRODUCT:
-      // console.log(payload);
       var expiryDate = new Date(Date.now() + 7 * 24 * 3600000);
       cookies.set("noti", payload, { path: "/", expires: expiryDate });
       cookies.set("counterNoti", 1);
@@ -153,7 +155,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
 
     case SET_NOTIFICATIONS:
-      console.log(payload);
       return {
         ...state,
         newNotification: {
@@ -177,12 +178,25 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         userDetail: payload,
       };
+    
+    case GET_CLIENT_DETAIL:
+      return {
+        ...state,
+        clientDetail: payload,
+      };
+    
+    case CLEAR_CLIENT_DETAIL: 
+    return {
+      ...state,
+      clientDetail: []
+      };
 
     case CREATE_USER:
       return {
         ...state,
         newUsers: [...state.allUsers, payload],
       };
+
     case SET_DETAIL_NOTIFICATIONS:
       const allProducts = state.products;
       const productsFiltered = allProducts.filter((p) => {
@@ -196,6 +210,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         productsNotifications: productsFiltered,
       };
+
     case GET_USER_DASHBOARD:
       const all_Users = state.allUsers;
       const userDashboard = all_Users.filter((user) =>

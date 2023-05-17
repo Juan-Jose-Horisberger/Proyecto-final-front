@@ -3,22 +3,12 @@ import axios from "axios";
 const FORM_ID = "payment-form";
 
 export default function BuyProducts({ data }) {
-  // let usuario
-  // if(user){
-  //     usuario = {
-  //       name: user.username || "alex",
-  //       surname: user.surname || "jonatan",
-  //       email: user.email,
-  //     };
-  // }
-  //   console.log(usuario,"hola")
-  // const { id } = useParams(); // id de producto
   const [preferenceId, setPreferenceId] = useState(null);
 
   useEffect(() => {
     // luego de montarse el componente, le pedimos al backend el preferenceId
     axios
-      .post("https://proyecto-final-back-ymep.onrender.com/products/comprar", data)
+      .post("/products/comprar", data)
       .then((order) => {
         setPreferenceId(order.data);
       });

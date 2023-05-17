@@ -12,17 +12,15 @@ export default function BuyProduct({user}) {
           email: user.email,
         };
     }
-    console.log(usuario,"hola")
   const { id } = useParams(); // id de producto
   const [preferenceId, setPreferenceId] = useState(null);
 
   useEffect(() => {
     // luego de montarse el componente, le pedimos al backend el preferenceId
-    axios.post('https://proyecto-final-back-ymep.onrender.com/products/comprar/'+id, usuario).then((order) => {
+    axios.post('/products/comprar/'+id, usuario).then((order) => {
       setPreferenceId(order.data);
     });
   }, [id]);
-  console.log(preferenceId)
   useEffect(() => {
     if (preferenceId) {
       // con el preferenceId en mano, inyectamos el script de mercadoPago

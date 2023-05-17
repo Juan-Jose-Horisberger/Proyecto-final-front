@@ -26,7 +26,7 @@ import Faqs from "./Components/Faqs/Faqs.jsx";
 import TermsAndConditions from "./Components/TermsAndConditions/TermsAndConditions.jsx";
 import Returns from "./Components/Returns/Returns.jsx";
 import LandingPage from "./Components/LandingPage/LandingPage.jsx";
-import UserDetail from "./Components/DashboardAdmin/UserDetail/UserDetail.jsx";
+import ClientDetail from "./Components/DashboardAdmin/ClientDetail/ClientDetail.jsx";
 import Ban from "./Components/Ban/Ban.jsx";
 
 // import Navbar from './Components/NavbarPrueba/NavBar.jsx';
@@ -300,7 +300,7 @@ function App() {
         ) : userDetail.admin == false ? (
           ""
         ) : (
-          <Route path="/UserDetail/:email" element={<UserDetail />} />
+          <Route path="/ClientDetail/:email" element={<ClientDetail />} />
         )}
       </Routes>
     </div>

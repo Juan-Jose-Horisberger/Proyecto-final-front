@@ -171,8 +171,6 @@ export default function ProductEdit() {
   } = useForm(initialForm, validateForm, id);
 
   const getDetail = (id) => {
-    // dispatch(getProductDetail(id));
-    console.log(productDetail);
     setForm({
       name: productDetail.name,
       brand: productDetail.brand,
@@ -190,7 +188,6 @@ export default function ProductEdit() {
   };
 
   useEffect(() => {
-    console.log("asdad");
     getDetail(id);
   }, [productDetail]);
 

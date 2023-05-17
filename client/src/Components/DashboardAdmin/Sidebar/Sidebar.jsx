@@ -64,7 +64,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {console.log(allComments)}
       <Section>
         <div className="top">
           <div
@@ -148,9 +147,6 @@ export default function Sidebar() {
                         COMENTARIOS
                       </span>
                     </div>
-                    {/* {infoNotifications.counter > 0 && (
-                      <div>{infoNotifications.counter}</div>
-                    )} */}
                   </div>
                 </div>
               </li>
@@ -177,12 +173,9 @@ export default function Sidebar() {
                           className={`${styles.container_NotificationsRender}`}
                         >
                           <Link to={`/ProductDetail/${e.productId}`}>
-                            {/* <h4>Nuevo comentario</h4> */}
-
                             <div className={styles.divComment}>
                               <p>Usuario:</p>
                               <p>{e.username}</p>
-                              {/* <p>Comentario</p> */}
                               <div className={styles.comment}>
                                 <p>{e.comment}</p>
                               </div>

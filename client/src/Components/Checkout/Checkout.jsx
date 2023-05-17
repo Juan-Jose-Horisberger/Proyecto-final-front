@@ -144,8 +144,6 @@ export default function Checkout({ socket }) {
 
   // useEffect(() => {
   //   //Esto iria en searchbar
-  //   // console.log(infoNotifications.newProducts.length)
-
   //   socket?.on("getNotification", function (data) {
   //     dispatch(sendInformation(data));
   //   });

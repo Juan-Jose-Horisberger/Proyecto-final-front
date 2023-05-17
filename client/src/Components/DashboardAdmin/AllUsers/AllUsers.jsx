@@ -90,7 +90,6 @@ export default function AllUsers() {
           />
         </div>
       </div>
-      {/* {console.log(AllUsers)} */}
 
       {loaded ? (
         <>
@@ -103,7 +102,7 @@ export default function AllUsers() {
                 >
                   <div className={styles.divImg}>
                     <p className={styles.pFoto}>Foto</p>
-                    <Link to={`/UserDetail/${e.email}`}>
+                    <Link to={`/ClientDetail/${e.email}`}>
                       <img
                         src={e.img}
                         referrerPolicy="no-referrer"
@@ -113,19 +112,19 @@ export default function AllUsers() {
                   </div>
                   <div className={styles.divName}>
                     <p className={styles.pResto}>Username</p>
-                    <Link to={`/UserDetail/${e.email}`}>
+                    <Link to={`/ClientDetail/${e.email}`}>
                       <p>{e.username}</p>
                     </Link>
                   </div>
                   <div className={styles.divName}>
                     <p className={styles.pResto}>Email</p>
-                    <Link to={`/UserDetail/${e.email}`}>
+                    <Link to={`/ClientDetail/${e.email}`}>
                       <p>{e.email}</p>
                     </Link>
                   </div>
                   <div className={styles.divName}>
                     <p className={styles.pResto}>Fecha Nacimiento</p>
-                    <Link to={`/UserDetail/${e.email}`}>
+                    <Link to={`/ClientDetail/${e.email}`}>
                       <p>{e.age}</p>
                     </Link>
                   </div>

@@ -64,7 +64,6 @@ export default function ProductDetail() {
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
-    console.log(productDetail);
   }, [productDetail]);
 
   const breakPoints = [
@@ -121,7 +120,7 @@ export default function ProductDetail() {
         comment: review.comment,
       };
       const response = await axios.post(
-        "https://proyecto-final-back-ymep.onrender.com/reviews/create",
+        "/reviews/create",
         reviewParse
       );
       if (response.data.message) {
@@ -169,7 +168,7 @@ export default function ProductDetail() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         await axios.delete(
-          "https://proyecto-final-back-ymep.onrender.com/reviews/delete/" + id
+          "/reviews/delete/" + id
         );
         dispatch(getProductDetail(productId));
         Swal.fire({
@@ -218,7 +217,6 @@ export default function ProductDetail() {
       }
     }
     const discountLogic = price * discountNumber; //Calculamos descuento
-    // console.log(discountNumber);
 
     const grandTotal = price - discountLogic; //El total con descuento.
     grandTotalRef.current = grandTotal;
@@ -277,17 +275,9 @@ export default function ProductDetail() {
     }
   };
 
-  // const handleFilterDetail = (data) => {
-  //   console.log(data);
-  //   dispatch(filterByQuery(`category=${data}&`)).then((res) => history("/"));
-  // };
 
   return (
     <div className={styles.container}>
-      {/* <SearchBar /> */}
-      {/* ///////////////           user={userDetail}         COMPRAR PRODUCTO PRUEBA XD /////////////////////////// */}
-      {/* <BuyProduct /> */}
-      {/* ///////////////// */}
       {loaded ? (
         <div>
           <div className={styles.overallContainer}>
@@ -324,7 +314,6 @@ export default function ProductDetail() {
             </div>
 
             <div className={styles.container_2}>
-              {/* <img src="" alt="" />img de marca */}
               <h1>{productDetail.name}</h1>
               {productDetail.offer ? (
                 priceWithDiscount(productDetail.price, productDetail.discount)

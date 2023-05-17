@@ -10,18 +10,10 @@ export default function ProfileAdm() {
   const dispatch = useDispatch();
   const userDetail = useSelector((state) => state.userDetail);
 
-  /* useEffect(() => {
-    if (isAuthenticated && !isLoading) {
-      dispatch(getUserDetail(user.email));
-    }
-  }, [user]); */
   return isAuthenticated ? (
     <Section>
       <div className="image">
-        {/* {console.log(user)}
-        {console.log(userDetail)} */}
         <img className="image" src={user.picture} />
-        {/* <img src={userDetail.img} /> */}
       </div>
       <div className="title">{/* <h2>{userDetail.username}</h2> */}</div>
       <div className="info">

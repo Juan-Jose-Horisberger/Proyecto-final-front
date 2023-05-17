@@ -102,7 +102,6 @@ export default function Filters({ modifiyProducts }) {
         e.target.name + "=" + e.target.value + "&"
       );
       dispatch(filterByQuery(actualFilter));
-      console.log(e.target.value);
       setParams(actualFilter);
       if (e.target.value === "calzado") setTalle("calzado");
     }

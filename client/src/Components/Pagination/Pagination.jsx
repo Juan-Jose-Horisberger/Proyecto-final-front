@@ -27,9 +27,7 @@ export default function Pagination({ allProducts, loaded }) {
   const [toShowNext, setToShowNext] = useState(false);
 
   useEffect(() => {
-    // console.log(itemOffset);
     const endOffset = itemOffset + itemsPerPage; //Indice del ultimo elemento de la pagina actual
-    // console.log(allProductsSort);
     setCurrentItems(allProductsSort.slice(itemOffset, endOffset)); //Tomamos una parte del array
     setPageCount(Math.ceil(allProductsSort.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, allProductsSort]);
@@ -45,7 +43,6 @@ export default function Pagination({ allProducts, loaded }) {
   };
 
   useEffect(() => {
-    // console.log("hola pageCount");
     const num = Math.ceil(allProductsSort.length / itemsPerPage);
     setCurrentItems(allProductsSort.slice(0, 9));
     num !== 34 ? setRenderPageOnce(true) : setRenderPageOnce(false);
@@ -58,8 +55,6 @@ export default function Pagination({ allProducts, loaded }) {
       renderOnce.current = renderOnce.current + 1;
       return;
     }
-    // console.log(Math.ceil(allProductsSort.length / itemsPerPage));
-    // console.log(toShowPrevious);
 
     itemOffset !== 0 ? setToShowPrevious(true) : setToShowPrevious(false);
     window.scrollTo({ behavior: "smooth", top: "0px" });
