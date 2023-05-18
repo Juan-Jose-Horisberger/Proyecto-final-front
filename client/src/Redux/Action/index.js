@@ -1,4 +1,4 @@
-import infoJson from "../../info.json";
+// import infoJson from "../../info.json";
 // import infoUserJson from "../../infoUser.json";
 import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
@@ -26,7 +26,7 @@ export const SET_DETAIL_NOTIFICATIONS = "SET_DETAIL_NOTIFICATIONS";
 export const UPDATE_USER_DETAIL = "UPDATE_USER_DETAIL";
 export const GET_USER_DASHBOARD = "GET_USER_DASHBOARD";
 export const GET_ALL_COMMENTS = "GET_ALL_COMMENTS";
-
+ 
 export const getAllProducts = () => {
   return async function (dispatch) {
     let products = await axios.get("/products");
@@ -119,7 +119,7 @@ export const getProductToBuy = (id) => {
 
 export const createProduct = (payload) => {
   return async function (dispatch) {
-    let newProduct = await axios.post(`/products`, payload);
+    await axios.post(`/products`, payload);
     return dispatch({
       type: CREATE_PRODUCT,
       payload,
@@ -129,7 +129,7 @@ export const createProduct = (payload) => {
 
 export const EditProduct = (id, data) => {
   return async function (dispatch) {
-    let editedProduct = await axios.put(`/products/change/${id}`, data);
+    await axios.put(`/products/change/${id}`, data);
     return dispatch({
       type: EDIT_PRODUCT,
       // payload: editedProduct,
@@ -139,7 +139,7 @@ export const EditProduct = (id, data) => {
 
 export const deleteProduct = (id) => {
   return async function (dispatch) {
-    let editedProduct = await axios.delete(`/products/delete/${id}`);
+    await axios.delete(`/products/delete/${id}`);
     return dispatch({
       type: DELETE_PRODUCT,
       payload: id,
@@ -185,7 +185,7 @@ export function getUsers() {
 }
 export function banUser(id) {
   return async function call(dispatch) {
-    let allUsers = await axios.put(`/users/ban/${id}`);
+    await axios.put(`/users/ban/${id}`);
   };
 }
 
@@ -234,7 +234,7 @@ export const getDetailNotification = (payload) => {
 
 export const updateUserDetail = (id, data) => {
   return async function (dispatch) {
-    let updateUser = await axios.put(`/users/update/${id}`, data);
+    await axios.put(`/users/update/${id}`, data);
   };
 };
 

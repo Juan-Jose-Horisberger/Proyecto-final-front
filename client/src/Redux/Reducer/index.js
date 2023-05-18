@@ -7,7 +7,6 @@ import {
   DELETE_FAV_PRODUCT,
   GET_CART_PRODUCT,
   DELETE_CART_PRODUCT,
-  PRODUCT_TO_BUY,
   CREATE_PRODUCT,
   EDIT_PRODUCT,
   DELETE_PRODUCT,
@@ -79,8 +78,10 @@ export default function rootReducer(state = initialState, { type, payload }) {
           productFav: [...state.productFav, payload],
         };
       }
+      /* falls through */
 
     case DELETE_FAV_PRODUCT:
+      
       const deleteFavProduct = state.productFav.filter((e) => e.id !== payload);
       return {
         ...state,
@@ -89,13 +90,14 @@ export default function rootReducer(state = initialState, { type, payload }) {
 
     case GET_CART_PRODUCT:
       if (payload) {
-        var expiryDate = new Date(Date.now() + 100 * 24 * 3600000);
+        let expiryDate = new Date(Date.now() + 100 * 24 * 3600000);
         cookies.set(payload.id, payload, { path: "/", expires: expiryDate });
         return {
           ...state,
           productCart: [...state.productCart, payload],
         };
       }
+      /* falls through */
 
     case DELETE_CART_PRODUCT:
       const deleteCartProduct = state.productCart.filter(
@@ -107,7 +109,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       };
 
     case CREATE_PRODUCT:
-      var expiryDate = new Date(Date.now() + 7 * 24 * 3600000);
+      let expiryDate = new Date(Date.now() + 7 * 24 * 3600000);
       cookies.set("noti", payload, { path: "/", expires: expiryDate });
       cookies.set("counterNoti", 1);
       return {
@@ -153,7 +155,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
           counter: 0,
         },
       };
-
+ 
     case SET_NOTIFICATIONS:
       return {
         ...state,
