@@ -18,8 +18,9 @@ export default function Profile() {
     if (isAuthenticated && !isLoading) {
       dispatch(getUserDetail(user.email));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
+ 
   const handleOnError = (e) => {
     e.target.src =
       "https://www.procainsa.com/wp-content/uploads/2017/02/Icono-Perfil-150x150.png";
@@ -44,7 +45,8 @@ export default function Profile() {
               <img
                 src={userDetail.img}
                 onError={handleOnError}
-                // alt={user.name}
+                referrerPolicy="no-referrer"
+                alt="img not found"
               />
             </div>
             <div>

@@ -1,14 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styles from "../Product/Product.module.css";
 import { TbTrashX } from "react-icons/tb";
 import { HiOutlinePencil } from "react-icons/hi";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 import useHover from "@react-hook/hover";
 import { getProductDetail, deleteProduct } from "../../Redux/Action";
-import { useState } from "react";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 export default function AdminProduct({
@@ -20,9 +18,9 @@ export default function AdminProduct({
   discount,
 }) {
   const dispatch = useDispatch();
-  const productFav = useSelector((state) => state.productFav);
-  const productCart = useSelector((state) => state.productCart);
-  const cookies = new Cookies();
+  // const productFav = useSelector((state) => state.productFav);
+  // const productCart = useSelector((state) => state.productCart);
+  // const cookies = new Cookies();
   /*Hover en la img*/
   const Hovertarget = React.useRef(null);
   const Hovered = useHover(Hovertarget);
@@ -114,7 +112,7 @@ export default function AdminProduct({
               : (onHoverButton1.current = false)
           }
             ${styles.button1} ${
-            (onHover.current || onHoverButton1.current) && styles.open
+            (onHover.current || onHoverButton1.current) ? styles.open: undefined
           }`}
         >
           <TbTrashX size="40px" color="#8B8B8B" />
@@ -129,8 +127,8 @@ export default function AdminProduct({
                 ? (onHoverButton.current = true)
                 : (onHoverButton.current = false)
             } ${styles.button2} ${
-              (onHover.current || onHoverButton.current) && styles.open
-            } `}
+              (onHover.current || onHoverButton.current) ? styles.open: undefined
+            } `} 
           >
             <HiOutlinePencil size="35px" color="#8B8B8B" />
           </button>

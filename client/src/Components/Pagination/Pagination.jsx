@@ -10,6 +10,7 @@ export default function Pagination({ allProducts, loaded }) {
   const [itemOffset, setItemOffset] = useState(3); //Indice del primer elemento de la pagina actual (creo que deberia ser 1)
   const itemsPerPage = 9; //Elementos por pagina
   const renderOnce = useRef(0);
+  // eslint-disable-next-line
   const [renderPageOnce, setRenderPageOnce] = useState(false);
   const allProductsSort = allProducts.sort(function (a, b) {
     if (a.id > b.id) {
@@ -47,8 +48,9 @@ export default function Pagination({ allProducts, loaded }) {
     setCurrentItems(allProductsSort.slice(0, 9));
     num !== 34 ? setRenderPageOnce(true) : setRenderPageOnce(false);
     num !== 34 && num === 1 && setToShowNext(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageCount]);
-
+ 
   useEffect(() => {
     if (renderOnce.current === 0) {
       setToShowNext(true);
@@ -113,7 +115,7 @@ export default function Pagination({ allProducts, loaded }) {
           previousClassName={`${styles.previous} ${
             toShowPrevious ? styles.open : styles.previous
           }`} //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
-          nextClassName={`${styles.next} ${!toShowNext && styles.close}`} //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
+          nextClassName={`${styles.next} ${!toShowNext ? styles.close: undefined}`} //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
           activeLinkClassName={`${styles.active}`}
         />
       </>

@@ -1,26 +1,21 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getUserDetail } from "../../../Redux/Action";
 import styled from "styled-components";
-import Cards from "../Cards/Cards";
-import Earnings from "../Earnings/Earnings";
-import FAQ from "../FAQ/FAQ";
-import Navbar from "../NavBar/Navbar";
 import ProfileAdm from "../ProfileAdm/ProfileAdm";
 import Sidebar from "../Sidebar/Sidebar";
-import AdminProduct from "../../ModifyProducts/AdminProduct";
 import ModifyProduct from "../../ModifyProducts/ModifyProducts";
-
+ 
 import scrollreveal from "scrollreveal";
 export default function Dashboard() {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const dispatch = useDispatch();
-  const userDetail = useSelector((state) => state.userDetail);
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
       dispatch(getUserDetail(user.email));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   useEffect(() => {
     const sr = scrollreveal({
@@ -42,7 +37,7 @@ export default function Dashboard() {
       }
     );
   }, []);
-
+   
   return (
     <Section>
       <Sidebar />

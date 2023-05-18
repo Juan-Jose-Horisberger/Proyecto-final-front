@@ -16,8 +16,6 @@ import {
   getCartProduct,
   deleteCartProduct,
 } from "../../Redux/Action";
-import { useState } from "react";
-import { useEffect } from "react";
 
 export default function Product({
   id,
@@ -30,7 +28,6 @@ export default function Product({
 }) {
   const dispatch = useDispatch();
   const productFav = useSelector((state) => state.productFav);
-  const productCart = useSelector((state) => state.productCart);
   const cookies = new Cookies();
   /*Hover en la img*/
   const Hovertarget = React.useRef(null);
@@ -127,7 +124,7 @@ export default function Product({
             >
               <img
                 src={image}
-                alt="Imagen no encontrada"
+                alt="img-not-found"
                 className={`img-fluid`}
               />
               {landingPage && <p className={`${styles.newProduct}`}>NEW</p>}
@@ -144,13 +141,13 @@ export default function Product({
                   : (onHoverButton1.current = 0)
               }
             ${styles.button1} ${
-                (onHover.current || onHoverButton1.current) && styles.open
+                (onHover.current || onHoverButton1.current) ? styles.open: undefined
               }`}
             >
               {validateCart(id) ? (
-                <img src={deleteCart} alt="image-not-found" />
+                <img src={deleteCart} alt="img-not-found" />
               ) : (
-                <img src={addCart} alt="image-not-found" />
+                <img src={addCart} alt="img-not-found" />
               )}
             </button>
 
@@ -162,13 +159,13 @@ export default function Product({
                   ? (onHoverButton.current = 1)
                   : (onHoverButton.current = 0)
               } ${styles.button2} ${
-                (onHover.current || onHoverButton.current) && styles.open
+                (onHover.current || onHoverButton.current) ? styles.open: undefined
               } `}
             >
               {validateFav(id) ? (
-                <img src={deleteFav} alt="image-not-found" />
+                <img src={deleteFav} alt="img-not-found" />
               ) : (
-                <img src={addFav} alt="image-not-found" />
+                <img src={addFav} alt="img-not-found" />
               )}
             </button>
           </div>
@@ -200,7 +197,7 @@ export default function Product({
             >
               <img
                 src={image}
-                alt="Imagen no encontrada"
+                alt="img-not-found"
                 className={`img-fluid`}
               />
               {offer && <p className={`${styles.discountP}`}>-{discount}</p>}
@@ -216,16 +213,16 @@ export default function Product({
                   : (onHoverButton1.current = 0)
               }
             ${styles.button1} ${
-                (onHover.current || onHoverButton1.current) && styles.open
+                (onHover.current || onHoverButton1.current) ? styles.open: undefined
               }`}
             >
               {validateCart(id) ? (
-                <img src={deleteCart} alt="image-not-found" />
+                <img src={deleteCart} alt="img-not-found" />
               ) : (
-                <img src={addCart} alt="image-not-found" />
+                <img src={addCart} alt="img-not-found" />
               )}
             </button>
-
+ 
             <button
               onClick={handleOnFav}
               ref={HovertargetButton}
@@ -234,13 +231,13 @@ export default function Product({
                   ? (onHoverButton.current = 1)
                   : (onHoverButton.current = 0)
               } ${styles.button2} ${
-                (onHover.current || onHoverButton.current) && styles.open
+                (onHover.current || onHoverButton.current) ? styles.open: undefined
               } `}
             >
               {validateFav(id) ? (
-                <img src={deleteFav} alt="image-not-found" />
+                <img src={deleteFav} alt="img-not-found" />
               ) : (
-                <img src={addFav} alt="image-not-found" />
+                <img src={addFav} alt="img-not-found" />
               )}
             </button>
           </div>

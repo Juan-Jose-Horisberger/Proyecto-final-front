@@ -51,6 +51,7 @@ export default function ModifyProduct() {
   useEffect(() => {
     const num = Math.ceil(allProductsSort.length / itemsPerPage);
     num === 1 && setToShowNext(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageCount]);
 
   useEffect(() => {
@@ -62,11 +63,12 @@ export default function ModifyProduct() {
     itemOffset !== 0 ? setToShowPrevious(true) : setToShowPrevious(false);
     window.scrollTo({ behavior: "smooth", top: "0px" });
   }, [itemOffset]);
-
+ 
   useEffect(() => {
     dispatch(getAllProducts()).then(
       (res) => res.payload.length && setLoaded(true)
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -132,9 +134,9 @@ export default function ModifyProduct() {
           containerClassName={`${styles.pagination}`} //Decimes que el contenedor tendra como clase pagination
           pageLinkClassName={`${styles.page_num}`} //Cada elemento por pagina tendra el nombre de clase page-num
           previousClassName={`${styles.previous} ${
-            toShowPrevious && styles.open
+            toShowPrevious ? styles.open: undefined
           }`} //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
-          nextClassName={`${styles.next} ${!toShowNext && styles.close}`} //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
+          nextClassName={`${styles.next} ${!toShowNext ? styles.close: undefined}`} //Etiqueta + nombre de clase, que me permitira darle estilos a el boton previos
           activeLinkClassName={`${styles.active}`}
         />
       </>

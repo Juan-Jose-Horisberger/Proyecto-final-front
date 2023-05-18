@@ -15,8 +15,9 @@ export default function ClientDetail() {
     return () => {
       dispatch(clearClientDetail());
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
-
+   
   return (
     <>
     {clientDetail.id ? (
@@ -37,7 +38,11 @@ export default function ClientDetail() {
       </div>
       <div className={style.divUser}>
         <div className={style.divImg}>
-          <img src={clientDetail.img} alt="" />
+          <img 
+            src={clientDetail.img} 
+            alt="" 
+            referrerPolicy="no-referrer"
+          />
         </div>
         <div>
           <div>
