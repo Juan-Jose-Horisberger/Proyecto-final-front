@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Contact.module.css";
 import { validate } from "./validate.js";
-import SearchBar from "../SearchBar/SearchBar";
 import emailjs from "@emailjs/browser";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
@@ -36,7 +35,7 @@ export default function Contact() {
   const [cleanForm, setCleanForm] = useState(false); //Este estado me permite que los inputs vuelvan con su borde inicial
 
   function handleOnChange(e) {
-    const objError = validate(
+    validate(
       { ...input, [e.target.name]: e.target.value },
       e.target.name,
       error,

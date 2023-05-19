@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Home from "./Components/Home/Home.jsx";
@@ -17,9 +17,7 @@ import AllUsers from "./Components/DashboardAdmin/AllUsers/AllUsers.jsx";
 import Profile from "./Components/Profile/Profile.jsx";
 import Logout from "./Components/Logout/Logout";
 import Dashboard from "./Components/DashboardAdmin/Dashboard/Dashboard.jsx";
-import { io } from "socket.io-client";
 import Checkout from "./Components/Checkout/Checkout.jsx";
-import { posts } from "./infoUser.js";
 import Offers from "./Components/Offers/Offers.jsx";
 import About from "./Components/AboutUs/AboutUs";
 import Faqs from "./Components/Faqs/Faqs.jsx";
@@ -35,9 +33,8 @@ import Ban from "./Components/Ban/Ban.jsx";
 
 function App() {
 
-  const dispatch = useDispatch();
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const [socket, setSocket] = useState(null);
+  const { isAuthenticated, isLoading } = useAuth0();
+  const socket = null;
   const [boolean, setBoolean] = useState(false);
   const [booleanSearchBar, setBooleanSearchBar] = useState(false);
   const userDetail = useSelector((state) => state.userDetail);
@@ -70,7 +67,7 @@ function App() {
               />
             }
           />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/" element={<Ban />} />
         ) : (
           <Route
@@ -88,7 +85,7 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
         ) : !isAuthenticated ? (
           <Route path="/Profile" element={<Profile />} />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/Profile" element={<Ban />} />
         ) : (
           <Route path="/Profile" element={<Profile />} />
@@ -97,7 +94,7 @@ function App() {
           <Route path="/ProductDetail/:id" element={<ProductDetail />} />
         ) : !isAuthenticated ? (
           <Route path="/ProductDetail/:id" element={<ProductDetail />} />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/ProductDetail/:id" element={<Ban />} />
         ) : (
           <Route path="/ProductDetail/:id" element={<ProductDetail />} />
@@ -115,7 +112,7 @@ function App() {
           <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
         ) : !isAuthenticated ? (
           <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/FavoriteProduct" element={<Ban />} />
         ) : (
           <Route path="/FavoriteProduct" element={<FavoriteProduct />} />
@@ -123,7 +120,7 @@ function App() {
         {/* no funciona bien la autenticacion del /cart */}
         {isLoading || !userDetail ? (
           ""
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/Cart" element={<Ban />} />
         ) : (
           <Route path="/Cart" element={<Cart />} />
@@ -133,7 +130,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
         ) : !isAuthenticated ? (
           <Route path="/Login" element={<Login />} />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/Login" element={<Ban />} />
         ) : (
           <Route path="/Login" element={<Login />} />
@@ -141,7 +138,7 @@ function App() {
         {/* no funciona bien la autenticacion del /Register */}
         {isLoading || !userDetail ? (
           ""
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/Register" element={<Ban />} />
         ) : (
           <Route path="/Register" element={<Register socket={socket} />} />
@@ -149,7 +146,7 @@ function App() {
         {/* no funciona bien la autenticacion del /Offers */}
         {isLoading || !userDetail ? (
           ""
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/Offers" element={<Ban />} />
         ) : (
           <Route path="/Offers" element={<Offers />} />
@@ -159,7 +156,7 @@ function App() {
           <Route path="/About" element={<About />} />
         ) : !isAuthenticated ? (
           <Route path="/About" element={<About />} />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/About" element={<Ban />} />
         ) : (
           <Route path="/About" element={<About />} />
@@ -167,7 +164,7 @@ function App() {
         {/* no funciona bien la autenticacion del /Faqs */}
         {isLoading || !userDetail ? (
           ""
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/Faqs" element={<Ban />} />
         ) : (
           <Route path="/Faqs" element={<Faqs />} />
@@ -183,7 +180,7 @@ function App() {
           <Route path="/Returns" element={<Returns />} />
         ) : !isAuthenticated ? (
           <Route path="/Returns" element={<Returns />} />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/Returns" element={<Ban />} />
         ) : (
           <Route path="/Returns" element={<Returns />} />
@@ -208,7 +205,7 @@ function App() {
               />
             }
           />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/LandingPage" element={<Ban />} />
         ) : (
           <Route
@@ -225,7 +222,7 @@ function App() {
           <Route path="/LandingPage" element={<LandingPage />} />
         ) : !isAuthenticated ? (
           <Route path="/LandingPage" element={<LandingPage />} />
-        ) : userDetail.ban == true ? (
+        ) : userDetail.ban === true ? (
           <Route path="/LandingPage" element={<Ban />} />
         ) : (
           <Route path="/LandingPage" element={<LandingPage />} />
@@ -239,7 +236,7 @@ function App() {
           ""
         ) : !isAuthenticated ? (
           ""
-        ) : userDetail.admin == false ? (
+        ) : userDetail.admin === false ? (
           ""
         ) : (
           <Route path="/Dashboard" element={<Dashboard socket={socket} />} />
@@ -249,7 +246,7 @@ function App() {
           ""
         ) : !isAuthenticated ? (
           ""
-        ) : userDetail.admin == false ? (
+        ) : userDetail.admin === false ? (
           ""
         ) : (
           <Route path="/CreateProduct" element={<FormProduct />} />
@@ -259,7 +256,7 @@ function App() {
           ""
         ) : !isAuthenticated ? (
           ""
-        ) : userDetail.admin == false ? (
+        ) : userDetail.admin === false ? (
           ""
         ) : (
           <Route path="/EditProduct/:id" element={<EditProduct />} />
@@ -269,7 +266,7 @@ function App() {
           ""
         ) : !isAuthenticated ? (
           ""
-        ) : userDetail.admin == false ? (
+        ) : userDetail.admin === false ? (
           ""
         ) : (
           <Route path="/AdminDetail/:id" element={<AdminDetail />} />
@@ -279,7 +276,7 @@ function App() {
           ""
         ) : !isAuthenticated ? (
           ""
-        ) : userDetail.admin == false ? (
+        ) : userDetail.admin === false ? (
           ""
         ) : (
           <Route path="/ModifyProducts" element={<ModifyProducts />} />
@@ -288,7 +285,7 @@ function App() {
           ""
         ) : !isAuthenticated ? (
           ""
-        ) : userDetail.admin == false ? (
+        ) : userDetail.admin === false ? (
           ""
         ) : (
           <Route path="/AllUsers" element={<AllUsers />} />
@@ -297,7 +294,7 @@ function App() {
           ""
         ) : !isAuthenticated ? (
           ""
-        ) : userDetail.admin == false ? (
+        ) : userDetail.admin === false ? (
           ""
         ) : (
           <Route path="/ClientDetail/:email" element={<ClientDetail />} />

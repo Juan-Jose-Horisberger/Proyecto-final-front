@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MdOutlineSentimentVeryDissatisfied } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logout from "../Logout/Logout.jsx";
 import styles from "./Ban.module.css";

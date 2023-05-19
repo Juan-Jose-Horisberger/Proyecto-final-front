@@ -20,6 +20,7 @@ export default function BuyProduct({user}) {
     axios.post('/products/comprar/'+id, usuario).then((order) => {
       setPreferenceId(order.data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
   }, [id]);
   useEffect(() => {
     if (preferenceId) {

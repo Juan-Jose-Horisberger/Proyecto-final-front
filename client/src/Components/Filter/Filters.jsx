@@ -31,8 +31,8 @@ export default function Filters({ modifiyProducts }) {
             setParams(result);
             setTalle("calzado");
 
-            var options2 = document.querySelectorAll("#my_select");
-            for (var i = 0, l = options2.length; i < l; i++) {
+            let options2 = document.querySelectorAll("#my_select");
+            for (let i = 0, l = options2.length; i < l; i++) {
               options2[i].selectedIndex = 0;
             }
             return;
@@ -54,8 +54,8 @@ export default function Filters({ modifiyProducts }) {
             setParams(result);
             setTalle("indumentaria");
 
-            var options2 = document.querySelectorAll("#my_select");
-            for (var i = 0, l = options2.length; i < l; i++) {
+            let options2 = document.querySelectorAll("#my_select");
+            for (let i = 0, l = options2.length; i < l; i++) {
               options2[i].selectedIndex = 0;
             }
             return;
@@ -93,8 +93,8 @@ export default function Filters({ modifiyProducts }) {
       setParams(result);
       setTalle(e.target.value === "calzado" ? "calzado" : "indumentaria");
 
-      var options2 = document.querySelectorAll("#my_select");
-      for (var i = 0, l = options2.length; i < l; i++) {
+      let options2 = document.querySelectorAll("#my_select");
+      for (let i = 0, l = options2.length; i < l; i++) {
         options2[i].selectedIndex = 0;
       }
     } else {
@@ -117,8 +117,8 @@ export default function Filters({ modifiyProducts }) {
     setPrice("65.999");
     setTalle("indumentaria");
 
-    var options = document.querySelectorAll("#my_select");
-    for (var i = 0, l = options.length; i < l; i++) {
+    let options = document.querySelectorAll("#my_select");
+    for (let i = 0, l = options.length; i < l; i++) {
       options[i].selectedIndex = 0;
     }
   };

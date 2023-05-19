@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
 import Cookies from "universal-cookie";
 import Swal from "sweetalert2";
 import { posts } from "../../infoUser.js";
 
 export default function useForm(initialForm, validateForm, socket, user) {
-  const dispatch = useDispatch();
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
 

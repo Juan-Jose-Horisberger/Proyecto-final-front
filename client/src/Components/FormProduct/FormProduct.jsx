@@ -253,7 +253,7 @@ export default function FormProduct() {
               <div>
                 <img
                   src={form.image}
-                  alt="Image not found"
+                  alt="Img not found"
                   className={style.imagen}
                 />
               </div>

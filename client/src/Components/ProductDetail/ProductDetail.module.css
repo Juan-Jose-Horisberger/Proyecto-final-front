@@ -76,10 +76,14 @@ container_2 .container_1 .container_Img {
   background-color: black; 
 }
 
-.container_2 h1 {
+.container_2 h1{
   font-family: "Questrial", sans-serif;
   color: white !important;
   font-size: 35px;
+}
+
+.container_price_2 {
+  color: white
 }
 
 .container_2 .container_price {

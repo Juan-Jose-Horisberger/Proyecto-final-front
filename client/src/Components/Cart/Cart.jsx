@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCartProduct } from "../../Redux/Action";
 import styles from "./Cart.module.css";
-import SearchBar from "../SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "universal-cookie";
@@ -24,14 +23,14 @@ export default function Cart() {
 
   const handleCheckout = () => {
     var price = 0;
-    products.map((e) =>
+    products.map((e) => // eslint-disable-next-line
       e[1].id ? (price = price + e[1].price) : (price = price)
     );
     setCheckout(price);
   };
 
   useEffect(() => {
-    handleCheckout();
+    handleCheckout(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productCart]);
 
   return (
@@ -57,7 +56,7 @@ export default function Cart() {
                 <Link to={`/ProductDetail/${e[1].id}`}>
                   <img
                     src={e[1].image}
-                    alt="Image not found"
+                    alt="Img not found"
                     className={styles.image}
                   />
                 </Link>

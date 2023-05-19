@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./LandingPage.module.css";
-import imgCarrousel1 from "../../Imagenes/ImagerCarrousel1.jpg";
 import imgCarrousel2 from "../../Imagenes/ImagenCarrousel2.jpg";
-import imagenCarrousel5 from "../../Imagenes/ImagenCarrousel5.jpg";
 import SearchBar from "../SearchBar/SearchBar";
 import { filterByQuery, getAllProducts } from "../../Redux/Action";
 import { useDispatch, useSelector } from "react-redux";
 import Carousel from "react-elastic-carousel";
-import stylesComponents from "./stylesComponents.css";
 import { Link, useNavigate } from "react-router-dom";
 import Product from "../Product/Product";
 import imgProducts from "../../Imagenes/ImagenProducts1.png";
@@ -55,7 +52,7 @@ export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
   useEffect(() => {
     dispatch(getAllProducts());
     window.scroll(0, 0);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     Aos.init({ duration: 2000 });
@@ -70,6 +67,7 @@ export default function LandingPage({ setBoolean, setBooleanSearchBar }) {
 
   useEffect(() => {
     breackPointObserver(breakPoints2, setBreakPointsState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [breakPointsState]);
 
   const breakPoints = [

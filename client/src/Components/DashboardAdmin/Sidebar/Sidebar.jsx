@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiDashboard2Fill } from "react-icons/ri";
 import { FaAddressCard } from "react-icons/fa";
 import { GiTwirlCenter } from "react-icons/gi";
-import { BsFillBellFill, BsFillChatTextFill } from "react-icons/bs";
+import { BsFillChatTextFill } from "react-icons/bs";
 import { IoSettings } from "react-icons/io5";
 import { FiLogOut } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -24,9 +24,9 @@ export default function Sidebar() {
   const [currentLink, setCurrentLink] = useState(0);
   const [navbarState, setNavbarState] = useState(false);
   const dispatch = useDispatch();
-  var cookies = new Cookies();
-  var cukis = cookies.getAll();
-  var notis = Object.entries(cukis);
+  // var cookies = new Cookies();
+  // var cukis = cookies.getAll();
+  // var notis = Object.entries(cukis);
   const allComments = useSelector((state) => state.allComments);
   const html = document.querySelector("html");
   html.addEventListener("click", () => setNavbarState(false));
@@ -60,7 +60,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     dispatch(getAllComments());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -210,7 +210,7 @@ export default function Sidebar() {
                 </a>
               </li> */}
               <div className="logout">
-                <a href="#">
+                <a href="/#">
                   <span style={{ marginRight: "15px" }}>
                     <FiLogOut size="20px" />
                   </span>
@@ -228,7 +228,7 @@ export default function Sidebar() {
               className={currentLink === 1 ? "active" : "none"}
               onClick={() => setCurrentLink(1)}
             >
-              <a href="#">
+              <a href="/#">
                 <MdSpaceDashboard size="20px" />
                 <span> Dashboard</span>
               </a>
@@ -255,7 +255,7 @@ export default function Sidebar() {
               className={currentLink === 4 ? "active" : "none"}
               onClick={() => setCurrentLink(4)}
             >
-              <a href="#">
+              <a href="/#">
                 <GiTwirlCenter size="20px" />
                 <span> NOTIFICACIONES</span>
               </a>
@@ -264,7 +264,7 @@ export default function Sidebar() {
               className={currentLink === 5 ? "active" : "none"}
               onClick={() => setCurrentLink(5)}
             >
-              <a href="#">
+              <a href="/#">
                 <BsFillChatTextFill size="20px" />
                 <span> FAQs</span>
               </a>
@@ -273,7 +273,7 @@ export default function Sidebar() {
               className={currentLink === 6 ? "active" : "none"}
               onClick={() => setCurrentLink(6)}
             >
-              <a href="#">
+              <a href="/#">
                 <IoSettings size="20px" />
                 <span> Settings</span>
               </a>

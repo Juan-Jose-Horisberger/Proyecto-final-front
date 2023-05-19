@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-import { getProductToBuy, updateUserDetail } from "../../Redux/Action";
 import Cookies from "universal-cookie";
 import Swal from "sweetalert2";
-import { posts } from "../../infoUser.js"; //User ficticio
-import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function useForm(initialForm, validateForm, socket) {
-  const dispatch = useDispatch();
-  const { isAuthenticated, isLoading } = useAuth0();
+export default function useForm(initialForm, validateForm) {
+  const { isAuthenticated } = useAuth0();
   const userDetail = useSelector((state) => state.userDetail);
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const [oneProd, setOneProd] = useState(false);
   const [cupon, setCupon] = useState(["0", 0]);
   const [envio, setEnvio] = useState(["500", 0.5]);
   const [pagar, setPagar] = useState(false);
+  const oneProd = false;
 
   const cupones = ["SoyHenry", "Alejo"];
   const cookies = new Cookies();

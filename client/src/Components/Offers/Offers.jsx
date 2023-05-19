@@ -1,35 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../Redux/Action";
 import styles from "./Offers.module.css";
-import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
-import {
-  BsShieldCheck,
-  BsCheckCircle,
-  BsFillTelephoneFill,
-  BsArrowUp,
-} from "react-icons/bs";
-import { GiPadlock } from "react-icons/gi";
-import { RiArrowRightSLine } from "react-icons/ri";
-import { AiOutlineInstagram } from "react-icons/ai";
+// import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
+// import {
+//   BsShieldCheck,
+//   BsCheckCircle,
+//   BsFillTelephoneFill,
+//   BsArrowUp,
+// } from "react-icons/bs";
+// import { GiPadlock } from "react-icons/gi";
+// import { RiArrowRightSLine } from "react-icons/ri";
+// import { AiOutlineInstagram } from "react-icons/ai";
 import Footer from "../Footer/Footer";
 
 export default function Offers() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
   const [loaded, setLoaded] = useState(false);
   const [sales, setSales] = useState([]);
   const renderOnce = useRef(0);
   const [displayNone, setDisplayNone] = useState(false);
-  const [discounts, setDiscounts] = useState([0.1, 0.2, 0.3, 0.5]); //10%
+  // const [discounts, setDiscounts] = useState([0.1, 0.2, 0.3, 0.5]); //10%
   // const randomDiscount =
   //   discounts[Math.floor(Math.random() - 0.5)];
   const renderOnce2 = useRef(0);
   const conteinerCards = useRef(); //Nos ayuda con el scroll
-  const showDiscounts = ["-10%", "-20%", "-30%", "-50%"]; //Mostramos el descuento
-  const [algo, setAlgo] = useState([]);
-  const renderOnce3 = useRef("");
+  // const showDiscounts = ["-10%", "-20%", "-30%", "-50%"]; //Mostramos el descuento
 
   useEffect(() => {
     dispatch(getAllProducts()).then(
@@ -40,7 +37,8 @@ export default function Offers() {
           res.payload.filter((e) => e.offer)
         )
     );
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
 
   useEffect(() => {
     if (renderOnce.current === 0) {
@@ -144,7 +142,7 @@ export default function Offers() {
                 sales.map((p, i) => (
                   <div key={i} className={`${styles.container_cart}`}>
                     <div>
-                      <img src={p.image} alt="image" className="img-fluid" />
+                      <img src={p.image} alt="img" className="img-fluid" />
                     </div>
                     <div>
                       <p className="mt-3">{p.name}</p>

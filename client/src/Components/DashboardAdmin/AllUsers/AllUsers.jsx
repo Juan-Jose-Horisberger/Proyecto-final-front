@@ -23,7 +23,7 @@ export default function AllUsers() {
     dispatch(getUsers()).then(
       (res) => typeof res === "object" && setLoaded(true)
     );
-  }, []);
+  }, [dispatch]);
 
   function handleBan(id) {
     dispatch(banUser(id)).then(
@@ -107,6 +107,7 @@ export default function AllUsers() {
                         src={e.img}
                         referrerPolicy="no-referrer"
                         className="img-fluid"
+                        alt="img"
                       />
                     </Link>
                   </div>

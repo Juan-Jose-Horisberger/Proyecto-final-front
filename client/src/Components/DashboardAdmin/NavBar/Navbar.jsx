@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BiSearch } from "react-icons/bi";
 import { getProductByName } from "../../../Redux/Action";
 import { useDispatch } from "react-redux";
 import { GiMagnifyingGlass } from "react-icons/gi";
 export default function Navbar() {
   const [productName, setProductName] = useState("");
+  //eslint-disable-next-line
   const [errorsExist, setErrorsExist] = useState(false);
   const dispatch = useDispatch();
 

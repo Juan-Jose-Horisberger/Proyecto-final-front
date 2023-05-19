@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import SearchBar from "../SearchBar/SearchBar.jsx";
 import style from "./Checkout.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import useForm from "./useForm.js";
 import Cookies from "universal-cookie";
-import { getUserDetail, sendInformation } from "../../Redux/Action/index.js";
+import { getUserDetail } from "../../Redux/Action/index.js";
 import BuyProducts from "./MercadoLibreCheck.jsx";
 
 var cookies = new Cookies();
@@ -29,8 +28,8 @@ const initialForm = {
 
 const validateForm = (form, nameInput) => {
   let errors = {};
-  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-  let regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/; // eslint-disable-next-line
+  let regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;// eslint-disable-next-line
   let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   if (nameInput.includes("nameCompra")) {
@@ -127,18 +126,14 @@ export default function Checkout({ socket }) {
   var productsToBuy = Object.entries(cuki);
   var subTotal = 0;
   const dispatch = useDispatch();
-  const infoNotifications = useSelector((state) => state.newNotification);
   const {
     form,
     errors,
     handleOnChange,
     handleSubmit,
-    handleRemoveCookies,
     handleCupon,
     cupon,
-    oneProd,
     pagar,
-    setPagar,
     envio,
   } = useForm(initialForm, validateForm, socket);
 
@@ -150,7 +145,7 @@ export default function Checkout({ socket }) {
   // }, [socket]);
 
   useEffect(() => {
-    isAuthenticated && dispatch(getUserDetail(user.email));
+    isAuthenticated && dispatch(getUserDetail(user.email)); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -401,7 +396,7 @@ export default function Checkout({ socket }) {
           <p className={style.cuentita}>
             {productsToBuy.map((e) =>
               e[1].id
-                ? (subTotal = subTotal + e[1].price)
+                ? (subTotal = subTotal + e[1].price) // eslint-disable-next-line
                 : (subTotal = subTotal)
             )}
           </p>

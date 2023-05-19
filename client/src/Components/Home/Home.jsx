@@ -33,7 +33,8 @@ export default function Home({ socket, boolean, booleanSearchBar }) {
         dispatch(createUser(user));
       }
     }
-  }, [isAuthenticated]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated, dispatch]);
 
   useEffect(() => {
     dispatch(getUsers());
@@ -49,13 +50,15 @@ export default function Home({ socket, boolean, booleanSearchBar }) {
       (res) => typeof res === "object" && setLoaded(true)
     );
     window.scroll(0, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (isAuthenticated && !isLoading) {
       dispatch(getUserDetail(user.email));
     }
-  }, [user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, dispatch]);
 
   return (
     <div

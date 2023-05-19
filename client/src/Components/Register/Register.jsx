@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import style from "./Register.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm.js";
 import Cookies from "universal-cookie";
 
@@ -24,9 +22,9 @@ const initialForm = {
 };
 
 const validateForm = (form, nameInput) => {
-  let errors = {};
-  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-  let regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+  let errors = {}; // eslint-disable-next-line
+  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/; // eslint-disable-next-line
+  let regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/; // eslint-disable-next-line
   let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   if (nameInput.includes("nameCompra")) {
@@ -116,8 +114,6 @@ export default function Register() {
     "Tierra del Fuego",
     "Tucumán",
   ];
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
-  const dispatch = useDispatch();
 
   const { form, errors, handleOnChange, handleSubmit } = useForm(
     initialForm,

@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import styles from "./TermsAndConditions.module.css";
-import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
-import {
-  BsShieldCheck,
-  BsCheckCircle,
-  BsFillTelephoneFill,
-  BsArrowUp,
-} from "react-icons/bs";
-import { GiPadlock } from "react-icons/gi";
-import { RiArrowRightSLine } from "react-icons/ri";
-import { AiOutlineInstagram } from "react-icons/ai";
+// import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
+// import {
+//   BsShieldCheck,
+//   BsCheckCircle,
+//   BsFillTelephoneFill,
+//   BsArrowUp,
+// } from "react-icons/bs";
+// import { GiPadlock } from "react-icons/gi";
+// import { RiArrowRightSLine } from "react-icons/ri";
+// import { AiOutlineInstagram } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
 

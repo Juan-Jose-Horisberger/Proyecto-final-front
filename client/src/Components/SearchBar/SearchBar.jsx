@@ -6,8 +6,7 @@ import { useState } from "react";
 import Cookies from "universal-cookie";
 import {
   getProductByName,
-  clearNotifications,
-  getDetailNotification,
+  // getDetailNotification,
   getUserDetail,
 } from "../../Redux/Action";
 import { Link, useNavigate } from "react-router-dom";
@@ -28,12 +27,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
   var cookies = new Cookies();
   const counterNoti = cookies.get("counterNoti");
   const noti = cookies.get("noti");
-  const infoProductDefailt = useSelector(
-    (state) => state.productsNotifications
-  );
-  const [getDetails, setGetDetails] = useState(false);
   const [getName, setGetName] = useState("");
-  var infoNotifications = useSelector((state) => state.newNotification);
   const userDetail = useSelector((state) => state.userDetail);
   const history = useNavigate();
 
@@ -41,6 +35,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
     if (isAuthenticated && !isLoading) {
       dispatch(getUserDetail(user.email));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   function handleOnClick() {
@@ -59,22 +54,22 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
     cookies.set("counterNoti", 0);
   }
 
-	function getDetailsOnClick() {
-		if (getName.length) {
-			dispatch(getDetailNotification(getName));
-		}
-	}
+	// function getDetailsOnClick() {
+	// 	if (getName.length) {
+	// 		dispatch(getDetailNotification(getName));
+	// 	}
+	// }
 
-	const displayNotification = ({ senderName, type }, i) => {
-		if (type === 1) {
-			//compra
-			return (
-				<div key={i} className={`${styles.notifications}`}>
-					<span>{`Muchas gracias ${senderName} por haber realizado una compra`}</span>
-				</div>
-			);
-		}
-	};
+	// const displayNotification = ({ senderName, type }, i) => {
+	// 	if (type === 1) {
+	// 		//compra
+	// 		return (
+	// 			<div key={i} className={`${styles.notifications}`}>
+	// 				<span>{`Muchas gracias ${senderName} por haber realizado una compra`}</span>
+	// 			</div>
+	// 		);
+	// 	}
+	// };
 
 
   const displayNotificationProducts = (noti) => {
@@ -132,7 +127,7 @@ export default function SearchBar({ socket, setBooleanSearchBar }) {
                 <img
                   src="https://www.svgrepo.com/show/419541/menu-list-line.svg"
                   width="40px"
-                  alt="image"
+                  alt="img"
                 />
               </span>
             </button>

@@ -2,10 +2,8 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import useForm from "./useForm";
 import style from "./ProductEdit.module.css";
-import { useState } from "react";
 import { useEffect } from "react";
-import { getProductDetail } from "../../Redux/Action";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const validateForm = (form, nameInput, setValidate, validate) => {
   let errors = {};
@@ -151,7 +149,6 @@ const initialForm = {
 export default function ProductEdit() {
   const { id } = useParams();
   const productDetail = useSelector((state) => state.productDetail);
-  const dispatch = useDispatch();
 
   const {
     form,
@@ -189,6 +186,7 @@ export default function ProductEdit() {
 
   useEffect(() => {
     getDetail(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productDetail]);
 
   const talleRopa = ["XS", "S", "M", "L", "XL", "XXL"];
@@ -311,7 +309,7 @@ export default function ProductEdit() {
               <div>
                 <img
                   src={form.image}
-                  alt="Image not found"
+                  alt="Img not found"
                   className={style.imagen}
                 />
               </div>

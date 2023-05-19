@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import {
-  getFavoriteProduct,
   deleteFavProduct,
   getCartProduct,
   deleteCartProduct,
@@ -21,6 +20,7 @@ export default function FavoriteProduct() {
 
   useEffect(() => {
     validateCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDelete = (id) => {
@@ -73,7 +73,7 @@ export default function FavoriteProduct() {
                 <Link to={`/ProductDetail/${e.id}`}>
                   <img
                     src={e.image}
-                    alt="Image not found"
+                    alt="Img not found"
                     className={styles.image}
                   />
                 </Link>

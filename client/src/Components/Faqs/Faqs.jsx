@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Faqs.module.css";
-import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
-import {
-  BsShieldCheck,
-  BsCheckCircle,
-  BsFillTelephoneFill,
-  BsArrowUp,
-} from "react-icons/bs";
-import { GiPadlock } from "react-icons/gi";
-import { RiArrowRightSLine } from "react-icons/ri";
-import { AiOutlineInstagram } from "react-icons/ai";
+// import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
+// import {
+//   BsShieldCheck,
+//   BsCheckCircle,
+//   BsFillTelephoneFill,
+//   BsArrowUp,
+// } from "react-icons/bs";
+// import { GiPadlock } from "react-icons/gi";
+// import { RiArrowRightSLine } from "react-icons/ri";
+// import { AiOutlineInstagram } from "react-icons/ai";
 import Footer from "../Footer/Footer";
 
 export default function Faqs() {

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styles from "./ProductDetail.module.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import axios from "axios";
 import {
@@ -10,39 +10,35 @@ import {
   filterByQuery,
   getCartProduct,
   deleteCartProduct,
-  addReviewToProduct,
   getUserDetail,
 } from "../../Redux/Action/index.js";
 import agregadoImage from "../../Imagenes/agregadoCart.svg";
 import Carousel from "react-elastic-carousel";
 import Cookies from "universal-cookie";
-import stylesComponents from "./stylesComponents.css";
+// import stylesComponents from "./stylesComponents.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { TbTrashX } from "react-icons/tb";
-import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
-import {
-  BsShieldCheck,
-  BsCheckCircle,
-  BsFillTelephoneFill,
-  BsArrowUp,
-} from "react-icons/bs";
-import { GiPadlock } from "react-icons/gi";
-import { RiArrowRightSLine } from "react-icons/ri";
-import { AiOutlineInstagram } from "react-icons/ai";
-import BuyProduct from "./MercadoLibre.jsx";
+// import { FaTruck, FaTiktok, FaFacebookSquare } from "react-icons/fa";
+// import {
+//   BsShieldCheck,
+//   BsCheckCircle,
+//   BsFillTelephoneFill,
+//   BsArrowUp,
+// } from "react-icons/bs";
+// import { GiPadlock } from "react-icons/gi";
+// import { RiArrowRightSLine } from "react-icons/ri";
+// import { AiOutlineInstagram } from "react-icons/ai";
+// import BuyProduct from "./MercadoLibre.jsx";
 import Footer from "../Footer/Footer";
 
 export default function ProductDetail() {
   //instalar style-component si no funciona
-  const history = useNavigate();
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { id } = useParams();
   const dispatch = useDispatch();
   const productDetail = useSelector((state) => state.productDetail);
   const products = useSelector((state) => state.products);
-  const productCart = useSelector((state) => state.productCart);
   const cookies = new Cookies();
-  const [detail, setDetail] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const grandTotalRef = useRef("");
 
@@ -50,12 +46,14 @@ export default function ProductDetail() {
     if (isAuthenticated && !isLoading) {
       dispatch(getUserDetail(user.email));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const userDetail = useSelector((state) => state.userDetail);
 
   useEffect(() => {
     dispatch(getProductDetail(id)).then((res) => res && setLoaded(true));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -64,6 +62,7 @@ export default function ProductDetail() {
         `category=${productDetail.categoryName}&genre=${productDetail.genre}`
       )
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productDetail]);
 
   const breakPoints = [
@@ -546,7 +545,7 @@ export default function ProductDetail() {
                             <div className={styles.divBtnDeleteComment}>
                               {isAuthenticated &&
                               userDetail &&
-                              productDetail.opinion[index].email ==
+                              productDetail.opinion[index].email ===
                                 userDetail.email ? (
                                 <button
                                   onClick={() =>

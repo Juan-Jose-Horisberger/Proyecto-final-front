@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./AboutUs.module.css";
 import Carousel from "react-elastic-carousel";
-import stylesComponents from "./stylesComponents.css";
 import CartImg from "../../Imagenes/imagenCart2.jpg";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -30,7 +29,7 @@ export default function About() {
   };
 
   useEffect(() => {
-    breackPointObserver(breakPoints2, setBreakPointsState);
+    breackPointObserver(breakPoints2, setBreakPointsState); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [breakPointsState]);
 
   return (

@@ -12,6 +12,7 @@ export default function BuyProducts({ data }) {
       .then((order) => {
         setPreferenceId(order.data);
       });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
